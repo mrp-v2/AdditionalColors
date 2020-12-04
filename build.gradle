@@ -1,0 +1,175 @@
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonElement
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import groovy.json.JsonSlurper
+
+buildscript {
+    repositories {
+        maven {
+            url = 'https://files.minecraftforge.net/maven'
+        }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+String mcVersion = version.split('-')[0]
+if (forgeVersion == 'latest' || forgeVersion == 'recommended')
+{
+    println 'Grabbing ' + forgeVersion + ' forge version for MC ' + mcVersion
+    forgeVersion = new JsonSlurper().
+            parse(new URL('https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json')).
+            get('promos').get(mcVersion + '-' + forgeVersion)
+    assert forgeVersion != null
+}
+String capitalizedModId = modDisplayName.replace(' ', '')
+String modId = capitalizedModId.toLowerCase()
+String forgeMajor = forgeVersion.split("\\.")[0]
+String mcNextVersion = '1.' + ((mcVersion.split('\\.')[1] as int) + 1)
+String homepageURL = "https://www.curseforge.com/minecraft/mc-mods/${modDisplayName.replace(' ', '-').toLowerCase()}"
+String issuesURL = "${homepageURL}/issues"
+String updateURL = "https://raw.githubusercontent.com/mrp-v2/${capitalizedModId}/master/update.json"
+String dglNextAPI = dglAPI.split('\\.')[0] + '.' + ((dglAPI.split('\\.')[1] as int) + 1)
+archivesBaseName = modId + '-forge'
+group = "${author}.${archivesBaseName}"
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' +
+        System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+println('Minecraft: ' + mcVersion + ' Forge: ' + forgeVersion + ' Mapping: ' + mapping + ' Mod: ' + version)
+
+sourceSets {
+    main {
+        resources {
+            srcDirs 'src/generated/resources'
+        }
+    }
+}
+
+minecraft {
+    mappings channel: mapping.split('\\|')[0], version: mapping.split('\\|')[1]
+    accessTransformer = file 'src/main/resources/META-INF/accesstransformer.cfg'
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                morewires {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                morewires {
+                    source sourceSets.main
+                }
+            }
+        }
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', modId, '--all', '--output', file('src/generated/resources/'), '--existing',
+                    sourceSets.main.output.resourcesDir
+            mods {
+                morewires {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    maven {
+        name = 'mrp_v2 DataGen Library'
+        url = new URL('https://maven.pkg.github.com/mrp-v2/mrp_v2DataGenLibrary')
+        credentials {
+            username = 'mrp-v2'
+            password = new JsonSlurper().parse(new File('../secrets.json')).get('github-packages-token')
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${mcVersion}-${forgeVersion}"
+    compile fg.deobf("mrp_v2.mrp_v2datagenlibrary-forge:mrp_v2datagenlibrary:${mcVersion}-${dglAPI}.${dglPatch}")
+}
+
+jar {
+    manifest {
+        attributes(['Specification-Title'     : archivesBaseName,
+                    'Specification-Vendor'    : author,
+                    'Specification-Version'   : '1', // We are version 1 of ourselves
+                    'Implementation-Title'    : project.name,
+                    'Implementation-Version'  : "${version}",
+                    'Implementation-Vendor'   : author,
+                    'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")])
+    }
+}
+
+jar.finalizedBy('reobfJar')
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'modId', modId
+    inputs.property 'forgeMajor', forgeMajor
+    inputs.property 'mcVersion', mcVersion
+    inputs.property 'mcNextVersion', mcNextVersion
+    inputs.property 'homepageURL', homepageURL
+    inputs.property 'modDisplayName', modDisplayName
+    inputs.property 'capitalizedModId', capitalizedModId
+    inputs.property 'modDescription', modDescription
+    inputs.property 'author', author
+    inputs.property 'updateURL', updateURL
+    inputs.property 'issuesURL', issuesURL
+    inputs.property 'dglAPI', dglAPI
+    inputs.property 'dglNextAPI', dglNextAPI
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*'
+        exclude '**/*.png'
+        expand 'version': project.version, 'modId': modId, 'forgeMajor': forgeMajor, 'mcVersion': mcVersion,
+                'mcNextVersion': mcNextVersion, 'homepageURL': homepageURL, 'modDisplayName': modDisplayName,
+                'capitalizedModId': capitalizedModId, 'modDescription': modDescription, 'author': author,
+                'updateURL': updateURL, 'issuesURL': issuesURL, 'dglAPI': dglAPI, 'dglNextAPI': dglNextAPI
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*'
+    }
+}
+
+task regenerateUpdateJson {
+    doLast {
+        String updateJsonLocation = './update.json'
+        println 'Regenerating update.json from version: ' + version
+        JsonObject newUpdateJson = new JsonObject()
+        newUpdateJson.addProperty('homepage', homepageURL)
+        JsonObject promos = new JsonObject()
+        newUpdateJson.add('promos', promos)
+        JsonObject oldUpdateJson = new JsonParser().
+                parse(new File(updateJsonLocation).text).getAsJsonObject().
+                getAsJsonObject('promos')
+        for (Map.Entry<String, JsonElement> entry : oldUpdateJson.entrySet())
+        {
+            promos.addProperty(entry.key, entry.value.asString)
+        }
+        promos.addProperty("${mcVersion}-recommended", (String) version)
+        promos.addProperty("${mcVersion}-latest", (String) version)
+        if (mcVersion == new JsonSlurper().parse(new File('../secrets.json')).get('latest-mc-version'))
+        {
+            promos.addProperty("recommended", (String) version)
+            promos.addProperty("latest", (String) version)
+        }
+        String jsonString = new GsonBuilder().setPrettyPrinting().create().toJson(newUpdateJson)
+        new File(updateJsonLocation).text = jsonString
+    }
+}
