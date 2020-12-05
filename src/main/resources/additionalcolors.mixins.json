@@ -1,0 +1,13 @@
+{
+    "required": true,
+    "package": "mrp_v2.additionalcolors.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "refmap": "additionalcolors.refmap.json",
+    "mixins": [
+        "AbstractBlockPropertiesMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "minVersion": "0.8"
+}

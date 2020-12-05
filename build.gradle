@@ -11,9 +11,13 @@ buildscript {
         }
         jcenter()
         mavenCentral()
+        maven {
+            url = 'https://dist.creeper.host/Sponge/maven'
+        }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -35,7 +39,7 @@ String homepageURL = "https://www.curseforge.com/minecraft/mc-mods/${modDisplayN
 String issuesURL = "${homepageURL}/issues"
 String updateURL = "https://raw.githubusercontent.com/mrp-v2/${capitalizedModId}/master/update.json"
 String dglNextAPI = dglAPI.split('\\.')[0] + '.' + ((dglAPI.split('\\.')[1] as int) + 1)
-archivesBaseName = modId + '-forge'
+archivesBaseName = modId
 group = "${author}.${archivesBaseName}"
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' +
@@ -52,10 +56,12 @@ sourceSets {
 
 minecraft {
     mappings channel: mapping.split('\\|')[0], version: mapping.split('\\|')[1]
-    accessTransformer = file 'src/main/resources/META-INF/accesstransformer.cfg'
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         client {
+            property 'mixin.env.disableRefMap', 'true'
             workingDirectory project.file('run')
+            arg "-mixin.config=" + archivesBaseName + ".mixins.json"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
@@ -65,7 +71,9 @@ minecraft {
             }
         }
         server {
+            property 'mixin.env.disableRefMap', 'true'
             workingDirectory project.file('run')
+            arg "-mixin.config=" + archivesBaseName + ".mixins.json"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
@@ -75,7 +83,9 @@ minecraft {
             }
         }
         data {
+            property 'mixin.env.disableRefMap', 'true'
             workingDirectory project.file('run')
+            arg "-mixin.config=" + archivesBaseName + ".mixins.json"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             args '--mod', modId, '--all', '--output', file('src/generated/resources/'), '--existing',
@@ -113,7 +123,8 @@ jar {
                     'Implementation-Title'    : project.name,
                     'Implementation-Version'  : "${version}",
                     'Implementation-Vendor'   : author,
-                    'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")])
+                    'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                    'MixinConfigs'            : "${modId}.mixins.json"])
     }
 }
 
@@ -137,6 +148,7 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         include '**/*'
         exclude '**/*.png'
+        exclude '**/*.cfg'
         expand 'version': project.version, 'modId': modId, 'forgeMajor': forgeMajor, 'mcVersion': mcVersion,
                 'mcNextVersion': mcNextVersion, 'homepageURL': homepageURL, 'modDisplayName': modDisplayName,
                 'capitalizedModId': capitalizedModId, 'modDescription': modDescription, 'author': author,
@@ -172,4 +184,10 @@ task regenerateUpdateJson {
         String jsonString = new GsonBuilder().setPrettyPrinting().create().toJson(newUpdateJson)
         new File(updateJsonLocation).text = jsonString
     }
+}
+
+apply plugin: 'org.spongepowered.mixin'
+
+mixin {
+    add sourceSets.main, "${modId}.refmap.json"
 }
