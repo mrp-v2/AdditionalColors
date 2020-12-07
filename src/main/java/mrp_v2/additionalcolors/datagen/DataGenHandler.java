@@ -1,7 +1,7 @@
 package mrp_v2.additionalcolors.datagen;
 
 import mrp_v2.additionalcolors.AdditionalColors;
-import mrp_v2.mrp_v2datagenlibrary.datagen.DataGeneratorHelper;
+import mrp_v2.mrplibrary.datagen.DataGeneratorHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
