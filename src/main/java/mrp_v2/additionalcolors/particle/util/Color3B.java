@@ -18,6 +18,11 @@ public class Color3B
         this.blue = blue;
     }
 
+    public static Color3B fromInt(int color)
+    {
+        return new Color3B((byte) ((color >> 16) & 0xFF), (byte) ((color >> 8) & 0xFF), (byte) (color & 0xFF));
+    }
+
     public byte getRed()
     {
         return this.red;

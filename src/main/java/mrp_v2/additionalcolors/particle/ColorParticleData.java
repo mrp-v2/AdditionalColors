@@ -22,20 +22,15 @@ public abstract class ColorParticleData implements IParticleData
         this.color = color;
     }
 
-    public ColorParticleData(int color)
-    {
-        this((byte) ((color >> 16) & 0xFF), (byte) ((color >> 8) & 0xFF), (byte) (color & 0xFF));
-    }
-
     public ColorParticleData(byte red, byte green, byte blue)
     {
         this.color = new Color3B(red, green, blue);
     }
 
     public static <T extends ColorParticleData> ParticleType<T> createParticleType(
-            Function<Color3B, T> colorConstructor, Function<Integer, T> intConstructor)
+            Function<Color3B, T> colorConstructor)
     {
-        return new ParticleType<T>(false, makeDeserializer(intConstructor, colorConstructor))
+        return new ParticleType<T>(false, makeDeserializer(colorConstructor))
         {
             private final Codec<T> codec = makeCodec(colorConstructor);
 
@@ -59,7 +54,7 @@ public abstract class ColorParticleData implements IParticleData
     }
 
     protected static <T extends ColorParticleData> IDeserializer<T> makeDeserializer(
-            Function<Integer, T> intConstructor, Function<Color3B, T> colorConstructor)
+            Function<Color3B, T> colorConstructor)
     {
         return new IDeserializer<T>()
         {
@@ -67,7 +62,9 @@ public abstract class ColorParticleData implements IParticleData
                     throws CommandSyntaxException
             {
                 reader.expect(' ');
-                return intConstructor.apply(reader.readInt());
+                int color = reader.readInt() & 0xFFFFFF;
+                return colorConstructor.apply(new Color3B((byte) ((color >> 16) & 0xFF), (byte) ((color >> 8) & 0xFF),
+                        (byte) (color & 0xFF)));
             }
 
             @Override public T read(ParticleType<T> particleTypeIn, PacketBuffer buffer)
@@ -116,11 +113,6 @@ public abstract class ColorParticleData implements IParticleData
             super(color);
         }
 
-        public DrippingObsidianTear(int color)
-        {
-            super(color);
-        }
-
         @Override public ParticleType<?> getType()
         {
             return ObjectHolder.COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE.get();
@@ -134,11 +126,6 @@ public abstract class ColorParticleData implements IParticleData
             super(color);
         }
 
-        public FallingObsidianTear(int color)
-        {
-            super(color);
-        }
-
         @Override public ParticleType<?> getType()
         {
             return ObjectHolder.COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE.get();
@@ -148,11 +135,6 @@ public abstract class ColorParticleData implements IParticleData
     public static class LandingObsidianTear extends ColorParticleData
     {
         public LandingObsidianTear(Color3B color)
-        {
-            super(color);
-        }
-
-        public LandingObsidianTear(int color)
         {
             super(color);
         }

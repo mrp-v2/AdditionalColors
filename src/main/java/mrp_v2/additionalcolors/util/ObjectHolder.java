@@ -2,8 +2,8 @@ package mrp_v2.additionalcolors.util;
 
 import mrp_v2.additionalcolors.AdditionalColors;
 import mrp_v2.additionalcolors.block.ColoredCryingObsidianBlock;
-import mrp_v2.additionalcolors.mixin_interfaces.ISetMaterialColor;
 import mrp_v2.additionalcolors.particle.ColorParticleData;
+import mrp_v2.additionalcolors.particle.util.Color3B;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -41,21 +41,18 @@ public class ObjectHolder
         for (DyeColor color : cryingObsidianColors)
         {
             String id = color.getString() + "_crying_obsidian";
-            COLORED_CRYING_OBSIDIAN_BLOCKS.put(color, BLOCKS.register(id, () -> new ColoredCryingObsidianBlock(
-                    ((ISetMaterialColor) AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN))
-                            .setMaterialColor(color.getMapColor()), color)));
+            COLORED_CRYING_OBSIDIAN_BLOCKS.put(color, BLOCKS.register(id,
+                    () -> new ColoredCryingObsidianBlock(AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN),
+                            Color3B.fromInt(color.getColorValue()))));
             ITEMS.register(id, () -> new BlockItem(COLORED_CRYING_OBSIDIAN_BLOCKS.get(color).get(),
                     new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
         }
         COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE = PARTICLE_TYPES.register("colored_dripping_obsidian_tear",
-                () -> ColorParticleData.createParticleType(ColorParticleData.DrippingObsidianTear::new,
-                        ColorParticleData.DrippingObsidianTear::new));
+                () -> ColorParticleData.createParticleType(ColorParticleData.DrippingObsidianTear::new));
         COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE = PARTICLE_TYPES.register("colored_falling_obsidian_tear",
-                () -> ColorParticleData.createParticleType(ColorParticleData.FallingObsidianTear::new,
-                        ColorParticleData.FallingObsidianTear::new));
+                () -> ColorParticleData.createParticleType(ColorParticleData.FallingObsidianTear::new));
         COLORED_LANDING_OBSIDIAN_TEAR_PARTICLE_TYPE = PARTICLE_TYPES.register("colored_landing_obsidian_tear",
-                () -> ColorParticleData.createParticleType(ColorParticleData.LandingObsidianTear::new,
-                        ColorParticleData.LandingObsidianTear::new));
+                () -> ColorParticleData.createParticleType(ColorParticleData.LandingObsidianTear::new));
     }
 
     public static void registerListeners(IEventBus bus)

@@ -1,10 +1,10 @@
 package mrp_v2.additionalcolors.block;
 
 import mrp_v2.additionalcolors.particle.ColorParticleData;
+import mrp_v2.additionalcolors.particle.util.Color3B;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CryingObsidianBlock;
-import net.minecraft.item.DyeColor;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -15,12 +15,12 @@ import java.util.Random;
 
 public class ColoredCryingObsidianBlock extends CryingObsidianBlock
 {
-    public final DyeColor color;
+    public final Color3B particleColor;
 
-    public ColoredCryingObsidianBlock(AbstractBlock.Properties properties, DyeColor color)
+    public ColoredCryingObsidianBlock(AbstractBlock.Properties properties, Color3B particleColor)
     {
         super(properties);
-        this.color = color;
+        this.particleColor = particleColor;
     }
 
     @Override @OnlyIn(Dist.CLIENT) public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
@@ -40,7 +40,7 @@ public class ColoredCryingObsidianBlock extends CryingObsidianBlock
                             0.5D + (double) direction.getYOffset() * 0.6D;
                     double d2 = direction.getZOffset() == 0 ? rand.nextDouble() :
                             0.5D + (double) direction.getZOffset() * 0.6D;
-                    worldIn.addParticle(new ColorParticleData.DrippingObsidianTear(this.color.getColorValue()),
+                    worldIn.addParticle(new ColorParticleData.DrippingObsidianTear(this.particleColor),
                             (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, 0.0D, 0.0D,
                             0.0D);
                 }
