@@ -35,7 +35,7 @@ public class ObjectHolder
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_LANDING_OBSIDIAN_TEAR_PARTICLE_TYPE;
-    public static final Block[] BLOCKS_TO_COLORIZE = new Block[]{Blocks.OBSIDIAN};
+    public static final Block[] BLOCKS_TO_COLORIZE = new Block[]{Blocks.OBSIDIAN, Blocks.COBBLESTONE};
     public static final HashMap<RegistryObject<ColoredBlock>, DyeColor> COLORIZED_BLOCKS = new HashMap<>();
     public static final HashMap<RegistryObject<ColoredBlockItem>, DyeColor> COLORIZED_BLOCK_ITEMS = new HashMap<>();
     public static final HashMap<Block, HashSet<RegistryObject<ColoredBlock>>> COLORIZED_BLOCK_MAP = new HashMap<>();
