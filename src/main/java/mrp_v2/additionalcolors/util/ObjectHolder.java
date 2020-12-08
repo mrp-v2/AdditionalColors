@@ -1,7 +1,9 @@
 package mrp_v2.additionalcolors.util;
 
 import mrp_v2.additionalcolors.AdditionalColors;
+import mrp_v2.additionalcolors.block.ColoredBlock;
 import mrp_v2.additionalcolors.block.ColoredCryingObsidianBlock;
+import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import mrp_v2.additionalcolors.particle.ColorParticleData;
 import mrp_v2.additionalcolors.particle.util.Color3B;
 import net.minecraft.block.AbstractBlock;
@@ -18,6 +20,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class ObjectHolder
 {
@@ -32,6 +35,10 @@ public class ObjectHolder
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_LANDING_OBSIDIAN_TEAR_PARTICLE_TYPE;
+    public static final Block[] BLOCKS_TO_COLORIZE = new Block[]{Blocks.OBSIDIAN};
+    public static final HashMap<RegistryObject<ColoredBlock>, DyeColor> COLORIZED_BLOCKS = new HashMap<>();
+    public static final HashMap<RegistryObject<ColoredBlockItem>, DyeColor> COLORIZED_BLOCK_ITEMS = new HashMap<>();
+    public static final HashMap<Block, HashSet<RegistryObject<ColoredBlock>>> COLORIZED_BLOCK_MAP = new HashMap<>();
 
     static
     {
@@ -40,7 +47,7 @@ public class ObjectHolder
                         DyeColor.CYAN, DyeColor.BLUE, DyeColor.BROWN, DyeColor.GREEN, DyeColor.RED, DyeColor.BLACK};
         for (DyeColor color : cryingObsidianColors)
         {
-            String id = color.getString() + "_crying_obsidian";
+            String id = color.getTranslationKey() + "_crying_obsidian";
             COLORED_CRYING_OBSIDIAN_BLOCKS.put(color, BLOCKS.register(id,
                     () -> new ColoredCryingObsidianBlock(AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN),
                             Color3B.fromInt(color.getColorValue()))));
@@ -53,6 +60,21 @@ public class ObjectHolder
                 () -> ColorParticleData.createParticleType(ColorParticleData.FallingObsidianTear::new));
         COLORED_LANDING_OBSIDIAN_TEAR_PARTICLE_TYPE = PARTICLE_TYPES.register("colored_landing_obsidian_tear",
                 () -> ColorParticleData.createParticleType(ColorParticleData.LandingObsidianTear::new));
+        for (Block block : BLOCKS_TO_COLORIZE)
+        {
+            HashSet<RegistryObject<ColoredBlock>> set = new HashSet<>();
+            for (DyeColor color : DyeColor.values())
+            {
+                final String id = color.getTranslationKey() + '_' + block.getRegistryName().getPath();
+                RegistryObject<ColoredBlock> blockObj =
+                        BLOCKS.register(id, () -> new ColoredBlock(color, AbstractBlock.Properties.from(block)));
+                set.add(blockObj);
+                COLORIZED_BLOCKS.put(blockObj, color);
+                COLORIZED_BLOCK_ITEMS.put(ITEMS.register(id, () -> new ColoredBlockItem(blockObj.get(),
+                        new Item.Properties().group(block.asItem().getGroup()))), color);
+            }
+            COLORIZED_BLOCK_MAP.put(block, set);
+        }
     }
 
     public static void registerListeners(IEventBus bus)

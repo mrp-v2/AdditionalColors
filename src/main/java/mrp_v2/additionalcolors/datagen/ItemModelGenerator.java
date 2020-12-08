@@ -1,7 +1,9 @@
 package mrp_v2.additionalcolors.datagen;
 
+import mrp_v2.additionalcolors.block.ColoredBlock;
 import mrp_v2.additionalcolors.block.ColoredCryingObsidianBlock;
 import mrp_v2.additionalcolors.util.ObjectHolder;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -20,6 +22,14 @@ public class ItemModelGenerator extends ItemModelProvider
         {
             String path = blockObj.get().getRegistryName().getPath();
             this.withExistingParent(path, modLoc("block/" + path));
+        }
+        for (Block block : ObjectHolder.COLORIZED_BLOCK_MAP.keySet())
+        {
+            String path = block.getRegistryName().getPath();
+            for (RegistryObject<ColoredBlock> blockObj : ObjectHolder.COLORIZED_BLOCK_MAP.get(block))
+            {
+                this.withExistingParent(blockObj.getId().getPath(), modLoc("block/" + path));
+            }
         }
     }
 }
