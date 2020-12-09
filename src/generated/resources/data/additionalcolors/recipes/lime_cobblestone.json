@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "forge:cobblestone"
+        }, {
+            "tag": "forge:dyes/lime"
+        }
+    ],
+    "result": {
+        "item": "additionalcolors:lime_cobblestone"
+    }
+}

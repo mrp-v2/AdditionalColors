@@ -17,5 +17,10 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
             helper.addItemModelProvider(ItemModelGenerator::new);
             helper.addLanguageProvider(EN_USTranslationGenerator::new);
         }
+        if (event.includeServer())
+        {
+            helper.addItemTagGenerator(ItemTagGenerator::new);
+            helper.addRecipeGenerator(RecipeGenerator::new);
+        }
     }
 }

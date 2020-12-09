@@ -1,0 +1,31 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "additionalcolors:white_cobblestone"
+        ]
+    },
+    "criteria": {
+        "has_block": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "forge:cobblestone"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "additionalcolors:white_cobblestone"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_block", "has_the_recipe"
+        ]
+    ]
+}
