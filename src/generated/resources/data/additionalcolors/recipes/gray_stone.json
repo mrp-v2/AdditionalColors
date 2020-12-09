@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "forge:stone"
+        }, {
+            "tag": "forge:dyes/gray"
+        }
+    ],
+    "result": {
+        "item": "additionalcolors:gray_stone"
+    }
+}
