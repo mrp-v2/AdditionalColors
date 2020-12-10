@@ -44,7 +44,9 @@ public class ObjectHolder
     public static final ColorizedBlockEntry[] BLOCKS_TO_COLORIZE =
             new ColorizedBlockEntry[]{new ColorizedBlockEntry(Blocks.OBSIDIAN, Tags.Items.OBSIDIAN),
                     new ColorizedBlockEntry(Blocks.COBBLESTONE, Tags.Items.COBBLESTONE),
-                    new ColorizedBlockEntry(Blocks.STONE, Tags.Items.STONE)};
+                    new ColorizedBlockEntry(Blocks.STONE, Tags.Items.STONE),
+                    new ColorizedBlockEntry(Blocks.SMOOTH_STONE,
+                            ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, "smooth_stone")))};
     public static final HashMap<Block, HashSet<RegistryObject<ColoredBlock>>> COLORIZED_BLOCK_MAP = new HashMap<>();
     public static final HashMap<Block, HashSet<RegistryObject<ColoredBlockItem>>> COLORIZED_BLOCK_ITEM_MAP =
             new HashMap<>();

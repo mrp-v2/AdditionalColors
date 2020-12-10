@@ -1,7 +1,7 @@
 {
     "replace": false,
     "values": [
-        "additionalcolors:brown_cobblestone", "additionalcolors:orange_cobblestone",
+        "minecraft:cobblestone", "additionalcolors:brown_cobblestone", "additionalcolors:orange_cobblestone",
         "additionalcolors:green_cobblestone", "additionalcolors:light_gray_cobblestone",
         "additionalcolors:purple_cobblestone", "additionalcolors:magenta_cobblestone",
         "additionalcolors:gray_cobblestone", "additionalcolors:blue_cobblestone", "additionalcolors:black_cobblestone",

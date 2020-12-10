@@ -79,7 +79,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             args '--mod', modId, '--all', '--output', file('src/generated/resources/'), '--existing',
-                    sourceSets.main.output.resourcesDir
+                    sourceSets.main.output.resourcesDir, '--existing', file('src/generated/resources')
             mods {
                 morewires {
                     source sourceSets.main

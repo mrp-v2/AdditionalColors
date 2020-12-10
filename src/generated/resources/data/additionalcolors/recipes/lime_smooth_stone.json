@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "additionalcolors:smooth_stone"
+        }, {
+            "tag": "forge:dyes/lime"
+        }
+    ],
+    "result": {
+        "item": "additionalcolors:lime_smooth_stone"
+    }
+}
