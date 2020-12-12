@@ -1,5 +1,6 @@
 package mrp_v2.additionalcolors.block;
 
+import mrp_v2.additionalcolors.client.Config;
 import mrp_v2.additionalcolors.particle.ColorParticleData;
 import mrp_v2.additionalcolors.particle.util.Color3B;
 import net.minecraft.block.AbstractBlock;
@@ -25,7 +26,11 @@ public class ColoredCryingObsidianBlock extends CryingObsidianBlock
 
     @Override @OnlyIn(Dist.CLIENT) public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-        if (rand.nextInt(5) == 0)
+        if (Config.CLIENT.getCryingObsidianParticleChance() == 0)
+        {
+            return;
+        }
+        if (rand.nextInt(Config.CLIENT.getCryingObsidianParticleChance()) == 0)
         {
             Direction direction = Direction.getRandomDirection(rand);
             if (direction != Direction.UP)
