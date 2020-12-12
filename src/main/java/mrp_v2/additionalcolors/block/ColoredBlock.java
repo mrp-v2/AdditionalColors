@@ -3,7 +3,7 @@ package mrp_v2.additionalcolors.block;
 import net.minecraft.block.Block;
 import net.minecraft.item.DyeColor;
 
-public class ColoredBlock extends Block
+public class ColoredBlock extends Block implements IColoredBlock
 {
     private final DyeColor color;
 
@@ -16,5 +16,10 @@ public class ColoredBlock extends Block
     public DyeColor getColor()
     {
         return this.color;
+    }
+
+    @Override public Block getBlock()
+    {
+        return this;
     }
 }

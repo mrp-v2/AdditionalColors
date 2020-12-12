@@ -6,6 +6,7 @@ import mrp_v2.additionalcolors.particle.util.Color3B;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CryingObsidianBlock;
+import net.minecraft.item.DyeColor;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -14,14 +15,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
-public class ColoredCryingObsidianBlock extends CryingObsidianBlock
+public class ColoredCryingObsidianBlock extends CryingObsidianBlock implements IColoredBlock
 {
-    public final Color3B particleColor;
+    private final DyeColor color;
+    private final Color3B particleColor;
 
-    public ColoredCryingObsidianBlock(AbstractBlock.Properties properties, Color3B particleColor)
+    public ColoredCryingObsidianBlock(AbstractBlock.Properties properties, DyeColor color)
     {
         super(properties);
-        this.particleColor = particleColor;
+        this.color = color;
+        this.particleColor = Color3B.fromInt(color.getColorValue());
     }
 
     @Override @OnlyIn(Dist.CLIENT) public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
@@ -51,5 +54,10 @@ public class ColoredCryingObsidianBlock extends CryingObsidianBlock
                 }
             }
         }
+    }
+
+    @Override public DyeColor getColor()
+    {
+        return color;
     }
 }

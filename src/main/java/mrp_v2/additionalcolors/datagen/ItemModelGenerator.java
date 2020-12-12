@@ -1,13 +1,14 @@
 package mrp_v2.additionalcolors.datagen;
 
 import mrp_v2.additionalcolors.block.ColoredBlock;
-import mrp_v2.additionalcolors.block.ColoredCryingObsidianBlock;
+import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import mrp_v2.additionalcolors.util.ObjectHolder;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class ItemModelGenerator extends ItemModelProvider
 {
@@ -18,17 +19,14 @@ public class ItemModelGenerator extends ItemModelProvider
 
     @Override protected void registerModels()
     {
-        for (RegistryObject<ColoredCryingObsidianBlock> blockObj : ObjectHolder.COLORED_CRYING_OBSIDIAN_BLOCKS.values())
-        {
-            String path = blockObj.get().getRegistryName().getPath();
-            this.withExistingParent(path, modLoc("block/" + path));
-        }
+        ObjectHolder.CRYING_OBSIDIAN_HANDLER.registerItemModels(this);
         for (Block block : ObjectHolder.COLORIZED_BLOCK_MAP.keySet())
         {
             String path = block.getRegistryName().getPath();
-            for (RegistryObject<ColoredBlock> blockObj : ObjectHolder.COLORIZED_BLOCK_MAP.get(block))
+            for (Pair<RegistryObject<ColoredBlock>, RegistryObject<ColoredBlockItem>> blockObj : ObjectHolder.COLORIZED_BLOCK_MAP
+                    .get(block))
             {
-                this.withExistingParent(blockObj.getId().getPath(), modLoc("block/" + path));
+                this.withExistingParent(blockObj.getLeft().getId().getPath(), modLoc("block/" + path));
             }
         }
     }

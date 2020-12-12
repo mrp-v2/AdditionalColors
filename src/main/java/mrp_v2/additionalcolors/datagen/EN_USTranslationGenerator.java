@@ -1,10 +1,12 @@
 package mrp_v2.additionalcolors.datagen;
 
+import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import mrp_v2.additionalcolors.util.ObjectHolder;
 import mrp_v2.mrplibrary.datagen.LanguageProvider;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.fml.RegistryObject;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class EN_USTranslationGenerator extends LanguageProvider
 {
@@ -15,13 +17,13 @@ public class EN_USTranslationGenerator extends LanguageProvider
 
     @Override protected void addTranslations()
     {
-        ObjectHolder.COLORED_CRYING_OBSIDIAN_BLOCKS.values().forEach(this::addSimpleBlock);
+        ObjectHolder.CRYING_OBSIDIAN_HANDLER.generateTranslations(this);
         ObjectHolder.COLORIZED_BLOCK_MAP.values().forEach(set -> set.forEach(this::addSimpleBlock));
     }
 
-    public void addSimpleBlock(RegistryObject<? extends Block> blockObj)
+    public <T extends Block> void addSimpleBlock(Pair<RegistryObject<T>, RegistryObject<ColoredBlockItem>> objPair)
     {
-        this.addBlock(blockObj, objToName(blockObj));
+        this.addBlock(objPair.getLeft(), objToName(objPair.getLeft()));
     }
 
     public static String objToName(RegistryObject<?> obj)
@@ -39,5 +41,10 @@ public class EN_USTranslationGenerator extends LanguageProvider
             name.append(word.substring(1));
         }
         return name.toString();
+    }
+
+    public <T extends Block> void addSimpleBlock(RegistryObject<T> blockObj)
+    {
+        this.addBlock(blockObj, objToName(blockObj));
     }
 }

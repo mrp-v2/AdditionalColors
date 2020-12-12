@@ -1,5 +1,6 @@
 package mrp_v2.additionalcolors.datagen;
 
+import mrp_v2.additionalcolors.block.ColoredBlock;
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import mrp_v2.additionalcolors.util.ColorizedBlockEntry;
 import mrp_v2.additionalcolors.util.ObjectHolder;
@@ -8,9 +9,10 @@ import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.TagsProvider;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.tags.ITag;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
 
@@ -24,20 +26,21 @@ public class ItemTagGenerator extends ItemTagsProvider
 
     @Override protected void registerTags()
     {
-        TagsProvider.Builder<Item> cryingObsidianBuilder = this.getOrCreateBuilder(ObjectHolder.CRYING_OBSIDIAN_TAG);
-        cryingObsidianBuilder.add(Items.CRYING_OBSIDIAN);
-        for (RegistryObject<ColoredBlockItem> itemObj : ObjectHolder.COLORED_CRYING_OBSIDIAN_ITEMS.values())
-        {
-            cryingObsidianBuilder.add(itemObj.get());
-        }
+        ObjectHolder.CRYING_OBSIDIAN_HANDLER.registerTags(this);
         for (ColorizedBlockEntry entry : ObjectHolder.BLOCKS_TO_COLORIZE)
         {
             TagsProvider.Builder<Item> builder = this.getOrCreateBuilder(entry.getTag());
             builder.add(entry.getBlock().asItem());
-            for (RegistryObject<ColoredBlockItem> itemObj : ObjectHolder.COLORIZED_BLOCK_ITEM_MAP.get(entry.getBlock()))
+            for (Pair<RegistryObject<ColoredBlock>, RegistryObject<ColoredBlockItem>> objPair : ObjectHolder.COLORIZED_BLOCK_MAP
+                    .get(entry.getBlock()))
             {
-                builder.add(itemObj.get());
+                builder.add(objPair.getRight().get());
             }
         }
+    }
+
+    @Override public Builder<Item> getOrCreateBuilder(ITag.INamedTag<Item> tag)
+    {
+        return super.getOrCreateBuilder(tag);
     }
 }

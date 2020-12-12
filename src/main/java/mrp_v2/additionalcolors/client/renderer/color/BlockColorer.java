@@ -18,6 +18,7 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -32,11 +33,12 @@ public class BlockColorer implements IBlockColor, IItemColor
     {
         Block[] blocks = new Block[ObjectHolder.BLOCKS_TO_COLORIZE.length * DyeColor.values().length];
         int i = 0;
-        for (HashSet<RegistryObject<ColoredBlock>> set : ObjectHolder.COLORIZED_BLOCK_MAP.values())
+        for (HashSet<Pair<RegistryObject<ColoredBlock>, RegistryObject<ColoredBlockItem>>> set : ObjectHolder.COLORIZED_BLOCK_MAP
+                .values())
         {
-            for (RegistryObject<ColoredBlock> blockObj : set)
+            for (Pair<RegistryObject<ColoredBlock>, RegistryObject<ColoredBlockItem>> objPair : set)
             {
-                blocks[i++] = blockObj.get();
+                blocks[i++] = objPair.getLeft().get();
             }
         }
         event.getBlockColors().register(INSTANCE, blocks);
@@ -46,11 +48,12 @@ public class BlockColorer implements IBlockColor, IItemColor
     {
         Item[] items = new Item[ObjectHolder.BLOCKS_TO_COLORIZE.length * DyeColor.values().length];
         int i = 0;
-        for (HashSet<RegistryObject<ColoredBlockItem>> set : ObjectHolder.COLORIZED_BLOCK_ITEM_MAP.values())
+        for (HashSet<Pair<RegistryObject<ColoredBlock>, RegistryObject<ColoredBlockItem>>> set : ObjectHolder.COLORIZED_BLOCK_MAP
+                .values())
         {
-            for (RegistryObject<ColoredBlockItem> itemObj : set)
+            for (Pair<RegistryObject<ColoredBlock>, RegistryObject<ColoredBlockItem>> objPair : set)
             {
-                items[i++] = itemObj.get();
+                items[i++] = objPair.getRight().get();
             }
         }
         event.getItemColors().register(INSTANCE, items);
