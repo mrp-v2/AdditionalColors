@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "additionalcolors:crying_obsidian_slab"
+        }, {
+            "tag": "forge:dyes/brown"
+        }
+    ],
+    "result": {
+        "item": "additionalcolors:brown_crying_obsidian_slab"
+    }
+}

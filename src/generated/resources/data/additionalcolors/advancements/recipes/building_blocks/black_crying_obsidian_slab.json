@@ -1,0 +1,31 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "additionalcolors:black_crying_obsidian_slab"
+        ]
+    },
+    "criteria": {
+        "has_base": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "additionalcolors:crying_obsidian_slab"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "additionalcolors:black_crying_obsidian_slab"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_base", "has_the_recipe"
+        ]
+    ]
+}

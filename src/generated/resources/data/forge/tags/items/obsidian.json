@@ -3,9 +3,9 @@
     "values": [
         "minecraft:obsidian", "additionalcolors:orange_obsidian", "additionalcolors:white_obsidian",
         "additionalcolors:magenta_obsidian", "additionalcolors:light_blue_obsidian", "additionalcolors:yellow_obsidian",
-        "additionalcolors:lime_obsidian", "additionalcolors:pink_obsidian", "additionalcolors:blue_obsidian",
-        "additionalcolors:gray_obsidian", "additionalcolors:black_obsidian", "additionalcolors:light_gray_obsidian",
-        "additionalcolors:green_obsidian", "additionalcolors:cyan_obsidian", "additionalcolors:brown_obsidian",
-        "additionalcolors:red_obsidian", "additionalcolors:purple_obsidian"
+        "additionalcolors:lime_obsidian", "additionalcolors:blue_obsidian", "additionalcolors:pink_obsidian",
+        "additionalcolors:gray_obsidian", "additionalcolors:light_gray_obsidian", "additionalcolors:brown_obsidian",
+        "additionalcolors:green_obsidian", "additionalcolors:cyan_obsidian", "additionalcolors:red_obsidian",
+        "additionalcolors:purple_obsidian", "additionalcolors:black_obsidian"
     ]
 }

@@ -24,13 +24,10 @@ import java.util.HashSet;
 
 public class ObjectHolder
 {
-    public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, AdditionalColors.ID);
-    public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, AdditionalColors.ID);
-    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =
-            DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, AdditionalColors.ID);
-    public static final ColoredCryingObsidianHandler CRYING_OBSIDIAN_HANDLER = new ColoredCryingObsidianHandler();
+    public static final DeferredRegister<Block> BLOCKS;
+    public static final DeferredRegister<Item> ITEMS;
+    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES;
+    public static final ColoredCryingObsidianHandler CRYING_OBSIDIAN_HANDLER;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_LANDING_OBSIDIAN_TEAR_PARTICLE_TYPE;
@@ -45,7 +42,10 @@ public class ObjectHolder
 
     static
     {
-        CRYING_OBSIDIAN_HANDLER.register();
+        BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, AdditionalColors.ID);
+        ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, AdditionalColors.ID);
+        PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, AdditionalColors.ID);
+        CRYING_OBSIDIAN_HANDLER = new ColoredCryingObsidianHandler();
         COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE = PARTICLE_TYPES.register("colored_dripping_obsidian_tear",
                 () -> ColorParticleData.createParticleType(ColorParticleData.DrippingObsidianTear::new));
         COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE = PARTICLE_TYPES.register("colored_falling_obsidian_tear",

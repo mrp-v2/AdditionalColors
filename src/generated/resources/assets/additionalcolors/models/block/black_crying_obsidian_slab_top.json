@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/slab_top",
+    "textures": {
+        "side": "additionalcolors:block/black_crying_obsidian",
+        "bottom": "additionalcolors:block/black_crying_obsidian",
+        "top": "additionalcolors:block/black_crying_obsidian"
+    }
+}
