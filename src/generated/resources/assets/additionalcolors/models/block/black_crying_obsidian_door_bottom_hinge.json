@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/door_bottom_rh",
+    "textures": {
+        "bottom": "additionalcolors:block/black_crying_obsidian",
+        "top": "additionalcolors:block/black_crying_obsidian"
+    }
+}

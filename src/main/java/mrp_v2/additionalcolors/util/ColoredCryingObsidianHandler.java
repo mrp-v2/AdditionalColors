@@ -1,10 +1,7 @@
 package mrp_v2.additionalcolors.util;
 
 import mrp_v2.additionalcolors.AdditionalColors;
-import mrp_v2.additionalcolors.block.ColoredCryingObsidianBlock;
-import mrp_v2.additionalcolors.block.ColoredSlabBlock;
-import mrp_v2.additionalcolors.block.ColoredStairsBlock;
-import mrp_v2.additionalcolors.block.IColoredBlock;
+import mrp_v2.additionalcolors.block.*;
 import mrp_v2.additionalcolors.datagen.*;
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import net.minecraft.block.AbstractBlock;
@@ -22,11 +19,16 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.RegistryObject;
 
+import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.function.*;
+import java.util.stream.Collectors;
 
 public class ColoredCryingObsidianHandler
 {
@@ -46,35 +48,80 @@ public class ColoredCryingObsidianHandler
         BiFunction<Supplier<? extends IColoredBlock>, ItemGroup, Supplier<ColoredBlockItem>> basicItemConstructor =
                 (blockSupplier, itemGroup) -> () -> new ColoredBlockItem(blockSupplier.get().getColor(),
                         blockSupplier.get().getBlock(), new Item.Properties().group(itemGroup));
-        final String obsidianExpansionID = "obsidian" + "expansion";
+        final ItemGroup obsidianExpansionGroup = getObsidianExpansionItemGroup();
+        final Supplier<AbstractBlock.Properties> basicProperties =
+                () -> AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN);
         blockDatas = new BlockData[]{new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath(),
-                (color) -> () -> new ColoredCryingObsidianBlock(AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN),
-                        color), (blockSupplier) -> basicItemConstructor.apply(blockSupplier, ItemGroup.BUILDING_BLOCKS),
+                (color) -> () -> new ColoredCryingObsidianBlock(basicProperties.get(), color),
+                (blockSupplier) -> basicItemConstructor.apply(blockSupplier, ItemGroup.BUILDING_BLOCKS),
                 (block, generator) -> generator.simpleBlock(block.getBlock()), basicItemModelMaker::accept,
                 Items.CRYING_OBSIDIAN.getRegistryName(), true, ItemTags.createOptional(
                 new ResourceLocation(AdditionalColors.ID, Blocks.CRYING_OBSIDIAN.getRegistryName().getPath()))),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_slab",
-                        (color) -> () -> new ColoredSlabBlock(AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN),
-                                color),
-                        (blockSupplier) -> basicItemConstructor.apply(blockSupplier, ItemGroup.BUILDING_BLOCKS),
+                        (color) -> () -> new ColoredSlabBlock(basicProperties.get(), color),
+                        (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
                         (block, generator) ->
                         {
                             ResourceLocation blockLoc = new ResourceLocation(AdditionalColors.ID,
                                     "block/" + block.getRegistryName().getPath().replace("_slab", ""));
                             generator.slabBlock(block, blockLoc, blockLoc);
                         }, basicItemModelMaker::accept,
-                        new ResourceLocation(obsidianExpansionID, "crying_obsidian_slab"), false,
-                        ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, "crying_obsidian_slab"))),
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"), false,
+                        ItemTags.createOptional(
+                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"))),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_stairs",
                         (color) -> () -> new ColoredStairsBlock(
                                 () -> baseBlocksMap.get(color).get().getBlock().getDefaultState(),
-                                AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN), color),
-                        (blockSupplier) -> basicItemConstructor.apply(blockSupplier, ItemGroup.BUILDING_BLOCKS),
+                                basicProperties.get(), color),
+                        (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
                         (block, generator) -> generator.stairsBlock(block, new ResourceLocation(AdditionalColors.ID,
                                 "block/" + block.getRegistryName().getPath().replace("_stairs", ""))),
                         basicItemModelMaker::accept,
-                        new ResourceLocation(obsidianExpansionID, "crying_obsidian_stairs"), false,
-                        ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, "crying_obsidian_stairs")))};
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs"), false,
+                        ItemTags.createOptional(new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
+                                "crying_obsidian_stairs"))),
+                new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_door",
+                        (color) -> () -> new ColoredDoorBlock(basicProperties.get().notSolid(), color),
+                        (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
+                        (block, generator) ->
+                        {
+                            ResourceLocation blockLoc = new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath().replace("_door", ""));
+                            generator.doorBlock(block, blockLoc, blockLoc);
+                        }, (block, generator) ->
+                {
+                }, new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"), false,
+                        ItemTags.createOptional(
+                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door")))};
+    }
+
+    @Nullable private ItemGroup getObsidianExpansionItemGroup()
+    {
+        if (!AdditionalColors.isObsidianExpansionPresent())
+        {
+            return null;
+        }
+        List<ItemGroup> labelMatches = Arrays.stream(ItemGroup.GROUPS)
+                .filter((group) -> ((TranslationTextComponent) group.getGroupName()).getKey()
+                        .equals("itemGroup.expansionTab")).collect(Collectors.toList());
+        if (labelMatches.size() == 0)
+        {
+            return null;
+        }
+        if (labelMatches.size() == 1)
+        {
+            return labelMatches.get(0);
+        }
+        final ResourceLocation obsidianExpansionGroupItemIcon =
+                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "weak_obsidian");
+        labelMatches = labelMatches.stream()
+                .filter((group) -> group.getIcon().getItem().getRegistryName().equals(obsidianExpansionGroupItemIcon))
+                .collect(Collectors.toList());
+        if (labelMatches.size() == 1)
+        {
+            return labelMatches.get(0);
+        }
+        return null;
     }
 
     public void registerBlockStatesAndModels(BlockStateGenerator generator)
