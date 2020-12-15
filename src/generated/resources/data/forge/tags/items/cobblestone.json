@@ -2,11 +2,11 @@
     "replace": false,
     "values": [
         "minecraft:cobblestone", "additionalcolors:yellow_cobblestone", "additionalcolors:white_cobblestone",
-        "additionalcolors:black_cobblestone", "additionalcolors:red_cobblestone", "additionalcolors:orange_cobblestone",
+        "additionalcolors:orange_cobblestone", "additionalcolors:red_cobblestone",
         "additionalcolors:magenta_cobblestone", "additionalcolors:light_blue_cobblestone",
         "additionalcolors:lime_cobblestone", "additionalcolors:blue_cobblestone", "additionalcolors:pink_cobblestone",
-        "additionalcolors:gray_cobblestone", "additionalcolors:green_cobblestone",
-        "additionalcolors:light_gray_cobblestone", "additionalcolors:cyan_cobblestone",
-        "additionalcolors:brown_cobblestone", "additionalcolors:purple_cobblestone"
+        "additionalcolors:gray_cobblestone", "additionalcolors:light_gray_cobblestone",
+        "additionalcolors:brown_cobblestone", "additionalcolors:green_cobblestone", "additionalcolors:cyan_cobblestone",
+        "additionalcolors:purple_cobblestone", "additionalcolors:black_cobblestone"
     ]
 }

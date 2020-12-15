@@ -106,7 +106,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${mcVersion}-${forgeVersion}"
     compile fg.deobf("mrp_v2.mrplibrary:mrplibrary:${mcVersion}-${mrplibAPI}.${mrplibPatch}-forge")
-    compile fg.deobf("a:ObsidianExpansion-1.16.4:1.0.0")
+    compile fg.deobf("a:ObsidianExpansion-1.16.4:1.0.1")
 }
 
 jar {

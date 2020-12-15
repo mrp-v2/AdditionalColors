@@ -26,7 +26,7 @@ public class ItemTagGenerator extends ItemTagsProvider
 
     @Override protected void registerTags()
     {
-        ObjectHolder.CRYING_OBSIDIAN_HANDLER.registerTags(this);
+        ObjectHolder.CRYING_OBSIDIAN_HANDLER.registerItemTags(this);
         for (ColorizedBlockEntry entry : ObjectHolder.BLOCKS_TO_COLORIZE)
         {
             TagsProvider.Builder<Item> builder = this.getOrCreateBuilder(entry.getTag());

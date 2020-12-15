@@ -20,12 +20,14 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -66,7 +68,8 @@ public class ColoredCryingObsidianHandler
                 (blockSupplier) -> basicItemConstructor.apply(blockSupplier, ItemGroup.BUILDING_BLOCKS),
                 (block, generator) -> generator.simpleBlock(block.getBlock()), basicItemModelMaker::accept, null, null,
                 Items.CRYING_OBSIDIAN.getRegistryName(), true, ItemTags.createOptional(
-                new ResourceLocation(AdditionalColors.ID, Blocks.CRYING_OBSIDIAN.getRegistryName().getPath()))),
+                new ResourceLocation(AdditionalColors.ID, Blocks.CRYING_OBSIDIAN.getRegistryName().getPath())),
+                makeTagArray(), makeTagArray()),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_slab",
                         (color) -> () -> new ColoredSlabBlock(basicProperties.get(), color),
                         (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
@@ -78,7 +81,8 @@ public class ColoredCryingObsidianHandler
                         }, basicItemModelMaker::accept, null, null,
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"), false,
                         ItemTags.createOptional(
-                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"))),
+                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab")),
+                        makeTagArray(BlockTags.SLABS), makeTagArray(ItemTags.SLABS)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_stairs",
                         (color) -> () -> new ColoredStairsBlock(
                                 () -> baseBlocksMap.get(color).get().getBlock().getDefaultState(),
@@ -88,8 +92,9 @@ public class ColoredCryingObsidianHandler
                                 "block/" + block.getRegistryName().getPath().replace("_stairs", ""))),
                         basicItemModelMaker::accept, null, null,
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs"), false,
-                        ItemTags.createOptional(new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
-                                "crying_obsidian_stairs"))),
+                        ItemTags.createOptional(
+                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs")),
+                        makeTagArray(BlockTags.STAIRS), makeTagArray(ItemTags.STAIRS)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_door",
                         (color) -> () -> new ColoredDoorBlock(basicProperties.get().notSolid(), color),
                         (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
@@ -138,7 +143,8 @@ public class ColoredCryingObsidianHandler
                         }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"), false,
                         ItemTags.createOptional(
-                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"))),
+                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door")),
+                        makeTagArray(BlockTags.DOORS), makeTagArray(ItemTags.DOORS)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_glass",
                         (color) -> () -> new ColoredObsidianGlassBlock(
                                 AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN).sound(SoundType.GLASS).notSolid(),
@@ -161,7 +167,9 @@ public class ColoredCryingObsidianHandler
                         }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"), false,
                         ItemTags.createOptional(
-                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"))),
+                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass")),
+                        makeTagArray(Tags.Blocks.GLASS, Tags.Blocks.GLASS_COLORLESS),
+                        makeTagArray(Tags.Items.GLASS, Tags.Items.GLASS_COLORLESS)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_fence",
                         (color) -> () -> new ColoredFenceBlock(AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN),
                                 color),
@@ -173,22 +181,37 @@ public class ColoredCryingObsidianHandler
                                         "block/" + block.getRegistryName().getPath().replace("_fence", ""))), null,
                         null, new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence"),
                         false, ItemTags.createOptional(
-                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence")))};
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence")),
+                        makeTagArray(BlockTags.FENCES, Tags.Blocks.FENCES),
+                        makeTagArray(ItemTags.FENCES, Tags.Items.FENCES)),
+                new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_fence_gate",
+                        (color) -> () -> new ColoredFenceGateBlock(
+                                AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN), color),
+                        (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
+                        (block, generator) -> generator.fenceGateBlock(block, new ResourceLocation(AdditionalColors.ID,
+                                "block/" + block.getRegistryName().getPath().replace("_fence_gate", ""))),
+                        basicItemModelMaker::accept, null, null,
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence_gate"),
+                        false, ItemTags.createOptional(
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence_gate")),
+                        makeTagArray(BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES),
+                        makeTagArray(Tags.Items.FENCE_GATES))};
+    }
+
+    @SafeVarargs private final <U> ITag.INamedTag<U>[] makeTagArray(ITag.INamedTag<U>... tags)
+    {
+        return tags;
     }
 
     @Nullable private ItemGroup getObsidianExpansionItemGroup()
     {
-        if (true)
-        {
-            return null;
-        }
         if (!AdditionalColors.isObsidianExpansionPresent())
         {
             return null;
         }
         List<ItemGroup> labelMatches = Arrays.stream(ItemGroup.GROUPS)
                 .filter((group) -> ((TranslationTextComponent) group.getGroupName()).getKey()
-                        .equals("itemGroup.expansionTab")).collect(Collectors.toList());
+                        .equals("itemGroup.expansion_tab")).collect(Collectors.toList());
         if (labelMatches.size() == 0)
         {
             return null;
@@ -209,9 +232,17 @@ public class ColoredCryingObsidianHandler
         return null;
     }
 
+    public void registerBlockTags(BlockTagGenerator generator)
+    {
+        for (BlockData<?> data : blockDatas)
+        {
+            data.registerBlockTags(generator);
+        }
+    }
+
     public void registerBlockStatesAndModels(BlockStateGenerator generator)
     {
-        for (BlockData<? extends IColoredBlock> data : blockDatas)
+        for (BlockData<?> data : blockDatas)
         {
             data.registerBlockStatesAndModels(generator);
         }
@@ -241,11 +272,11 @@ public class ColoredCryingObsidianHandler
         }
     }
 
-    public void registerTags(ItemTagGenerator generator)
+    public void registerItemTags(ItemTagGenerator generator)
     {
         for (BlockData<?> data : blockDatas)
         {
-            data.registerTags(generator);
+            data.registerItemTags(generator);
         }
     }
 
@@ -277,16 +308,18 @@ public class ColoredCryingObsidianHandler
         private final ResourceLocation baseItem;
         private final boolean required;
         private final ITag.INamedTag<Item> craftingTag;
-        private final ITag.INamedTag<Item>[] tagsToAddTo;
+        private final ITag.INamedTag<Block>[] blockTagsToAddTo;
+        private final ITag.INamedTag<Item>[] itemTagsToAddTo;
         private final HashSet<RegistryObject<T>> objSet = new HashSet<>();
 
-        @SafeVarargs private BlockData(String id, Function<DyeColor, Supplier<T>> blockConstructor,
+        private BlockData(String id, Function<DyeColor, Supplier<T>> blockConstructor,
                 Function<Supplier<T>, Supplier<ColoredBlockItem>> itemConstructor,
                 BiConsumer<T, BlockStateGenerator> blockStateAndModelGenerator,
                 BiConsumer<T, ItemModelGenerator> itemModelGenerator,
                 @Nullable TriConsumer<T, TextureGenerator, Consumer<IFinishedTexture>> textureGenerator,
                 @Nullable BiConsumer<T, FMLClientSetupEvent> clientSetupStuff, ResourceLocation baseItem,
-                boolean required, ITag.INamedTag<Item> craftingTag, ITag.INamedTag<Item>... tagsToAddTo)
+                boolean required, ITag.INamedTag<Item> craftingTag, ITag.INamedTag<Block>[] blockTagsToAddTo,
+                ITag.INamedTag<Item>[] itemTagsToAddTo)
         {
             this.id = id;
             this.blockConstructor = blockConstructor;
@@ -298,7 +331,8 @@ public class ColoredCryingObsidianHandler
             this.baseItem = baseItem;
             this.required = required;
             this.craftingTag = craftingTag;
-            this.tagsToAddTo = tagsToAddTo;
+            this.blockTagsToAddTo = blockTagsToAddTo;
+            this.itemTagsToAddTo = itemTagsToAddTo;
             this.register();
         }
 
@@ -365,7 +399,23 @@ public class ColoredCryingObsidianHandler
             }
         }
 
-        private void registerTags(ItemTagGenerator generator)
+        private void registerBlockTags(BlockTagGenerator generator)
+        {
+            for (ITag.INamedTag<Block> tagToAddTo : blockTagsToAddTo)
+            {
+                TagsProvider.Builder<Block> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
+                objSet.forEach(obj -> tagBuilder.add(obj.get()));
+                if (required)
+                {
+                    tagBuilder.add(RegistryKey.getOrCreateKey(Registry.BLOCK_KEY, baseItem));
+                } else
+                {
+                    tagBuilder.addOptional(baseItem);
+                }
+            }
+        }
+
+        private void registerItemTags(ItemTagGenerator generator)
         {
             TagsProvider.Builder<Item> recipeTagBuilder = generator.getOrCreateBuilder(this.craftingTag);
             objSet.forEach(obj -> recipeTagBuilder.add(obj.get().asItem()));
@@ -376,16 +426,16 @@ public class ColoredCryingObsidianHandler
             {
                 recipeTagBuilder.addOptional(baseItem);
             }
-            for (ITag.INamedTag<Item> tagToAddTo : tagsToAddTo)
+            for (ITag.INamedTag<Item> tagToAddTo : itemTagsToAddTo)
             {
                 TagsProvider.Builder<Item> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
                 objSet.forEach(obj -> tagBuilder.add(obj.get().asItem()));
                 if (required)
                 {
-                    recipeTagBuilder.add(RegistryKey.getOrCreateKey(Registry.ITEM_KEY, baseItem));
+                    tagBuilder.add(RegistryKey.getOrCreateKey(Registry.ITEM_KEY, baseItem));
                 } else
                 {
-                    recipeTagBuilder.addOptional(baseItem);
+                    tagBuilder.addOptional(baseItem);
                 }
             }
         }

@@ -22,6 +22,7 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
         }
         if (event.includeServer())
         {
+            helper.addBlockTagsProvider(BlockTagGenerator::new);
             helper.addItemTagsProvider(ItemTagGenerator::new);
             helper.addRecipeProvider(RecipeGenerator::new);
         }
