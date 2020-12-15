@@ -1,0 +1,31 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "additionalcolors:white_crying_obsidian_stairs"
+        ]
+    },
+    "criteria": {
+        "has_base": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "obsidianexpansion:crying_obsidian_stairs"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "additionalcolors:white_crying_obsidian_stairs"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_base", "has_the_recipe"
+        ]
+    ]
+}

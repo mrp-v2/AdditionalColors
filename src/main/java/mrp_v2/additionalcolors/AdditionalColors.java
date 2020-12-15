@@ -20,6 +20,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
         isObsidianExpansionPresent = ModList.get().isLoaded(OBSIDIAN_EXPANSION_ID);
         ObjectHolder.registerListeners(FMLJavaModLoadingContext.get().getModEventBus());
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec);
+        FMLJavaModLoadingContext.get().getModEventBus().register(ObjectHolder.CRYING_OBSIDIAN_HANDLER);
     }
 
     public static boolean isObsidianExpansionPresent()
