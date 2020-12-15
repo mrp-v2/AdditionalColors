@@ -138,17 +138,18 @@ processResources {
     inputs.property 'issuesURL', issuesURL
     inputs.property 'mrplibAPI', mrplibAPI
     inputs.property 'mrplibNextAPI', mrplibNextAPI
+    String[] files = new String[2]
+    files[0] = 'META-INF/mods.toml'
+    files[1] = 'pack.mcmeta'
     from(sourceSets.main.resources.srcDirs) {
-        include '**/*'
-        exclude '**/*.png'
-        exclude '**/*.cfg'
+        include files
         expand 'version': project.version, 'modId': modId, 'forgeMajor': forgeMajor, 'mcVersion': mcVersion,
                 'mcNextVersion': mcNextVersion, 'homepageURL': homepageURL, 'modDisplayName': modDisplayName,
                 'capitalizedModId': capitalizedModId, 'modDescription': modDescription, 'author': author,
                 'updateURL': updateURL, 'issuesURL': issuesURL, 'mrplibAPI': mrplibAPI, 'mrplibNextAPI': mrplibNextAPI
     }
     from(sourceSets.main.resources.srcDirs) {
-        exclude '**/*'
+        exclude files
     }
 }
 

@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "obsidianexpansion:crying_obsidian_glass"
+        }, {
+            "tag": "forge:dyes/black"
+        }
+    ],
+    "result": {
+        "item": "additionalcolors:black_crying_obsidian_glass"
+    }
+}

@@ -11,6 +11,7 @@ import mrp_v2.mrplibrary.datagen.ShapelessRecipeBuilder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.data.IFinishedRecipe;
@@ -137,8 +138,30 @@ public class ColoredCryingObsidianHandler
                         }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"), false,
                         ItemTags.createOptional(
-                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door")),
-                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"))};
+                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"))),
+                new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_glass",
+                        (color) -> () -> new ColoredObsidianGlassBlock(
+                                AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN).sound(SoundType.GLASS).notSolid(),
+                                color),
+                        (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
+                        (block, generator) -> generator.simpleBlock(block), basicItemModelMaker::accept,
+                        (block, generator, consumer) ->
+                        {
+                            BufferedImage texture = generator.getTexture(new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath().replace("_glass", "")));
+                            int[] newColors = TextureProvider.color(TextureProvider.color(0, 0, 0, 0), 14 * 14);
+                            newColors[14 + 3] = texture.getRGB(4, 2);
+                            newColors[14 * 2 + 2] = texture.getRGB(3, 3);
+                            newColors[14 * 3 + 1] = texture.getRGB(2, 4);
+                            newColors[14 * 11 + 12] = texture.getRGB(13, 12);
+                            newColors[14 * 12 + 11] = texture.getRGB(12, 13);
+                            texture.setRGB(1, 1, 14, 14, newColors, 0, 14);
+                            generator.finish(new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath()), texture, consumer);
+                        }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"), false,
+                        ItemTags.createOptional(new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
+                                "crying_obsidian_glass")))};
     }
 
     @Nullable private ItemGroup getObsidianExpansionItemGroup()
