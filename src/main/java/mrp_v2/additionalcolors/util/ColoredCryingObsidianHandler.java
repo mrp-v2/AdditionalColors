@@ -160,8 +160,20 @@ public class ColoredCryingObsidianHandler
                                     "block/" + block.getRegistryName().getPath()), texture, consumer);
                         }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"), false,
-                        ItemTags.createOptional(new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
-                                "crying_obsidian_glass")))};
+                        ItemTags.createOptional(
+                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"))),
+                new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_fence",
+                        (color) -> () -> new ColoredFenceBlock(AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN),
+                                color),
+                        (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
+                        (block, generator) -> generator.fenceBlock(block, new ResourceLocation(AdditionalColors.ID,
+                                "block/" + block.getRegistryName().getPath().replace("_fence", ""))),
+                        (block, generator) -> generator.fenceInventory(block.getRegistryName().getPath(),
+                                new ResourceLocation(AdditionalColors.ID,
+                                        "block/" + block.getRegistryName().getPath().replace("_fence", ""))), null,
+                        null, new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence"),
+                        false, ItemTags.createOptional(
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence")))};
     }
 
     @Nullable private ItemGroup getObsidianExpansionItemGroup()
