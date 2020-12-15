@@ -64,9 +64,8 @@ public class ColoredCryingObsidianHandler
                 (color) -> () -> new ColoredCryingObsidianBlock(basicProperties.get(), color),
                 (blockSupplier) -> basicItemConstructor.apply(blockSupplier, ItemGroup.BUILDING_BLOCKS),
                 (block, generator) -> generator.simpleBlock(block.getBlock()), basicItemModelMaker::accept, null, null,
-                true, ItemTags.createOptional(
-                new ResourceLocation(AdditionalColors.ID, Blocks.CRYING_OBSIDIAN.getRegistryName().getPath())),
-                Items.CRYING_OBSIDIAN.getRegistryName()),
+                Items.CRYING_OBSIDIAN.getRegistryName(), true, ItemTags.createOptional(
+                new ResourceLocation(AdditionalColors.ID, Blocks.CRYING_OBSIDIAN.getRegistryName().getPath()))),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_slab",
                         (color) -> () -> new ColoredSlabBlock(basicProperties.get(), color),
                         (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
@@ -75,9 +74,10 @@ public class ColoredCryingObsidianHandler
                             ResourceLocation blockLoc = new ResourceLocation(AdditionalColors.ID,
                                     "block/" + block.getRegistryName().getPath().replace("_slab", ""));
                             generator.slabBlock(block, blockLoc, blockLoc);
-                        }, basicItemModelMaker::accept, null, null, false, ItemTags.createOptional(
-                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab")),
-                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab")),
+                        }, basicItemModelMaker::accept, null, null,
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"), false,
+                        ItemTags.createOptional(
+                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"))),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_stairs",
                         (color) -> () -> new ColoredStairsBlock(
                                 () -> baseBlocksMap.get(color).get().getBlock().getDefaultState(),
@@ -85,9 +85,10 @@ public class ColoredCryingObsidianHandler
                         (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
                         (block, generator) -> generator.stairsBlock(block, new ResourceLocation(AdditionalColors.ID,
                                 "block/" + block.getRegistryName().getPath().replace("_stairs", ""))),
-                        basicItemModelMaker::accept, null, null, false, ItemTags.createOptional(
-                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs")),
-                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs")),
+                        basicItemModelMaker::accept, null, null,
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs"), false,
+                        ItemTags.createOptional(new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
+                                "crying_obsidian_stairs"))),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_door",
                         (color) -> () -> new ColoredDoorBlock(basicProperties.get().notSolid(), color),
                         (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
@@ -98,35 +99,43 @@ public class ColoredCryingObsidianHandler
                                             "block/" + block.getRegistryName().getPath() + "_" + str);
                             generator.doorBlock(block, doorPartLocFunction.apply("bottom"),
                                     doorPartLocFunction.apply("top"));
-                        }, (block, generator) ->
-                {
-                }, (block, generator, consumer) ->
-                {
-                    Supplier<BufferedImage> baseTextureSupplier = () -> generator.getTexture(
-                            new ResourceLocation(AdditionalColors.ID,
-                                    "block/" + block.getRegistryName().getPath().replace("_door", "")));
-                    BufferedImage doorTop = baseTextureSupplier.get(), doorBottom = baseTextureSupplier.get();
-                    int hingeTop = TextureProvider.color(140, 103, 184), hingeBottom =
-                            TextureProvider.color(103, 88, 159), handleEdge = TextureProvider.color(101, 88, 162);
-                    doorTop.setRGB(0, 4, hingeTop);
-                    doorTop.setRGB(0, 5, hingeBottom);
-                    doorTop.setRGB(0, 15, hingeTop);
-                    doorBottom.setRGB(0, 0, hingeBottom);
-                    doorBottom.setRGB(0, 10, hingeTop);
-                    doorBottom.setRGB(0, 11, hingeBottom);
-                    generator.finish(new ResourceLocation(AdditionalColors.ID,
-                            "block/" + block.getRegistryName().getPath() + "_bottom"), doorBottom, consumer);
-                    doorTop.setRGB(11, 14, 2, 1, TextureProvider.color(hingeTop, 2), 0, 2);
-                    doorTop.setRGB(13, 14, handleEdge);
-                    doorTop.setRGB(11, 15, handleEdge);
-                    int[] clear = TextureProvider.color(TextureProvider.color(0, 0, 0, 0), 12);
-                    doorTop.setRGB(3, 3, 4, 3, clear, 0, 4);
-                    doorTop.setRGB(9, 3, 4, 3, clear, 0, 4);
-                    doorTop.setRGB(3, 8, 4, 3, clear, 0, 4);
-                    doorTop.setRGB(9, 8, 4, 3, clear, 0, 4);
-                    generator.finish(new ResourceLocation(AdditionalColors.ID,
-                            "block/" + block.getRegistryName().getPath() + "_top"), doorTop, consumer);
-                }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()), false,
+                        }, (block, generator) -> generator
+                        .singleTexture(block.getRegistryName().getPath(), generator.mcLoc("item/generated"), "layer0",
+                                generator.modLoc("item/" + block.getRegistryName().getPath())),
+                        (block, generator, consumer) ->
+                        {
+                            Supplier<BufferedImage> baseTextureSupplier = () -> generator.getTexture(
+                                    new ResourceLocation(AdditionalColors.ID,
+                                            "block/" + block.getRegistryName().getPath().replace("_door", "")));
+                            BufferedImage doorTop = baseTextureSupplier.get(), doorBottom = baseTextureSupplier.get();
+                            int hingeTop = TextureProvider.color(140, 103, 184), hingeBottom =
+                                    TextureProvider.color(103, 88, 159), handleEdge =
+                                    TextureProvider.color(101, 88, 162);
+                            doorTop.setRGB(0, 4, hingeTop);
+                            doorTop.setRGB(0, 5, hingeBottom);
+                            doorTop.setRGB(0, 15, hingeTop);
+                            doorBottom.setRGB(0, 0, hingeBottom);
+                            doorBottom.setRGB(0, 10, hingeTop);
+                            doorBottom.setRGB(0, 11, hingeBottom);
+                            generator.finish(new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath() + "_bottom"), doorBottom, consumer);
+                            doorTop.setRGB(11, 14, 2, 1, TextureProvider.color(hingeTop, 2), 0, 2);
+                            doorTop.setRGB(13, 14, handleEdge);
+                            doorTop.setRGB(11, 15, handleEdge);
+                            int[] clear = TextureProvider.color(TextureProvider.color(0, 0, 0, 0), 12);
+                            doorTop.setRGB(3, 3, 4, 3, clear, 0, 4);
+                            doorTop.setRGB(9, 3, 4, 3, clear, 0, 4);
+                            doorTop.setRGB(3, 8, 4, 3, clear, 0, 4);
+                            doorTop.setRGB(9, 8, 4, 3, clear, 0, 4);
+                            generator.finish(new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath() + "_top"), doorTop, consumer);
+                            BufferedImage itemTexture = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
+                            itemTexture.setRGB(8, 0, 16, 16, doorTop.getRGB(0, 0, 16, 16, null, 0, 16), 0, 16);
+                            itemTexture.setRGB(8, 16, 16, 16, doorBottom.getRGB(0, 0, 16, 16, null, 0, 16), 0, 16);
+                            generator.finish(new ResourceLocation(AdditionalColors.ID,
+                                    "item/" + block.getRegistryName().getPath()), itemTexture, consumer);
+                        }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"), false,
                         ItemTags.createOptional(
                                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door")),
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"))};
@@ -241,8 +250,8 @@ public class ColoredCryingObsidianHandler
                 BiConsumer<T, BlockStateGenerator> blockStateAndModelGenerator,
                 BiConsumer<T, ItemModelGenerator> itemModelGenerator,
                 @Nullable TriConsumer<T, TextureGenerator, Consumer<IFinishedTexture>> textureGenerator,
-                @Nullable BiConsumer<T, FMLClientSetupEvent> clientSetupStuff, boolean required,
-                ITag.INamedTag<Item> craftingTag, ResourceLocation baseItem, ITag.INamedTag<Item>... tagsToAddTo)
+                @Nullable BiConsumer<T, FMLClientSetupEvent> clientSetupStuff, ResourceLocation baseItem,
+                boolean required, ITag.INamedTag<Item> craftingTag, ITag.INamedTag<Item>... tagsToAddTo)
         {
             this.id = id;
             this.blockConstructor = blockConstructor;
