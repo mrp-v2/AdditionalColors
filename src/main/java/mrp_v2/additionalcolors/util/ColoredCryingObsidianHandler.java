@@ -104,7 +104,7 @@ public class ColoredCryingObsidianHandler
                 {
                     Supplier<BufferedImage> baseTextureSupplier = () -> generator.getTexture(
                             new ResourceLocation(AdditionalColors.ID,
-                                    block.getRegistryName().getPath().replace("_door", "")), "block");
+                                    "block/" + block.getRegistryName().getPath().replace("_door", "")));
                     BufferedImage doorTop = baseTextureSupplier.get(), doorBottom = baseTextureSupplier.get();
                     int hingeTop = TextureProvider.color(140, 103, 184), hingeBottom =
                             TextureProvider.color(103, 88, 159), handleEdge = TextureProvider.color(101, 88, 162);
@@ -114,8 +114,8 @@ public class ColoredCryingObsidianHandler
                     doorBottom.setRGB(0, 0, hingeBottom);
                     doorBottom.setRGB(0, 10, hingeTop);
                     doorBottom.setRGB(0, 11, hingeBottom);
-                    consumer.accept(generator.finish(new ResourceLocation(AdditionalColors.ID,
-                            "block/" + block.getRegistryName().getPath() + "_bottom"), doorBottom));
+                    generator.finish(new ResourceLocation(AdditionalColors.ID,
+                            "block/" + block.getRegistryName().getPath() + "_bottom"), doorBottom, consumer);
                     doorTop.setRGB(11, 14, 2, 1, TextureProvider.color(hingeTop, 2), 0, 2);
                     doorTop.setRGB(13, 14, handleEdge);
                     doorTop.setRGB(11, 15, handleEdge);
@@ -124,8 +124,8 @@ public class ColoredCryingObsidianHandler
                     doorTop.setRGB(9, 3, 4, 3, clear, 0, 4);
                     doorTop.setRGB(3, 8, 4, 3, clear, 0, 4);
                     doorTop.setRGB(9, 8, 4, 3, clear, 0, 4);
-                    consumer.accept(generator.finish(new ResourceLocation(AdditionalColors.ID,
-                            "block/" + block.getRegistryName().getPath() + "_top"), doorTop));
+                    generator.finish(new ResourceLocation(AdditionalColors.ID,
+                            "block/" + block.getRegistryName().getPath() + "_top"), doorTop, consumer);
                 }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()), false,
                         ItemTags.createOptional(
                                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door")),

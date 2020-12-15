@@ -89,24 +89,30 @@ public abstract class TextureProvider implements IDataProvider
 
     private void saveTexture(DirectoryCache cache, BufferedImage texture, Path path)
     {
-        try
+        Hasher hasher = HASH_FUNCTION.newHasher();
+        for (int i : texture.getRGB(0, 0, texture.getWidth(), texture.getHeight(), null, 0, texture.getWidth()))
         {
-            Hasher hasher = HASH_FUNCTION.newHasher();
-            for (int i : texture.getRGB(0, 0, texture.getWidth(), texture.getHeight(), null, 0, texture.getWidth()))
-            {
-                hasher.putInt(i);
-            }
-            String hash = hasher.hash().toString();
-            if (!Objects.equals(cache.getPreviousHash(path), hash) || !Files.exists(path))
+            hasher.putInt(i);
+        }
+        String hash = hasher.hash().toString();
+        if (!Objects.equals(cache.getPreviousHash(path), hash) || !Files.exists(path))
+        {
+            try
             {
                 Files.createDirectories(path.getParent());
-                ImageIO.write(texture, "png", path.toFile());
+            } catch (IOException ioException)
+            {
+                LOGGER.error("Couldn't create directory for texture {}", path, ioException);
             }
-            cache.recordHash(path, hash);
-        } catch (IOException ioException)
-        {
-            LOGGER.error("Couldn't save texture {}", path, ioException);
+            try
+            {
+                ImageIO.write(texture, "png", path.toFile());
+            } catch (IOException ioException)
+            {
+                LOGGER.error("Couldn't save texture {}", path, ioException);
+            }
         }
+        cache.recordHash(path, hash);
     }
 
     private Path getTexturePath(ResourceLocation texture)
@@ -119,10 +125,14 @@ public abstract class TextureProvider implements IDataProvider
         return folder.resolve("assets/" + texture.getNamespace() + "/textures/" + texture.getPath() + ".png");
     }
 
-    @Nullable public BufferedImage getTexture(ResourceLocation textureLoc, String pathPrefix)
+    public void finish(ResourceLocation id, BufferedImage texture, Consumer<IFinishedTexture> consumer)
     {
-        ResourceLocation loc = new ResourceLocation(AdditionalColors.ID,
-                "textures/" + pathPrefix + "/" + textureLoc.getPath() + ".png");
+        consumer.accept(new Result(id, texture));
+    }
+
+    @Nullable public BufferedImage getTexture(ResourceLocation textureLoc)
+    {
+        ResourceLocation loc = new ResourceLocation(AdditionalColors.ID, "textures/" + textureLoc.getPath() + ".png");
         Preconditions.checkArgument(existingFileHelper.exists(loc, ResourcePackType.CLIENT_RESOURCES),
                 "Texture %s does not exist in any known resource pack", loc);
         try
@@ -134,5 +144,27 @@ public abstract class TextureProvider implements IDataProvider
             LOGGER.error("Couldn't read texture {}", textureLoc, ioException);
         }
         return null;
+    }
+
+    public static class Result implements IFinishedTexture
+    {
+        private final ResourceLocation id;
+        private final BufferedImage texture;
+
+        public Result(ResourceLocation id, BufferedImage texture)
+        {
+            this.id = id;
+            this.texture = texture;
+        }
+
+        @Override public ResourceLocation getID()
+        {
+            return id;
+        }
+
+        @Override public BufferedImage getTexture()
+        {
+            return texture;
+        }
     }
 }
