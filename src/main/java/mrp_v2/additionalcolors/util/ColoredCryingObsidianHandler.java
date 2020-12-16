@@ -3,10 +3,11 @@ package mrp_v2.additionalcolors.util;
 import mrp_v2.additionalcolors.AdditionalColors;
 import mrp_v2.additionalcolors.block.*;
 import mrp_v2.additionalcolors.datagen.*;
-import mrp_v2.additionalcolors.datagen.texture.TextureGenerator;
-import mrp_v2.additionalcolors.datagen.texture.TextureProvider;
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
+import mrp_v2.mrplibrary.datagen.BlockLootTables;
+import mrp_v2.mrplibrary.datagen.DataGeneratorHelper;
 import mrp_v2.mrplibrary.datagen.ShapelessRecipeBuilder;
+import mrp_v2.mrplibrary.datagen.TextureProvider;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -65,8 +66,14 @@ public class ColoredCryingObsidianHandler
         blockDatas = new BlockData[]{new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath(),
                 (color) -> () -> new ColoredCryingObsidianBlock(basicProperties.get(), color),
                 (blockSupplier) -> basicItemConstructor.apply(blockSupplier, ItemGroup.BUILDING_BLOCKS),
-                (block, generator) -> generator.simpleBlock(block.getBlock()), basicItemModelMaker::accept, null, null,
-                Items.CRYING_OBSIDIAN.getRegistryName(), true, ItemTags.createOptional(
+                (block, generator) -> generator.simpleBlock(block.getBlock()), basicItemModelMaker::accept,
+                new LootTableGenerator<ColoredCryingObsidianBlock>()
+                {
+                    @Override void registerLootTable(ColoredCryingObsidianBlock block)
+                    {
+                        this.addLootTable(block, this::registerDropSelfLootTable);
+                    }
+                }, null, null, Items.CRYING_OBSIDIAN.getRegistryName(), true, ItemTags.createOptional(
                 new ResourceLocation(AdditionalColors.ID, Blocks.CRYING_OBSIDIAN.getRegistryName().getPath())),
                 makeTagArray(), makeTagArray()),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_slab",
@@ -77,10 +84,16 @@ public class ColoredCryingObsidianHandler
                             ResourceLocation blockLoc = new ResourceLocation(AdditionalColors.ID,
                                     "block/" + block.getRegistryName().getPath().replace("_slab", ""));
                             generator.slabBlock(block, blockLoc, blockLoc);
-                        }, basicItemModelMaker::accept, null, null,
-                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"), false,
-                        ItemTags.createOptional(
-                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab")),
+                        }, basicItemModelMaker::accept, new LootTableGenerator<ColoredSlabBlock>()
+                {
+                    @Override void registerLootTable(ColoredSlabBlock block)
+                    {
+                        this.addLootTable(block, (block2) -> this
+                                .registerLootTable(block2, net.minecraft.data.loot.BlockLootTables::droppingSlab));
+                    }
+                }, null, null, new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"),
+                        false, ItemTags.createOptional(
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab")),
                         makeTagArray(BlockTags.SLABS), makeTagArray(ItemTags.SLABS)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_stairs",
                         (color) -> () -> new ColoredStairsBlock(
@@ -89,10 +102,15 @@ public class ColoredCryingObsidianHandler
                         (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
                         (block, generator) -> generator.stairsBlock(block, new ResourceLocation(AdditionalColors.ID,
                                 "block/" + block.getRegistryName().getPath().replace("_stairs", ""))),
-                        basicItemModelMaker::accept, null, null,
-                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs"), false,
-                        ItemTags.createOptional(
-                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs")),
+                        basicItemModelMaker::accept, new LootTableGenerator<ColoredStairsBlock>()
+                {
+                    @Override void registerLootTable(ColoredStairsBlock block)
+                    {
+                        this.addLootTable(block, this::registerDropSelfLootTable);
+                    }
+                }, null, null, new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs"),
+                        false, ItemTags.createOptional(
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs")),
                         makeTagArray(BlockTags.STAIRS), makeTagArray(ItemTags.STAIRS)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_door",
                         (color) -> () -> new ColoredDoorBlock(basicProperties.get().notSolid(), color),
@@ -107,39 +125,46 @@ public class ColoredCryingObsidianHandler
                         }, (block, generator) -> generator
                         .singleTexture(block.getRegistryName().getPath(), generator.mcLoc("item/generated"), "layer0",
                                 generator.modLoc("item/" + block.getRegistryName().getPath())),
-                        (block, generator, consumer) ->
+                        new LootTableGenerator<ColoredDoorBlock>()
                         {
-                            Supplier<BufferedImage> baseTextureSupplier = () -> generator.getTexture(
-                                    new ResourceLocation(AdditionalColors.ID,
-                                            "block/" + block.getRegistryName().getPath().replace("_door", "")));
-                            BufferedImage doorTop = baseTextureSupplier.get(), doorBottom = baseTextureSupplier.get();
-                            int hingeTop = TextureProvider.color(140, 103, 184), hingeBottom =
-                                    TextureProvider.color(103, 88, 159), handleEdge =
-                                    TextureProvider.color(101, 88, 162);
-                            doorTop.setRGB(0, 4, hingeTop);
-                            doorTop.setRGB(0, 5, hingeBottom);
-                            doorTop.setRGB(0, 15, hingeTop);
-                            doorBottom.setRGB(0, 0, hingeBottom);
-                            doorBottom.setRGB(0, 10, hingeTop);
-                            doorBottom.setRGB(0, 11, hingeBottom);
-                            generator.finish(doorBottom, new ResourceLocation(AdditionalColors.ID,
-                                    "block/" + block.getRegistryName().getPath() + "_bottom"), consumer);
-                            doorTop.setRGB(11, 14, 2, 1, TextureProvider.color(hingeTop, 2), 0, 2);
-                            doorTop.setRGB(13, 14, handleEdge);
-                            doorTop.setRGB(11, 15, handleEdge);
-                            int[] clear = TextureProvider.color(TextureProvider.color(0, 0, 0, 0), 12);
-                            doorTop.setRGB(3, 3, 4, 3, clear, 0, 4);
-                            doorTop.setRGB(9, 3, 4, 3, clear, 0, 4);
-                            doorTop.setRGB(3, 8, 4, 3, clear, 0, 4);
-                            doorTop.setRGB(9, 8, 4, 3, clear, 0, 4);
-                            generator.finish(doorTop, new ResourceLocation(AdditionalColors.ID,
-                                    "block/" + block.getRegistryName().getPath() + "_top"), consumer);
-                            BufferedImage itemTexture = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
-                            itemTexture.setRGB(8, 0, 16, 16, doorTop.getRGB(0, 0, 16, 16, null, 0, 16), 0, 16);
-                            itemTexture.setRGB(8, 16, 16, 16, doorBottom.getRGB(0, 0, 16, 16, null, 0, 16), 0, 16);
-                            generator.finish(itemTexture, new ResourceLocation(AdditionalColors.ID,
-                                    "item/" + block.getRegistryName().getPath()), consumer);
-                        }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
+                            @Override void registerLootTable(ColoredDoorBlock block)
+                            {
+                                this.addLootTable(block, (block2) -> this.registerLootTable(block2,
+                                        net.minecraft.data.loot.BlockLootTables::registerDoor));
+                            }
+                        }, (block, generator, consumer) ->
+                {
+                    Supplier<BufferedImage> baseTextureSupplier = () -> generator.getTexture(
+                            new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath().replace("_door", "")));
+                    BufferedImage doorTop = baseTextureSupplier.get(), doorBottom = baseTextureSupplier.get();
+                    int hingeTop = TextureProvider.color(140, 103, 184), hingeBottom =
+                            TextureProvider.color(103, 88, 159), handleEdge = TextureProvider.color(101, 88, 162);
+                    doorTop.setRGB(0, 4, hingeTop);
+                    doorTop.setRGB(0, 5, hingeBottom);
+                    doorTop.setRGB(0, 15, hingeTop);
+                    doorBottom.setRGB(0, 0, hingeBottom);
+                    doorBottom.setRGB(0, 10, hingeTop);
+                    doorBottom.setRGB(0, 11, hingeBottom);
+                    generator.finish(doorBottom, new ResourceLocation(AdditionalColors.ID,
+                            "block/" + block.getRegistryName().getPath() + "_bottom"), consumer);
+                    doorTop.setRGB(11, 14, 2, 1, TextureProvider.color(hingeTop, 2), 0, 2);
+                    doorTop.setRGB(13, 14, handleEdge);
+                    doorTop.setRGB(11, 15, handleEdge);
+                    int[] clear = TextureProvider.color(TextureProvider.color(0, 0, 0, 0), 12);
+                    doorTop.setRGB(3, 3, 4, 3, clear, 0, 4);
+                    doorTop.setRGB(9, 3, 4, 3, clear, 0, 4);
+                    doorTop.setRGB(3, 8, 4, 3, clear, 0, 4);
+                    doorTop.setRGB(9, 8, 4, 3, clear, 0, 4);
+                    generator.finish(doorTop, new ResourceLocation(AdditionalColors.ID,
+                            "block/" + block.getRegistryName().getPath() + "_top"), consumer);
+                    BufferedImage itemTexture = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
+                    itemTexture.setRGB(8, 0, 16, 16, doorTop.getRGB(0, 0, 16, 16, null, 0, 16), 0, 16);
+                    itemTexture.setRGB(8, 16, 16, 16, doorBottom.getRGB(0, 0, 16, 16, null, 0, 16), 0, 16);
+                    generator.finish(itemTexture,
+                            new ResourceLocation(AdditionalColors.ID, "item/" + block.getRegistryName().getPath()),
+                            consumer);
+                }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"), false,
                         ItemTags.createOptional(
                                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door")),
@@ -150,20 +175,27 @@ public class ColoredCryingObsidianHandler
                                 color),
                         (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
                         (block, generator) -> generator.simpleBlock(block), basicItemModelMaker::accept,
-                        (block, generator, consumer) ->
+                        new LootTableGenerator<ColoredObsidianGlassBlock>()
                         {
-                            BufferedImage texture = generator.getTexture(new ResourceLocation(AdditionalColors.ID,
-                                    "block/" + block.getRegistryName().getPath().replace("_glass", "")));
-                            int[] newColors = TextureProvider.color(TextureProvider.color(0, 0, 0, 0), 14 * 14);
-                            newColors[14 + 3] = texture.getRGB(4, 2);
-                            newColors[14 * 2 + 2] = texture.getRGB(3, 3);
-                            newColors[14 * 3 + 1] = texture.getRGB(2, 4);
-                            newColors[14 * 11 + 12] = texture.getRGB(13, 12);
-                            newColors[14 * 12 + 11] = texture.getRGB(12, 13);
-                            texture.setRGB(1, 1, 14, 14, newColors, 0, 14);
-                            generator.finish(texture, new ResourceLocation(AdditionalColors.ID,
-                                    "block/" + block.getRegistryName().getPath()), consumer);
-                        }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
+                            @Override void registerLootTable(ColoredObsidianGlassBlock block)
+                            {
+                                this.addLootTable(block, this::registerSilkTouch);
+                            }
+                        }, (block, generator, consumer) ->
+                {
+                    BufferedImage texture = generator.getTexture(new ResourceLocation(AdditionalColors.ID,
+                            "block/" + block.getRegistryName().getPath().replace("_glass", "")));
+                    int[] newColors = TextureProvider.color(TextureProvider.color(0, 0, 0, 0), 14 * 14);
+                    newColors[14 + 3] = texture.getRGB(4, 2);
+                    newColors[14 * 2 + 2] = texture.getRGB(3, 3);
+                    newColors[14 * 3 + 1] = texture.getRGB(2, 4);
+                    newColors[14 * 11 + 12] = texture.getRGB(13, 12);
+                    newColors[14 * 12 + 11] = texture.getRGB(12, 13);
+                    texture.setRGB(1, 1, 14, 14, newColors, 0, 14);
+                    generator.finish(texture,
+                            new ResourceLocation(AdditionalColors.ID, "block/" + block.getRegistryName().getPath()),
+                            consumer);
+                }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"), false,
                         ItemTags.createOptional(
                                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass")),
@@ -177,10 +209,17 @@ public class ColoredCryingObsidianHandler
                                 "block/" + block.getRegistryName().getPath().replace("_fence", ""))),
                         (block, generator) -> generator.fenceInventory(block.getRegistryName().getPath(),
                                 new ResourceLocation(AdditionalColors.ID,
-                                        "block/" + block.getRegistryName().getPath().replace("_fence", ""))), null,
-                        null, new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence"),
-                        false, ItemTags.createOptional(
-                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence")),
+                                        "block/" + block.getRegistryName().getPath().replace("_fence", ""))),
+                        new LootTableGenerator<ColoredFenceBlock>()
+                        {
+                            @Override void registerLootTable(ColoredFenceBlock block)
+                            {
+                                this.addLootTable(block, this::registerDropSelfLootTable);
+                            }
+                        }, null, null,
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence"), false,
+                        ItemTags.createOptional(
+                                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence")),
                         makeTagArray(BlockTags.FENCES, Tags.Blocks.FENCES),
                         makeTagArray(ItemTags.FENCES, Tags.Items.FENCES)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_fence_gate",
@@ -189,7 +228,13 @@ public class ColoredCryingObsidianHandler
                         (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
                         (block, generator) -> generator.fenceGateBlock(block, new ResourceLocation(AdditionalColors.ID,
                                 "block/" + block.getRegistryName().getPath().replace("_fence_gate", ""))),
-                        basicItemModelMaker::accept, null, null,
+                        basicItemModelMaker::accept, new LootTableGenerator<ColoredFenceGateBlock>()
+                {
+                    @Override void registerLootTable(ColoredFenceGateBlock block)
+                    {
+                        this.addLootTable(block, this::registerDropSelfLootTable);
+                    }
+                }, null, null,
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence_gate"),
                         false, ItemTags.createOptional(
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence_gate")),
@@ -229,6 +274,14 @@ public class ColoredCryingObsidianHandler
             return labelMatches.get(0);
         }
         return null;
+    }
+
+    public void registerLootTables(DataGeneratorHelper helper)
+    {
+        for (BlockData<?> data : blockDatas)
+        {
+            data.registerLootTables(helper);
+        }
     }
 
     public void registerBlockTags(BlockTagGenerator generator)
@@ -302,6 +355,7 @@ public class ColoredCryingObsidianHandler
         private final Function<Supplier<T>, Supplier<ColoredBlockItem>> itemConstructor;
         private final BiConsumer<T, BlockStateGenerator> blockStateAndModelGenerator;
         private final BiConsumer<T, ItemModelGenerator> itemModelGenerator;
+        private final LootTableGenerator<T> lootTableGenerator;
         @Nullable private final TriConsumer<T, TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>>
                 textureGenerator;
         @Nullable private final BiConsumer<T, FMLClientSetupEvent> clientSetupStuff;
@@ -315,8 +369,9 @@ public class ColoredCryingObsidianHandler
         private BlockData(String id, Function<DyeColor, Supplier<T>> blockConstructor,
                 Function<Supplier<T>, Supplier<ColoredBlockItem>> itemConstructor,
                 BiConsumer<T, BlockStateGenerator> blockStateAndModelGenerator,
-                BiConsumer<T, ItemModelGenerator> itemModelGenerator, @Nullable
-                TriConsumer<T, TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>> textureGenerator,
+                BiConsumer<T, ItemModelGenerator> itemModelGenerator, LootTableGenerator<T> lootTableGenerator,
+                @Nullable
+                        TriConsumer<T, TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>> textureGenerator,
                 @Nullable BiConsumer<T, FMLClientSetupEvent> clientSetupStuff, ResourceLocation baseItem,
                 boolean required, ITag.INamedTag<Item> craftingTag, ITag.INamedTag<Block>[] blockTagsToAddTo,
                 ITag.INamedTag<Item>[] itemTagsToAddTo)
@@ -326,6 +381,7 @@ public class ColoredCryingObsidianHandler
             this.itemConstructor = itemConstructor;
             this.blockStateAndModelGenerator = blockStateAndModelGenerator;
             this.itemModelGenerator = itemModelGenerator;
+            this.lootTableGenerator = lootTableGenerator;
             this.clientSetupStuff = clientSetupStuff;
             this.textureGenerator = textureGenerator;
             this.baseItem = baseItem;
@@ -351,7 +407,7 @@ public class ColoredCryingObsidianHandler
             }
         }
 
-        public void clientSetup(FMLClientSetupEvent event)
+        private void clientSetup(FMLClientSetupEvent event)
         {
             if (clientSetupStuff != null)
             {
@@ -379,6 +435,15 @@ public class ColoredCryingObsidianHandler
             {
                 itemModelGenerator.accept(obj.get(), generator);
             }
+        }
+
+        private void registerLootTables(DataGeneratorHelper helper)
+        {
+            for (RegistryObject<T> obj : objSet)
+            {
+                this.lootTableGenerator.registerLootTable(obj.get());
+            }
+            helper.addLootTables(this.lootTableGenerator);
         }
 
         private void registerBlockStatesAndModels(BlockStateGenerator generator)
@@ -444,5 +509,10 @@ public class ColoredCryingObsidianHandler
         {
             objSet.forEach(generator::addSimpleBlock);
         }
+    }
+
+    private abstract class LootTableGenerator<T extends Block & IColoredBlock> extends BlockLootTables
+    {
+        abstract void registerLootTable(T block);
     }
 }
