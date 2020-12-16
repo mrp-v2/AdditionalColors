@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,7 +23,7 @@ import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 public abstract class TextureProvider implements IDataProvider
 {
@@ -55,6 +56,27 @@ public abstract class TextureProvider implements IDataProvider
         return (a << 24) | (r << 16) | (g << 8) | b;
     }
 
+    public static void adjustHSB(BufferedImage texture, int startX, int startY, int w, int h, float hueChange,
+            float saturationChange, float brightnessChange)
+    {
+        for (int x = startX; x < startX + w; x++)
+        {
+            for (int y = startY; y < startY + h; y++)
+            {
+                Color color = new Color(texture.getRGB(x, y), true);
+                float[] hsb = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
+                hsb[0] += hueChange;
+                hsb[1] += saturationChange;
+                hsb[1] = (float) (hsb[1] - Math.floor(hsb[1]));
+                hsb[2] += brightnessChange;
+                hsb[2] = (float) (hsb[2] - Math.floor(hsb[2]));
+                int rgb = Color.HSBtoRGB(hsb[0], hsb[1], hsb[2]);
+                int argb = (color.getAlpha() << 24) | rgb;
+                texture.setRGB(x, y, argb);
+            }
+        }
+    }
+
     public static int[] color(int color, int length)
     {
         int[] array = new int[length];
@@ -68,14 +90,14 @@ public abstract class TextureProvider implements IDataProvider
     @Override public void act(DirectoryCache cache)
     {
         Set<ResourceLocation> locationSet = new HashSet<>();
-        addTextures((texture) ->
+        addTextures((texture, location) ->
         {
-            if (!locationSet.add(texture.getID()))
+            if (!locationSet.add(location))
             {
-                throw new IllegalStateException("Duplicate texture " + texture.getID());
+                throw new IllegalStateException("Duplicate texture " + location);
             } else
             {
-                saveTexture(cache, texture.getTexture(), getTexturePath(texture.getID()));
+                saveTexture(cache, texture, getTexturePath(location));
             }
         });
     }
@@ -85,7 +107,7 @@ public abstract class TextureProvider implements IDataProvider
         return "Textures: " + modId;
     }
 
-    protected abstract void addTextures(Consumer<IFinishedTexture> consumer);
+    protected abstract void addTextures(BiConsumer<BufferedImage, ResourceLocation> consumer);
 
     private void saveTexture(DirectoryCache cache, BufferedImage texture, Path path)
     {
@@ -125,9 +147,9 @@ public abstract class TextureProvider implements IDataProvider
         return folder.resolve("assets/" + texture.getNamespace() + "/textures/" + texture.getPath() + ".png");
     }
 
-    public void finish(ResourceLocation id, BufferedImage texture, Consumer<IFinishedTexture> consumer)
+    public void finish(BufferedImage texture, ResourceLocation id, BiConsumer<BufferedImage, ResourceLocation> consumer)
     {
-        consumer.accept(new Result(id, texture));
+        consumer.accept(texture, id);
     }
 
     @Nullable public BufferedImage getTexture(ResourceLocation textureLoc)
@@ -144,27 +166,5 @@ public abstract class TextureProvider implements IDataProvider
             LOGGER.error("Couldn't read texture {}", textureLoc, ioException);
         }
         return null;
-    }
-
-    public static class Result implements IFinishedTexture
-    {
-        private final ResourceLocation id;
-        private final BufferedImage texture;
-
-        public Result(ResourceLocation id, BufferedImage texture)
-        {
-            this.id = id;
-            this.texture = texture;
-        }
-
-        @Override public ResourceLocation getID()
-        {
-            return id;
-        }
-
-        @Override public BufferedImage getTexture()
-        {
-            return texture;
-        }
     }
 }

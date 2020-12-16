@@ -3,7 +3,6 @@ package mrp_v2.additionalcolors.util;
 import mrp_v2.additionalcolors.AdditionalColors;
 import mrp_v2.additionalcolors.block.*;
 import mrp_v2.additionalcolors.datagen.*;
-import mrp_v2.additionalcolors.datagen.texture.IFinishedTexture;
 import mrp_v2.additionalcolors.datagen.texture.TextureGenerator;
 import mrp_v2.additionalcolors.datagen.texture.TextureProvider;
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
@@ -123,8 +122,8 @@ public class ColoredCryingObsidianHandler
                             doorBottom.setRGB(0, 0, hingeBottom);
                             doorBottom.setRGB(0, 10, hingeTop);
                             doorBottom.setRGB(0, 11, hingeBottom);
-                            generator.finish(new ResourceLocation(AdditionalColors.ID,
-                                    "block/" + block.getRegistryName().getPath() + "_bottom"), doorBottom, consumer);
+                            generator.finish(doorBottom, new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath() + "_bottom"), consumer);
                             doorTop.setRGB(11, 14, 2, 1, TextureProvider.color(hingeTop, 2), 0, 2);
                             doorTop.setRGB(13, 14, handleEdge);
                             doorTop.setRGB(11, 15, handleEdge);
@@ -133,13 +132,13 @@ public class ColoredCryingObsidianHandler
                             doorTop.setRGB(9, 3, 4, 3, clear, 0, 4);
                             doorTop.setRGB(3, 8, 4, 3, clear, 0, 4);
                             doorTop.setRGB(9, 8, 4, 3, clear, 0, 4);
-                            generator.finish(new ResourceLocation(AdditionalColors.ID,
-                                    "block/" + block.getRegistryName().getPath() + "_top"), doorTop, consumer);
+                            generator.finish(doorTop, new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath() + "_top"), consumer);
                             BufferedImage itemTexture = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
                             itemTexture.setRGB(8, 0, 16, 16, doorTop.getRGB(0, 0, 16, 16, null, 0, 16), 0, 16);
                             itemTexture.setRGB(8, 16, 16, 16, doorBottom.getRGB(0, 0, 16, 16, null, 0, 16), 0, 16);
-                            generator.finish(new ResourceLocation(AdditionalColors.ID,
-                                    "item/" + block.getRegistryName().getPath()), itemTexture, consumer);
+                            generator.finish(itemTexture, new ResourceLocation(AdditionalColors.ID,
+                                    "item/" + block.getRegistryName().getPath()), consumer);
                         }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"), false,
                         ItemTags.createOptional(
@@ -162,8 +161,8 @@ public class ColoredCryingObsidianHandler
                             newColors[14 * 11 + 12] = texture.getRGB(13, 12);
                             newColors[14 * 12 + 11] = texture.getRGB(12, 13);
                             texture.setRGB(1, 1, 14, 14, newColors, 0, 14);
-                            generator.finish(new ResourceLocation(AdditionalColors.ID,
-                                    "block/" + block.getRegistryName().getPath()), texture, consumer);
+                            generator.finish(texture, new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath()), consumer);
                         }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()),
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"), false,
                         ItemTags.createOptional(
@@ -256,7 +255,7 @@ public class ColoredCryingObsidianHandler
         }
     }
 
-    public void registerTextures(TextureGenerator generator, Consumer<IFinishedTexture> consumer)
+    public void registerTextures(TextureGenerator generator, BiConsumer<BufferedImage, ResourceLocation> consumer)
     {
         for (BlockData<?> data : blockDatas)
         {
@@ -303,7 +302,8 @@ public class ColoredCryingObsidianHandler
         private final Function<Supplier<T>, Supplier<ColoredBlockItem>> itemConstructor;
         private final BiConsumer<T, BlockStateGenerator> blockStateAndModelGenerator;
         private final BiConsumer<T, ItemModelGenerator> itemModelGenerator;
-        @Nullable private final TriConsumer<T, TextureGenerator, Consumer<IFinishedTexture>> textureGenerator;
+        @Nullable private final TriConsumer<T, TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>>
+                textureGenerator;
         @Nullable private final BiConsumer<T, FMLClientSetupEvent> clientSetupStuff;
         private final ResourceLocation baseItem;
         private final boolean required;
@@ -315,8 +315,8 @@ public class ColoredCryingObsidianHandler
         private BlockData(String id, Function<DyeColor, Supplier<T>> blockConstructor,
                 Function<Supplier<T>, Supplier<ColoredBlockItem>> itemConstructor,
                 BiConsumer<T, BlockStateGenerator> blockStateAndModelGenerator,
-                BiConsumer<T, ItemModelGenerator> itemModelGenerator,
-                @Nullable TriConsumer<T, TextureGenerator, Consumer<IFinishedTexture>> textureGenerator,
+                BiConsumer<T, ItemModelGenerator> itemModelGenerator, @Nullable
+                TriConsumer<T, TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>> textureGenerator,
                 @Nullable BiConsumer<T, FMLClientSetupEvent> clientSetupStuff, ResourceLocation baseItem,
                 boolean required, ITag.INamedTag<Item> craftingTag, ITag.INamedTag<Block>[] blockTagsToAddTo,
                 ITag.INamedTag<Item>[] itemTagsToAddTo)
@@ -362,7 +362,7 @@ public class ColoredCryingObsidianHandler
             }
         }
 
-        private void registerTextures(TextureGenerator generator, Consumer<IFinishedTexture> consumer)
+        private void registerTextures(TextureGenerator generator, BiConsumer<BufferedImage, ResourceLocation> consumer)
         {
             if (textureGenerator != null)
             {
