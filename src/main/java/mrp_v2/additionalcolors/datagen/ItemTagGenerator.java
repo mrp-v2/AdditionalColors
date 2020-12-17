@@ -29,12 +29,21 @@ public class ItemTagGenerator extends ItemTagsProvider
         ObjectHolder.CRYING_OBSIDIAN_HANDLER.registerItemTags(this);
         for (ColorizedBlockEntry entry : ObjectHolder.BLOCKS_TO_COLORIZE)
         {
-            TagsProvider.Builder<Item> builder = this.getOrCreateBuilder(entry.getTag());
+            TagsProvider.Builder<Item> builder = this.getOrCreateBuilder(entry.getCraftingTag());
             builder.add(entry.getBlock().asItem());
             for (Pair<RegistryObject<ColoredBlock>, RegistryObject<ColoredBlockItem>> objPair : ObjectHolder.COLORIZED_BLOCK_MAP
                     .get(entry.getBlock()))
             {
                 builder.add(objPair.getRight().get());
+            }
+            for (ITag.INamedTag<Item> additionalTag : entry.getAdditionalItemTags())
+            {
+                builder = this.getOrCreateBuilder(additionalTag);
+                for (Pair<RegistryObject<ColoredBlock>, RegistryObject<ColoredBlockItem>> objPair : ObjectHolder.COLORIZED_BLOCK_MAP
+                        .get(entry.getBlock()))
+                {
+                    builder.add(objPair.getRight().get());
+                }
             }
         }
     }

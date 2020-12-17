@@ -31,12 +31,14 @@ public class ObjectHolder
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_LANDING_OBSIDIAN_TEAR_PARTICLE_TYPE;
-    public static final ColorizedBlockEntry[] BLOCKS_TO_COLORIZE =
-            new ColorizedBlockEntry[]{new ColorizedBlockEntry(Blocks.OBSIDIAN, Tags.Items.OBSIDIAN),
-                    new ColorizedBlockEntry(Blocks.COBBLESTONE, Tags.Items.COBBLESTONE),
-                    new ColorizedBlockEntry(Blocks.STONE, Tags.Items.STONE),
-                    new ColorizedBlockEntry(Blocks.SMOOTH_STONE,
-                            ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, "smooth_stone")))};
+    public static final ColorizedBlockEntry[] BLOCKS_TO_COLORIZE = new ColorizedBlockEntry[]{
+            new ColorizedBlockEntry(Blocks.OBSIDIAN, Tags.Items.OBSIDIAN, Util.makeTagArray(Tags.Blocks.OBSIDIAN),
+                    Util.makeTagArray()), new ColorizedBlockEntry(Blocks.COBBLESTONE, Tags.Items.COBBLESTONE,
+            Util.makeTagArray(Tags.Blocks.COBBLESTONE), Util.makeTagArray()),
+            new ColorizedBlockEntry(Blocks.STONE, Tags.Items.STONE, Util.makeTagArray(Tags.Blocks.STONE),
+                    Util.makeTagArray()), new ColorizedBlockEntry(Blocks.SMOOTH_STONE,
+            ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, "smooth_stone")), Util.makeTagArray(),
+            Util.makeTagArray())};
     public static final HashMap<Block, HashSet<Pair<RegistryObject<ColoredBlock>, RegistryObject<ColoredBlockItem>>>>
             COLORIZED_BLOCK_MAP = new HashMap<>();
 

@@ -37,9 +37,9 @@ public class RecipeGenerator extends RecipeProvider
                     .get(entry.getBlock()))
             {
                 ColoredBlock block = objPair.getLeft().get();
-                ShapelessRecipeBuilder.shapelessRecipe(block).addIngredient(entry.getTag())
-                        .addIngredient(block.getColor().getTag()).addCriterion("has_block", hasItem(entry.getTag()))
-                        .build(consumer);
+                ShapelessRecipeBuilder.shapelessRecipe(block).addIngredient(entry.getCraftingTag())
+                        .addIngredient(block.getColor().getTag())
+                        .addCriterion("has_block", hasItem(entry.getCraftingTag())).build(consumer);
             }
         }
     }

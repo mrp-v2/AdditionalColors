@@ -75,7 +75,7 @@ public class ColoredCryingObsidianHandler
                     }
                 }, null, null, Items.CRYING_OBSIDIAN.getRegistryName(), true, ItemTags.createOptional(
                 new ResourceLocation(AdditionalColors.ID, Blocks.CRYING_OBSIDIAN.getRegistryName().getPath())),
-                makeTagArray(), makeTagArray()),
+                Util.makeTagArray(), Util.makeTagArray()),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_slab",
                         (color) -> () -> new ColoredSlabBlock(basicProperties.get(), color),
                         (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
@@ -94,7 +94,7 @@ public class ColoredCryingObsidianHandler
                 }, null, null, new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"),
                         false, ItemTags.createOptional(
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab")),
-                        makeTagArray(BlockTags.SLABS), makeTagArray(ItemTags.SLABS)),
+                        Util.makeTagArray(BlockTags.SLABS), Util.makeTagArray(ItemTags.SLABS)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_stairs",
                         (color) -> () -> new ColoredStairsBlock(
                                 () -> baseBlocksMap.get(color).get().getBlock().getDefaultState(),
@@ -111,7 +111,7 @@ public class ColoredCryingObsidianHandler
                 }, null, null, new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs"),
                         false, ItemTags.createOptional(
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs")),
-                        makeTagArray(BlockTags.STAIRS), makeTagArray(ItemTags.STAIRS)),
+                        Util.makeTagArray(BlockTags.STAIRS), Util.makeTagArray(ItemTags.STAIRS)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_door",
                         (color) -> () -> new ColoredDoorBlock(basicProperties.get().notSolid(), color),
                         (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup),
@@ -168,7 +168,7 @@ public class ColoredCryingObsidianHandler
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"), false,
                         ItemTags.createOptional(
                                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door")),
-                        makeTagArray(BlockTags.DOORS), makeTagArray(ItemTags.DOORS)),
+                        Util.makeTagArray(BlockTags.DOORS), Util.makeTagArray(ItemTags.DOORS)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_glass",
                         (color) -> () -> new ColoredObsidianGlassBlock(
                                 AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN).sound(SoundType.GLASS).notSolid(),
@@ -199,8 +199,8 @@ public class ColoredCryingObsidianHandler
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"), false,
                         ItemTags.createOptional(
                                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass")),
-                        makeTagArray(Tags.Blocks.GLASS, Tags.Blocks.GLASS_COLORLESS),
-                        makeTagArray(Tags.Items.GLASS, Tags.Items.GLASS_COLORLESS)),
+                        Util.makeTagArray(Tags.Blocks.GLASS, Tags.Blocks.GLASS_COLORLESS),
+                        Util.makeTagArray(Tags.Items.GLASS, Tags.Items.GLASS_COLORLESS)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_fence",
                         (color) -> () -> new ColoredFenceBlock(AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN),
                                 color),
@@ -220,8 +220,8 @@ public class ColoredCryingObsidianHandler
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence"), false,
                         ItemTags.createOptional(
                                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence")),
-                        makeTagArray(BlockTags.FENCES, Tags.Blocks.FENCES),
-                        makeTagArray(ItemTags.FENCES, Tags.Items.FENCES)),
+                        Util.makeTagArray(BlockTags.FENCES, Tags.Blocks.FENCES),
+                        Util.makeTagArray(ItemTags.FENCES, Tags.Items.FENCES)),
                 new BlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_fence_gate",
                         (color) -> () -> new ColoredFenceGateBlock(
                                 AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN), color),
@@ -238,13 +238,8 @@ public class ColoredCryingObsidianHandler
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence_gate"),
                         false, ItemTags.createOptional(
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence_gate")),
-                        makeTagArray(BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES),
-                        makeTagArray(Tags.Items.FENCE_GATES))};
-    }
-
-    @SafeVarargs private final <U> ITag.INamedTag<U>[] makeTagArray(ITag.INamedTag<U>... tags)
-    {
-        return tags;
+                        Util.makeTagArray(BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES),
+                        Util.makeTagArray(Tags.Items.FENCE_GATES))};
     }
 
     @Nullable private ItemGroup getObsidianExpansionItemGroup()
@@ -511,7 +506,7 @@ public class ColoredCryingObsidianHandler
         }
     }
 
-    private abstract class LootTableGenerator<T extends Block & IColoredBlock> extends BlockLootTables
+    private abstract static class LootTableGenerator<T extends Block & IColoredBlock> extends BlockLootTables
     {
         abstract void registerLootTable(T block);
     }
