@@ -1,11 +1,11 @@
 {
     "replace": false,
     "values": [
-        "minecraft:stone", "additionalcolors:lime_stone", "additionalcolors:white_stone",
-        "additionalcolors:orange_stone", "additionalcolors:magenta_stone", "additionalcolors:light_blue_stone",
-        "additionalcolors:yellow_stone", "additionalcolors:pink_stone", "additionalcolors:red_stone",
-        "additionalcolors:gray_stone", "additionalcolors:blue_stone", "additionalcolors:light_gray_stone",
-        "additionalcolors:cyan_stone", "additionalcolors:green_stone", "additionalcolors:brown_stone",
-        "additionalcolors:purple_stone", "additionalcolors:black_stone"
+        "minecraft:stone", "additionalcolors:yellow_stone", "additionalcolors:white_stone",
+        "additionalcolors:orange_stone", "additionalcolors:magenta_stone", "additionalcolors:brown_stone",
+        "additionalcolors:red_stone", "additionalcolors:light_blue_stone", "additionalcolors:lime_stone",
+        "additionalcolors:green_stone", "additionalcolors:pink_stone", "additionalcolors:gray_stone",
+        "additionalcolors:light_gray_stone", "additionalcolors:cyan_stone", "additionalcolors:purple_stone",
+        "additionalcolors:black_stone", "additionalcolors:blue_stone"
     ]
 }
