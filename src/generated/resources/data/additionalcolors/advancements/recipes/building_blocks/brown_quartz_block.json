@@ -1,0 +1,31 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "additionalcolors:brown_quartz_block"
+        ]
+    },
+    "criteria": {
+        "has_base": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "additionalcolors:quartz_block"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "additionalcolors:brown_quartz_block"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_base", "has_the_recipe"
+        ]
+    ]
+}

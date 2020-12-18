@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "additionalcolors:quartz_block"
+        }, {
+            "tag": "forge:dyes/white"
+        }
+    ],
+    "result": {
+        "item": "additionalcolors:white_quartz_block"
+    }
+}

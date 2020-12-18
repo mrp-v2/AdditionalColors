@@ -3,7 +3,7 @@ package mrp_v2.additionalcolors.client.renderer.color;
 import mrp_v2.additionalcolors.AdditionalColors;
 import mrp_v2.additionalcolors.block.ColoredBlock;
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
-import mrp_v2.additionalcolors.util.ColorizedBlockData;
+import mrp_v2.additionalcolors.util.ColoredBlockData;
 import mrp_v2.additionalcolors.util.ObjectHolder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -27,7 +27,7 @@ public class BlockColorer implements IBlockColor, IItemColor
 
     @SubscribeEvent public static void registerBlockColors(ColorHandlerEvent.Block event)
     {
-        for (ColorizedBlockData<? extends Block> data : ObjectHolder.COLORIZED_BLOCK_DATAS)
+        for (ColoredBlockData<? extends Block> data : ObjectHolder.COLORIZED_BLOCK_DATAS)
         {
             if (data.requiresTinting())
             {
@@ -38,7 +38,7 @@ public class BlockColorer implements IBlockColor, IItemColor
 
     @SubscribeEvent public static void registerItemColors(ColorHandlerEvent.Item event)
     {
-        for (ColorizedBlockData<? extends Block> data : ObjectHolder.COLORIZED_BLOCK_DATAS)
+        for (ColoredBlockData<? extends Block> data : ObjectHolder.COLORIZED_BLOCK_DATAS)
         {
             if (data.requiresTinting())
             {

@@ -9,6 +9,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = AdditionalColors.ID)
 public class EventHandler
@@ -22,5 +23,10 @@ public class EventHandler
                 ObsidianTearParticleFactory.ColoredFallingObsidianTearFactory::new);
         particleManager.registerFactory(ObjectHolder.COLORED_LANDING_OBSIDIAN_TEAR_PARTICLE_TYPE.get(),
                 ObsidianTearParticleFactory.ColoredLandingObsidianTearFactory::new);
+    }
+
+    @SubscribeEvent public static void clientSetup(FMLClientSetupEvent event)
+    {
+        ObjectHolder.COLORIZED_BLOCK_DATAS.forEach((data) -> data.clientSetup(event));
     }
 }
