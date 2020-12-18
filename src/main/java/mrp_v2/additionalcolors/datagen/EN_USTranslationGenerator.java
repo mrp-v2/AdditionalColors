@@ -17,8 +17,7 @@ public class EN_USTranslationGenerator extends LanguageProvider
 
     @Override protected void addTranslations()
     {
-        ObjectHolder.CRYING_OBSIDIAN_HANDLER.generateTranslations(this);
-        ObjectHolder.COLORIZED_BLOCK_MAP.values().forEach(set -> set.forEach(this::addSimpleBlock));
+        ObjectHolder.COLORIZED_BLOCK_DATAS.forEach((data) -> data.generateTranslations(this));
     }
 
     public <T extends Block> void addSimpleBlock(Pair<RegistryObject<T>, RegistryObject<ColoredBlockItem>> objPair)

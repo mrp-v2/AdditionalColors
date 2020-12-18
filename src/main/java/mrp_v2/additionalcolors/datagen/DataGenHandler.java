@@ -1,7 +1,6 @@
 package mrp_v2.additionalcolors.datagen;
 
 import mrp_v2.additionalcolors.AdditionalColors;
-import mrp_v2.additionalcolors.util.ObjectHolder;
 import mrp_v2.mrplibrary.datagen.DataGeneratorHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,7 +25,6 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
             helper.addItemTagsProvider(ItemTagGenerator::new);
             helper.addRecipeProvider(RecipeGenerator::new);
             helper.addLootTables(new LootTableGenerator());
-            ObjectHolder.CRYING_OBSIDIAN_HANDLER.registerLootTables(helper);
         }
     }
 }

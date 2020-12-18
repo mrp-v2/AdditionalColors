@@ -18,6 +18,6 @@ public class TextureGenerator extends TextureProvider
 
     @Override protected void addTextures(BiConsumer<BufferedImage, ResourceLocation> consumer)
     {
-        ObjectHolder.CRYING_OBSIDIAN_HANDLER.registerTextures(this, consumer);
+        ObjectHolder.COLORIZED_BLOCK_DATAS.forEach((data) -> data.registerTextures(this, consumer));
     }
 }
