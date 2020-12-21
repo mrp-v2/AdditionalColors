@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "obsidianexpansion:crying_obsidian_slab"
+      "tag": "additionalcolors:crying_obsidian_slab"
     },
     {
       "tag": "forge:dyes/white"

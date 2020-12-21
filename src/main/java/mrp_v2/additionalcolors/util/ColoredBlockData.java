@@ -62,8 +62,8 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
             @Nullable GeneralTextureGenerator generalTextureGenerator,
             @Nullable BlockTextureGenerator<T> blockTextureGenerator,
             @Nullable BiConsumer<T, FMLClientSetupEvent> clientSetupStuff, boolean requiresTinting,
-            ResourceLocation baseBlock, boolean required, ITag.INamedTag<Item> craftingTag,
-            ITag.INamedTag<Block>[] blockTagsToAddTo, ITag.INamedTag<Item>[] itemTagsToAddTo)
+            ResourceLocation baseBlock, boolean required, ITag.INamedTag<Block>[] blockTagsToAddTo,
+            ITag.INamedTag<Item>[] itemTagsToAddTo)
     {
         this.id = id;
         this.colors = colors;
@@ -79,7 +79,7 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
         this.requiresTinting = requiresTinting;
         this.baseBlock = baseBlock;
         this.required = required;
-        this.craftingTag = craftingTag;
+        this.craftingTag = ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, baseBlock.getPath()));
         this.blockTagsToAddTo = blockTagsToAddTo;
         this.itemTagsToAddTo = itemTagsToAddTo;
     }
@@ -288,38 +288,29 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
         objSet.forEach(generator::addSimpleBlock);
     }
 
-    public static class ColoredBasicBlockData extends ColoredBlockData<ColoredBlock>
+    public static class Basic extends ColoredBlockData<ColoredBlock>
     {
-        public ColoredBasicBlockData(Block baseBlock, ITag.INamedTag<Block>[] additionalBlockTags,
+        public Basic(Block baseBlock, ITag.INamedTag<Block>[] additionalBlockTags,
                 ITag.INamedTag<Item>[] additionalItemTags)
         {
             this(baseBlock, 0.75d, additionalBlockTags, additionalItemTags);
         }
 
-        public ColoredBasicBlockData(Block baseBlock, double textureLevelAdjustment,
-                ITag.INamedTag<Block>[] additionalBlockTags, ITag.INamedTag<Item>[] additionalItemTags)
+        public Basic(Block baseBlock, double textureLevelAdjustment, ITag.INamedTag<Block>[] additionalBlockTags,
+                ITag.INamedTag<Item>[] additionalItemTags)
         {
-            super(baseBlock.getRegistryName().getPath(), DyeColor.values(),
-                    (color) -> () -> new ColoredBlock(color, AbstractBlock.Properties.from(baseBlock)),
-                    (blockSupplier) -> () -> new ColoredBlockItem(blockSupplier.get(),
-                            new Item.Properties().group(baseBlock.asItem().getGroup())), (generator ->
-                    {
-                        ResourceLocation textureLoc =
-                                generator.modLoc("block/" + baseBlock.getRegistryName().getPath());
-                        generator.models().getBuilder(baseBlock.getRegistryName().getPath())
-                                .parent(generator.models().getExistingFile(generator.mcLoc("block/block")))
-                                .texture("all", textureLoc).texture("particle", textureLoc).element().from(0, 0, 0)
-                                .to(16, 16, 16).allFaces(
-                                (face, faceBuilder) -> faceBuilder.tintindex(0).texture("#all").cullface(face).end())
-                                .end();
-                    }), (block, generator) -> generator.simpleBlock(block, generator.models()
-                            .getExistingFile(generator.modLoc("block/" + baseBlock.getRegistryName().getPath()))),
-                    (block, generator) -> generator.withExistingParent(block.getRegistryName().getPath(),
-                            generator.modLoc("block/" + baseBlock.getRegistryName().getPath())),
-                    (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable),
-                    new GeneralTextureGenerator((generator) -> generator.promiseGeneration(
-                            new ResourceLocation(AdditionalColors.ID,
-                                    "block/" + baseBlock.getRegistryName().getPath())), (generator, consumer) ->
+            this(baseBlock, (generator ->
+            {
+                ResourceLocation textureLoc = generator.modLoc("block/" + baseBlock.getRegistryName().getPath());
+                generator.models().getBuilder(baseBlock.getRegistryName().getPath())
+                        .parent(generator.models().getExistingFile(generator.mcLoc("block/block")))
+                        .texture("all", textureLoc).texture("particle", textureLoc).element().from(0, 0, 0)
+                        .to(16, 16, 16)
+                        .allFaces((face, faceBuilder) -> faceBuilder.tintindex(0).texture("#all").cullface(face).end())
+                        .end();
+            }), new GeneralTextureGenerator((generator) -> generator.promiseGeneration(
+                    new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getRegistryName().getPath())),
+                    (generator, consumer) ->
                     {
                         BufferedImage texture = generator.getTexture(
                                 new ResourceLocation(baseBlock.getRegistryName().getNamespace(),
@@ -328,37 +319,94 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
                         TextureProvider.adjustLevels(texture, 0, 0, 16, 16, textureLevelAdjustment);
                         generator.finish(texture, new ResourceLocation(AdditionalColors.ID,
                                 "block/" + baseBlock.getRegistryName().getPath()), consumer);
-                    }), null, null, true, baseBlock.asItem().getRegistryName(), true, ItemTags.createOptional(
-                            new ResourceLocation(AdditionalColors.ID, baseBlock.getRegistryName().getPath())),
-                    additionalBlockTags, additionalItemTags);
+                    }), null, additionalBlockTags, additionalItemTags);
         }
-    }
 
-    public static class ColoredVerticalPillarBlockData extends ColoredBlockData<ColoredBlock>
-    {
-        public ColoredVerticalPillarBlockData(Block baseBlock, String endSuffix, String sideSuffix,
+        private Basic(Block baseBlock, @Nullable Consumer<BlockStateGenerator> generalStateAndModelGenerator,
+                @Nullable ColoredBlockData.GeneralTextureGenerator generalTextureGenerator,
+                @Nullable ColoredBlockData.BlockTextureGenerator<ColoredBlock> blockTextureGenerator,
                 ITag.INamedTag<Block>[] additionalBlockTags, ITag.INamedTag<Item>[] additionalItemTags)
         {
             super(baseBlock.getRegistryName().getPath(), DyeColor.values(),
                     (color) -> () -> new ColoredBlock(color, AbstractBlock.Properties.from(baseBlock)),
                     (blockSupplier) -> () -> new ColoredBlockItem(blockSupplier.get(),
-                            new Item.Properties().group(baseBlock.asItem().getGroup())),
-                    ((generator) -> generator.models().getBuilder(baseBlock.getRegistryName().getPath())
-                            .parent(generator.models().getExistingFile(generator.mcLoc("block/block")))
-                            .texture("end", generator.modLoc("block/" + baseBlock.getRegistryName().getPath() + "_end"))
-                            .texture("side",
-                                    generator.modLoc("block/" + baseBlock.getRegistryName().getPath() + "_side"))
-                            .texture("particle",
-                                    generator.modLoc("block/" + baseBlock.getRegistryName().getPath() + "_side"))
-                            .element().from(0, 0, 0).to(16, 16, 16).allFaces(
-                                    (face, faceBuilder) -> faceBuilder.tintindex(0)
-                                            .texture(face.getAxis() == Direction.Axis.Y ? "#end" : "#side")
-                                            .cullface(face).end()).end()), (block, generator) -> generator
-                            .simpleBlock(block, generator.models().getExistingFile(
-                                    generator.modLoc("block/" + baseBlock.getRegistryName().getPath()))),
+                            new Item.Properties().group(baseBlock.asItem().getGroup())), generalStateAndModelGenerator,
+                    (block, generator) -> generator.simpleBlock(block, generator.models()
+                            .getExistingFile(generator.modLoc("block/" + baseBlock.getRegistryName().getPath()))),
                     (block, generator) -> generator.withExistingParent(block.getRegistryName().getPath(),
                             generator.modLoc("block/" + baseBlock.getRegistryName().getPath())),
                     (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable),
+                    generalTextureGenerator, blockTextureGenerator, null, true, baseBlock.asItem().getRegistryName(),
+                    true, additionalBlockTags, additionalItemTags);
+        }
+    }
+
+    public static class BottomTop extends Basic
+    {
+        public BottomTop(Block baseBlock, ITag.INamedTag<Block>[] additionalBlockTags,
+                ITag.INamedTag<Item>[] additionalItemTags)
+        {
+            super(baseBlock, (generator) -> generator.models().getBuilder(baseBlock.getRegistryName().getPath())
+                            .parent(generator.models().getExistingFile(generator.mcLoc("block/block")))
+                            .texture("top", generator.modLoc("block/" + baseBlock.getRegistryName().getPath() + "_top"))
+                            .texture("bottom", generator.modLoc("block/" + baseBlock.getRegistryName().getPath() + "_bottom"))
+                            .texture("side", generator.modLoc("block/" + baseBlock.getRegistryName().getPath())).element()
+                            .from(0, 0, 0).to(16, 16, 16)
+                            .allFaces((face, builder) -> builder.texture("#side").cullface(face).tintindex(0).end())
+                            .face(Direction.UP).texture("#top").end().face(Direction.DOWN).texture("#bottom").end().end(),
+                    new GeneralTextureGenerator((generator) ->
+                    {
+                        generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID,
+                                "block/" + baseBlock.getRegistryName().getPath()));
+                        generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID,
+                                "block/" + baseBlock.getRegistryName().getPath() + "_top"));
+                        generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID,
+                                "block/" + baseBlock.getRegistryName().getPath() + "_bottom"));
+                    }, (generator, consumer) ->
+                    {
+                        BufferedImage topTexture = generator.getTexture(
+                                new ResourceLocation(baseBlock.getRegistryName().getNamespace(),
+                                        "block/" + baseBlock.getRegistryName().getPath() + "_top"));
+                        TextureGenerator.makeGrayscale(topTexture, 0, 0, 16, 16);
+                        TextureGenerator.adjustLevels(topTexture, 0, 0, 16, 16, 0.5d);
+                        generator.finish(topTexture, new ResourceLocation(AdditionalColors.ID,
+                                "block/" + baseBlock.getRegistryName().getPath() + "_top"), consumer);
+                        BufferedImage sideTexture = generator.getTexture(
+                                new ResourceLocation(baseBlock.getRegistryName().getNamespace(),
+                                        "block/" + baseBlock.getRegistryName().getPath()));
+                        TextureGenerator.makeGrayscale(sideTexture, 0, 0, 16, 16);
+                        TextureGenerator.adjustLevels(sideTexture, 0, 0, 16, 16, 0.5d);
+                        generator.finish(sideTexture, new ResourceLocation(AdditionalColors.ID,
+                                "block/" + baseBlock.getRegistryName().getPath()), consumer);
+                        BufferedImage bottomTexture = generator.getTexture(
+                                new ResourceLocation(baseBlock.getRegistryName().getNamespace(),
+                                        "block/" + baseBlock.getRegistryName().getPath() + "_bottom"));
+                        TextureGenerator.makeGrayscale(bottomTexture, 0, 0, 16, 16);
+                        TextureGenerator.adjustLevels(bottomTexture, 0, 0, 16, 16, 0.5d);
+                        generator.finish(bottomTexture, new ResourceLocation(AdditionalColors.ID,
+                                "block/" + baseBlock.getRegistryName().getPath() + "_bottom"), consumer);
+                    }), null, additionalBlockTags, additionalItemTags);
+        }
+    }
+
+    public static class VerticalPillar extends Basic
+    {
+        public VerticalPillar(Block baseBlock, ITag.INamedTag<Block>[] additionalBlockTags,
+                ITag.INamedTag<Item>[] additionalItemTags)
+        {
+            this(baseBlock, "_top", "_side", additionalBlockTags, additionalItemTags);
+        }
+
+        public VerticalPillar(Block baseBlock, String endSuffix, String sideSuffix,
+                ITag.INamedTag<Block>[] additionalBlockTags, ITag.INamedTag<Item>[] additionalItemTags)
+        {
+            super(baseBlock, (generator) -> generator.models().getBuilder(baseBlock.getRegistryName().getPath())
+                            .parent(generator.models().getExistingFile(generator.mcLoc("block/block")))
+                            .texture("end", generator.modLoc("block/" + baseBlock.getRegistryName().getPath() + "_end"))
+                            .texture("side", generator.modLoc("block/" + baseBlock.getRegistryName().getPath() + "_side"))
+                            .texture("particle", generator.modLoc("block/" + baseBlock.getRegistryName().getPath() + "_side"))
+                            .element().from(0, 0, 0).to(16, 16, 16).allFaces((face, faceBuilder) -> faceBuilder.tintindex(0)
+                                    .texture(face.getAxis() == Direction.Axis.Y ? "#end" : "#side").cullface(face).end()).end(),
                     new GeneralTextureGenerator((generator) ->
                     {
                         generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID,
@@ -367,8 +415,8 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
                                 "block/" + baseBlock.getRegistryName().getPath() + "_side"));
                     }, (generator, consumer) ->
                     {
-                        BufferedImage endTexture = generator.getTexture(
-                                new ResourceLocation(baseBlock.getRegistryName().getNamespace(),
+                        BufferedImage endTexture =
+                                generator.getTexture(new ResourceLocation(baseBlock.getRegistryName().getNamespace(),
                                         "block/" + baseBlock.getRegistryName().getPath() + endSuffix));
                         TextureProvider.makeGrayscale(endTexture, 0, 0, 16, 16);
                         TextureProvider.adjustLevels(endTexture, 0, 0, 16, 16, 0.5d);
@@ -381,9 +429,7 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
                         TextureProvider.adjustLevels(sideTexture, 0, 0, 16, 16, 0.5d);
                         generator.finish(sideTexture, new ResourceLocation(AdditionalColors.ID,
                                 "block/" + baseBlock.getRegistryName().getPath() + "_side"), consumer);
-                    }), null, null, true, baseBlock.asItem().getRegistryName(), true, ItemTags.createOptional(
-                            new ResourceLocation(AdditionalColors.ID, baseBlock.getRegistryName().getPath())),
-                    additionalBlockTags, additionalItemTags);
+                    }), null, additionalBlockTags, additionalItemTags);
         }
     }
 }
