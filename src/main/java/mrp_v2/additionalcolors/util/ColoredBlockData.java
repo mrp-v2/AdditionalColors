@@ -43,10 +43,8 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
     private final BiConsumer<T, BlockStateGenerator> blockStateAndModelGenerator;
     private final BiConsumer<T, ItemModelGenerator> itemModelGenerator;
     private final BiConsumer<T, LootTableGenerator> lootTableGenerator;
-    @Nullable private final BiConsumer<TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>>
-            generalTextureGenerator;
-    @Nullable private final TriConsumer<T, TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>>
-            blockTextureGenerator;
+    @Nullable private final GeneralTextureGenerator generalTextureGenerator;
+    @Nullable private final BlockTextureGenerator<T> blockTextureGenerator;
     @Nullable private final BiConsumer<T, FMLClientSetupEvent> clientSetupStuff;
     private final boolean requiresTinting;
     private final ResourceLocation baseBlock;
@@ -61,9 +59,8 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
             @Nullable Consumer<BlockStateGenerator> generalStateAndModelGenerator,
             BiConsumer<T, BlockStateGenerator> blockStateAndModelGenerator,
             BiConsumer<T, ItemModelGenerator> itemModelGenerator, BiConsumer<T, LootTableGenerator> lootTableGenerator,
-            @Nullable BiConsumer<TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>> generalTextureGenerator,
-            @Nullable
-                    TriConsumer<T, TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>> blockTextureGenerator,
+            @Nullable GeneralTextureGenerator generalTextureGenerator,
+            @Nullable BlockTextureGenerator<T> blockTextureGenerator,
             @Nullable BiConsumer<T, FMLClientSetupEvent> clientSetupStuff, boolean requiresTinting,
             ResourceLocation baseBlock, boolean required, ITag.INamedTag<Item> craftingTag,
             ITag.INamedTag<Block>[] blockTagsToAddTo, ITag.INamedTag<Item>[] itemTagsToAddTo)
@@ -77,14 +74,29 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
         this.itemModelGenerator = itemModelGenerator;
         this.lootTableGenerator = lootTableGenerator;
         this.generalTextureGenerator = generalTextureGenerator;
-        this.clientSetupStuff = clientSetupStuff;
         this.blockTextureGenerator = blockTextureGenerator;
+        this.clientSetupStuff = clientSetupStuff;
         this.requiresTinting = requiresTinting;
         this.baseBlock = baseBlock;
         this.required = required;
         this.craftingTag = craftingTag;
         this.blockTagsToAddTo = blockTagsToAddTo;
         this.itemTagsToAddTo = itemTagsToAddTo;
+    }
+
+    public void makeTextureGenerationPromises(TextureGenerator generator)
+    {
+        if (generalTextureGenerator != null)
+        {
+            generalTextureGenerator.makeTextureGenerationPromises(generator);
+        }
+        if (blockTextureGenerator != null)
+        {
+            for (RegistryObject<T> obj : objSet)
+            {
+                blockTextureGenerator.makeTextureGenerationPromises(obj.get(), generator);
+            }
+        }
     }
 
     public Map<DyeColor, RegistryObject<T>> register()
@@ -134,14 +146,61 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
     {
         if (generalTextureGenerator != null)
         {
-            generalTextureGenerator.accept(generator, consumer);
+            generalTextureGenerator.generateTextures(generator, consumer);
         }
         if (blockTextureGenerator != null)
         {
             for (RegistryObject<T> obj : objSet)
             {
-                blockTextureGenerator.accept(obj.get(), generator, consumer);
+                blockTextureGenerator.generateTextures(obj.get(), generator, consumer);
             }
+        }
+    }
+
+    public static class GeneralTextureGenerator
+    {
+        private final Consumer<TextureGenerator> textureGenerationPromiser;
+        private final BiConsumer<TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>> textureGenerator;
+
+        public GeneralTextureGenerator(Consumer<TextureGenerator> textureGenerationPromiser,
+                BiConsumer<TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>> textureGenerator)
+        {
+            this.textureGenerationPromiser = textureGenerationPromiser;
+            this.textureGenerator = textureGenerator;
+        }
+
+        private void makeTextureGenerationPromises(TextureGenerator generator)
+        {
+            textureGenerationPromiser.accept(generator);
+        }
+
+        private void generateTextures(TextureGenerator generator, BiConsumer<BufferedImage, ResourceLocation> consumer)
+        {
+            textureGenerator.accept(generator, consumer);
+        }
+    }
+
+    public static class BlockTextureGenerator<T extends Block & IColoredBlock>
+    {
+        private final BiConsumer<T, TextureGenerator> textureGenerationPromiser;
+        private final TriConsumer<T, TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>> textureGenerator;
+
+        public BlockTextureGenerator(BiConsumer<T, TextureGenerator> textureGenerationPromiser,
+                TriConsumer<T, TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>> textureGenerator)
+        {
+            this.textureGenerationPromiser = textureGenerationPromiser;
+            this.textureGenerator = textureGenerator;
+        }
+
+        private void makeTextureGenerationPromises(T block, TextureGenerator generator)
+        {
+            textureGenerationPromiser.accept(block, generator);
+        }
+
+        private void generateTextures(T block, TextureGenerator generator,
+                BiConsumer<BufferedImage, ResourceLocation> consumer)
+        {
+            textureGenerator.accept(block, generator, consumer);
         }
     }
 
@@ -258,7 +317,9 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
                     (block, generator) -> generator.withExistingParent(block.getRegistryName().getPath(),
                             generator.modLoc("block/" + baseBlock.getRegistryName().getPath())),
                     (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable),
-                    (generator, consumer) ->
+                    new GeneralTextureGenerator((generator) -> generator.promiseGeneration(
+                            new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + baseBlock.getRegistryName().getPath())), (generator, consumer) ->
                     {
                         BufferedImage texture = generator.getTexture(
                                 new ResourceLocation(baseBlock.getRegistryName().getNamespace(),
@@ -267,7 +328,7 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
                         TextureProvider.adjustLevels(texture, 0, 0, 16, 16, textureLevelAdjustment);
                         generator.finish(texture, new ResourceLocation(AdditionalColors.ID,
                                 "block/" + baseBlock.getRegistryName().getPath()), consumer);
-                    }, null, null, true, baseBlock.asItem().getRegistryName(), true, ItemTags.createOptional(
+                    }), null, null, true, baseBlock.asItem().getRegistryName(), true, ItemTags.createOptional(
                             new ResourceLocation(AdditionalColors.ID, baseBlock.getRegistryName().getPath())),
                     additionalBlockTags, additionalItemTags);
         }
@@ -298,7 +359,13 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
                     (block, generator) -> generator.withExistingParent(block.getRegistryName().getPath(),
                             generator.modLoc("block/" + baseBlock.getRegistryName().getPath())),
                     (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable),
-                    (generator, consumer) ->
+                    new GeneralTextureGenerator((generator) ->
+                    {
+                        generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID,
+                                baseBlock.getRegistryName().getPath() + "_end"));
+                        generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID,
+                                baseBlock.getRegistryName().getPath() + "_side"));
+                    }, (generator, consumer) ->
                     {
                         BufferedImage endTexture = generator.getTexture(
                                 new ResourceLocation(baseBlock.getRegistryName().getNamespace(),
@@ -314,7 +381,7 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
                         TextureProvider.adjustLevels(sideTexture, 0, 0, 16, 16, 0.5d);
                         generator.finish(sideTexture, new ResourceLocation(AdditionalColors.ID,
                                 "block/" + baseBlock.getRegistryName().getPath() + "_side"), consumer);
-                    }, null, null, true, baseBlock.asItem().getRegistryName(), true, ItemTags.createOptional(
+                    }), null, null, true, baseBlock.asItem().getRegistryName(), true, ItemTags.createOptional(
                             new ResourceLocation(AdditionalColors.ID, baseBlock.getRegistryName().getPath())),
                     additionalBlockTags, additionalItemTags);
         }

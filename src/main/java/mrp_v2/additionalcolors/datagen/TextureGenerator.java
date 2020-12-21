@@ -14,6 +14,7 @@ public class TextureGenerator extends TextureProvider
     public TextureGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper, String modId)
     {
         super(generator, existingFileHelper, modId);
+        ObjectHolder.COLORIZED_BLOCK_DATAS.forEach((data) -> data.makeTextureGenerationPromises(this));
     }
 
     @Override protected void addTextures(BiConsumer<BufferedImage, ResourceLocation> consumer)

@@ -1,8 +1,0 @@
-{
-    "parent": "minecraft:block/inner_stairs",
-    "textures": {
-        "side": "additionalcolors:block/blue_crying_obsidian",
-        "bottom": "additionalcolors:block/blue_crying_obsidian",
-        "top": "additionalcolors:block/blue_crying_obsidian"
-    }
-}

@@ -97,36 +97,37 @@ public class ObjectHolder
         final ItemGroup obsidianExpansionGroup = ObjectHolder.getObsidianExpansionItemGroup();
         final Supplier<AbstractBlock.Properties> basicProperties =
                 () -> AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN);
-        final Map<DyeColor, Consumer<BufferedImage>> cryingObsidianHueChange = new HashMap<>();
-        cryingObsidianHueChange.put(DyeColor.WHITE, (texture) ->
+        final Map<DyeColor, Consumer<BufferedImage>> cryingObsidianTextureMakerMap = new HashMap<>();
+        cryingObsidianTextureMakerMap.put(DyeColor.WHITE, (texture) ->
         {
             TextureProvider.makeGrayscale(texture, 0, 0, 16, 16);
             TextureProvider.adjustLevels(texture, 0, 0, 16, 16, 0.6d, 0, 70, 0, 255);
         });
-        cryingObsidianHueChange.put(DyeColor.LIGHT_GRAY, (texture) ->
+        cryingObsidianTextureMakerMap.put(DyeColor.LIGHT_GRAY, (texture) ->
         {
             TextureProvider.makeGrayscale(texture, 0, 0, 16, 16);
             TextureProvider.adjustLevels(texture, 0, 0, 16, 16, 0.5d);
         });
-        cryingObsidianHueChange.put(DyeColor.GRAY, (texture) -> TextureProvider.makeGrayscale(texture, 0, 0, 16, 16));
-        cryingObsidianHueChange.put(DyeColor.BLACK, (texture) ->
+        cryingObsidianTextureMakerMap
+                .put(DyeColor.GRAY, (texture) -> TextureProvider.makeGrayscale(texture, 0, 0, 16, 16));
+        cryingObsidianTextureMakerMap.put(DyeColor.BLACK, (texture) ->
         {
             TextureProvider.makeGrayscale(texture, 0, 0, 16, 16);
             TextureProvider.adjustLevels(texture, 0, 0, 16, 16, 1.5d);
         });
-        cryingObsidianHueChange
+        cryingObsidianTextureMakerMap
                 .put(DyeColor.RED, (texture) -> TextureProvider.adjustHSB(texture, 0, 0, 16, 16, 90, 100, 0));
-        cryingObsidianHueChange
+        cryingObsidianTextureMakerMap
                 .put(DyeColor.ORANGE, (texture) -> TextureProvider.adjustHSB(texture, 0, 0, 16, 16, 120, 100, 0));
-        cryingObsidianHueChange
+        cryingObsidianTextureMakerMap
                 .put(DyeColor.YELLOW, (texture) -> TextureProvider.adjustHSB(texture, 0, 0, 16, 16, 150, 100, 0));
-        cryingObsidianHueChange
+        cryingObsidianTextureMakerMap
                 .put(DyeColor.GREEN, (texture) -> TextureProvider.adjustHSB(texture, 0, 0, 16, 16, -165, 100, 0));
-        cryingObsidianHueChange
+        cryingObsidianTextureMakerMap
                 .put(DyeColor.CYAN, (texture) -> TextureProvider.adjustHSB(texture, 0, 0, 16, 16, -90, 100, 0));
-        cryingObsidianHueChange
+        cryingObsidianTextureMakerMap
                 .put(DyeColor.BLUE, (texture) -> TextureProvider.adjustHSB(texture, 0, 0, 16, 16, -30, 100, 0));
-        cryingObsidianHueChange
+        cryingObsidianTextureMakerMap
                 .put(DyeColor.BROWN, (texture) -> TextureProvider.adjustHSB(texture, 0, 0, 16, 16, 120, 50, -40));
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData<ColoredCryingObsidianBlock>(
                 Blocks.CRYING_OBSIDIAN.getRegistryName().getPath(), ObjectHolder.CRYING_OBSIDIAN_COLORS,
@@ -134,15 +135,16 @@ public class ObjectHolder
                 (blockSupplier) -> basicItemConstructor.apply(blockSupplier, ItemGroup.BUILDING_BLOCKS), null,
                 (block, generator) -> generator.simpleBlock(block.getBlock()), basicItemModelMaker::accept,
                 (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable), null,
-                (block, generator, consumer) ->
-                {
-                    BufferedImage texture = generator.getTexture(
-                            new ResourceLocation("block/" + Blocks.CRYING_OBSIDIAN.getRegistryName().getPath()));
-                    cryingObsidianHueChange.get(block.getColor()).accept(texture);
-                    generator.finish(texture,
-                            new ResourceLocation(AdditionalColors.ID, "block/" + block.getRegistryName().getPath()),
-                            consumer);
-                }, null, false, Items.CRYING_OBSIDIAN.getRegistryName(), true, ItemTags.createOptional(
+                new ColoredBlockData.BlockTextureGenerator<>((block, generator) -> generator.promiseGeneration(
+                        new ResourceLocation(AdditionalColors.ID, "block/" + block.getRegistryName().getPath())),
+                        (block, generator, consumer) ->
+                        {
+                            BufferedImage texture = generator.getTexture(new ResourceLocation(
+                                    "block/" + Blocks.CRYING_OBSIDIAN.getRegistryName().getPath()));
+                            cryingObsidianTextureMakerMap.get(block.getColor()).accept(texture);
+                            generator.finish(texture, new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath()), consumer);
+                        }), null, false, Items.CRYING_OBSIDIAN.getRegistryName(), true, ItemTags.createOptional(
                 new ResourceLocation(AdditionalColors.ID, Blocks.CRYING_OBSIDIAN.getRegistryName().getPath())),
                 Util.makeTagArray(), Util.makeTagArray())
         {
@@ -196,7 +198,15 @@ public class ObjectHolder
                 .singleTexture(block.getRegistryName().getPath(), generator.mcLoc("item/generated"), "layer0",
                         generator.modLoc("item/" + block.getRegistryName().getPath())), (block, generator) -> generator
                 .addLootTable(block, (block2) -> generator.registerLootTable(block2, LootTableGenerator::droppingDoor)),
-                null, (block, generator, consumer) ->
+                null, new ColoredBlockData.BlockTextureGenerator<>((block, generator) ->
+        {
+            generator.promiseGeneration(
+                    new ResourceLocation(AdditionalColors.ID, "block/" + block.getRegistryName().getPath() + "_top"));
+            generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID,
+                    "block/" + block.getRegistryName().getPath() + "_bottom"));
+            generator.promiseGeneration(
+                    new ResourceLocation(AdditionalColors.ID, "item/" + block.getRegistryName().getPath()));
+        }, (block, generator, consumer) ->
         {
             Supplier<BufferedImage> baseTextureSupplier = () -> generator.getTexture(
                     new ResourceLocation(AdditionalColors.ID,
@@ -229,7 +239,7 @@ public class ObjectHolder
             itemTexture.setRGB(8, 16, 16, 16, doorBottom.getRGB(0, 0, 16, 16, null, 0, 16), 0, 16);
             generator.finish(itemTexture,
                     new ResourceLocation(AdditionalColors.ID, "item/" + block.getRegistryName().getPath()), consumer);
-        }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()), false,
+        }), (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()), false,
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"), false,
                 ItemTags.createOptional(
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door")),
@@ -240,21 +250,22 @@ public class ObjectHolder
                 (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup), null,
                 (block, generator) -> generator.simpleBlock(block), basicItemModelMaker::accept,
                 (block, generator) -> generator.addLootTable(block, generator::registerSilkTouch), null,
-                (block, generator, consumer) ->
-                {
-                    BufferedImage texture = generator.getTexture(new ResourceLocation(AdditionalColors.ID,
-                            "block/" + block.getRegistryName().getPath().replace("_glass", "")));
-                    int[] newColors = TextureProvider.color(TextureProvider.color(0, 0, 0, 0), 14 * 14);
-                    newColors[14 + 3] = texture.getRGB(4, 2);
-                    newColors[14 * 2 + 2] = texture.getRGB(3, 3);
-                    newColors[14 * 3 + 1] = texture.getRGB(2, 4);
-                    newColors[14 * 11 + 12] = texture.getRGB(13, 12);
-                    newColors[14 * 12 + 11] = texture.getRGB(12, 13);
-                    texture.setRGB(1, 1, 14, 14, newColors, 0, 14);
-                    generator.finish(texture,
-                            new ResourceLocation(AdditionalColors.ID, "block/" + block.getRegistryName().getPath()),
-                            consumer);
-                }, (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()), false,
+                new ColoredBlockData.BlockTextureGenerator<>((block, generator) -> generator.promiseGeneration(
+                        new ResourceLocation(AdditionalColors.ID, "block/" + block.getRegistryName().getPath())),
+                        (block, generator, consumer) ->
+                        {
+                            BufferedImage texture = generator.getTexture(new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath().replace("_glass", "")));
+                            int[] newColors = TextureProvider.color(TextureProvider.color(0, 0, 0, 0), 14 * 14);
+                            newColors[14 + 3] = texture.getRGB(4, 2);
+                            newColors[14 * 2 + 2] = texture.getRGB(3, 3);
+                            newColors[14 * 3 + 1] = texture.getRGB(2, 4);
+                            newColors[14 * 11 + 12] = texture.getRGB(13, 12);
+                            newColors[14 * 12 + 11] = texture.getRGB(12, 13);
+                            texture.setRGB(1, 1, 14, 14, newColors, 0, 14);
+                            generator.finish(texture, new ResourceLocation(AdditionalColors.ID,
+                                    "block/" + block.getRegistryName().getPath()), consumer);
+                        }), (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()), false,
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"), false,
                 ItemTags.createOptional(
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass")),

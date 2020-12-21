@@ -1,6 +1,0 @@
-{
-    "parent": "minecraft:item/generated",
-    "textures": {
-        "layer0": "additionalcolors:item/red_crying_obsidian_door"
-    }
-}
