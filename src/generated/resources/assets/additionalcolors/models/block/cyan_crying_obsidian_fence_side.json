@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "additionalcolors:block/cyan_crying_obsidian"
+  }
+}

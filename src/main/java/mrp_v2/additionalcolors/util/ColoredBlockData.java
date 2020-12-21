@@ -362,9 +362,9 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
                     new GeneralTextureGenerator((generator) ->
                     {
                         generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID,
-                                baseBlock.getRegistryName().getPath() + "_end"));
+                                "block/" + baseBlock.getRegistryName().getPath() + "_end"));
                         generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID,
-                                baseBlock.getRegistryName().getPath() + "_side"));
+                                "block/" + baseBlock.getRegistryName().getPath() + "_side"));
                     }, (generator, consumer) ->
                     {
                         BufferedImage endTexture = generator.getTexture(

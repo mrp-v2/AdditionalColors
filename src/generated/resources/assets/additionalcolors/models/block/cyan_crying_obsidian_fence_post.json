@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "additionalcolors:block/cyan_crying_obsidian"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "additionalcolors:block/blue_crying_obsidian_glass"
+  }
+}
