@@ -355,7 +355,7 @@ public class ColoredBlockData<T extends Block & IColored>
             super(baseBlock.getRegistryName().getPath(), DyeColor.values(),
                     (color) -> () -> blockConstructor.apply(color, AbstractBlock.Properties.from(baseBlock)),
                     (blockSupplier) -> () -> new ColoredBlockItem(blockSupplier.get(),
-                            new Item.Properties().group(baseBlock.asItem().getGroup())), generalStateAndModelGenerator,
+                            new Item.Properties().group(ObjectHolder.MAIN_ITEM_GROUP)), generalStateAndModelGenerator,
                     (block, generator) -> generator.simpleBlock(block, generator.models()
                             .getExistingFile(generator.modLoc("block/" + baseBlock.getRegistryName().getPath()))),
                     (block, generator) -> generator.withExistingParent(block.getRegistryName().getPath(),

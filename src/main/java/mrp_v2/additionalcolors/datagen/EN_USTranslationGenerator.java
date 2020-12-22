@@ -17,6 +17,7 @@ public class EN_USTranslationGenerator extends LanguageProvider
 
     @Override protected void addTranslations()
     {
+        add(ObjectHolder.MAIN_ITEM_GROUP, "Additional Colors");
         ObjectHolder.COLORIZED_BLOCK_DATAS.forEach((data) -> data.generateTranslations(this));
     }
 

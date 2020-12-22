@@ -283,5 +283,6 @@
   "block.additionalcolors.yellow_smooth_stone": "Yellow Smooth Stone",
   "block.additionalcolors.yellow_soul_sand": "Yellow Soul Sand",
   "block.additionalcolors.yellow_soul_soil": "Yellow Soul Soil",
-  "block.additionalcolors.yellow_stone": "Yellow Stone"
+  "block.additionalcolors.yellow_stone": "Yellow Stone",
+  "itemGroup.additionalcolors": "Additional Colors"
 }

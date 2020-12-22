@@ -13,10 +13,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -52,6 +49,14 @@ public class ObjectHolder
             new DyeColor[]{DyeColor.WHITE, DyeColor.ORANGE, DyeColor.YELLOW, DyeColor.GRAY, DyeColor.LIGHT_GRAY,
                     DyeColor.CYAN, DyeColor.BLUE, DyeColor.BROWN, DyeColor.GREEN, DyeColor.RED, DyeColor.BLACK};
     public static final HashMap<DyeColor, RegistryObject<? extends Block>> CRYING_OBSIDIAN_BLOCK_MAP = new HashMap<>();
+    public static final ItemGroup MAIN_ITEM_GROUP = new ItemGroup(AdditionalColors.ID)
+    {
+        @Override public ItemStack createIcon()
+        {
+            return new ItemStack(
+                    COLORIZED_BLOCK_MAP.get(Blocks.COBBLESTONE.getRegistryName()).get(DyeColor.GREEN).get());
+        }
+    };
 
     static
     {
@@ -145,7 +150,7 @@ public class ObjectHolder
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData<ColoredCryingObsidianBlock>(
                 Blocks.CRYING_OBSIDIAN.getRegistryName().getPath(), ObjectHolder.CRYING_OBSIDIAN_COLORS,
                 (color) -> () -> new ColoredCryingObsidianBlock(basicProperties.get(), color),
-                (blockSupplier) -> basicItemConstructor(blockSupplier, ItemGroup.BUILDING_BLOCKS), null,
+                (blockSupplier) -> basicItemConstructor(blockSupplier, MAIN_ITEM_GROUP), null,
                 (block, generator) -> generator.simpleBlock(block.getBlock()), basicItemModelMaker::accept,
                 (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable), null,
                 new ColoredBlockData.BlockTextureGenerator<>((block, generator) -> generator.promiseGeneration(
