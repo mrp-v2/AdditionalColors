@@ -1,26 +1,21 @@
 package mrp_v2.additionalcolors.item;
 
-import mrp_v2.additionalcolors.block.ColoredBlock;
+import mrp_v2.additionalcolors.util.IColored;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 
-public class ColoredBlockItem extends BlockItem
+public class ColoredBlockItem extends BlockItem implements IColored
 {
     private final DyeColor color;
 
-    public ColoredBlockItem(ColoredBlock blockIn, Properties builder)
-    {
-        this(blockIn.getColor(), blockIn, builder);
-    }
-
-    public ColoredBlockItem(DyeColor color, Block blockIn, Properties builder)
+    public <T extends Block & IColored> ColoredBlockItem(T blockIn, Properties builder)
     {
         super(blockIn, builder);
-        this.color = color;
+        this.color = blockIn.getColor();
     }
 
-    public DyeColor getColor()
+    @Override public DyeColor getColor()
     {
         return this.color;
     }

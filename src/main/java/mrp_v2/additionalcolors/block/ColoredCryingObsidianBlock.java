@@ -3,6 +3,7 @@ package mrp_v2.additionalcolors.block;
 import mrp_v2.additionalcolors.client.Config;
 import mrp_v2.additionalcolors.particle.ColorParticleData;
 import mrp_v2.additionalcolors.particle.util.Color3B;
+import mrp_v2.additionalcolors.util.IColored;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CryingObsidianBlock;
@@ -15,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
-public class ColoredCryingObsidianBlock extends CryingObsidianBlock implements IColoredBlock
+public class ColoredCryingObsidianBlock extends CryingObsidianBlock implements IColored
 {
     private final DyeColor color;
     private final Color3B particleColor;

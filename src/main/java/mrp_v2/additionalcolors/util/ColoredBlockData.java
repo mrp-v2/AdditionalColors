@@ -2,7 +2,6 @@ package mrp_v2.additionalcolors.util;
 
 import mrp_v2.additionalcolors.AdditionalColors;
 import mrp_v2.additionalcolors.block.ColoredBlock;
-import mrp_v2.additionalcolors.block.IColoredBlock;
 import mrp_v2.additionalcolors.datagen.*;
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import mrp_v2.mrplibrary.datagen.ShapelessRecipeBuilder;
@@ -28,12 +27,9 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.*;
 
-public class ColoredBlockData<T extends Block & IColoredBlock>
+public class ColoredBlockData<T extends Block & IColored>
 {
     private final String id;
     private final DyeColor[] colors;
@@ -53,6 +49,21 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
     private final ITag.INamedTag<Block>[] blockTagsToAddTo;
     private final ITag.INamedTag<Item>[] itemTagsToAddTo;
     private final HashSet<RegistryObject<T>> objSet = new HashSet<>();
+
+    public ColoredBlockData(String id, DyeColor[] colors, Function<DyeColor, Supplier<T>> blockConstructor,
+            Function<Supplier<T>, Supplier<ColoredBlockItem>> itemConstructor,
+            @Nullable Consumer<BlockStateGenerator> generalStateAndModelGenerator,
+            BiConsumer<T, BlockStateGenerator> blockStateAndModelGenerator,
+            BiConsumer<T, ItemModelGenerator> itemModelGenerator, BiConsumer<T, LootTableGenerator> lootTableGenerator,
+            @Nullable GeneralTextureGenerator generalTextureGenerator,
+            @Nullable BlockTextureGenerator<T> blockTextureGenerator,
+            @Nullable BiConsumer<T, FMLClientSetupEvent> clientSetupStuff, boolean requiresTinting,
+            ResourceLocation baseBlock, boolean required)
+    {
+        this(id, colors, blockConstructor, itemConstructor, generalStateAndModelGenerator, blockStateAndModelGenerator,
+                itemModelGenerator, lootTableGenerator, generalTextureGenerator, blockTextureGenerator,
+                clientSetupStuff, requiresTinting, baseBlock, required, Util.makeTagArray(), Util.makeTagArray());
+    }
 
     public ColoredBlockData(String id, DyeColor[] colors, Function<DyeColor, Supplier<T>> blockConstructor,
             Function<Supplier<T>, Supplier<ColoredBlockItem>> itemConstructor,
@@ -180,7 +191,7 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
         }
     }
 
-    public static class BlockTextureGenerator<T extends Block & IColoredBlock>
+    public static class BlockTextureGenerator<T extends Block & IColored>
     {
         private final BiConsumer<T, TextureGenerator> textureGenerationPromiser;
         private final TriConsumer<T, TextureGenerator, BiConsumer<BufferedImage, ResourceLocation>> textureGenerator;
@@ -288,7 +299,86 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
         objSet.forEach(generator::addSimpleBlock);
     }
 
-    public static class Basic extends ColoredBlockData<ColoredBlock>
+    public static class TypedBasic<U extends Block & IColored> extends ColoredBlockData<U>
+    {
+        public TypedBasic(Block baseBlock, BiFunction<DyeColor, AbstractBlock.Properties, U> blockConstructor,
+                @Nullable BiConsumer<U, FMLClientSetupEvent> clientSetupStuff,
+                ITag.INamedTag<Block>[] additionalBlockTags)
+        {
+            this(baseBlock, blockConstructor, additionalBlockTags, Util.makeTagArray(), clientSetupStuff);
+        }
+
+        public TypedBasic(Block baseBlock, BiFunction<DyeColor, AbstractBlock.Properties, U> blockConstructor,
+                ITag.INamedTag<Block>[] additionalBlockTags, ITag.INamedTag<Item>[] additionalItemTags,
+                @Nullable BiConsumer<U, FMLClientSetupEvent> clientSetupStuff)
+        {
+            this(baseBlock, blockConstructor, (generator ->
+            {
+                ResourceLocation textureLoc = generator.modLoc("block/" + baseBlock.getRegistryName().getPath());
+                generator.models().getBuilder(baseBlock.getRegistryName().getPath())
+                        .parent(generator.models().getExistingFile(generator.mcLoc("block/block")))
+                        .texture("all", textureLoc).texture("particle", textureLoc).element().from(0, 0, 0)
+                        .to(16, 16, 16)
+                        .allFaces((face, faceBuilder) -> faceBuilder.tintindex(0).texture("#all").cullface(face).end())
+                        .end();
+            }), new GeneralTextureGenerator((generator) -> generator.promiseGeneration(
+                    new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getRegistryName().getPath())),
+                    (generator, consumer) ->
+                    {
+                        BufferedImage texture = generator.getTexture(
+                                new ResourceLocation(baseBlock.getRegistryName().getNamespace(),
+                                        "block/" + baseBlock.getRegistryName().getPath()));
+                        TextureProvider.makeGrayscale(texture, 0, 0, 16, 16);
+                        TextureProvider.adjustLevels(texture, 0, 0, 16, 16, 0.75d);
+                        generator.finish(texture, new ResourceLocation(AdditionalColors.ID,
+                                "block/" + baseBlock.getRegistryName().getPath()), consumer);
+                    }), null, clientSetupStuff, additionalBlockTags, additionalItemTags);
+        }
+
+        private TypedBasic(Block baseBlock, BiFunction<DyeColor, AbstractBlock.Properties, U> blockConstructor,
+                @Nullable Consumer<BlockStateGenerator> generalStateAndModelGenerator,
+                @Nullable GeneralTextureGenerator generalTextureGenerator,
+                @Nullable BlockTextureGenerator<U> blockTextureGenerator,
+                @Nullable BiConsumer<U, FMLClientSetupEvent> clientSetupStuff,
+                ITag.INamedTag<Block>[] additionalBlockTags, ITag.INamedTag<Item>[] additionalItemTags)
+        {
+            super(baseBlock.getRegistryName().getPath(), DyeColor.values(),
+                    (color) -> () -> blockConstructor.apply(color, AbstractBlock.Properties.from(baseBlock)),
+                    (blockSupplier) -> () -> new ColoredBlockItem(blockSupplier.get(),
+                            new Item.Properties().group(baseBlock.asItem().getGroup())), generalStateAndModelGenerator,
+                    (block, generator) -> generator.simpleBlock(block, generator.models()
+                            .getExistingFile(generator.modLoc("block/" + baseBlock.getRegistryName().getPath()))),
+                    (block, generator) -> generator.withExistingParent(block.getRegistryName().getPath(),
+                            generator.modLoc("block/" + baseBlock.getRegistryName().getPath())),
+                    (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable),
+                    generalTextureGenerator, blockTextureGenerator, clientSetupStuff, true,
+                    baseBlock.asItem().getRegistryName(), true, additionalBlockTags, additionalItemTags);
+        }
+
+        private TypedBasic(Block baseBlock, BiFunction<DyeColor, AbstractBlock.Properties, U> blockConstructor,
+                @Nullable Consumer<BlockStateGenerator> generalStateAndModelGenerator,
+                @Nullable GeneralTextureGenerator generalTextureGenerator,
+                @Nullable BlockTextureGenerator<U> blockTextureGenerator, ITag.INamedTag<Block>[] additionalBlockTags,
+                ITag.INamedTag<Item>[] additionalItemTags)
+        {
+            this(baseBlock, blockConstructor, generalStateAndModelGenerator, generalTextureGenerator,
+                    blockTextureGenerator, null, additionalBlockTags, additionalItemTags);
+        }
+
+        public TypedBasic(Block baseBlock, BiFunction<DyeColor, AbstractBlock.Properties, U> blockConstructor,
+                ITag.INamedTag<Block>[] additionalBlockTags)
+        {
+            this(baseBlock, blockConstructor, additionalBlockTags, Util.makeTagArray());
+        }
+
+        public TypedBasic(Block baseBlock, BiFunction<DyeColor, AbstractBlock.Properties, U> blockConstructor,
+                ITag.INamedTag<Block>[] additionalBlockTags, ITag.INamedTag<Item>[] additionalItemTags)
+        {
+            this(baseBlock, blockConstructor, additionalBlockTags, additionalItemTags, null);
+        }
+    }
+
+    public static class Basic extends TypedBasic<ColoredBlock>
     {
         public Basic(Block baseBlock, ITag.INamedTag<Block>[] additionalBlockTags,
                 ITag.INamedTag<Item>[] additionalItemTags)
@@ -296,10 +386,20 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
             this(baseBlock, 0.75d, additionalBlockTags, additionalItemTags);
         }
 
+        public Basic(Block baseBlock)
+        {
+            this(baseBlock, Util.makeTagArray());
+        }
+
+        public Basic(Block baseBlock, ITag.INamedTag<Block>[] additionalBlockTags)
+        {
+            this(baseBlock, additionalBlockTags, Util.makeTagArray());
+        }
+
         public Basic(Block baseBlock, double textureLevelAdjustment, ITag.INamedTag<Block>[] additionalBlockTags,
                 ITag.INamedTag<Item>[] additionalItemTags)
         {
-            this(baseBlock, (generator ->
+            super(baseBlock, ColoredBlock::new, (generator ->
             {
                 ResourceLocation textureLoc = generator.modLoc("block/" + baseBlock.getRegistryName().getPath());
                 generator.models().getBuilder(baseBlock.getRegistryName().getPath())
@@ -322,22 +422,13 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
                     }), null, additionalBlockTags, additionalItemTags);
         }
 
-        private Basic(Block baseBlock, @Nullable Consumer<BlockStateGenerator> generalStateAndModelGenerator,
-                @Nullable ColoredBlockData.GeneralTextureGenerator generalTextureGenerator,
-                @Nullable ColoredBlockData.BlockTextureGenerator<ColoredBlock> blockTextureGenerator,
+        public Basic(Block baseBlock, @Nullable Consumer<BlockStateGenerator> generalStateAndModelGenerator,
+                @Nullable GeneralTextureGenerator generalTextureGenerator,
+                @Nullable BlockTextureGenerator<ColoredBlock> blockTextureGenerator,
                 ITag.INamedTag<Block>[] additionalBlockTags, ITag.INamedTag<Item>[] additionalItemTags)
         {
-            super(baseBlock.getRegistryName().getPath(), DyeColor.values(),
-                    (color) -> () -> new ColoredBlock(color, AbstractBlock.Properties.from(baseBlock)),
-                    (blockSupplier) -> () -> new ColoredBlockItem(blockSupplier.get(),
-                            new Item.Properties().group(baseBlock.asItem().getGroup())), generalStateAndModelGenerator,
-                    (block, generator) -> generator.simpleBlock(block, generator.models()
-                            .getExistingFile(generator.modLoc("block/" + baseBlock.getRegistryName().getPath()))),
-                    (block, generator) -> generator.withExistingParent(block.getRegistryName().getPath(),
-                            generator.modLoc("block/" + baseBlock.getRegistryName().getPath())),
-                    (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable),
-                    generalTextureGenerator, blockTextureGenerator, null, true, baseBlock.asItem().getRegistryName(),
-                    true, additionalBlockTags, additionalItemTags);
+            super(baseBlock, ColoredBlock::new, generalStateAndModelGenerator, generalTextureGenerator,
+                    blockTextureGenerator, additionalBlockTags, additionalItemTags);
         }
     }
 
@@ -395,6 +486,11 @@ public class ColoredBlockData<T extends Block & IColoredBlock>
                 ITag.INamedTag<Item>[] additionalItemTags)
         {
             this(baseBlock, "_top", "_side", additionalBlockTags, additionalItemTags);
+        }
+
+        public VerticalPillar(Block baseBlock, String endSuffix, String sideSuffix)
+        {
+            this(baseBlock, endSuffix, sideSuffix, Util.makeTagArray(), Util.makeTagArray());
         }
 
         public VerticalPillar(Block baseBlock, String endSuffix, String sideSuffix,

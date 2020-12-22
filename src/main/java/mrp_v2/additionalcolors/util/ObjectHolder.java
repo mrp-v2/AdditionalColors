@@ -31,7 +31,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.awt.image.BufferedImage;
 import java.util.*;
-import java.util.function.*;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class ObjectHolder
@@ -48,8 +51,7 @@ public class ObjectHolder
     public static final DyeColor[] CRYING_OBSIDIAN_COLORS =
             new DyeColor[]{DyeColor.WHITE, DyeColor.ORANGE, DyeColor.YELLOW, DyeColor.GRAY, DyeColor.LIGHT_GRAY,
                     DyeColor.CYAN, DyeColor.BLUE, DyeColor.BROWN, DyeColor.GREEN, DyeColor.RED, DyeColor.BLACK};
-    public static final HashMap<DyeColor, RegistryObject<? extends IColoredBlock>> CRYING_OBSIDIAN_BLOCK_MAP =
-            new HashMap<>();
+    public static final HashMap<DyeColor, RegistryObject<? extends Block>> CRYING_OBSIDIAN_BLOCK_MAP = new HashMap<>();
 
     static
     {
@@ -79,36 +81,32 @@ public class ObjectHolder
                         Util.makeTagArray(Tags.Items.COBBLESTONE)));
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData.Basic(Blocks.STONE, Util.makeTagArray(Tags.Blocks.STONE),
                 Util.makeTagArray(Tags.Items.STONE)));
-        COLORIZED_BLOCK_DATAS
-                .add(new ColoredBlockData.Basic(Blocks.SMOOTH_STONE, Util.makeTagArray(), Util.makeTagArray()));
+        COLORIZED_BLOCK_DATAS.add(new ColoredBlockData.Basic(Blocks.SMOOTH_STONE));
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData.VerticalPillar(Blocks.QUARTZ_BLOCK,
                 Util.makeTagArray(Tags.Blocks.STORAGE_BLOCKS_QUARTZ),
                 Util.makeTagArray(Tags.Items.STORAGE_BLOCKS_QUARTZ)));
-        COLORIZED_BLOCK_DATAS
-                .add(new ColoredBlockData.VerticalPillar(Blocks.BLACKSTONE, "_top", "", Util.makeTagArray(),
-                        Util.makeTagArray()));
+        COLORIZED_BLOCK_DATAS.add(new ColoredBlockData.VerticalPillar(Blocks.BLACKSTONE, "_top", ""));
         COLORIZED_BLOCK_DATAS
                 .add(new ColoredBlockData.BottomTop(Blocks.SANDSTONE, Util.makeTagArray(Tags.Blocks.SANDSTONE),
                         Util.makeTagArray(Tags.Items.SANDSTONE)));
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData.VerticalPillar(Blocks.ANCIENT_DEBRIS,
                 Util.makeTagArray(Tags.Blocks.ORES_NETHERITE_SCRAP),
                 Util.makeTagArray(Tags.Items.ORES_NETHERITE_SCRAP)));
+        COLORIZED_BLOCK_DATAS.add(new ColoredBlockData.TypedBasic<>(Blocks.SOUL_SAND, ColoredSoulSandBlock::new,
+                Util.makeTagArray(BlockTags.SOUL_SPEED_BLOCKS)));
         COLORIZED_BLOCK_DATAS
-                .add(new ColoredBlockData.Basic(Blocks.SOUL_SAND, Util.makeTagArray(BlockTags.SOUL_SPEED_BLOCKS),
-                        Util.makeTagArray()));
-        COLORIZED_BLOCK_DATAS
-                .add(new ColoredBlockData.Basic(Blocks.SOUL_SOIL, Util.makeTagArray(BlockTags.SOUL_SPEED_BLOCKS),
-                        Util.makeTagArray()));
+                .add(new ColoredBlockData.Basic(Blocks.SOUL_SOIL, Util.makeTagArray(BlockTags.SOUL_SPEED_BLOCKS)));
+        COLORIZED_BLOCK_DATAS.add(new ColoredBlockData.TypedBasic<>(Blocks.ICE, ColoredIceBlock::new,
+                (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getTranslucent()),
+                Util.makeTagArray(BlockTags.ICE)));
+        COLORIZED_BLOCK_DATAS.add(new ColoredBlockData.Basic(Blocks.HONEYCOMB_BLOCK));
+        COLORIZED_BLOCK_DATAS.add(new ColoredBlockData.Basic(Blocks.NETHER_BRICKS));
         // crying obsidian section
         final BiConsumer<Block, ItemModelGenerator> basicItemModelMaker = (block, generator) ->
         {
             String path = block.getBlock().getRegistryName().getPath();
             generator.withExistingParent(path, generator.modLoc("block/" + path));
         };
-        final BiFunction<Supplier<? extends IColoredBlock>, ItemGroup, Supplier<ColoredBlockItem>>
-                basicItemConstructor =
-                (blockSupplier, itemGroup) -> () -> new ColoredBlockItem(blockSupplier.get().getColor(),
-                        blockSupplier.get().getBlock(), new Item.Properties().group(itemGroup));
         final ItemGroup obsidianExpansionGroup = ObjectHolder.getObsidianExpansionItemGroup();
         final Supplier<AbstractBlock.Properties> basicProperties =
                 () -> AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN);
@@ -147,7 +145,7 @@ public class ObjectHolder
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData<ColoredCryingObsidianBlock>(
                 Blocks.CRYING_OBSIDIAN.getRegistryName().getPath(), ObjectHolder.CRYING_OBSIDIAN_COLORS,
                 (color) -> () -> new ColoredCryingObsidianBlock(basicProperties.get(), color),
-                (blockSupplier) -> basicItemConstructor.apply(blockSupplier, ItemGroup.BUILDING_BLOCKS), null,
+                (blockSupplier) -> basicItemConstructor(blockSupplier, ItemGroup.BUILDING_BLOCKS), null,
                 (block, generator) -> generator.simpleBlock(block.getBlock()), basicItemModelMaker::accept,
                 (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable), null,
                 new ColoredBlockData.BlockTextureGenerator<>((block, generator) -> generator.promiseGeneration(
@@ -159,8 +157,7 @@ public class ObjectHolder
                             cryingObsidianTextureMakerMap.get(block.getColor()).accept(texture);
                             generator.finish(texture, new ResourceLocation(AdditionalColors.ID,
                                     "block/" + block.getRegistryName().getPath()), consumer);
-                        }), null, false, Items.CRYING_OBSIDIAN.getRegistryName(), true, Util.makeTagArray(),
-                Util.makeTagArray())
+                        }), null, false, Items.CRYING_OBSIDIAN.getRegistryName(), true)
         {
             @Override public Map<DyeColor, RegistryObject<ColoredCryingObsidianBlock>> register()
             {
@@ -172,7 +169,7 @@ public class ObjectHolder
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_slab",
                 ObjectHolder.CRYING_OBSIDIAN_COLORS,
                 (color) -> () -> new ColoredSlabBlock(basicProperties.get(), color),
-                (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup), null,
+                (blockSupplier) -> basicItemConstructor(blockSupplier, obsidianExpansionGroup), null,
                 (block, generator) ->
                 {
                     ResourceLocation blockLoc = new ResourceLocation(AdditionalColors.ID,
@@ -187,7 +184,7 @@ public class ObjectHolder
                 ObjectHolder.CRYING_OBSIDIAN_COLORS, (color) -> () -> new ColoredStairsBlock(
                 () -> ObjectHolder.CRYING_OBSIDIAN_BLOCK_MAP.get(color).get().getBlock().getDefaultState(),
                 basicProperties.get(), color),
-                (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup), null,
+                (blockSupplier) -> basicItemConstructor(blockSupplier, obsidianExpansionGroup), null,
                 (block, generator) -> generator.stairsBlock(block, new ResourceLocation(AdditionalColors.ID,
                         "block/" + block.getRegistryName().getPath().replace("_stairs", ""))),
                 basicItemModelMaker::accept,
@@ -197,7 +194,7 @@ public class ObjectHolder
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_door",
                 ObjectHolder.CRYING_OBSIDIAN_COLORS,
                 (color) -> () -> new ColoredDoorBlock(basicProperties.get().notSolid(), color),
-                (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup), null,
+                (blockSupplier) -> basicItemConstructor(blockSupplier, obsidianExpansionGroup), null,
                 (block, generator) ->
                 {
                     Function<String, ResourceLocation> doorPartLocFunction =
@@ -255,7 +252,7 @@ public class ObjectHolder
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_glass",
                 ObjectHolder.CRYING_OBSIDIAN_COLORS, (color) -> () -> new ColoredObsidianGlassBlock(
                 AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN).sound(SoundType.GLASS).notSolid(), color),
-                (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup), null,
+                (blockSupplier) -> basicItemConstructor(blockSupplier, obsidianExpansionGroup), null,
                 (block, generator) -> generator.simpleBlock(block), basicItemModelMaker::accept,
                 (block, generator) -> generator.addLootTable(block, generator::registerSilkTouch), null,
                 new ColoredBlockData.BlockTextureGenerator<>((block, generator) -> generator.promiseGeneration(
@@ -280,7 +277,7 @@ public class ObjectHolder
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_fence",
                 ObjectHolder.CRYING_OBSIDIAN_COLORS,
                 (color) -> () -> new ColoredFenceBlock(AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN), color),
-                (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup), null,
+                (blockSupplier) -> basicItemConstructor(blockSupplier, obsidianExpansionGroup), null,
                 (block, generator) -> generator.fenceBlock(block, new ResourceLocation(AdditionalColors.ID,
                         "block/" + block.getRegistryName().getPath().replace("_fence", ""))),
                 (block, generator) -> generator.fenceInventory(block.getRegistryName().getPath(),
@@ -294,7 +291,7 @@ public class ObjectHolder
                 .add(new ColoredBlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_fence_gate",
                         ObjectHolder.CRYING_OBSIDIAN_COLORS, (color) -> () -> new ColoredFenceGateBlock(
                         AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN), color),
-                        (blockSupplier) -> basicItemConstructor.apply(blockSupplier, obsidianExpansionGroup), null,
+                        (blockSupplier) -> basicItemConstructor(blockSupplier, obsidianExpansionGroup), null,
                         (block, generator) -> generator.fenceGateBlock(block, new ResourceLocation(AdditionalColors.ID,
                                 "block/" + block.getRegistryName().getPath().replace("_fence_gate", ""))),
                         basicItemModelMaker::accept,
@@ -303,6 +300,12 @@ public class ObjectHolder
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence_gate"),
                         false, Util.makeTagArray(BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES),
                         Util.makeTagArray(Tags.Items.FENCE_GATES)));
+    }
+
+    private static <T extends Block & IColored> Supplier<ColoredBlockItem> basicItemConstructor(
+            Supplier<T> blockSupplier, ItemGroup group)
+    {
+        return () -> new ColoredBlockItem(blockSupplier.get(), new Item.Properties().group(group));
     }
 
     @Nullable public static ItemGroup getObsidianExpansionItemGroup()

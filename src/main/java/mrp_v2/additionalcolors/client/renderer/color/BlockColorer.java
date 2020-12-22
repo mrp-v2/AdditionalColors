@@ -1,9 +1,8 @@
 package mrp_v2.additionalcolors.client.renderer.color;
 
 import mrp_v2.additionalcolors.AdditionalColors;
-import mrp_v2.additionalcolors.block.ColoredBlock;
-import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import mrp_v2.additionalcolors.util.ColoredBlockData;
+import mrp_v2.additionalcolors.util.IColored;
 import mrp_v2.additionalcolors.util.ObjectHolder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -50,18 +49,23 @@ public class BlockColorer implements IBlockColor, IItemColor
     @Override public int getColor(BlockState p_getColor_1_, @Nullable IBlockDisplayReader p_getColor_2_,
             @Nullable BlockPos p_getColor_3_, int p_getColor_4_)
     {
-        if (p_getColor_1_.getBlock() instanceof ColoredBlock)
+        if (p_getColor_1_.getBlock() instanceof IColored)
         {
-            return ((ColoredBlock) p_getColor_1_.getBlock()).getColor().getColorValue();
+            return getColor((IColored) p_getColor_1_.getBlock());
         }
         return DEFAULT_COLOR;
     }
 
+    private int getColor(IColored colored)
+    {
+        return colored.getColor().getColorValue();
+    }
+
     @Override public int getColor(ItemStack p_getColor_1_, int p_getColor_2_)
     {
-        if (p_getColor_1_.getItem() instanceof ColoredBlockItem)
+        if (p_getColor_1_.getItem() instanceof IColored)
         {
-            return ((ColoredBlockItem) p_getColor_1_.getItem()).getColor().getColorValue();
+            return getColor((IColored) p_getColor_1_.getItem());
         }
         return DEFAULT_COLOR;
     }

@@ -1,9 +1,10 @@
 package mrp_v2.additionalcolors.block;
 
+import mrp_v2.additionalcolors.util.IColored;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.item.DyeColor;
 
-public class ColoredDoorBlock extends DoorBlock implements IColoredBlock
+public class ColoredDoorBlock extends DoorBlock implements IColored
 {
     private final DyeColor color;
 

@@ -1,5 +1,6 @@
 package mrp_v2.additionalcolors.block;
 
+import mrp_v2.additionalcolors.util.IColored;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.item.DyeColor;
@@ -9,7 +10,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class ColoredStairsBlock extends StairsBlock implements IColoredBlock
+public class ColoredStairsBlock extends StairsBlock implements IColored
 {
     private final DyeColor color;
 
