@@ -1,7 +1,7 @@
 package mrp_v2.additionalcolors.datagen;
 
 import mrp_v2.additionalcolors.AdditionalColors;
-import mrp_v2.mrplibrary.datagen.ParticleProvider;
+import mrp_v2.mrplibrary.datagen.providers.ParticleProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
 

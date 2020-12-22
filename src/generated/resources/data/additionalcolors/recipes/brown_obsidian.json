@@ -1,5 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:brown_obsidian"
+  },
   "ingredients": [
     {
       "tag": "additionalcolors:obsidian"
@@ -7,8 +10,5 @@
     {
       "tag": "forge:dyes/brown"
     }
-  ],
-  "result": {
-    "item": "additionalcolors:brown_obsidian"
-  }
+  ]
 }

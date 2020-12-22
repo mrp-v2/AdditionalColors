@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:soul_soil"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:soul_soil_base"
+    }
+  ]
+}

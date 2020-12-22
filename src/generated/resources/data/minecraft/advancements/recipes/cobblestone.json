@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:cobblestone"
+    ]
+  },
+  "criteria": {
+    "has_crafted": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "additionalcolors:cobblestone_base"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:cobblestone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_crafted",
+      "has_the_recipe"
+    ]
+  ]
+}

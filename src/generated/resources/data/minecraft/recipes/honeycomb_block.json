@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:honeycomb_block"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:honeycomb_block_base"
+    }
+  ]
+}

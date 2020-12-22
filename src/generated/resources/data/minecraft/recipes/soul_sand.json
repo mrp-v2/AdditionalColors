@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:soul_sand"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:soul_sand_base"
+    }
+  ]
+}

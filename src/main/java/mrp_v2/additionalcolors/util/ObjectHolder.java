@@ -6,7 +6,7 @@ import mrp_v2.additionalcolors.datagen.ItemModelGenerator;
 import mrp_v2.additionalcolors.datagen.LootTableGenerator;
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import mrp_v2.additionalcolors.particle.ColorParticleData;
-import mrp_v2.mrplibrary.datagen.TextureProvider;
+import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -67,7 +67,7 @@ public class ObjectHolder
         addColorizedBlockDatas();
         for (ColoredBlockData<?> blockEntry : COLORIZED_BLOCK_DATAS)
         {
-            COLORIZED_BLOCK_MAP.put(blockEntry.getBaseBlock(), new HashMap<>(blockEntry.register()));
+            COLORIZED_BLOCK_MAP.put(blockEntry.getBaseBlockLoc(), new HashMap<>(blockEntry.register()));
         }
     }
 
@@ -157,7 +157,8 @@ public class ObjectHolder
                             cryingObsidianTextureMakerMap.get(block.getColor()).accept(texture);
                             generator.finish(texture, new ResourceLocation(AdditionalColors.ID,
                                     "block/" + block.getRegistryName().getPath()), consumer);
-                        }), null, false, Items.CRYING_OBSIDIAN.getRegistryName(), true)
+                        }), null, false, Blocks.CRYING_OBSIDIAN.getRegistryName(),
+                Items.CRYING_OBSIDIAN.getRegistryName(), true)
         {
             @Override public Map<DyeColor, RegistryObject<ColoredCryingObsidianBlock>> register()
             {
@@ -178,6 +179,7 @@ public class ObjectHolder
                 }, basicItemModelMaker::accept, (block, generator) -> generator
                 .addLootTable(block, (block2) -> generator.registerLootTable(block2, LootTableGenerator::droppingSlab)),
                 null, null, null, false,
+                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"),
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_slab"), false,
                 Util.makeTagArray(BlockTags.SLABS), Util.makeTagArray(ItemTags.SLABS)));
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_stairs",
@@ -190,7 +192,8 @@ public class ObjectHolder
                 basicItemModelMaker::accept,
                 (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable), null, null,
                 null, false, new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs"),
-                false, Util.makeTagArray(BlockTags.STAIRS), Util.makeTagArray(ItemTags.STAIRS)));
+                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_stairs"), false,
+                Util.makeTagArray(BlockTags.STAIRS), Util.makeTagArray(ItemTags.STAIRS)));
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_door",
                 ObjectHolder.CRYING_OBSIDIAN_COLORS,
                 (color) -> () -> new ColoredDoorBlock(basicProperties.get().notSolid(), color),
@@ -247,6 +250,7 @@ public class ObjectHolder
             generator.finish(itemTexture,
                     new ResourceLocation(AdditionalColors.ID, "item/" + block.getRegistryName().getPath()), consumer);
         }), (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()), false,
+                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"),
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_door"), false,
                 Util.makeTagArray(BlockTags.DOORS), Util.makeTagArray(ItemTags.DOORS)));
         COLORIZED_BLOCK_DATAS.add(new ColoredBlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_glass",
@@ -271,6 +275,7 @@ public class ObjectHolder
                             generator.finish(texture, new ResourceLocation(AdditionalColors.ID,
                                     "block/" + block.getRegistryName().getPath()), consumer);
                         }), (block, event) -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()), false,
+                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"),
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_glass"), false,
                 Util.makeTagArray(Tags.Blocks.GLASS, Tags.Blocks.GLASS_COLORLESS),
                 Util.makeTagArray(Tags.Items.GLASS, Tags.Items.GLASS_COLORLESS)));
@@ -285,7 +290,8 @@ public class ObjectHolder
                                 "block/" + block.getRegistryName().getPath().replace("_fence", ""))),
                 (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable), null, null,
                 null, false, new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence"),
-                false, Util.makeTagArray(BlockTags.FENCES, Tags.Blocks.FENCES),
+                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence"), false,
+                Util.makeTagArray(BlockTags.FENCES, Tags.Blocks.FENCES),
                 Util.makeTagArray(ItemTags.FENCES, Tags.Items.FENCES)));
         COLORIZED_BLOCK_DATAS
                 .add(new ColoredBlockData<>(Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_fence_gate",
@@ -297,6 +303,7 @@ public class ObjectHolder
                         basicItemModelMaker::accept,
                         (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable), null,
                         null, null, false,
+                        new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence_gate"),
                         new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "crying_obsidian_fence_gate"),
                         false, Util.makeTagArray(BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES),
                         Util.makeTagArray(Tags.Items.FENCE_GATES)));

@@ -1,5 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:gray_honeycomb_block"
+  },
   "ingredients": [
     {
       "tag": "additionalcolors:honeycomb_block"
@@ -7,8 +10,5 @@
     {
       "tag": "forge:dyes/gray"
     }
-  ],
-  "result": {
-    "item": "additionalcolors:gray_honeycomb_block"
-  }
+  ]
 }

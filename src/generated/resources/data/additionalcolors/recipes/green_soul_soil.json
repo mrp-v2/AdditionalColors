@@ -1,5 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:green_soul_soil"
+  },
   "ingredients": [
     {
       "tag": "additionalcolors:soul_soil"
@@ -7,8 +10,5 @@
     {
       "tag": "forge:dyes/green"
     }
-  ],
-  "result": {
-    "item": "additionalcolors:green_soul_soil"
-  }
+  ]
 }

@@ -1,5 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:pink_stone"
+  },
   "ingredients": [
     {
       "tag": "additionalcolors:stone"
@@ -7,8 +10,5 @@
     {
       "tag": "forge:dyes/pink"
     }
-  ],
-  "result": {
-    "item": "additionalcolors:pink_stone"
-  }
+  ]
 }

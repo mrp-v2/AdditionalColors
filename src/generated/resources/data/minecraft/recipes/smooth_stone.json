@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:smooth_stone"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:smooth_stone_base"
+    }
+  ]
+}

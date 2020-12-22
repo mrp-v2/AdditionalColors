@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:sandstone"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:sandstone_base"
+    }
+  ]
+}

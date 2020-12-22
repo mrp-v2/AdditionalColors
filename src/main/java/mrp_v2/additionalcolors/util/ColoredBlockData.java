@@ -4,8 +4,8 @@ import mrp_v2.additionalcolors.AdditionalColors;
 import mrp_v2.additionalcolors.block.ColoredBlock;
 import mrp_v2.additionalcolors.datagen.*;
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
-import mrp_v2.mrplibrary.datagen.ShapelessRecipeBuilder;
-import mrp_v2.mrplibrary.datagen.TextureProvider;
+import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
+import mrp_v2.mrplibrary.datagen.recipe.ShapelessRecipeBuilder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.data.IFinishedRecipe;
@@ -43,9 +43,11 @@ public class ColoredBlockData<T extends Block & IColored>
     @Nullable private final BlockTextureGenerator<T> blockTextureGenerator;
     @Nullable private final BiConsumer<T, FMLClientSetupEvent> clientSetupStuff;
     private final boolean requiresTinting;
-    private final ResourceLocation baseBlock;
+    private final ResourceLocation baseBlockLoc;
+    private final ResourceLocation baseItemLoc;
     private final boolean required;
     private final ITag.INamedTag<Item> craftingTag;
+    private final ITag.INamedTag<Item> baseCraftingTag;
     private final ITag.INamedTag<Block>[] blockTagsToAddTo;
     private final ITag.INamedTag<Item>[] itemTagsToAddTo;
     private final HashSet<RegistryObject<T>> objSet = new HashSet<>();
@@ -58,11 +60,12 @@ public class ColoredBlockData<T extends Block & IColored>
             @Nullable GeneralTextureGenerator generalTextureGenerator,
             @Nullable BlockTextureGenerator<T> blockTextureGenerator,
             @Nullable BiConsumer<T, FMLClientSetupEvent> clientSetupStuff, boolean requiresTinting,
-            ResourceLocation baseBlock, boolean required)
+            ResourceLocation baseBlockLoc, ResourceLocation baseItemLoc, boolean required)
     {
         this(id, colors, blockConstructor, itemConstructor, generalStateAndModelGenerator, blockStateAndModelGenerator,
                 itemModelGenerator, lootTableGenerator, generalTextureGenerator, blockTextureGenerator,
-                clientSetupStuff, requiresTinting, baseBlock, required, Util.makeTagArray(), Util.makeTagArray());
+                clientSetupStuff, requiresTinting, baseBlockLoc, baseItemLoc, required, Util.makeTagArray(),
+                Util.makeTagArray());
     }
 
     public ColoredBlockData(String id, DyeColor[] colors, Function<DyeColor, Supplier<T>> blockConstructor,
@@ -73,8 +76,8 @@ public class ColoredBlockData<T extends Block & IColored>
             @Nullable GeneralTextureGenerator generalTextureGenerator,
             @Nullable BlockTextureGenerator<T> blockTextureGenerator,
             @Nullable BiConsumer<T, FMLClientSetupEvent> clientSetupStuff, boolean requiresTinting,
-            ResourceLocation baseBlock, boolean required, ITag.INamedTag<Block>[] blockTagsToAddTo,
-            ITag.INamedTag<Item>[] itemTagsToAddTo)
+            ResourceLocation baseBlockLoc, ResourceLocation baseItemLoc, boolean required,
+            ITag.INamedTag<Block>[] blockTagsToAddTo, ITag.INamedTag<Item>[] itemTagsToAddTo)
     {
         this.id = id;
         this.colors = colors;
@@ -88,9 +91,12 @@ public class ColoredBlockData<T extends Block & IColored>
         this.blockTextureGenerator = blockTextureGenerator;
         this.clientSetupStuff = clientSetupStuff;
         this.requiresTinting = requiresTinting;
-        this.baseBlock = baseBlock;
+        this.baseBlockLoc = baseBlockLoc;
+        this.baseItemLoc = baseItemLoc;
         this.required = required;
-        this.craftingTag = ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, baseBlock.getPath()));
+        this.craftingTag = ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, baseBlockLoc.getPath()));
+        this.baseCraftingTag =
+                ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, baseBlockLoc.getPath() + "_base"));
         this.blockTagsToAddTo = blockTagsToAddTo;
         this.itemTagsToAddTo = itemTagsToAddTo;
     }
@@ -137,9 +143,9 @@ public class ColoredBlockData<T extends Block & IColored>
         }
     }
 
-    public ResourceLocation getBaseBlock()
+    public ResourceLocation getBaseBlockLoc()
     {
-        return baseBlock;
+        return baseBlockLoc;
     }
 
     public void clientSetup(FMLClientSetupEvent event)
@@ -245,6 +251,8 @@ public class ColoredBlockData<T extends Block & IColored>
 
     public void registerRecipes(Consumer<IFinishedRecipe> consumer)
     {
+        ShapelessRecipeBuilder.shapelessRecipe(baseItemLoc).addIngredient(baseCraftingTag)
+                .addCriterion("has_crafted", RecipeGenerator.makeHasItemCriterion(baseCraftingTag)).build(consumer);
         for (RegistryObject<T> obj : objSet)
         {
             ShapelessRecipeBuilder.shapelessRecipe(obj.get()).addIngredient(craftingTag)
@@ -261,24 +269,26 @@ public class ColoredBlockData<T extends Block & IColored>
             objSet.forEach(obj -> tagBuilder.add(obj.get()));
             if (required)
             {
-                tagBuilder.add(RegistryKey.getOrCreateKey(Registry.BLOCK_KEY, baseBlock));
+                tagBuilder.add(RegistryKey.getOrCreateKey(Registry.BLOCK_KEY, baseBlockLoc));
             } else
             {
-                tagBuilder.addOptional(baseBlock);
+                tagBuilder.addOptional(baseBlockLoc);
             }
         }
     }
 
     public void registerItemTags(ItemTagGenerator generator)
     {
-        TagsProvider.Builder<Item> recipeTagBuilder = generator.getOrCreateBuilder(this.craftingTag);
-        objSet.forEach(obj -> recipeTagBuilder.add(obj.get().asItem()));
+        TagsProvider.Builder<Item> craftingTagBuilder = generator.getOrCreateBuilder(this.craftingTag);
+        TagsProvider.Builder<Item> baseCraftingTagBuilder = generator.getOrCreateBuilder(this.baseCraftingTag);
+        objSet.forEach((obj) -> craftingTagBuilder.add(obj.get().asItem()));
+        objSet.forEach((obj) -> baseCraftingTagBuilder.add(obj.get().asItem()));
         if (required)
         {
-            recipeTagBuilder.add(RegistryKey.getOrCreateKey(Registry.ITEM_KEY, baseBlock));
+            craftingTagBuilder.add(RegistryKey.getOrCreateKey(Registry.ITEM_KEY, baseItemLoc));
         } else
         {
-            recipeTagBuilder.addOptional(baseBlock);
+            craftingTagBuilder.addOptional(baseItemLoc);
         }
         for (ITag.INamedTag<Item> tagToAddTo : itemTagsToAddTo)
         {
@@ -286,10 +296,10 @@ public class ColoredBlockData<T extends Block & IColored>
             objSet.forEach(obj -> tagBuilder.add(obj.get().asItem()));
             if (required)
             {
-                tagBuilder.add(RegistryKey.getOrCreateKey(Registry.ITEM_KEY, baseBlock));
+                tagBuilder.add(RegistryKey.getOrCreateKey(Registry.ITEM_KEY, baseItemLoc));
             } else
             {
-                tagBuilder.addOptional(baseBlock);
+                tagBuilder.addOptional(baseItemLoc);
             }
         }
     }
@@ -351,7 +361,7 @@ public class ColoredBlockData<T extends Block & IColored>
                     (block, generator) -> generator.withExistingParent(block.getRegistryName().getPath(),
                             generator.modLoc("block/" + baseBlock.getRegistryName().getPath())),
                     (block, generator) -> generator.addLootTable(block, generator::registerDropSelfLootTable),
-                    generalTextureGenerator, blockTextureGenerator, clientSetupStuff, true,
+                    generalTextureGenerator, blockTextureGenerator, clientSetupStuff, true, baseBlock.getRegistryName(),
                     baseBlock.asItem().getRegistryName(), true, additionalBlockTags, additionalItemTags);
         }
 

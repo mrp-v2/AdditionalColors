@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:ancient_debris"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:ancient_debris_base"
+    }
+  ]
+}

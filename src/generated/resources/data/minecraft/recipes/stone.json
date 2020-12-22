@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:stone"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:stone_base"
+    }
+  ]
+}

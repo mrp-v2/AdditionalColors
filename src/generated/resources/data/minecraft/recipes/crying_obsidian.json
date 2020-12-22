@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:crying_obsidian"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:crying_obsidian_base"
+    }
+  ]
+}

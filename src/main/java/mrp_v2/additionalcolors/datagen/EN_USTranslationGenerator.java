@@ -2,7 +2,7 @@ package mrp_v2.additionalcolors.datagen;
 
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import mrp_v2.additionalcolors.util.ObjectHolder;
-import mrp_v2.mrplibrary.datagen.LanguageProvider;
+import mrp_v2.mrplibrary.datagen.providers.LanguageProvider;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.fml.RegistryObject;

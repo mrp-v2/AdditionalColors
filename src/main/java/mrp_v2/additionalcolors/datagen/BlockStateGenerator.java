@@ -1,7 +1,7 @@
 package mrp_v2.additionalcolors.datagen;
 
 import mrp_v2.additionalcolors.util.ObjectHolder;
-import mrp_v2.mrplibrary.datagen.BlockStateProvider;
+import mrp_v2.mrplibrary.datagen.providers.BlockStateProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 

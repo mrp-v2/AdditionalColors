@@ -1,7 +1,7 @@
 package mrp_v2.additionalcolors.datagen;
 
 import mrp_v2.additionalcolors.util.ObjectHolder;
-import mrp_v2.mrplibrary.datagen.ItemTagsProvider;
+import mrp_v2.mrplibrary.datagen.providers.ItemTagsProvider;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;

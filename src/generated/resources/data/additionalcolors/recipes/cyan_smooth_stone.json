@@ -1,5 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:cyan_smooth_stone"
+  },
   "ingredients": [
     {
       "tag": "additionalcolors:smooth_stone"
@@ -7,8 +10,5 @@
     {
       "tag": "forge:dyes/cyan"
     }
-  ],
-  "result": {
-    "item": "additionalcolors:cyan_smooth_stone"
-  }
+  ]
 }

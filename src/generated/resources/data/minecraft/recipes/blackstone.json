@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:blackstone"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:blackstone_base"
+    }
+  ]
+}

@@ -1,5 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:orange_quartz_block"
+  },
   "ingredients": [
     {
       "tag": "additionalcolors:quartz_block"
@@ -7,8 +10,5 @@
     {
       "tag": "forge:dyes/orange"
     }
-  ],
-  "result": {
-    "item": "additionalcolors:orange_quartz_block"
-  }
+  ]
 }

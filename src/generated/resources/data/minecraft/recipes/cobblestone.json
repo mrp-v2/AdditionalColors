@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:cobblestone"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:cobblestone_base"
+    }
+  ]
+}

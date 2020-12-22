@@ -1,7 +1,7 @@
 package mrp_v2.additionalcolors.datagen;
 
 import mrp_v2.additionalcolors.util.ObjectHolder;
-import mrp_v2.mrplibrary.datagen.RecipeProvider;
+import mrp_v2.mrplibrary.datagen.providers.RecipeProvider;
 import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;

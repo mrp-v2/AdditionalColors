@@ -1,5 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:light_gray_sandstone"
+  },
   "ingredients": [
     {
       "tag": "additionalcolors:sandstone"
@@ -7,8 +10,5 @@
     {
       "tag": "forge:dyes/light_gray"
     }
-  ],
-  "result": {
-    "item": "additionalcolors:light_gray_sandstone"
-  }
+  ]
 }

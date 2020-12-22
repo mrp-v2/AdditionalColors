@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "minecraft:obsidian"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:obsidian_base"
+    }
+  ]
+}
