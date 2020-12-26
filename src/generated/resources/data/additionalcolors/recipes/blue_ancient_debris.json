@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "mrplibrary:crafting_shapeless",
   "result": {
     "item": "additionalcolors:blue_ancient_debris"
   },

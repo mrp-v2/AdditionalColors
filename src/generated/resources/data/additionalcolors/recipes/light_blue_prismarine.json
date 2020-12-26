@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:light_blue_prismarine"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:prismarine"
+    },
+    {
+      "tag": "forge:dyes/light_blue"
+    }
+  ]
+}

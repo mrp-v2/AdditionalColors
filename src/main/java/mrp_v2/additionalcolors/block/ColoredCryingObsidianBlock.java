@@ -21,7 +21,7 @@ public class ColoredCryingObsidianBlock extends CryingObsidianBlock implements I
     private final DyeColor color;
     private final Color3B particleColor;
 
-    public ColoredCryingObsidianBlock(AbstractBlock.Properties properties, DyeColor color)
+    public ColoredCryingObsidianBlock(DyeColor color, AbstractBlock.Properties properties)
     {
         super(properties);
         this.color = color;

@@ -1,9 +1,9 @@
 package mrp_v2.additionalcolors.client.renderer.color;
 
 import mrp_v2.additionalcolors.AdditionalColors;
-import mrp_v2.additionalcolors.util.ColoredBlockData;
 import mrp_v2.additionalcolors.util.IColored;
 import mrp_v2.additionalcolors.util.ObjectHolder;
+import mrp_v2.additionalcolors.util.colored_block_data.IColoredBlockData;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -26,7 +26,7 @@ public class BlockColorer implements IBlockColor, IItemColor
 
     @SubscribeEvent public static void registerBlockColors(ColorHandlerEvent.Block event)
     {
-        for (ColoredBlockData<? extends Block> data : ObjectHolder.COLORIZED_BLOCK_DATAS)
+        for (IColoredBlockData<? extends Block> data : ObjectHolder.COLORIZED_BLOCK_DATAS)
         {
             if (data.requiresTinting())
             {
@@ -37,7 +37,7 @@ public class BlockColorer implements IBlockColor, IItemColor
 
     @SubscribeEvent public static void registerItemColors(ColorHandlerEvent.Item event)
     {
-        for (ColoredBlockData<? extends Block> data : ObjectHolder.COLORIZED_BLOCK_DATAS)
+        for (IColoredBlockData<? extends Block> data : ObjectHolder.COLORIZED_BLOCK_DATAS)
         {
             if (data.requiresTinting())
             {
@@ -49,24 +49,20 @@ public class BlockColorer implements IBlockColor, IItemColor
     @Override public int getColor(BlockState p_getColor_1_, @Nullable IBlockDisplayReader p_getColor_2_,
             @Nullable BlockPos p_getColor_3_, int p_getColor_4_)
     {
-        if (p_getColor_1_.getBlock() instanceof IColored)
-        {
-            return getColor((IColored) p_getColor_1_.getBlock());
-        }
-        return DEFAULT_COLOR;
+        return getColor(p_getColor_1_.getBlock());
     }
 
-    private int getColor(IColored colored)
+    private int getColor(Object obj)
     {
-        return colored.getColor().getColorValue();
+        if (obj instanceof IColored)
+        {
+            return ((IColored) obj).getColor().getColorValue();
+        }
+        return DEFAULT_COLOR;
     }
 
     @Override public int getColor(ItemStack p_getColor_1_, int p_getColor_2_)
     {
-        if (p_getColor_1_.getItem() instanceof IColored)
-        {
-            return getColor((IColored) p_getColor_1_.getItem());
-        }
-        return DEFAULT_COLOR;
+        return getColor(p_getColor_1_.getItem());
     }
 }

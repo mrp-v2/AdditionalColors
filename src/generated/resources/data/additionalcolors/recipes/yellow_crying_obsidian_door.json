@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "mrplibrary:crafting_shapeless",
   "result": {
     "item": "additionalcolors:yellow_crying_obsidian_door"
   },
