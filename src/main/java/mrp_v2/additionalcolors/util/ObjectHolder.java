@@ -23,7 +23,6 @@ import net.minecraft.particles.ParticleType;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -454,22 +453,9 @@ public class ObjectHolder
         {
             return null;
         }
-        List<ItemGroup> labelMatches = Arrays.stream(ItemGroup.GROUPS)
-                .filter((group) -> ((TranslationTextComponent) group.getGroupName()).getKey()
-                        .equals("itemGroup.expansion_tab")).collect(Collectors.toList());
-        if (labelMatches.size() == 0)
-        {
-            return null;
-        }
-        if (labelMatches.size() == 1)
-        {
-            return labelMatches.get(0);
-        }
-        final ResourceLocation obsidianExpansionGroupItemIcon =
-                new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID, "weak_obsidian");
-        labelMatches = labelMatches.stream()
-                .filter((group) -> group.getIcon().getItem().getRegistryName().equals(obsidianExpansionGroupItemIcon))
-                .collect(Collectors.toList());
+        List<ItemGroup> labelMatches =
+                Arrays.stream(ItemGroup.GROUPS).filter((group) -> group.getPath().equals("expansion_tab"))
+                        .collect(Collectors.toList());
         if (labelMatches.size() == 1)
         {
             return labelMatches.get(0);
