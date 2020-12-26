@@ -122,6 +122,8 @@ public class ObjectHolder
         COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.HONEYCOMB_BLOCK));
         COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.NETHER_BRICKS));
         COLORIZED_BLOCK_DATAS.add(new AnimatedBasicBlockData(Blocks.PRISMARINE));
+        COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.PRISMARINE_BRICKS));
+        COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.DARK_PRISMARINE));
         // crying obsidian section
         final Supplier<AbstractBlock.Properties> basicProperties =
                 () -> AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN);

@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:magenta_prismarine_bricks",
+    "additionalcolors:red_prismarine_bricks",
+    "additionalcolors:lime_prismarine_bricks",
+    "additionalcolors:light_gray_prismarine_bricks",
+    "additionalcolors:purple_prismarine_bricks",
+    "additionalcolors:brown_prismarine_bricks",
+    "additionalcolors:blue_prismarine_bricks",
+    "additionalcolors:orange_prismarine_bricks",
+    "additionalcolors:light_blue_prismarine_bricks",
+    "additionalcolors:black_prismarine_bricks",
+    "additionalcolors:gray_prismarine_bricks",
+    "additionalcolors:white_prismarine_bricks",
+    "additionalcolors:green_prismarine_bricks",
+    "additionalcolors:cyan_prismarine_bricks",
+    "additionalcolors:yellow_prismarine_bricks",
+    "additionalcolors:pink_prismarine_bricks"
+  ]
+}

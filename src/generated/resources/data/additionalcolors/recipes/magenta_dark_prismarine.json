@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:magenta_dark_prismarine"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:dark_prismarine"
+    },
+    {
+      "tag": "forge:dyes/magenta"
+    }
+  ]
+}

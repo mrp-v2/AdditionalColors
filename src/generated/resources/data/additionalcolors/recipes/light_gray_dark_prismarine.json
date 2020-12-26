@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:light_gray_dark_prismarine"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:dark_prismarine"
+    },
+    {
+      "tag": "forge:dyes/light_gray"
+    }
+  ]
+}

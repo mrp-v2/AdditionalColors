@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:brown_prismarine_bricks"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:prismarine_bricks"
+    },
+    {
+      "tag": "forge:dyes/brown"
+    }
+  ]
+}
