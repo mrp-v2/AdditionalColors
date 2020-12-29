@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:cyan_dark_oak_stairs",
-    "additionalcolors:brown_dark_oak_stairs",
-    "additionalcolors:light_gray_dark_oak_stairs",
-    "additionalcolors:pink_dark_oak_stairs",
-    "additionalcolors:red_dark_oak_stairs",
-    "additionalcolors:gray_dark_oak_stairs",
-    "additionalcolors:magenta_dark_oak_stairs",
+    "additionalcolors:black_dark_oak_stairs",
     "additionalcolors:light_blue_dark_oak_stairs",
+    "additionalcolors:light_gray_dark_oak_stairs",
+    "additionalcolors:gray_dark_oak_stairs",
+    "additionalcolors:pink_dark_oak_stairs",
+    "additionalcolors:brown_dark_oak_stairs",
     "additionalcolors:green_dark_oak_stairs",
-    "additionalcolors:lime_dark_oak_stairs",
-    "additionalcolors:white_dark_oak_stairs",
+    "additionalcolors:purple_dark_oak_stairs",
     "additionalcolors:blue_dark_oak_stairs",
     "additionalcolors:yellow_dark_oak_stairs",
+    "additionalcolors:white_dark_oak_stairs",
+    "additionalcolors:magenta_dark_oak_stairs",
     "additionalcolors:orange_dark_oak_stairs",
-    "additionalcolors:purple_dark_oak_stairs",
-    "additionalcolors:black_dark_oak_stairs",
+    "additionalcolors:lime_dark_oak_stairs",
+    "additionalcolors:cyan_dark_oak_stairs",
+    "additionalcolors:red_dark_oak_stairs",
     "minecraft:dark_oak_stairs"
   ]
 }

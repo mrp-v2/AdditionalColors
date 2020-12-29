@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:cyan_warped_slab",
-    "additionalcolors:brown_warped_slab",
-    "additionalcolors:light_gray_warped_slab",
-    "additionalcolors:pink_warped_slab",
-    "additionalcolors:red_warped_slab",
-    "additionalcolors:gray_warped_slab",
-    "additionalcolors:magenta_warped_slab",
+    "additionalcolors:black_warped_slab",
     "additionalcolors:light_blue_warped_slab",
+    "additionalcolors:light_gray_warped_slab",
+    "additionalcolors:gray_warped_slab",
+    "additionalcolors:pink_warped_slab",
+    "additionalcolors:brown_warped_slab",
     "additionalcolors:green_warped_slab",
-    "additionalcolors:lime_warped_slab",
-    "additionalcolors:white_warped_slab",
+    "additionalcolors:purple_warped_slab",
     "additionalcolors:blue_warped_slab",
     "additionalcolors:yellow_warped_slab",
+    "additionalcolors:white_warped_slab",
+    "additionalcolors:magenta_warped_slab",
     "additionalcolors:orange_warped_slab",
-    "additionalcolors:purple_warped_slab",
-    "additionalcolors:black_warped_slab"
+    "additionalcolors:lime_warped_slab",
+    "additionalcolors:cyan_warped_slab",
+    "additionalcolors:red_warped_slab"
   ]
 }

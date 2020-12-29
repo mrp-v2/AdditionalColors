@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:cyan_jungle_slab",
-    "additionalcolors:brown_jungle_slab",
-    "additionalcolors:light_gray_jungle_slab",
-    "additionalcolors:pink_jungle_slab",
-    "additionalcolors:red_jungle_slab",
-    "additionalcolors:gray_jungle_slab",
-    "additionalcolors:magenta_jungle_slab",
+    "additionalcolors:black_jungle_slab",
     "additionalcolors:light_blue_jungle_slab",
+    "additionalcolors:light_gray_jungle_slab",
+    "additionalcolors:gray_jungle_slab",
+    "additionalcolors:pink_jungle_slab",
+    "additionalcolors:brown_jungle_slab",
     "additionalcolors:green_jungle_slab",
-    "additionalcolors:lime_jungle_slab",
-    "additionalcolors:white_jungle_slab",
+    "additionalcolors:purple_jungle_slab",
     "additionalcolors:blue_jungle_slab",
     "additionalcolors:yellow_jungle_slab",
+    "additionalcolors:white_jungle_slab",
+    "additionalcolors:magenta_jungle_slab",
     "additionalcolors:orange_jungle_slab",
-    "additionalcolors:purple_jungle_slab",
-    "additionalcolors:black_jungle_slab"
+    "additionalcolors:lime_jungle_slab",
+    "additionalcolors:cyan_jungle_slab",
+    "additionalcolors:red_jungle_slab"
   ]
 }

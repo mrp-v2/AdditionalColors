@@ -168,7 +168,8 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     @Override public void registerRecipes(Consumer<IFinishedRecipe> consumer)
     {
         ShapelessRecipeBuilder.shapelessRecipe(getBaseItemLoc()).addIngredient(craftingTag)
-                .addCriterion("has_block", RecipeGenerator.makeHasItemCriterion(craftingTag)).build(consumer);
+                .addCriterion("has_block", RecipeGenerator.makeHasItemCriterion(craftingTag))
+                .build(consumer, new ResourceLocation(AdditionalColors.ID, getBaseItemLoc().getPath()));
         for (Map.Entry<DyeColor, RegistryObject<T>> blockObjectEntry : blockObjectMap.entrySet())
         {
             ShapelessRecipeBuilder.shapelessRecipe(blockObjectEntry.getValue().get())

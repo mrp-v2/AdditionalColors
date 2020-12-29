@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "additionalcolors:crimson_planks"
+    ]
+  },
+  "criteria": {
+    "has_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "additionalcolors:crimson_planks_base"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "additionalcolors:crimson_planks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_block",
+      "has_the_recipe"
+    ]
+  ]
+}

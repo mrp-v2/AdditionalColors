@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:cyan_warped_planks",
-    "additionalcolors:brown_warped_planks",
-    "additionalcolors:light_gray_warped_planks",
-    "additionalcolors:pink_warped_planks",
-    "additionalcolors:red_warped_planks",
-    "additionalcolors:gray_warped_planks",
-    "additionalcolors:magenta_warped_planks",
+    "additionalcolors:black_warped_planks",
     "additionalcolors:light_blue_warped_planks",
+    "additionalcolors:light_gray_warped_planks",
+    "additionalcolors:gray_warped_planks",
+    "additionalcolors:pink_warped_planks",
+    "additionalcolors:brown_warped_planks",
     "additionalcolors:green_warped_planks",
-    "additionalcolors:lime_warped_planks",
-    "additionalcolors:white_warped_planks",
+    "additionalcolors:purple_warped_planks",
     "additionalcolors:blue_warped_planks",
     "additionalcolors:yellow_warped_planks",
+    "additionalcolors:white_warped_planks",
+    "additionalcolors:magenta_warped_planks",
     "additionalcolors:orange_warped_planks",
-    "additionalcolors:purple_warped_planks",
-    "additionalcolors:black_warped_planks",
+    "additionalcolors:lime_warped_planks",
+    "additionalcolors:cyan_warped_planks",
+    "additionalcolors:red_warped_planks",
     "minecraft:warped_planks"
   ]
 }

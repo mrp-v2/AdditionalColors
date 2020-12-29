@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:cyan_ancient_debris",
-    "additionalcolors:brown_ancient_debris",
-    "additionalcolors:light_gray_ancient_debris",
-    "additionalcolors:pink_ancient_debris",
-    "additionalcolors:red_ancient_debris",
-    "additionalcolors:gray_ancient_debris",
-    "additionalcolors:magenta_ancient_debris",
+    "additionalcolors:black_ancient_debris",
     "additionalcolors:light_blue_ancient_debris",
+    "additionalcolors:light_gray_ancient_debris",
+    "additionalcolors:gray_ancient_debris",
+    "additionalcolors:pink_ancient_debris",
+    "additionalcolors:brown_ancient_debris",
     "additionalcolors:green_ancient_debris",
-    "additionalcolors:lime_ancient_debris",
-    "additionalcolors:white_ancient_debris",
+    "additionalcolors:purple_ancient_debris",
     "additionalcolors:blue_ancient_debris",
     "additionalcolors:yellow_ancient_debris",
+    "additionalcolors:white_ancient_debris",
+    "additionalcolors:magenta_ancient_debris",
     "additionalcolors:orange_ancient_debris",
-    "additionalcolors:purple_ancient_debris",
-    "additionalcolors:black_ancient_debris",
+    "additionalcolors:lime_ancient_debris",
+    "additionalcolors:cyan_ancient_debris",
+    "additionalcolors:red_ancient_debris",
     "minecraft:ancient_debris"
   ]
 }

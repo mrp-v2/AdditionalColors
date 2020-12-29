@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:cyan_acacia_planks",
-    "additionalcolors:brown_acacia_planks",
-    "additionalcolors:light_gray_acacia_planks",
-    "additionalcolors:pink_acacia_planks",
-    "additionalcolors:red_acacia_planks",
-    "additionalcolors:gray_acacia_planks",
-    "additionalcolors:magenta_acacia_planks",
+    "additionalcolors:black_acacia_planks",
     "additionalcolors:light_blue_acacia_planks",
+    "additionalcolors:light_gray_acacia_planks",
+    "additionalcolors:gray_acacia_planks",
+    "additionalcolors:pink_acacia_planks",
+    "additionalcolors:brown_acacia_planks",
     "additionalcolors:green_acacia_planks",
-    "additionalcolors:lime_acacia_planks",
-    "additionalcolors:white_acacia_planks",
+    "additionalcolors:purple_acacia_planks",
     "additionalcolors:blue_acacia_planks",
     "additionalcolors:yellow_acacia_planks",
+    "additionalcolors:white_acacia_planks",
+    "additionalcolors:magenta_acacia_planks",
     "additionalcolors:orange_acacia_planks",
-    "additionalcolors:purple_acacia_planks",
-    "additionalcolors:black_acacia_planks"
+    "additionalcolors:lime_acacia_planks",
+    "additionalcolors:cyan_acacia_planks",
+    "additionalcolors:red_acacia_planks"
   ]
 }
