@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:orange_oak_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:oak_slab"
+    },
+    {
+      "tag": "forge:dyes/orange"
+    }
+  ]
+}

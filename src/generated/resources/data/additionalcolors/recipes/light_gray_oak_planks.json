@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:light_gray_oak_planks"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:oak_planks"
+    },
+    {
+      "tag": "forge:dyes/light_gray"
+    }
+  ]
+}

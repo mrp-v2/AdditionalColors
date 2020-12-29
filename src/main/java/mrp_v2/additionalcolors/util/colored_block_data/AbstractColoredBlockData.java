@@ -9,6 +9,7 @@ import mrp_v2.additionalcolors.util.Util;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
 import mrp_v2.mrplibrary.datagen.recipe.ShapelessRecipeBuilder;
 import mrp_v2.mrplibrary.util.Possible;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -20,25 +21,37 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
 
 public abstract class AbstractColoredBlockData<T extends Block & IColored> implements IColoredBlockData<T>
 {
     protected final Possible<Block> baseBlock;
     protected final Possible<Item> baseItem;
-    protected final Set<RegistryObject<T>> blockObjectSet = new HashSet<>();
+    protected final Map<DyeColor, RegistryObject<T>> blockObjectMap = new HashMap<>();
     protected final ITag.INamedTag<Item> craftingTag;
     protected final ITag.INamedTag<Block>[] blockTagsToAddTo;
     protected final ITag.INamedTag<Item>[] itemTagsToAddTo;
     protected final ITag.INamedTag<Item> craftingTagIncludingBase;
+
+    @Override public Map<DyeColor, RegistryObject<T>> register()
+    {
+        for (DyeColor color : getColors())
+        {
+            String id = color.getTranslationKey() + "_" + baseBlock.getId().getPath();
+            RegistryObject<T> blockObject = ObjectHolder.BLOCKS.register(id, () -> makeNewBlock(color));
+            blockObjectMap.put(color, blockObject);
+            ObjectHolder.ITEMS.register(id,
+                    () -> new ColoredBlockItem(blockObject.get(), new Item.Properties().group(getItemGroup())));
+        }
+        return blockObjectMap;
+    }
 
     protected AbstractColoredBlockData(ResourceLocation baseBlockLoc, ITag.INamedTag<Block>[] blockTagsToAddTo,
             ITag.INamedTag<Item>[] itemTagsToAddTo)
@@ -81,19 +94,12 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath()));
     }
 
-    @Override public Map<DyeColor, RegistryObject<T>> register()
+    @Override public void forEachBlock(Consumer<T> consumer)
     {
-        Map<DyeColor, RegistryObject<T>> map = new HashMap<>();
-        for (DyeColor color : getColors())
+        for (RegistryObject<T> blockObject : blockObjectMap.values())
         {
-            String id = color.getTranslationKey() + "_" + baseBlock.getId().getPath();
-            RegistryObject<T> blockObj = ObjectHolder.BLOCKS.register(id, () -> makeNewBlock(color));
-            blockObjectSet.add(blockObj);
-            ObjectHolder.ITEMS.register(id,
-                    () -> new ColoredBlockItem(blockObj.get(), new Item.Properties().group(getItemGroup())));
-            map.put(color, blockObj);
+            consumer.accept(blockObject.get());
         }
-        return map;
     }
 
     @Override public boolean requiresTinting()
@@ -106,14 +112,6 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         return baseBlock.getId();
     }
 
-    @Override public void forEachBlock(Consumer<T> consumer)
-    {
-        for (RegistryObject<T> blockObject : blockObjectSet)
-        {
-            consumer.accept(blockObject.get());
-        }
-    }
-
     @Override public ResourceLocation getBaseItemLoc()
     {
         return baseItem.getId();
@@ -123,10 +121,47 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     {
         if (hasSpecialRenderType())
         {
-            for (RegistryObject<T> blockObject : blockObjectSet)
+            for (RegistryObject<T> blockObject : blockObjectMap.values())
             {
                 RenderTypeLookup.setRenderLayer(blockObject.get(), getSpecialRenderType());
             }
+        }
+    }
+
+    @Override public void registerTextures(TextureGenerator generator, TextureProvider.FinishedTextureConsumer consumer)
+    {
+        BufferedImage texture = generator.getTexture(
+                new ResourceLocation(baseBlock.getId().getNamespace(), "block/" + baseBlock.getId().getPath()));
+        TextureProvider.makeGrayscale(texture);
+        TextureProvider.adjustLevels(texture, getLevelAdjustment());
+        generator.finish(texture, new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath()),
+                consumer);
+    }
+
+    @Override public void registerItemModels(ItemModelGenerator generator)
+    {
+        for (RegistryObject<T> blockObject : blockObjectMap.values())
+        {
+            generator.withExistingParent(blockObject.getId().getPath(),
+                    generator.modLoc("block/" + baseBlock.getId().getPath()));
+        }
+    }
+
+    @Override public void registerLootTables(LootTableGenerator generator)
+    {
+        for (RegistryObject<T> blockObject : blockObjectMap.values())
+        {
+            generator.addLootTable(blockObject.get(), generator::registerDropSelfLootTable);
+        }
+    }
+
+    @Override public void registerBlockStatesAndModels(BlockStateGenerator generator)
+    {
+        ResourceLocation textureLoc = generator.modLoc("block/" + baseBlock.getId().getPath());
+        ModelFile modelFile = generator.tintedSimpleBlock("block/" + baseBlock.getId().getPath(), textureLoc);
+        for (RegistryObject<T> blockObject : blockObjectMap.values())
+        {
+            generator.simpleBlock(blockObject.get(), modelFile);
         }
     }
 
@@ -134,11 +169,10 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     {
         ShapelessRecipeBuilder.shapelessRecipe(getBaseItemLoc()).addIngredient(craftingTag)
                 .addCriterion("has_block", RecipeGenerator.makeHasItemCriterion(craftingTag)).build(consumer);
-        for (RegistryObject<T> blockObject : blockObjectSet)
+        for (Map.Entry<DyeColor, RegistryObject<T>> blockObjectEntry : blockObjectMap.entrySet())
         {
-            T block = blockObject.get();
-            ShapelessRecipeBuilder.shapelessRecipe(block).addIngredient(craftingTagIncludingBase)
-                    .addIngredient(block.getColor().getTag())
+            ShapelessRecipeBuilder.shapelessRecipe(blockObjectEntry.getValue().get())
+                    .addIngredient(craftingTagIncludingBase).addIngredient(blockObjectEntry.getKey().getTag())
                     .addCriterion("has_base", RecipeGenerator.makeHasItemCriterion(craftingTagIncludingBase))
                     .build(consumer);
         }
@@ -149,7 +183,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         for (ITag.INamedTag<Block> tagToAddTo : blockTagsToAddTo)
         {
             TagsProvider.Builder<Block> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
-            for (RegistryObject<T> blockObject : blockObjectSet)
+            for (RegistryObject<T> blockObject : blockObjectMap.values())
             {
                 tagBuilder.add(blockObject.get());
             }
@@ -168,7 +202,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         TagsProvider.Builder<Item> craftingTagBuilder = generator.getOrCreateBuilder(craftingTag);
         TagsProvider.Builder<Item> craftingTagIncludingBaseBuilder =
                 generator.getOrCreateBuilder(craftingTagIncludingBase);
-        for (RegistryObject<T> blockObject : blockObjectSet)
+        for (RegistryObject<T> blockObject : blockObjectMap.values())
         {
             Item item = blockObject.get().asItem();
             craftingTagBuilder.add(item);
@@ -184,7 +218,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         for (ITag.INamedTag<Item> tagToAddTo : itemTagsToAddTo)
         {
             TagsProvider.Builder<Item> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
-            for (RegistryObject<T> blockObject : blockObjectSet)
+            for (RegistryObject<T> blockObject : blockObjectMap.values())
             {
                 tagBuilder.add(blockObject.get().asItem());
             }
@@ -200,7 +234,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
 
     @Override public void generateTranslations(EN_USTranslationGenerator generator)
     {
-        for (RegistryObject<T> blockObject : blockObjectSet)
+        for (RegistryObject<T> blockObject : blockObjectMap.values())
         {
             generator.addSimpleBlock(blockObject);
         }
@@ -216,47 +250,9 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         return ObjectHolder.MAIN_ITEM_GROUP;
     }
 
-    @Override public void registerTextures(TextureGenerator generator, TextureProvider.FinishedTextureConsumer consumer)
+    @Override public RegistryObject<T> getBlockObject(DyeColor color)
     {
-        BufferedImage texture = generator.getTexture(
-                new ResourceLocation(baseBlock.getId().getNamespace(), "block/" + baseBlock.getId().getPath()));
-        TextureProvider.makeGrayscale(texture);
-        TextureProvider.adjustLevels(texture, getLevelAdjustment());
-        generator.finish(texture, new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath()),
-                consumer);
-    }
-
-    @Override public void registerItemModels(ItemModelGenerator generator)
-    {
-        for (RegistryObject<T> blockObject : blockObjectSet)
-        {
-            T block = blockObject.get();
-            generator.withExistingParent(block.getRegistryName().getPath(),
-                    generator.modLoc("block/" + baseBlock.getId().getPath()));
-        }
-    }
-
-    @Override public void registerLootTables(LootTableGenerator generator)
-    {
-        for (RegistryObject<T> blockObject : blockObjectSet)
-        {
-            T block = blockObject.get();
-            generator.addLootTable(block, generator::registerDropSelfLootTable);
-        }
-    }
-
-    @Override public void registerBlockStatesAndModels(BlockStateGenerator generator)
-    {
-        ResourceLocation textureLoc = generator.modLoc("block/" + baseBlock.getId().getPath());
-        generator.models().getBuilder(baseBlock.getId().getPath())
-                .parent(generator.models().getExistingFile(generator.mcLoc("block/block"))).texture("all", textureLoc)
-                .texture("particle", textureLoc).element().from(0, 0, 0).to(16, 16, 16)
-                .allFaces((face, faceBuilder) -> faceBuilder.tintindex(0).texture("#all").cullface(face).end()).end();
-        for (RegistryObject<T> blockObject : blockObjectSet)
-        {
-            generator.simpleBlock(blockObject.get(),
-                    generator.models().getExistingFile(generator.modLoc("block/" + baseBlock.getId().getPath())));
-        }
+        return blockObjectMap.get(color);
     }
 
     @Override public Block getBaseBlock()
@@ -285,4 +281,9 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     }
 
     protected abstract T makeNewBlock(DyeColor color);
+
+    protected AbstractBlock.Properties getBlockProperties()
+    {
+        return AbstractBlock.Properties.from(baseBlock.get());
+    }
 }

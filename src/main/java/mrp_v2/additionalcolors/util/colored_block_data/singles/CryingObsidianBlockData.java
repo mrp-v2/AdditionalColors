@@ -8,7 +8,6 @@ import mrp_v2.additionalcolors.datagen.TextureGenerator;
 import mrp_v2.additionalcolors.util.ObjectHolder;
 import mrp_v2.additionalcolors.util.colored_block_data.AbstractColoredBlockData;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.DyeColor;
@@ -59,7 +58,7 @@ public class CryingObsidianBlockData extends AbstractColoredBlockData<ColoredCry
 
     @Override public void makeTextureGenerationPromises(TextureGenerator generator)
     {
-        for (RegistryObject<ColoredCryingObsidianBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredCryingObsidianBlock> blockObject : blockObjectMap.values())
         {
             generator.promiseGeneration(
                     new ResourceLocation(AdditionalColors.ID, "block/" + blockObject.getId().getPath()));
@@ -85,7 +84,7 @@ public class CryingObsidianBlockData extends AbstractColoredBlockData<ColoredCry
 
     @Override public void registerTextures(TextureGenerator generator, TextureProvider.FinishedTextureConsumer consumer)
     {
-        for (RegistryObject<ColoredCryingObsidianBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredCryingObsidianBlock> blockObject : blockObjectMap.values())
         {
             ColoredCryingObsidianBlock block = blockObject.get();
             BufferedImage texture = generator
@@ -98,7 +97,7 @@ public class CryingObsidianBlockData extends AbstractColoredBlockData<ColoredCry
 
     @Override public void registerItemModels(ItemModelGenerator generator)
     {
-        for (RegistryObject<ColoredCryingObsidianBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredCryingObsidianBlock> blockObject : blockObjectMap.values())
         {
             String path = blockObject.get().getRegistryName().getPath();
             generator.withExistingParent(path, generator.modLoc("block/" + path));
@@ -107,7 +106,7 @@ public class CryingObsidianBlockData extends AbstractColoredBlockData<ColoredCry
 
     @Override public void registerBlockStatesAndModels(BlockStateGenerator generator)
     {
-        for (RegistryObject<ColoredCryingObsidianBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredCryingObsidianBlock> blockObject : blockObjectMap.values())
         {
             generator.simpleBlock(blockObject.get());
         }
@@ -115,6 +114,6 @@ public class CryingObsidianBlockData extends AbstractColoredBlockData<ColoredCry
 
     @Override protected ColoredCryingObsidianBlock makeNewBlock(DyeColor color)
     {
-        return new ColoredCryingObsidianBlock(color, AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN));
+        return new ColoredCryingObsidianBlock(color, getBlockProperties());
     }
 }

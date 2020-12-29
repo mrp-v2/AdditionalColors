@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "additionalcolors:block/oak_slab_top"
+    },
+    "type=bottom": {
+      "model": "additionalcolors:block/oak_slab"
+    },
+    "type=double": {
+      "model": "additionalcolors:block/oak_planks"
+    }
+  }
+}

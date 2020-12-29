@@ -36,4 +36,5 @@ public interface IColoredBlockData<T extends Block & IColored>
     boolean doesBaseBlockAlwaysExist();
     DyeColor[] getColors();
     @Nullable ItemGroup getItemGroup();
+    RegistryObject<T> getBlockObject(DyeColor color);
 }

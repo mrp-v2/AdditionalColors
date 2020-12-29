@@ -1,16 +1,16 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:white_crying_obsidian_stairs",
-    "additionalcolors:gray_crying_obsidian_stairs",
     "additionalcolors:blue_crying_obsidian_stairs",
-    "additionalcolors:red_crying_obsidian_stairs",
-    "additionalcolors:green_crying_obsidian_stairs",
-    "additionalcolors:orange_crying_obsidian_stairs",
-    "additionalcolors:yellow_crying_obsidian_stairs",
-    "additionalcolors:light_gray_crying_obsidian_stairs",
-    "additionalcolors:brown_crying_obsidian_stairs",
     "additionalcolors:black_crying_obsidian_stairs",
-    "additionalcolors:cyan_crying_obsidian_stairs"
+    "additionalcolors:yellow_crying_obsidian_stairs",
+    "additionalcolors:white_crying_obsidian_stairs",
+    "additionalcolors:light_gray_crying_obsidian_stairs",
+    "additionalcolors:gray_crying_obsidian_stairs",
+    "additionalcolors:brown_crying_obsidian_stairs",
+    "additionalcolors:orange_crying_obsidian_stairs",
+    "additionalcolors:cyan_crying_obsidian_stairs",
+    "additionalcolors:green_crying_obsidian_stairs",
+    "additionalcolors:red_crying_obsidian_stairs"
   ]
 }

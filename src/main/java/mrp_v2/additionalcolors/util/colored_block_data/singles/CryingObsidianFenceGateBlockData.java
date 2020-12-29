@@ -4,9 +4,7 @@ import mrp_v2.additionalcolors.AdditionalColors;
 import mrp_v2.additionalcolors.block.ColoredFenceGateBlock;
 import mrp_v2.additionalcolors.datagen.BlockStateGenerator;
 import mrp_v2.additionalcolors.util.colored_block_data.AbstractCryingObsidianBlockData;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
@@ -23,7 +21,7 @@ public class CryingObsidianFenceGateBlockData extends AbstractCryingObsidianBloc
 
     @Override public void registerBlockStatesAndModels(BlockStateGenerator generator)
     {
-        for (RegistryObject<ColoredFenceGateBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredFenceGateBlock> blockObject : blockObjectMap.values())
         {
             generator.fenceGateBlock(blockObject.get(), new ResourceLocation(AdditionalColors.ID,
                     "block/" + blockObject.getId().getPath().replace("_fence_gate", "")));
@@ -32,6 +30,6 @@ public class CryingObsidianFenceGateBlockData extends AbstractCryingObsidianBloc
 
     @Override protected ColoredFenceGateBlock makeNewBlock(DyeColor color)
     {
-        return new ColoredFenceGateBlock(AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN), color);
+        return new ColoredFenceGateBlock(getBlockProperties(), color);
     }
 }

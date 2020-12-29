@@ -8,9 +8,7 @@ import mrp_v2.additionalcolors.datagen.LootTableGenerator;
 import mrp_v2.additionalcolors.datagen.TextureGenerator;
 import mrp_v2.additionalcolors.util.colored_block_data.AbstractCryingObsidianBlockData;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
@@ -31,7 +29,7 @@ public class CryingObsidianDoorBlockData extends AbstractCryingObsidianBlockData
 
     @Override public void registerBlockStatesAndModels(BlockStateGenerator generator)
     {
-        for (RegistryObject<ColoredDoorBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredDoorBlock> blockObject : blockObjectMap.values())
         {
             Function<String, ResourceLocation> doorPartLocFunction = (str) -> new ResourceLocation(AdditionalColors.ID,
                     "block/" + blockObject.getId().getPath() + "_" + str);
@@ -42,12 +40,12 @@ public class CryingObsidianDoorBlockData extends AbstractCryingObsidianBlockData
 
     @Override protected ColoredDoorBlock makeNewBlock(DyeColor color)
     {
-        return new ColoredDoorBlock(AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN), color);
+        return new ColoredDoorBlock(getBlockProperties(), color);
     }
 
     @Override public void makeTextureGenerationPromises(TextureGenerator generator)
     {
-        for (RegistryObject<ColoredDoorBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredDoorBlock> blockObject : blockObjectMap.values())
         {
             generator.promiseGeneration(
                     new ResourceLocation(AdditionalColors.ID, "block/" + blockObject.getId().getPath() + "_top"));
@@ -60,7 +58,7 @@ public class CryingObsidianDoorBlockData extends AbstractCryingObsidianBlockData
 
     @Override public void registerTextures(TextureGenerator generator, TextureProvider.FinishedTextureConsumer consumer)
     {
-        for (RegistryObject<ColoredDoorBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredDoorBlock> blockObject : blockObjectMap.values())
         {
             Supplier<BufferedImage> baseTextureSupplier = () -> generator.getTexture(
                     new ResourceLocation(AdditionalColors.ID,
@@ -98,7 +96,7 @@ public class CryingObsidianDoorBlockData extends AbstractCryingObsidianBlockData
 
     @Override public void registerItemModels(ItemModelGenerator generator)
     {
-        for (RegistryObject<ColoredDoorBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredDoorBlock> blockObject : blockObjectMap.values())
         {
             generator.singleTexture(blockObject.getId().getPath(), generator.mcLoc("item/generated"), "layer0",
                     generator.modLoc("item/" + blockObject.getId().getPath()));
@@ -107,7 +105,7 @@ public class CryingObsidianDoorBlockData extends AbstractCryingObsidianBlockData
 
     @Override public void registerLootTables(LootTableGenerator generator)
     {
-        for (RegistryObject<ColoredDoorBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredDoorBlock> blockObject : blockObjectMap.values())
         {
             generator.addLootTable(blockObject.get(),
                     (block) -> generator.registerLootTable(block, LootTableGenerator::droppingDoor));

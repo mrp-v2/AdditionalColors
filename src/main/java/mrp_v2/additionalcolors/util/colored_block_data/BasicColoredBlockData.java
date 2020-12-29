@@ -2,7 +2,6 @@ package mrp_v2.additionalcolors.util.colored_block_data;
 
 import mrp_v2.additionalcolors.block.ColoredBlock;
 import mrp_v2.additionalcolors.util.Util;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
@@ -28,6 +27,6 @@ public class BasicColoredBlockData extends AbstractColoredBlockData<ColoredBlock
 
     @Override protected ColoredBlock makeNewBlock(DyeColor color)
     {
-        return new ColoredBlock(color, AbstractBlock.Properties.from(baseBlock.get()));
+        return new ColoredBlock(color, getBlockProperties());
     }
 }

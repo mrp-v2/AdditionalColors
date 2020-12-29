@@ -28,7 +28,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class ObjectHolder
@@ -150,18 +149,28 @@ public class ObjectHolder
         });
         COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.PRISMARINE_BRICKS));
         COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.DARK_PRISMARINE));
+        IColoredBlockData<?> coloredOakPlanksBlockData =
+                new BasicColoredBlockData(Blocks.OAK_PLANKS, Util.makeTagArray(BlockTags.PLANKS),
+                        Util.makeTagArray(ItemTags.PLANKS));
+        COLORIZED_BLOCK_DATAS.add(coloredOakPlanksBlockData);
+        COLORIZED_BLOCK_DATAS.add(new BasicColoredSlabBlockData(Blocks.OAK_SLAB,
+                Util.makeTagArray(BlockTags.SLABS, BlockTags.WOODEN_SLABS),
+                Util.makeTagArray(ItemTags.SLABS, ItemTags.WOODEN_SLABS), coloredOakPlanksBlockData));
+        COLORIZED_BLOCK_DATAS.add(new BasicColoredStairsBlockData(Blocks.OAK_STAIRS,
+                Util.makeTagArray(BlockTags.STAIRS, BlockTags.WOODEN_STAIRS),
+                Util.makeTagArray(ItemTags.STAIRS, ItemTags.WOODEN_STAIRS), coloredOakPlanksBlockData));
         // crying obsidian section
-        final Supplier<AbstractBlock.Properties> basicProperties =
-                () -> AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN);
-        COLORIZED_BLOCK_DATAS.add(new CryingObsidianBlockData(Blocks.CRYING_OBSIDIAN));
+        IColoredBlockData<?> coloredCryingObsidianBlockData = new CryingObsidianBlockData(Blocks.CRYING_OBSIDIAN);
+        COLORIZED_BLOCK_DATAS.add(coloredCryingObsidianBlockData);
         COLORIZED_BLOCK_DATAS.add(new CryingObsidianSlabBlockData(
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
                         Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_slab"),
-                Util.makeTagArray(BlockTags.SLABS), Util.makeTagArray(ItemTags.SLABS)));
+                Util.makeTagArray(BlockTags.SLABS), Util.makeTagArray(ItemTags.SLABS), coloredCryingObsidianBlockData));
         COLORIZED_BLOCK_DATAS.add(new CryingObsidianStairsBlockData(
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
                         Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_stairs"),
-                Util.makeTagArray(BlockTags.STAIRS), Util.makeTagArray(ItemTags.STAIRS)));
+                Util.makeTagArray(BlockTags.STAIRS), Util.makeTagArray(ItemTags.STAIRS),
+                coloredCryingObsidianBlockData));
         COLORIZED_BLOCK_DATAS.add(new CryingObsidianDoorBlockData(
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
                         Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_door"),

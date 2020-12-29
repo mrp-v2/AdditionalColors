@@ -64,7 +64,7 @@ public class BottomTopBasicBlockData extends BasicColoredBlockData
                 .from(0, 0, 0).to(16, 16, 16)
                 .allFaces((face, builder) -> builder.texture("#side").cullface(face).tintindex(0).end())
                 .face(Direction.UP).texture("#top").end().face(Direction.DOWN).texture("#bottom").end().end();
-        for (RegistryObject<ColoredBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredBlock> blockObject : blockObjectMap.values())
         {
             generator.simpleBlock(blockObject.get(),
                     generator.models().getExistingFile(generator.modLoc("block/" + baseBlock.getId().getPath())));

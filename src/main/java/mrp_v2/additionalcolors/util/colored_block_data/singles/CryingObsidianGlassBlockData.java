@@ -7,9 +7,7 @@ import mrp_v2.additionalcolors.datagen.LootTableGenerator;
 import mrp_v2.additionalcolors.datagen.TextureGenerator;
 import mrp_v2.additionalcolors.util.colored_block_data.AbstractCryingObsidianBlockData;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -32,7 +30,7 @@ public class CryingObsidianGlassBlockData extends AbstractCryingObsidianBlockDat
 
     @Override public void clientSetup(FMLClientSetupEvent event)
     {
-        for (RegistryObject<ColoredObsidianGlassBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredObsidianGlassBlock> blockObject : blockObjectMap.values())
         {
             RenderTypeLookup.setRenderLayer(blockObject.get(), RenderType.getCutout());
         }
@@ -40,7 +38,7 @@ public class CryingObsidianGlassBlockData extends AbstractCryingObsidianBlockDat
 
     @Override public void registerBlockStatesAndModels(BlockStateGenerator generator)
     {
-        for (RegistryObject<ColoredObsidianGlassBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredObsidianGlassBlock> blockObject : blockObjectMap.values())
         {
             generator.simpleBlock(blockObject.get());
         }
@@ -48,13 +46,12 @@ public class CryingObsidianGlassBlockData extends AbstractCryingObsidianBlockDat
 
     @Override protected ColoredObsidianGlassBlock makeNewBlock(DyeColor color)
     {
-        return new ColoredObsidianGlassBlock(
-                AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN).sound(SoundType.GLASS).notSolid(), color);
+        return new ColoredObsidianGlassBlock(getBlockProperties().sound(SoundType.GLASS).notSolid(), color);
     }
 
     @Override public void makeTextureGenerationPromises(TextureGenerator generator)
     {
-        for (RegistryObject<ColoredObsidianGlassBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredObsidianGlassBlock> blockObject : blockObjectMap.values())
         {
             generator.promiseGeneration(
                     new ResourceLocation(AdditionalColors.ID, "block/" + blockObject.getId().getPath()));
@@ -63,7 +60,7 @@ public class CryingObsidianGlassBlockData extends AbstractCryingObsidianBlockDat
 
     @Override public void registerTextures(TextureGenerator generator, TextureProvider.FinishedTextureConsumer consumer)
     {
-        for (RegistryObject<ColoredObsidianGlassBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredObsidianGlassBlock> blockObject : blockObjectMap.values())
         {
             BufferedImage texture = generator.getTexture(new ResourceLocation(AdditionalColors.ID,
                     "block/" + blockObject.getId().getPath().replace("_glass", "")));
@@ -81,7 +78,7 @@ public class CryingObsidianGlassBlockData extends AbstractCryingObsidianBlockDat
 
     @Override public void registerLootTables(LootTableGenerator generator)
     {
-        for (RegistryObject<ColoredObsidianGlassBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredObsidianGlassBlock> blockObject : blockObjectMap.values())
         {
             generator.addLootTable(blockObject.get(), generator::registerSilkTouch);
         }

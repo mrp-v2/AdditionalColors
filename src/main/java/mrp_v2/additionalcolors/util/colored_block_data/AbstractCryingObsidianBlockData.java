@@ -6,7 +6,9 @@ import mrp_v2.additionalcolors.datagen.TextureGenerator;
 import mrp_v2.additionalcolors.util.IColored;
 import mrp_v2.additionalcolors.util.ObjectHolder;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -44,16 +46,16 @@ public abstract class AbstractCryingObsidianBlockData<T extends Block & IColored
 
     @Override public void registerItemModels(ItemModelGenerator generator)
     {
-        for (RegistryObject<T> blockObject : blockObjectSet)
+        for (RegistryObject<T> blockObject : blockObjectMap.values())
         {
-            String path = blockObject.get().getRegistryName().getPath();
+            String path = blockObject.getId().getPath();
             generator.withExistingParent(path, generator.modLoc("block/" + path));
         }
     }
 
     @Override public void registerLootTables(LootTableGenerator generator)
     {
-        for (RegistryObject<T> blockObject : blockObjectSet)
+        for (RegistryObject<T> blockObject : blockObjectMap.values())
         {
             generator.addLootTable(blockObject.get(), generator::registerDropSelfLootTable);
         }
@@ -62,5 +64,10 @@ public abstract class AbstractCryingObsidianBlockData<T extends Block & IColored
     @Override public boolean requiresTinting()
     {
         return false;
+    }
+
+    @Override protected AbstractBlock.Properties getBlockProperties()
+    {
+        return AbstractBlock.Properties.from(Blocks.CRYING_OBSIDIAN);
     }
 }

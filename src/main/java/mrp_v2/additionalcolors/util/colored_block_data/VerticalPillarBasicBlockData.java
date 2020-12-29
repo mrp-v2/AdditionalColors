@@ -71,7 +71,7 @@ public class VerticalPillarBasicBlockData extends BasicColoredBlockData
                 .texture("particle", generator.modLoc("block/" + baseBlock.getId().getPath() + "_side")).element()
                 .from(0, 0, 0).to(16, 16, 16).allFaces((face, faceBuilder) -> faceBuilder.tintindex(0)
                 .texture(face.getAxis() == Direction.Axis.Y ? "#end" : "#side").cullface(face).end()).end();
-        for (RegistryObject<ColoredBlock> blockObject : blockObjectSet)
+        for (RegistryObject<ColoredBlock> blockObject : blockObjectMap.values())
         {
             generator.simpleBlock(blockObject.get(),
                     generator.models().getExistingFile(generator.modLoc("block/" + baseBlock.getId().getPath())));

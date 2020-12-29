@@ -1,17 +1,17 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_crying_obsidian_slab",
-    "additionalcolors:white_crying_obsidian_slab",
     "additionalcolors:blue_crying_obsidian_slab",
-    "additionalcolors:cyan_crying_obsidian_slab",
+    "additionalcolors:black_crying_obsidian_slab",
     "additionalcolors:yellow_crying_obsidian_slab",
+    "additionalcolors:white_crying_obsidian_slab",
     "additionalcolors:light_gray_crying_obsidian_slab",
-    "additionalcolors:green_crying_obsidian_slab",
-    "additionalcolors:orange_crying_obsidian_slab",
     "additionalcolors:gray_crying_obsidian_slab",
     "additionalcolors:brown_crying_obsidian_slab",
-    "additionalcolors:black_crying_obsidian_slab",
+    "additionalcolors:orange_crying_obsidian_slab",
+    "additionalcolors:cyan_crying_obsidian_slab",
+    "additionalcolors:green_crying_obsidian_slab",
+    "additionalcolors:red_crying_obsidian_slab",
     {
       "id": "obsidianexpansion:crying_obsidian_slab",
       "required": false
