@@ -1,0 +1,8 @@
+{
+  "parent": "additionalcolors:block/slab_tinted",
+  "textures": {
+    "side": "additionalcolors:block/acacia_planks",
+    "top": "additionalcolors:block/acacia_planks",
+    "bottom": "additionalcolors:block/acacia_planks"
+  }
+}

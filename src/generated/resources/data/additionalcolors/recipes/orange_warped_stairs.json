@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:orange_warped_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:warped_stairs"
+    },
+    {
+      "tag": "forge:dyes/orange"
+    }
+  ]
+}

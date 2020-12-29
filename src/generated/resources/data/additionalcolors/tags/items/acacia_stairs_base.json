@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:cyan_acacia_stairs",
+    "additionalcolors:brown_acacia_stairs",
+    "additionalcolors:light_gray_acacia_stairs",
+    "additionalcolors:pink_acacia_stairs",
+    "additionalcolors:red_acacia_stairs",
+    "additionalcolors:gray_acacia_stairs",
+    "additionalcolors:magenta_acacia_stairs",
+    "additionalcolors:light_blue_acacia_stairs",
+    "additionalcolors:green_acacia_stairs",
+    "additionalcolors:lime_acacia_stairs",
+    "additionalcolors:white_acacia_stairs",
+    "additionalcolors:blue_acacia_stairs",
+    "additionalcolors:yellow_acacia_stairs",
+    "additionalcolors:orange_acacia_stairs",
+    "additionalcolors:purple_acacia_stairs",
+    "additionalcolors:black_acacia_stairs"
+  ]
+}

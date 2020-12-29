@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:black_acacia_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:acacia_stairs"
+    },
+    {
+      "tag": "forge:dyes/black"
+    }
+  ]
+}

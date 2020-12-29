@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:acacia_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:acacia_stairs_base"
+    }
+  ]
+}

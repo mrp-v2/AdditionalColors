@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:blue_spruce_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:spruce_stairs"
+    },
+    {
+      "tag": "forge:dyes/blue"
+    }
+  ]
+}

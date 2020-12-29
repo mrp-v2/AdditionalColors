@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:blue_crimson_planks"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:crimson_planks"
+    },
+    {
+      "tag": "forge:dyes/blue"
+    }
+  ]
+}

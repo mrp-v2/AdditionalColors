@@ -25,6 +25,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.logging.log4j.util.TriConsumer;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -149,16 +150,27 @@ public class ObjectHolder
         });
         COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.PRISMARINE_BRICKS));
         COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.DARK_PRISMARINE));
-        IColoredBlockData<?> coloredOakPlanksBlockData =
-                new BasicColoredBlockData(Blocks.OAK_PLANKS, Util.makeTagArray(BlockTags.PLANKS),
-                        Util.makeTagArray(ItemTags.PLANKS));
-        COLORIZED_BLOCK_DATAS.add(coloredOakPlanksBlockData);
-        COLORIZED_BLOCK_DATAS.add(new BasicColoredSlabBlockData(Blocks.OAK_SLAB,
-                Util.makeTagArray(BlockTags.SLABS, BlockTags.WOODEN_SLABS),
-                Util.makeTagArray(ItemTags.SLABS, ItemTags.WOODEN_SLABS), coloredOakPlanksBlockData));
-        COLORIZED_BLOCK_DATAS.add(new BasicColoredStairsBlockData(Blocks.OAK_STAIRS,
-                Util.makeTagArray(BlockTags.STAIRS, BlockTags.WOODEN_STAIRS),
-                Util.makeTagArray(ItemTags.STAIRS, ItemTags.WOODEN_STAIRS), coloredOakPlanksBlockData));
+        TriConsumer<Block, Block, Block> coloredWoodMaker = (plankBase, slabBase, stairsBase) ->
+        {
+            IColoredBlockData<?> coloredPlankBlockData =
+                    new BasicColoredBlockData(plankBase, Util.makeTagArray(BlockTags.PLANKS),
+                            Util.makeTagArray(ItemTags.PLANKS));
+            COLORIZED_BLOCK_DATAS.add(coloredPlankBlockData);
+            COLORIZED_BLOCK_DATAS.add(new BasicColoredSlabBlockData(slabBase,
+                    Util.makeTagArray(BlockTags.SLABS, BlockTags.WOODEN_SLABS),
+                    Util.makeTagArray(ItemTags.SLABS, ItemTags.WOODEN_SLABS), coloredPlankBlockData));
+            COLORIZED_BLOCK_DATAS.add(new BasicColoredStairsBlockData(stairsBase,
+                    Util.makeTagArray(BlockTags.STAIRS, BlockTags.WOODEN_STAIRS),
+                    Util.makeTagArray(ItemTags.STAIRS, ItemTags.WOODEN_STAIRS), coloredPlankBlockData));
+        };
+        coloredWoodMaker.accept(Blocks.OAK_PLANKS, Blocks.OAK_SLAB, Blocks.OAK_STAIRS);
+        coloredWoodMaker.accept(Blocks.ACACIA_PLANKS, Blocks.ACACIA_SLAB, Blocks.ACACIA_STAIRS);
+        coloredWoodMaker.accept(Blocks.BIRCH_PLANKS, Blocks.BIRCH_SLAB, Blocks.BIRCH_STAIRS);
+        coloredWoodMaker.accept(Blocks.CRIMSON_PLANKS, Blocks.CRIMSON_SLAB, Blocks.CRIMSON_STAIRS);
+        coloredWoodMaker.accept(Blocks.DARK_OAK_PLANKS, Blocks.DARK_OAK_SLAB, Blocks.DARK_OAK_STAIRS);
+        coloredWoodMaker.accept(Blocks.JUNGLE_PLANKS, Blocks.JUNGLE_SLAB, Blocks.JUNGLE_STAIRS);
+        coloredWoodMaker.accept(Blocks.SPRUCE_PLANKS, Blocks.SPRUCE_SLAB, Blocks.SPRUCE_STAIRS);
+        coloredWoodMaker.accept(Blocks.WARPED_PLANKS, Blocks.WARPED_SLAB, Blocks.WARPED_STAIRS);
         // crying obsidian section
         IColoredBlockData<?> coloredCryingObsidianBlockData = new CryingObsidianBlockData(Blocks.CRYING_OBSIDIAN);
         COLORIZED_BLOCK_DATAS.add(coloredCryingObsidianBlockData);

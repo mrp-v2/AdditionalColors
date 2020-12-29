@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:warped_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:warped_slab_base"
+    }
+  ]
+}

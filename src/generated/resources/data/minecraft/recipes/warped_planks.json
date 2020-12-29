@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:warped_planks"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:warped_planks_base"
+    }
+  ]
+}

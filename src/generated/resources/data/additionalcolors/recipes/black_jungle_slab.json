@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:black_jungle_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:jungle_slab"
+    },
+    {
+      "tag": "forge:dyes/black"
+    }
+  ]
+}

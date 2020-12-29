@@ -1,0 +1,8 @@
+{
+  "parent": "additionalcolors:block/stairs_outer_tinted",
+  "textures": {
+    "side": "additionalcolors:block/dark_oak_planks",
+    "top": "additionalcolors:block/dark_oak_planks",
+    "bottom": "additionalcolors:block/dark_oak_planks"
+  }
+}

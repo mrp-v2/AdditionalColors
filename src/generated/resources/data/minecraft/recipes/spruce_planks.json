@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:spruce_planks"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:spruce_planks_base"
+    }
+  ]
+}

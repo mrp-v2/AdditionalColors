@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:black_ice",
-    "additionalcolors:light_blue_ice",
-    "additionalcolors:light_gray_ice",
-    "additionalcolors:gray_ice",
-    "additionalcolors:pink_ice",
+    "additionalcolors:cyan_ice",
     "additionalcolors:brown_ice",
+    "additionalcolors:light_gray_ice",
+    "additionalcolors:pink_ice",
+    "additionalcolors:red_ice",
+    "additionalcolors:gray_ice",
+    "additionalcolors:magenta_ice",
+    "additionalcolors:light_blue_ice",
     "additionalcolors:green_ice",
-    "additionalcolors:purple_ice",
+    "additionalcolors:lime_ice",
+    "additionalcolors:white_ice",
     "additionalcolors:blue_ice",
     "additionalcolors:yellow_ice",
-    "additionalcolors:white_ice",
-    "additionalcolors:magenta_ice",
     "additionalcolors:orange_ice",
-    "additionalcolors:lime_ice",
-    "additionalcolors:cyan_ice",
-    "additionalcolors:red_ice"
+    "additionalcolors:purple_ice",
+    "additionalcolors:black_ice"
   ]
 }

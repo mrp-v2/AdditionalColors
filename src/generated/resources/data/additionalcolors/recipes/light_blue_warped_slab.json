@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:light_blue_warped_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:warped_slab"
+    },
+    {
+      "tag": "forge:dyes/light_blue"
+    }
+  ]
+}

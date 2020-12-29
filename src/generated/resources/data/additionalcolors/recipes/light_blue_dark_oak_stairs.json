@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:light_blue_dark_oak_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:dark_oak_stairs"
+    },
+    {
+      "tag": "forge:dyes/light_blue"
+    }
+  ]
+}

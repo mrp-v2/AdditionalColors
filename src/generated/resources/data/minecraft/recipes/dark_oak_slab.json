@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:dark_oak_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:dark_oak_slab_base"
+    }
+  ]
+}

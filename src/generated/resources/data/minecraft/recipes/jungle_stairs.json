@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:jungle_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:jungle_stairs_base"
+    }
+  ]
+}

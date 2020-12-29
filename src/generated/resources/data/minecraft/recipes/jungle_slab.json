@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:jungle_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:jungle_slab_base"
+    }
+  ]
+}

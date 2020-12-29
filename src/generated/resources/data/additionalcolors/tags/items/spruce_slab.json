@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:cyan_spruce_slab",
+    "additionalcolors:brown_spruce_slab",
+    "additionalcolors:light_gray_spruce_slab",
+    "additionalcolors:pink_spruce_slab",
+    "additionalcolors:red_spruce_slab",
+    "additionalcolors:gray_spruce_slab",
+    "additionalcolors:magenta_spruce_slab",
+    "additionalcolors:light_blue_spruce_slab",
+    "additionalcolors:green_spruce_slab",
+    "additionalcolors:lime_spruce_slab",
+    "additionalcolors:white_spruce_slab",
+    "additionalcolors:blue_spruce_slab",
+    "additionalcolors:yellow_spruce_slab",
+    "additionalcolors:orange_spruce_slab",
+    "additionalcolors:purple_spruce_slab",
+    "additionalcolors:black_spruce_slab",
+    "minecraft:spruce_slab"
+  ]
+}

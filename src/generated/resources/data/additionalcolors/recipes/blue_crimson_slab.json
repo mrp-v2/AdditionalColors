@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:blue_crimson_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:crimson_slab"
+    },
+    {
+      "tag": "forge:dyes/blue"
+    }
+  ]
+}

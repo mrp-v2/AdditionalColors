@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:orange_warped_planks"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:warped_planks"
+    },
+    {
+      "tag": "forge:dyes/orange"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:purple_jungle_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:jungle_stairs"
+    },
+    {
+      "tag": "forge:dyes/purple"
+    }
+  ]
+}

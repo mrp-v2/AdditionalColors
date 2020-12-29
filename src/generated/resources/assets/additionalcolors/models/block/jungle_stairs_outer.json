@@ -1,0 +1,8 @@
+{
+  "parent": "additionalcolors:block/stairs_outer_tinted",
+  "textures": {
+    "side": "additionalcolors:block/jungle_planks",
+    "top": "additionalcolors:block/jungle_planks",
+    "bottom": "additionalcolors:block/jungle_planks"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:brown_birch_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:birch_stairs"
+    },
+    {
+      "tag": "forge:dyes/brown"
+    }
+  ]
+}

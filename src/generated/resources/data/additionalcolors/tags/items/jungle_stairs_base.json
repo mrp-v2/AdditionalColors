@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:cyan_jungle_stairs",
+    "additionalcolors:brown_jungle_stairs",
+    "additionalcolors:light_gray_jungle_stairs",
+    "additionalcolors:pink_jungle_stairs",
+    "additionalcolors:red_jungle_stairs",
+    "additionalcolors:gray_jungle_stairs",
+    "additionalcolors:magenta_jungle_stairs",
+    "additionalcolors:light_blue_jungle_stairs",
+    "additionalcolors:green_jungle_stairs",
+    "additionalcolors:lime_jungle_stairs",
+    "additionalcolors:white_jungle_stairs",
+    "additionalcolors:blue_jungle_stairs",
+    "additionalcolors:yellow_jungle_stairs",
+    "additionalcolors:orange_jungle_stairs",
+    "additionalcolors:purple_jungle_stairs",
+    "additionalcolors:black_jungle_stairs"
+  ]
+}

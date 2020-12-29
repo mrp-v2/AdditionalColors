@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:magenta_crimson_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:crimson_stairs"
+    },
+    {
+      "tag": "forge:dyes/magenta"
+    }
+  ]
+}

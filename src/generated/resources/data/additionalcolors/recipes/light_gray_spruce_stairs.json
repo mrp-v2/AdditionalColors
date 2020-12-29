@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:light_gray_spruce_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:spruce_stairs"
+    },
+    {
+      "tag": "forge:dyes/light_gray"
+    }
+  ]
+}

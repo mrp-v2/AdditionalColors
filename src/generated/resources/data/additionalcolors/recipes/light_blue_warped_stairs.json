@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:light_blue_warped_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:warped_stairs"
+    },
+    {
+      "tag": "forge:dyes/light_blue"
+    }
+  ]
+}

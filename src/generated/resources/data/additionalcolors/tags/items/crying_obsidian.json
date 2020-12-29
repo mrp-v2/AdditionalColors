@@ -1,17 +1,17 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:blue_crying_obsidian",
-    "additionalcolors:black_crying_obsidian",
-    "additionalcolors:yellow_crying_obsidian",
-    "additionalcolors:white_crying_obsidian",
-    "additionalcolors:light_gray_crying_obsidian",
-    "additionalcolors:gray_crying_obsidian",
-    "additionalcolors:brown_crying_obsidian",
-    "additionalcolors:orange_crying_obsidian",
     "additionalcolors:cyan_crying_obsidian",
     "additionalcolors:green_crying_obsidian",
+    "additionalcolors:brown_crying_obsidian",
+    "additionalcolors:light_gray_crying_obsidian",
+    "additionalcolors:white_crying_obsidian",
     "additionalcolors:red_crying_obsidian",
+    "additionalcolors:gray_crying_obsidian",
+    "additionalcolors:blue_crying_obsidian",
+    "additionalcolors:yellow_crying_obsidian",
+    "additionalcolors:orange_crying_obsidian",
+    "additionalcolors:black_crying_obsidian",
     "minecraft:crying_obsidian"
   ]
 }

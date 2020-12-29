@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:dark_oak_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:dark_oak_stairs_base"
+    }
+  ]
+}
