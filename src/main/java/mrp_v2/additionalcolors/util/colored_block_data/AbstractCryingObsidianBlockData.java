@@ -15,14 +15,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 
 import javax.annotation.Nullable;
-import java.util.function.Function;
 
-public abstract class CryingObsidianBasedBlockData<T extends Block & IColored> extends TypedOptionalBlockData<T>
+public abstract class AbstractCryingObsidianBlockData<T extends Block & IColored> extends AbstractColoredBlockData<T>
 {
-    protected CryingObsidianBasedBlockData(ResourceLocation baseBlockLoc, Function<DyeColor, T> blockConstructor,
-            ITag.INamedTag<Block>[] blockTagsToAddTo, ITag.INamedTag<Item>[] itemTagsToAddTo)
+    protected AbstractCryingObsidianBlockData(ResourceLocation baseBlockLoc, ITag.INamedTag<Block>[] blockTagsToAddTo,
+            ITag.INamedTag<Item>[] itemTagsToAddTo)
     {
-        super(baseBlockLoc, blockConstructor, blockTagsToAddTo, itemTagsToAddTo);
+        super(baseBlockLoc, blockTagsToAddTo, itemTagsToAddTo);
     }
 
     @Override public DyeColor[] getColors()
@@ -58,5 +57,10 @@ public abstract class CryingObsidianBasedBlockData<T extends Block & IColored> e
         {
             generator.addLootTable(blockObject.get(), generator::registerDropSelfLootTable);
         }
+    }
+
+    @Override public boolean requiresTinting()
+    {
+        return false;
     }
 }
