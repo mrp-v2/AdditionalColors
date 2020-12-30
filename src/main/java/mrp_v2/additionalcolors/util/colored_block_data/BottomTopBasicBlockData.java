@@ -7,7 +7,7 @@ import mrp_v2.additionalcolors.datagen.TextureGenerator;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -16,19 +16,9 @@ import java.awt.image.BufferedImage;
 
 public class BottomTopBasicBlockData extends BasicColoredBlockData
 {
-    public BottomTopBasicBlockData(Block baseBlock, ITag.INamedTag<Block>[] additionalBlockTags,
-            ITag.INamedTag<Item>[] additionalItemTags)
+    public BottomTopBasicBlockData(Block baseBlock, Tag<Block>[] additionalBlockTags, Tag<Item>[] additionalItemTags)
     {
         super(baseBlock, additionalBlockTags, additionalItemTags);
-    }
-
-    @Override public void makeTextureGenerationPromises(TextureGenerator generator)
-    {
-        generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath()));
-        generator.promiseGeneration(
-                new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath() + "_top"));
-        generator.promiseGeneration(
-                new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath() + "_bottom"));
     }
 
     @Override public void registerTextures(TextureGenerator generator, TextureProvider.FinishedTextureConsumer consumer)

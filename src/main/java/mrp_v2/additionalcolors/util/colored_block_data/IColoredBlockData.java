@@ -17,7 +17,6 @@ import java.util.function.Consumer;
 
 public interface IColoredBlockData<T extends Block & IColored>
 {
-    void makeTextureGenerationPromises(TextureGenerator generator);
     Map<DyeColor, RegistryObject<T>> register();
     boolean requiresTinting();
     void forEachBlock(Consumer<T> consumer);
@@ -28,7 +27,7 @@ public interface IColoredBlockData<T extends Block & IColored>
     void registerItemModels(ItemModelGenerator generator);
     void registerLootTables(LootTableGenerator generator);
     void registerBlockStatesAndModels(BlockStateGenerator generator);
-    void registerRecipes(Consumer<IFinishedRecipe> consumer);
+    void registerRecipes(RecipeGenerator generator, Consumer<IFinishedRecipe> consumer);
     void registerBlockTags(BlockTagGenerator generator);
     void registerItemTags(ItemTagGenerator generator);
     void generateTranslations(EN_USTranslationGenerator generator);

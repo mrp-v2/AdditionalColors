@@ -5,8 +5,8 @@ import mrp_v2.mrplibrary.datagen.providers.ItemTagsProvider;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraft.tags.Tag;
+import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
 import javax.annotation.Nullable;
 
@@ -23,8 +23,8 @@ public class ItemTagGenerator extends ItemTagsProvider
         ObjectHolder.COLORIZED_BLOCK_DATAS.forEach((data) -> data.registerItemTags(this));
     }
 
-    @Override public Builder<Item> getOrCreateBuilder(ITag.INamedTag<Item> tag)
+    public Tag.Builder<Item> getOrCreateBuilder(Tag<Item> tag)
     {
-        return super.getOrCreateBuilder(tag);
+        return super.getBuilder(tag);
     }
 }

@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:blue_dark_oak_slab",
     "additionalcolors:black_dark_oak_slab",
     "additionalcolors:light_blue_dark_oak_slab",
-    "additionalcolors:light_gray_dark_oak_slab",
-    "additionalcolors:gray_dark_oak_slab",
-    "additionalcolors:pink_dark_oak_slab",
-    "additionalcolors:brown_dark_oak_slab",
-    "additionalcolors:green_dark_oak_slab",
-    "additionalcolors:purple_dark_oak_slab",
-    "additionalcolors:blue_dark_oak_slab",
     "additionalcolors:yellow_dark_oak_slab",
-    "additionalcolors:white_dark_oak_slab",
-    "additionalcolors:magenta_dark_oak_slab",
+    "additionalcolors:purple_dark_oak_slab",
+    "additionalcolors:pink_dark_oak_slab",
+    "additionalcolors:light_gray_dark_oak_slab",
+    "additionalcolors:cyan_dark_oak_slab",
+    "additionalcolors:brown_dark_oak_slab",
     "additionalcolors:orange_dark_oak_slab",
     "additionalcolors:lime_dark_oak_slab",
-    "additionalcolors:cyan_dark_oak_slab",
+    "additionalcolors:white_dark_oak_slab",
+    "additionalcolors:magenta_dark_oak_slab",
+    "additionalcolors:green_dark_oak_slab",
+    "additionalcolors:gray_dark_oak_slab",
     "additionalcolors:red_dark_oak_slab"
   ]
 }

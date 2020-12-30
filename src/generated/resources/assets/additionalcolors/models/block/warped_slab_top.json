@@ -1,8 +1,0 @@
-{
-  "parent": "additionalcolors:block/slab_top_tinted",
-  "textures": {
-    "side": "additionalcolors:block/warped_planks",
-    "top": "additionalcolors:block/warped_planks",
-    "bottom": "additionalcolors:block/warped_planks"
-  }
-}

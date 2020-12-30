@@ -1,8 +1,0 @@
-{
-  "parent": "additionalcolors:block/stairs_tinted",
-  "textures": {
-    "side": "additionalcolors:block/crimson_planks",
-    "top": "additionalcolors:block/crimson_planks",
-    "bottom": "additionalcolors:block/crimson_planks"
-  }
-}

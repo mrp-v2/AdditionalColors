@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/block",
+  "parent": "block/block",
   "textures": {
     "end": "additionalcolors:block/quartz_block_end",
     "side": "additionalcolors:block/quartz_block_side",

@@ -3,7 +3,9 @@ package mrp_v2.additionalcolors.datagen;
 import mrp_v2.additionalcolors.util.ObjectHolder;
 import mrp_v2.mrplibrary.datagen.BlockLootTables;
 import net.minecraft.block.Block;
-import net.minecraft.loot.LootTable;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.state.properties.DoubleBlockHalf;
+import net.minecraft.world.storage.loot.LootTable;
 
 import java.util.function.Function;
 
@@ -21,7 +23,7 @@ public class LootTableGenerator extends BlockLootTables
 
     public static LootTable.Builder droppingDoor(Block door)
     {
-        return net.minecraft.data.loot.BlockLootTables.registerDoor(door);
+        return net.minecraft.data.loot.BlockLootTables.droppingWhen(door, DoorBlock.HALF, DoubleBlockHalf.LOWER);
     }
 
     @Override public void registerLootTable(Block blockIn, Function<Block, LootTable.Builder> factory)

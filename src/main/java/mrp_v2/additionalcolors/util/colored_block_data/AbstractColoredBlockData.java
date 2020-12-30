@@ -9,17 +9,15 @@ import mrp_v2.additionalcolors.util.Util;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
 import mrp_v2.mrplibrary.datagen.recipe.ShapelessRecipeBuilder;
 import mrp_v2.mrplibrary.util.Possible;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.TagsProvider;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.fml.RegistryObject;
@@ -35,10 +33,10 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     protected final Possible<Block> baseBlock;
     protected final Possible<Item> baseItem;
     protected final Map<DyeColor, RegistryObject<T>> blockObjectMap = new HashMap<>();
-    protected final ITag.INamedTag<Item> craftingTag;
-    protected final ITag.INamedTag<Block>[] blockTagsToAddTo;
-    protected final ITag.INamedTag<Item>[] itemTagsToAddTo;
-    protected final ITag.INamedTag<Item> craftingTagIncludingBase;
+    protected final Tag<Item> craftingTag;
+    protected final Tag<Block>[] blockTagsToAddTo;
+    protected final Tag<Item>[] itemTagsToAddTo;
+    protected final Tag<Item> craftingTagIncludingBase;
 
     @Override public Map<DyeColor, RegistryObject<T>> register()
     {
@@ -53,15 +51,15 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         return blockObjectMap;
     }
 
-    protected AbstractColoredBlockData(ResourceLocation baseBlockLoc, ITag.INamedTag<Block>[] blockTagsToAddTo,
-            ITag.INamedTag<Item>[] itemTagsToAddTo)
+    protected AbstractColoredBlockData(ResourceLocation baseBlockLoc, Tag<Block>[] blockTagsToAddTo,
+            Tag<Item>[] itemTagsToAddTo)
     {
         this.baseBlock = Possible.of(baseBlockLoc);
         this.baseItem = Possible.of(baseBlockLoc);
         this.craftingTagIncludingBase =
-                ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, baseBlockLoc.getPath()));
+                new ItemTags.Wrapper(new ResourceLocation(AdditionalColors.ID, baseBlockLoc.getPath()));
         this.craftingTag =
-                ItemTags.createOptional(new ResourceLocation(AdditionalColors.ID, baseBlockLoc.getPath() + "_base"));
+                new ItemTags.Wrapper(new ResourceLocation(AdditionalColors.ID, baseBlockLoc.getPath() + "_base"));
         this.blockTagsToAddTo = blockTagsToAddTo;
         this.itemTagsToAddTo = itemTagsToAddTo;
     }
@@ -71,27 +69,21 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         this(baseBlock, Util.makeTagArray());
     }
 
-    public AbstractColoredBlockData(Block baseBlock, ITag.INamedTag<Block>[] blockTagsToAddTo)
+    public AbstractColoredBlockData(Block baseBlock, Tag<Block>[] blockTagsToAddTo)
     {
         this(baseBlock, blockTagsToAddTo, Util.makeTagArray());
     }
 
-    protected AbstractColoredBlockData(Block baseBlock, ITag.INamedTag<Block>[] blockTagsToAddTo,
-            ITag.INamedTag<Item>[] itemTagsToAddTo)
+    protected AbstractColoredBlockData(Block baseBlock, Tag<Block>[] blockTagsToAddTo, Tag<Item>[] itemTagsToAddTo)
     {
         this.baseBlock = Possible.of(baseBlock);
         this.baseItem = Possible.of(baseBlock.asItem());
-        this.craftingTagIncludingBase = ItemTags.createOptional(
-                new ResourceLocation(AdditionalColors.ID, baseBlock.getRegistryName().getPath()));
-        this.craftingTag = ItemTags.createOptional(
+        this.craftingTagIncludingBase =
+                new ItemTags.Wrapper(new ResourceLocation(AdditionalColors.ID, baseBlock.getRegistryName().getPath()));
+        this.craftingTag = new ItemTags.Wrapper(
                 new ResourceLocation(AdditionalColors.ID, baseBlock.getRegistryName().getPath() + "_base"));
         this.blockTagsToAddTo = blockTagsToAddTo;
         this.itemTagsToAddTo = itemTagsToAddTo;
-    }
-
-    @Override public void makeTextureGenerationPromises(TextureGenerator generator)
-    {
-        generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath()));
     }
 
     @Override public void forEachBlock(Consumer<T> consumer)
@@ -165,25 +157,24 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         }
     }
 
-    @Override public void registerRecipes(Consumer<IFinishedRecipe> consumer)
+    @Override public void registerRecipes(RecipeGenerator generator, Consumer<IFinishedRecipe> consumer)
     {
         ShapelessRecipeBuilder.shapelessRecipe(getBaseItemLoc()).addIngredient(craftingTag)
-                .addCriterion("has_block", RecipeGenerator.makeHasItemCriterion(craftingTag))
+                .addCriterion("has_block", generator.makeHasItemCriterion(craftingTag))
                 .build(consumer, new ResourceLocation(AdditionalColors.ID, getBaseItemLoc().getPath()));
         for (Map.Entry<DyeColor, RegistryObject<T>> blockObjectEntry : blockObjectMap.entrySet())
         {
             ShapelessRecipeBuilder.shapelessRecipe(blockObjectEntry.getValue().get())
                     .addIngredient(craftingTagIncludingBase).addIngredient(blockObjectEntry.getKey().getTag())
-                    .addCriterion("has_base", RecipeGenerator.makeHasItemCriterion(craftingTagIncludingBase))
-                    .build(consumer);
+                    .addCriterion("has_base", generator.makeHasItemCriterion(craftingTagIncludingBase)).build(consumer);
         }
     }
 
     @Override public void registerBlockTags(BlockTagGenerator generator)
     {
-        for (ITag.INamedTag<Block> tagToAddTo : blockTagsToAddTo)
+        for (Tag<Block> tagToAddTo : blockTagsToAddTo)
         {
-            TagsProvider.Builder<Block> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
+            Tag.Builder<Block> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
             for (RegistryObject<T> blockObject : blockObjectMap.values())
             {
                 tagBuilder.add(blockObject.get());
@@ -193,16 +184,15 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
                 tagBuilder.add(getBaseBlock());
             } else
             {
-                tagBuilder.addOptional(getBaseBlockLoc());
+                tagBuilder.addOptionalTag(getBaseBlockLoc());
             }
         }
     }
 
     @Override public void registerItemTags(ItemTagGenerator generator)
     {
-        TagsProvider.Builder<Item> craftingTagBuilder = generator.getOrCreateBuilder(craftingTag);
-        TagsProvider.Builder<Item> craftingTagIncludingBaseBuilder =
-                generator.getOrCreateBuilder(craftingTagIncludingBase);
+        Tag.Builder<Item> craftingTagBuilder = generator.getOrCreateBuilder(craftingTag);
+        Tag.Builder<Item> craftingTagIncludingBaseBuilder = generator.getOrCreateBuilder(craftingTagIncludingBase);
         for (RegistryObject<T> blockObject : blockObjectMap.values())
         {
             Item item = blockObject.get().asItem();
@@ -214,11 +204,11 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
             craftingTagIncludingBaseBuilder.add(getBaseBlock().asItem());
         } else
         {
-            craftingTagIncludingBaseBuilder.addOptional(getBaseItemLoc());
+            craftingTagIncludingBaseBuilder.addOptionalTag(getBaseItemLoc());
         }
-        for (ITag.INamedTag<Item> tagToAddTo : itemTagsToAddTo)
+        for (Tag<Item> tagToAddTo : itemTagsToAddTo)
         {
-            TagsProvider.Builder<Item> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
+            Tag.Builder<Item> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
             for (RegistryObject<T> blockObject : blockObjectMap.values())
             {
                 tagBuilder.add(blockObject.get().asItem());
@@ -228,7 +218,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
                 tagBuilder.add(getBaseBlock().asItem());
             } else
             {
-                tagBuilder.addOptional(getBaseItemLoc());
+                tagBuilder.addOptionalTag(getBaseItemLoc());
             }
         }
     }
@@ -283,8 +273,8 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
 
     protected abstract T makeNewBlock(DyeColor color);
 
-    protected AbstractBlock.Properties getBlockProperties()
+    protected Block.Properties getBlockProperties()
     {
-        return AbstractBlock.Properties.from(baseBlock.get());
+        return Block.Properties.from(baseBlock.get());
     }
 }

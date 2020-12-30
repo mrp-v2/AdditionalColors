@@ -8,7 +8,7 @@ import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
 import net.minecraft.block.Block;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.fml.RegistryObject;
@@ -18,22 +18,18 @@ public class BasicColoredSlabBlockData extends AbstractColoredBlockData<ColoredS
 {
     protected final IColoredBlockData<?> baseBlockData;
 
-    public BasicColoredSlabBlockData(Block baseBlock, ITag.INamedTag<Block>[] additionalBlockTags,
-            ITag.INamedTag<Item>[] additionalItemTags, IColoredBlockData<?> baseBlockData)
+    public BasicColoredSlabBlockData(Block baseBlock, Tag<Block>[] additionalBlockTags, Tag<Item>[] additionalItemTags,
+            IColoredBlockData<?> baseBlockData)
     {
         super(baseBlock, additionalBlockTags, additionalItemTags);
         this.baseBlockData = baseBlockData;
     }
 
-    public BasicColoredSlabBlockData(ResourceLocation baseBlockLoc, ITag.INamedTag<Block>[] blockTagsToAddTo,
-            ITag.INamedTag<Item>[] itemTagsToAddTo, IColoredBlockData<?> baseBlockData)
+    public BasicColoredSlabBlockData(ResourceLocation baseBlockLoc, Tag<Block>[] blockTagsToAddTo,
+            Tag<Item>[] itemTagsToAddTo, IColoredBlockData<?> baseBlockData)
     {
         super(baseBlockLoc, blockTagsToAddTo, itemTagsToAddTo);
         this.baseBlockData = baseBlockData;
-    }
-
-    @Override public void makeTextureGenerationPromises(TextureGenerator generator)
-    {
     }
 
     @Override public void registerTextures(TextureGenerator generator, TextureProvider.FinishedTextureConsumer consumer)

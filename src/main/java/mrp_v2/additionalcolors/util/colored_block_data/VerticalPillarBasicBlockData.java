@@ -8,7 +8,7 @@ import mrp_v2.additionalcolors.util.Util;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -22,18 +22,10 @@ public class VerticalPillarBasicBlockData extends BasicColoredBlockData
         this(baseBlock, Util.makeTagArray(), Util.makeTagArray());
     }
 
-    public VerticalPillarBasicBlockData(Block baseBlock, ITag.INamedTag<Block>[] additionalBlockTags,
-            ITag.INamedTag<Item>[] additionalItemTags)
+    public VerticalPillarBasicBlockData(Block baseBlock, Tag<Block>[] additionalBlockTags,
+            Tag<Item>[] additionalItemTags)
     {
         super(baseBlock, additionalBlockTags, additionalItemTags);
-    }
-
-    @Override public void makeTextureGenerationPromises(TextureGenerator generator)
-    {
-        generator.promiseGeneration(
-                new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath() + "_end"));
-        generator.promiseGeneration(
-                new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath() + "_side"));
     }
 
     @Override public void registerTextures(TextureGenerator generator, TextureProvider.FinishedTextureConsumer consumer)
