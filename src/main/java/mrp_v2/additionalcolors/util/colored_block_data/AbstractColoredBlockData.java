@@ -24,14 +24,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.image.BufferedImage;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
 public abstract class AbstractColoredBlockData<T extends Block & IColored> implements IColoredBlockData<T>
 {
+    public static final Logger LOGGER = LogManager.getLogger();
     protected final Possible<Block> baseBlock;
     protected final Possible<Item> baseItem;
     protected final Map<DyeColor, RegistryObject<T>> blockObjectMap = new HashMap<>();
@@ -66,12 +70,12 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         this.itemTagsToAddTo = itemTagsToAddTo;
     }
 
-    public AbstractColoredBlockData(Block baseBlock)
+    protected AbstractColoredBlockData(Block baseBlock)
     {
         this(baseBlock, Util.makeTagArray());
     }
 
-    public AbstractColoredBlockData(Block baseBlock, ITag.INamedTag<Block>[] blockTagsToAddTo)
+    protected AbstractColoredBlockData(Block baseBlock, ITag.INamedTag<Block>[] blockTagsToAddTo)
     {
         this(baseBlock, blockTagsToAddTo, Util.makeTagArray());
     }
@@ -94,12 +98,9 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         generator.promiseGeneration(new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath()));
     }
 
-    @Override public void forEachBlock(Consumer<T> consumer)
+    @Override public Collection<RegistryObject<T>> getBlockObjects()
     {
-        for (RegistryObject<T> blockObject : blockObjectMap.values())
-        {
-            consumer.accept(blockObject.get());
-        }
+        return blockObjectMap.values();
     }
 
     @Override public boolean requiresTinting()
@@ -112,7 +113,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         return baseBlock.getId();
     }
 
-    @Override public ResourceLocation getBaseItemLoc()
+    public ResourceLocation getBaseItemLoc()
     {
         return baseItem.getId();
     }
@@ -121,7 +122,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     {
         if (hasSpecialRenderType())
         {
-            for (RegistryObject<T> blockObject : blockObjectMap.values())
+            for (RegistryObject<T> blockObject : getBlockObjects())
             {
                 RenderTypeLookup.setRenderLayer(blockObject.get(), getSpecialRenderType());
             }
@@ -140,7 +141,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
 
     @Override public void registerItemModels(ItemModelGenerator generator)
     {
-        for (RegistryObject<T> blockObject : blockObjectMap.values())
+        for (RegistryObject<T> blockObject : getBlockObjects())
         {
             generator.withExistingParent(blockObject.getId().getPath(),
                     generator.modLoc("block/" + baseBlock.getId().getPath()));
@@ -149,7 +150,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
 
     @Override public void registerLootTables(LootTableGenerator generator)
     {
-        for (RegistryObject<T> blockObject : blockObjectMap.values())
+        for (RegistryObject<T> blockObject : getBlockObjects())
         {
             generator.addLootTable(blockObject.get(), generator::registerDropSelfLootTable);
         }
@@ -159,7 +160,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     {
         ResourceLocation textureLoc = generator.modLoc("block/" + baseBlock.getId().getPath());
         ModelFile modelFile = generator.tintedSimpleBlock("block/" + baseBlock.getId().getPath(), textureLoc);
-        for (RegistryObject<T> blockObject : blockObjectMap.values())
+        for (RegistryObject<T> blockObject : getBlockObjects())
         {
             generator.simpleBlock(blockObject.get(), modelFile);
         }
@@ -170,10 +171,11 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         ShapelessRecipeBuilder.shapelessRecipe(getBaseItemLoc()).addIngredient(craftingTag)
                 .addCriterion("has_block", RecipeGenerator.makeHasItemCriterion(craftingTag))
                 .build(consumer, new ResourceLocation(AdditionalColors.ID, getBaseItemLoc().getPath()));
-        for (Map.Entry<DyeColor, RegistryObject<T>> blockObjectEntry : blockObjectMap.entrySet())
+        for (RegistryObject<T> blockObject : getBlockObjects())
         {
-            ShapelessRecipeBuilder.shapelessRecipe(blockObjectEntry.getValue().get())
-                    .addIngredient(craftingTagIncludingBase).addIngredient(blockObjectEntry.getKey().getTag())
+            T block = blockObject.get();
+            ShapelessRecipeBuilder.shapelessRecipe(block).addIngredient(craftingTagIncludingBase)
+                    .addIngredient(block.getColor().getTag())
                     .addCriterion("has_base", RecipeGenerator.makeHasItemCriterion(craftingTagIncludingBase))
                     .build(consumer);
         }
@@ -184,14 +186,11 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         for (ITag.INamedTag<Block> tagToAddTo : blockTagsToAddTo)
         {
             TagsProvider.Builder<Block> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
-            for (RegistryObject<T> blockObject : blockObjectMap.values())
+            for (RegistryObject<T> blockObject : getBlockObjects())
             {
                 tagBuilder.add(blockObject.get());
             }
-            if (doesBaseBlockAlwaysExist())
-            {
-                tagBuilder.add(getBaseBlock());
-            } else
+            if (!doesBaseBlockAlwaysExist())
             {
                 tagBuilder.addOptional(getBaseBlockLoc());
             }
@@ -203,7 +202,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         TagsProvider.Builder<Item> craftingTagBuilder = generator.getOrCreateBuilder(craftingTag);
         TagsProvider.Builder<Item> craftingTagIncludingBaseBuilder =
                 generator.getOrCreateBuilder(craftingTagIncludingBase);
-        for (RegistryObject<T> blockObject : blockObjectMap.values())
+        for (RegistryObject<T> blockObject : getBlockObjects())
         {
             Item item = blockObject.get().asItem();
             craftingTagBuilder.add(item);
@@ -219,14 +218,11 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         for (ITag.INamedTag<Item> tagToAddTo : itemTagsToAddTo)
         {
             TagsProvider.Builder<Item> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
-            for (RegistryObject<T> blockObject : blockObjectMap.values())
+            for (RegistryObject<T> blockObject : getBlockObjects())
             {
                 tagBuilder.add(blockObject.get().asItem());
             }
-            if (doesBaseBlockAlwaysExist())
-            {
-                tagBuilder.add(getBaseBlock().asItem());
-            } else
+            if (!doesBaseBlockAlwaysExist())
             {
                 tagBuilder.addOptional(getBaseItemLoc());
             }
@@ -235,33 +231,33 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
 
     @Override public void generateTranslations(EN_USTranslationGenerator generator)
     {
-        for (RegistryObject<T> blockObject : blockObjectMap.values())
+        for (RegistryObject<T> blockObject : getBlockObjects())
         {
             generator.addSimpleBlock(blockObject);
         }
     }
 
-    @Override public DyeColor[] getColors()
+    public DyeColor[] getColors()
     {
         return DyeColor.values();
     }
 
-    @Override public ItemGroup getItemGroup()
+    public ItemGroup getItemGroup()
     {
         return ObjectHolder.MAIN_ITEM_GROUP;
     }
 
-    @Override public RegistryObject<T> getBlockObject(DyeColor color)
+    public RegistryObject<T> getBlockObject(DyeColor color)
     {
         return blockObjectMap.get(color);
     }
 
-    @Override public Block getBaseBlock()
+    public Block getBaseBlock()
     {
         return baseBlock.get();
     }
 
-    @Override public boolean doesBaseBlockAlwaysExist()
+    public boolean doesBaseBlockAlwaysExist()
     {
         return baseBlock.exists();
     }
@@ -286,5 +282,24 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     protected AbstractBlock.Properties getBlockProperties()
     {
         return AbstractBlock.Properties.from(baseBlock.get());
+    }
+
+    public void createBlockSlabAndStairWrapper(Block baseSlabBlock, Block baseStairsBlock)
+    {
+        new BlockSlabAndStairWrapper(baseSlabBlock, baseStairsBlock);
+    }
+
+    public class BlockSlabAndStairWrapper
+            extends mrp_v2.additionalcolors.util.colored_block_data.BlockSlabAndStairWrapper
+    {
+        public BlockSlabAndStairWrapper(Block baseSlabBlock, Block baseStairsBlock)
+        {
+            super(AbstractColoredBlockData.this.baseBlock.get(), baseSlabBlock, baseStairsBlock);
+        }
+
+        @Override protected AbstractColoredBlockData<?> makeNewColoredBlockData()
+        {
+            return AbstractColoredBlockData.this;
+        }
     }
 }

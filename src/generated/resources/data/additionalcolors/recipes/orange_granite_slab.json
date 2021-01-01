@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:orange_granite_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:granite_slab"
+    },
+    {
+      "tag": "forge:dyes/orange"
+    }
+  ]
+}

@@ -5,8 +5,8 @@ import mrp_v2.additionalcolors.block.ColoredStairsBlock;
 import mrp_v2.additionalcolors.datagen.BlockStateGenerator;
 import mrp_v2.additionalcolors.datagen.ItemModelGenerator;
 import mrp_v2.additionalcolors.util.ObjectHolder;
+import mrp_v2.additionalcolors.util.colored_block_data.AbstractColoredBlockData;
 import mrp_v2.additionalcolors.util.colored_block_data.BasicColoredStairsBlockData;
-import mrp_v2.additionalcolors.util.colored_block_data.IColoredBlockData;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -20,7 +20,7 @@ import net.minecraftforge.fml.RegistryObject;
 public class CryingObsidianStairsBlockData extends BasicColoredStairsBlockData
 {
     public CryingObsidianStairsBlockData(ResourceLocation baseBlockLoc, ITag.INamedTag<Block>[] blockTagsToAddTo,
-            ITag.INamedTag<Item>[] itemTagsToAddTo, IColoredBlockData<?> baseBlockData)
+            ITag.INamedTag<Item>[] itemTagsToAddTo, AbstractColoredBlockData<?> baseBlockData)
     {
         super(baseBlockLoc, blockTagsToAddTo, itemTagsToAddTo, baseBlockData);
     }

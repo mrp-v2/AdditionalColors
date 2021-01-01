@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:white_polished_granite_slab",
+    "additionalcolors:magenta_polished_granite_slab",
+    "additionalcolors:light_gray_polished_granite_slab",
+    "additionalcolors:gray_polished_granite_slab",
+    "additionalcolors:blue_polished_granite_slab",
+    "additionalcolors:green_polished_granite_slab",
+    "additionalcolors:yellow_polished_granite_slab",
+    "additionalcolors:brown_polished_granite_slab",
+    "additionalcolors:light_blue_polished_granite_slab",
+    "additionalcolors:red_polished_granite_slab",
+    "additionalcolors:pink_polished_granite_slab",
+    "additionalcolors:purple_polished_granite_slab",
+    "additionalcolors:cyan_polished_granite_slab",
+    "additionalcolors:orange_polished_granite_slab",
+    "additionalcolors:lime_polished_granite_slab",
+    "additionalcolors:black_polished_granite_slab",
+    "minecraft:polished_granite_slab"
+  ]
+}

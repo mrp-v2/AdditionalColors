@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:magenta_nether_brick_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:nether_brick_slab"
+    },
+    {
+      "tag": "forge:dyes/magenta"
+    }
+  ]
+}

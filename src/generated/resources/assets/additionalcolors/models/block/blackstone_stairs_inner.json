@@ -1,0 +1,8 @@
+{
+  "parent": "additionalcolors:block/stairs_inner_tinted",
+  "textures": {
+    "bottom": "additionalcolors:block/blackstone_end",
+    "top": "additionalcolors:block/blackstone_end",
+    "side": "additionalcolors:block/blackstone_side"
+  }
+}

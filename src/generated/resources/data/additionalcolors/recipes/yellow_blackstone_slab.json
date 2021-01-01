@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:yellow_blackstone_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:blackstone_slab"
+    },
+    {
+      "tag": "forge:dyes/yellow"
+    }
+  ]
+}

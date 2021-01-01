@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:orange_stone_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:stone_stairs"
+    },
+    {
+      "tag": "forge:dyes/orange"
+    }
+  ]
+}

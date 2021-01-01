@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:lime_prismarine_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:prismarine_stairs"
+    },
+    {
+      "tag": "forge:dyes/lime"
+    }
+  ]
+}

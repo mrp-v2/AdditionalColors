@@ -1,0 +1,8 @@
+{
+  "parent": "additionalcolors:block/slab_top_tinted",
+  "textures": {
+    "bottom": "additionalcolors:block/prismarine_bricks",
+    "top": "additionalcolors:block/prismarine_bricks",
+    "side": "additionalcolors:block/prismarine_bricks"
+  }
+}

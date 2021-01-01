@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:dark_prismarine_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:dark_prismarine_slab_base"
+    }
+  ]
+}

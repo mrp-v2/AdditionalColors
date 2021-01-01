@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:white_polished_granite_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:polished_granite_stairs"
+    },
+    {
+      "tag": "forge:dyes/white"
+    }
+  ]
+}

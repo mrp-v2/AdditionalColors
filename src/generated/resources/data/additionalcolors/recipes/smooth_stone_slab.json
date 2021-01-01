@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:smooth_stone_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:smooth_stone_slab_base"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "additionalcolors:block/slab_top_tinted",
+  "textures": {
+    "bottom": "additionalcolors:block/sandstone_bottom",
+    "top": "additionalcolors:block/sandstone_top",
+    "side": "additionalcolors:block/sandstone"
+  }
+}

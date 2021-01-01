@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:blackstone_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:blackstone_slab_base"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:nether_brick_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:nether_brick_slab_base"
+    }
+  ]
+}

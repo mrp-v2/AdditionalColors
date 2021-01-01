@@ -11,7 +11,6 @@ import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.commons.lang3.tuple.Triple;
 
 import java.util.HashMap;
 import java.util.function.BiConsumer;
@@ -55,26 +54,6 @@ public class BlockStateGenerator extends BlockStateProvider
     public ModelFile tintedSimpleBlock(String path, ResourceLocation textureLoc)
     {
         return models().withExistingParent(path, CUBE_ALL_TINTED).texture("all", textureLoc);
-    }
-
-    public Triple<ModelFile, ModelFile, ModelFile> tintedSimpleSlabBlock(String path, ResourceLocation textureLoc,
-            String parentPath)
-    {
-        return Triple.of(models().withExistingParent(path, SLAB_TINTED).texture("side", textureLoc)
-                        .texture("top", textureLoc).texture("bottom", textureLoc),
-                models().withExistingParent(path + "_top", SLAB_TOP_TINTED).texture("side", textureLoc)
-                        .texture("top", textureLoc).texture("bottom", textureLoc),
-                models().getExistingFile(new ResourceLocation(AdditionalColors.ID, "block/" + parentPath)));
-    }
-
-    public Triple<ModelFile, ModelFile, ModelFile> tintedSimpleStairsBlock(String path, ResourceLocation textureLoc)
-    {
-        return Triple.of(models().withExistingParent(path, STAIRS_TINTED).texture("side", textureLoc)
-                        .texture("top", textureLoc).texture("bottom", textureLoc),
-                models().withExistingParent(path + "_inner", STAIRS_INNER_TINTED).texture("side", textureLoc)
-                        .texture("top", textureLoc).texture("bottom", textureLoc),
-                models().withExistingParent(path + "_outer", STAIRS_OUTER_TINTED).texture("side", textureLoc)
-                        .texture("top", textureLoc).texture("bottom", textureLoc));
     }
 
     public BlockStateGenerator(DataGenerator gen, String modid, ExistingFileHelper exFileHelper)

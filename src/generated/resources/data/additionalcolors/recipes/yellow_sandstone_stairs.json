@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:yellow_sandstone_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:sandstone_stairs"
+    },
+    {
+      "tag": "forge:dyes/yellow"
+    }
+  ]
+}

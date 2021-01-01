@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:white_cobblestone_slab",
+    "additionalcolors:magenta_cobblestone_slab",
+    "additionalcolors:light_gray_cobblestone_slab",
+    "additionalcolors:gray_cobblestone_slab",
+    "additionalcolors:blue_cobblestone_slab",
+    "additionalcolors:green_cobblestone_slab",
+    "additionalcolors:yellow_cobblestone_slab",
+    "additionalcolors:brown_cobblestone_slab",
+    "additionalcolors:light_blue_cobblestone_slab",
+    "additionalcolors:red_cobblestone_slab",
+    "additionalcolors:pink_cobblestone_slab",
+    "additionalcolors:purple_cobblestone_slab",
+    "additionalcolors:cyan_cobblestone_slab",
+    "additionalcolors:orange_cobblestone_slab",
+    "additionalcolors:lime_cobblestone_slab",
+    "additionalcolors:black_cobblestone_slab"
+  ]
+}

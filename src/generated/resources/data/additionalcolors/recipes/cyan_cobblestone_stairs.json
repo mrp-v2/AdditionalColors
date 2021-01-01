@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:cyan_cobblestone_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:cobblestone_stairs"
+    },
+    {
+      "tag": "forge:dyes/cyan"
+    }
+  ]
+}

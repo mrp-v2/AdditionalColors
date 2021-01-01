@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "additionalcolors:block/granite_slab_top"
+    },
+    "type=bottom": {
+      "model": "additionalcolors:block/granite_slab"
+    },
+    "type=double": {
+      "model": "additionalcolors:block/granite"
+    }
+  }
+}

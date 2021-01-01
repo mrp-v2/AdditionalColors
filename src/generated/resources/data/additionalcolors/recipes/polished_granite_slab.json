@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:polished_granite_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:polished_granite_slab_base"
+    }
+  ]
+}

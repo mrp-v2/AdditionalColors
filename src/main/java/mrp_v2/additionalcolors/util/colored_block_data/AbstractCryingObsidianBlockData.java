@@ -46,7 +46,7 @@ public abstract class AbstractCryingObsidianBlockData<T extends Block & IColored
 
     @Override public void registerItemModels(ItemModelGenerator generator)
     {
-        for (RegistryObject<T> blockObject : blockObjectMap.values())
+        for (RegistryObject<T> blockObject : getBlockObjects())
         {
             String path = blockObject.getId().getPath();
             generator.withExistingParent(path, generator.modLoc("block/" + path));
@@ -55,7 +55,7 @@ public abstract class AbstractCryingObsidianBlockData<T extends Block & IColored
 
     @Override public void registerLootTables(LootTableGenerator generator)
     {
-        for (RegistryObject<T> blockObject : blockObjectMap.values())
+        for (RegistryObject<T> blockObject : getBlockObjects())
         {
             generator.addLootTable(blockObject.get(), generator::registerDropSelfLootTable);
         }

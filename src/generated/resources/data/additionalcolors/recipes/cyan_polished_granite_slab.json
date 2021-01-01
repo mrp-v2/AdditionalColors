@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:cyan_polished_granite_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:polished_granite_slab"
+    },
+    {
+      "tag": "forge:dyes/cyan"
+    }
+  ]
+}

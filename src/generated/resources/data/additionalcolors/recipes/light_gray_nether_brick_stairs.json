@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:light_gray_nether_brick_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:nether_brick_stairs"
+    },
+    {
+      "tag": "forge:dyes/light_gray"
+    }
+  ]
+}

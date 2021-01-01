@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:cobblestone_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:cobblestone_stairs_base"
+    }
+  ]
+}

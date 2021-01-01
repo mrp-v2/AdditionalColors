@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:light_gray_cobblestone_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:cobblestone_slab"
+    },
+    {
+      "tag": "forge:dyes/light_gray"
+    }
+  ]
+}

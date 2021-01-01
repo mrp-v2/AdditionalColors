@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:yellow_polished_granite"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:polished_granite"
+    },
+    {
+      "tag": "forge:dyes/yellow"
+    }
+  ]
+}

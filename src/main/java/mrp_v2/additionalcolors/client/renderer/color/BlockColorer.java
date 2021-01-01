@@ -14,6 +14,7 @@ import net.minecraft.world.IBlockDisplayReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
@@ -30,7 +31,10 @@ public class BlockColorer implements IBlockColor, IItemColor
         {
             if (data.requiresTinting())
             {
-                data.forEachBlock((block) -> event.getBlockColors().register(INSTANCE, block));
+                for (RegistryObject<? extends Block> blockObj : data.getBlockObjects())
+                {
+                    event.getBlockColors().register(INSTANCE, blockObj.get());
+                }
             }
         }
     }
@@ -41,7 +45,10 @@ public class BlockColorer implements IBlockColor, IItemColor
         {
             if (data.requiresTinting())
             {
-                data.forEachBlock((block) -> event.getItemColors().register(INSTANCE, block.asItem()));
+                for (RegistryObject<? extends Block> blockObj : data.getBlockObjects())
+                {
+                    event.getItemColors().register(INSTANCE, blockObj.get().asItem());
+                }
             }
         }
     }

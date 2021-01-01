@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "additionalcolors:block/quartz_slab_top"
+    },
+    "type=bottom": {
+      "model": "additionalcolors:block/quartz_slab"
+    },
+    "type=double": {
+      "model": "additionalcolors:block/quartz_block"
+    }
+  }
+}

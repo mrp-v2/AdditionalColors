@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:brown_sandstone_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:sandstone_slab"
+    },
+    {
+      "tag": "forge:dyes/brown"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:lime_dark_prismarine_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:dark_prismarine_slab"
+    },
+    {
+      "tag": "forge:dyes/lime"
+    }
+  ]
+}

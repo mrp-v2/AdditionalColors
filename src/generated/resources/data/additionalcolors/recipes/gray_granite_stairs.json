@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:gray_granite_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:granite_stairs"
+    },
+    {
+      "tag": "forge:dyes/gray"
+    }
+  ]
+}

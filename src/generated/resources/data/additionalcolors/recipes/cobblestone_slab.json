@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:cobblestone_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:cobblestone_slab_base"
+    }
+  ]
+}

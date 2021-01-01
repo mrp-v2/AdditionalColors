@@ -1,0 +1,11 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "minecraft:granite_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:granite_stairs_base"
+    }
+  ]
+}

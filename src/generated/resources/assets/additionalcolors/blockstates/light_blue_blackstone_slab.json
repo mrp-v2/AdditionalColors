@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "additionalcolors:block/blackstone_slab_top"
+    },
+    "type=bottom": {
+      "model": "additionalcolors:block/blackstone_slab"
+    },
+    "type=double": {
+      "model": "additionalcolors:block/blackstone"
+    }
+  }
+}

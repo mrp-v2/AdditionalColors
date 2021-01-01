@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:green_prismarine_brick_stairs"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:prismarine_brick_stairs"
+    },
+    {
+      "tag": "forge:dyes/green"
+    }
+  ]
+}

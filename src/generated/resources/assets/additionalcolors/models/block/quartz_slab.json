@@ -1,0 +1,8 @@
+{
+  "parent": "additionalcolors:block/slab_tinted",
+  "textures": {
+    "bottom": "additionalcolors:block/quartz_block_end",
+    "top": "additionalcolors:block/quartz_block_end",
+    "side": "additionalcolors:block/quartz_block_side"
+  }
+}

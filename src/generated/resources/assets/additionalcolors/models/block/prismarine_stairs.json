@@ -1,0 +1,8 @@
+{
+  "parent": "additionalcolors:block/stairs_tinted",
+  "textures": {
+    "bottom": "additionalcolors:block/prismarine",
+    "top": "additionalcolors:block/prismarine",
+    "side": "additionalcolors:block/prismarine"
+  }
+}

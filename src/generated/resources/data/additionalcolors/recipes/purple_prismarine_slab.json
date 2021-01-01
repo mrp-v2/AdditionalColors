@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:purple_prismarine_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:prismarine_slab"
+    },
+    {
+      "tag": "forge:dyes/purple"
+    }
+  ]
+}

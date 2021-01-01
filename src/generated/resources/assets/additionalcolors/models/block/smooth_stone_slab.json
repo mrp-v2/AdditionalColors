@@ -1,0 +1,8 @@
+{
+  "parent": "additionalcolors:block/slab_tinted",
+  "textures": {
+    "bottom": "additionalcolors:block/smooth_stone",
+    "top": "additionalcolors:block/smooth_stone",
+    "side": "additionalcolors:block/smooth_stone"
+  }
+}

@@ -28,6 +28,12 @@ public class VerticalPillarBasicBlockData extends BasicColoredBlockData
         super(baseBlock, additionalBlockTags, additionalItemTags);
     }
 
+    public VerticalPillarBasicBlockData(Block baseBlock, ITag.INamedTag<Block> additionalBlockTag,
+            ITag.INamedTag<Item> additionalItemTag)
+    {
+        this(baseBlock, Util.makeTagArray(additionalBlockTag), Util.makeTagArray(additionalItemTag));
+    }
+
     @Override public void makeTextureGenerationPromises(TextureGenerator generator)
     {
         generator.promiseGeneration(
@@ -71,10 +77,89 @@ public class VerticalPillarBasicBlockData extends BasicColoredBlockData
                 .texture("particle", generator.modLoc("block/" + baseBlock.getId().getPath() + "_side")).element()
                 .from(0, 0, 0).to(16, 16, 16).allFaces((face, faceBuilder) -> faceBuilder.tintindex(0)
                 .texture(face.getAxis() == Direction.Axis.Y ? "#end" : "#side").cullface(face).end()).end();
-        for (RegistryObject<ColoredBlock> blockObject : blockObjectMap.values())
+        for (RegistryObject<ColoredBlock> blockObject : getBlockObjects())
         {
             generator.simpleBlock(blockObject.get(),
                     generator.models().getExistingFile(generator.modLoc("block/" + baseBlock.getId().getPath())));
+        }
+    }
+
+    public static class Slab extends BasicColoredSlabBlockData
+    {
+        public Slab(Block baseBlock, ITag.INamedTag<Block>[] blockTagsToAddTo, ITag.INamedTag<Item>[] itemTagsToAddTo,
+                IColoredBlockData<?> baseBlockData)
+        {
+            super(baseBlock, blockTagsToAddTo, itemTagsToAddTo, baseBlockData);
+        }
+
+        @Override protected ResourceLocation getSlabModelBottomTexture(BlockStateGenerator generator)
+        {
+            return getSlabModelTopTexture(generator);
+        }
+
+        @Override protected ResourceLocation getSlabModelTopTexture(BlockStateGenerator generator)
+        {
+            return generator.modLoc("block/" + baseBlockData.getBaseBlockLoc().getPath() + "_end");
+        }
+
+        @Override protected ResourceLocation getSlabModelSideTexture(BlockStateGenerator generator)
+        {
+            return generator.modLoc("block/" + baseBlockData.getBaseBlockLoc().getPath() + "_side");
+        }
+    }
+
+    public static class Stairs extends BasicColoredStairsBlockData
+    {
+        public Stairs(Block baseBlock, ITag.INamedTag<Block>[] blockTagsToAddTo, ITag.INamedTag<Item>[] itemTagsToAddTo,
+                AbstractColoredBlockData<?> baseBlockData)
+        {
+            super(baseBlock, blockTagsToAddTo, itemTagsToAddTo, baseBlockData);
+        }
+
+        @Override protected ResourceLocation getStairsModelBottomTexture(BlockStateGenerator generator)
+        {
+            return getStairsModelTopTexture(generator);
+        }
+
+        @Override protected ResourceLocation getStairsModelTopTexture(BlockStateGenerator generator)
+        {
+            return generator.modLoc("block/" + baseBlockData.getBaseBlockLoc().getPath() + "_end");
+        }
+
+        @Override protected ResourceLocation getStairsModelSideTexture(BlockStateGenerator generator)
+        {
+            return generator.modLoc("block/" + baseBlockData.getBaseBlockLoc().getPath() + "_side");
+        }
+    }
+
+    @Override public void createBlockSlabAndStairWrapper(Block baseSlabBlock, Block baseStairsBlock)
+    {
+        new BlockSlabAndStairWrapper(baseSlabBlock, baseStairsBlock);
+    }
+
+    public class BlockSlabAndStairWrapper
+            extends mrp_v2.additionalcolors.util.colored_block_data.BlockSlabAndStairWrapper
+    {
+        public BlockSlabAndStairWrapper(Block baseSlabBlock, Block baseStairsBlock)
+        {
+            super(VerticalPillarBasicBlockData.this.baseBlock.get(), baseSlabBlock, baseStairsBlock);
+        }
+
+        @Override protected BasicColoredBlockData makeNewColoredBlockData()
+        {
+            return VerticalPillarBasicBlockData.this;
+        }
+
+        @Override
+        protected AbstractColoredBlockData<?> makeNewColoredSlabBlockData(AbstractColoredBlockData<?> baseBlockData)
+        {
+            return new Slab(baseSlabBlock, slabBlockTags, slabBlockItemTags, VerticalPillarBasicBlockData.this);
+        }
+
+        @Override
+        protected AbstractColoredBlockData<?> makeNewColoredStairsBlockData(AbstractColoredBlockData<?> baseBlockData)
+        {
+            return new Stairs(baseStairsBlock, stairsBlockTags, stairsBlockItemTags, VerticalPillarBasicBlockData.this);
         }
     }
 }

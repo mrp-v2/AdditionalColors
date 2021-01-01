@@ -60,14 +60,82 @@ public class BottomTopBasicBlockData extends BasicColoredBlockData
                 .parent(generator.models().getExistingFile(generator.mcLoc("block/block")))
                 .texture("top", generator.modLoc("block/" + baseBlock.getId().getPath() + "_top"))
                 .texture("bottom", generator.modLoc("block/" + baseBlock.getId().getPath() + "_bottom"))
-                .texture("side", generator.modLoc("block/" + baseBlock.getId().getPath())).element()
-                .from(0, 0, 0).to(16, 16, 16)
-                .allFaces((face, builder) -> builder.texture("#side").cullface(face).tintindex(0).end())
+                .texture("side", generator.modLoc("block/" + baseBlock.getId().getPath())).element().from(0, 0, 0)
+                .to(16, 16, 16).allFaces((face, builder) -> builder.texture("#side").cullface(face).tintindex(0).end())
                 .face(Direction.UP).texture("#top").end().face(Direction.DOWN).texture("#bottom").end().end();
-        for (RegistryObject<ColoredBlock> blockObject : blockObjectMap.values())
+        for (RegistryObject<ColoredBlock> blockObject : getBlockObjects())
         {
             generator.simpleBlock(blockObject.get(),
                     generator.models().getExistingFile(generator.modLoc("block/" + baseBlock.getId().getPath())));
+        }
+    }
+
+    @Override public void createBlockSlabAndStairWrapper(Block baseSlabBlock, Block baseStairsBlock)
+    {
+        new BlockSlabAndStairWrapper(baseSlabBlock, baseStairsBlock);
+    }
+
+    public static class Slab extends BasicColoredSlabBlockData
+    {
+        public Slab(Block baseBlock, ITag.INamedTag<Block>[] blockTagsToAddTo, ITag.INamedTag<Item>[] itemTagsToAddTo,
+                IColoredBlockData<?> baseBlockData)
+        {
+            super(baseBlock, blockTagsToAddTo, itemTagsToAddTo, baseBlockData);
+        }
+
+        @Override protected ResourceLocation getSlabModelBottomTexture(BlockStateGenerator generator)
+        {
+            return generator.modLoc("block/" + baseBlockData.getBaseBlockLoc().getPath() + "_bottom");
+        }
+
+        @Override protected ResourceLocation getSlabModelTopTexture(BlockStateGenerator generator)
+        {
+            return generator.modLoc("block/" + baseBlockData.getBaseBlockLoc().getPath() + "_top");
+        }
+    }
+
+    public static class Stairs extends BasicColoredStairsBlockData
+    {
+        public Stairs(Block baseBlock, ITag.INamedTag<Block>[] blockTagsToAddTo, ITag.INamedTag<Item>[] itemTagsToAddTo,
+                AbstractColoredBlockData<?> baseBlockData)
+        {
+            super(baseBlock, blockTagsToAddTo, itemTagsToAddTo, baseBlockData);
+        }
+
+        @Override protected ResourceLocation getStairsModelBottomTexture(BlockStateGenerator generator)
+        {
+            return generator.modLoc("block/" + baseBlockData.getBaseBlockLoc().getPath() + "_bottom");
+        }
+
+        @Override protected ResourceLocation getStairsModelTopTexture(BlockStateGenerator generator)
+        {
+            return generator.modLoc("block/" + baseBlockData.getBaseBlockLoc().getPath() + "_top");
+        }
+    }
+
+    public class BlockSlabAndStairWrapper
+            extends mrp_v2.additionalcolors.util.colored_block_data.BlockSlabAndStairWrapper
+    {
+        public BlockSlabAndStairWrapper(Block baseSlabBlock, Block baseStairsBlock)
+        {
+            super(BottomTopBasicBlockData.this.baseBlock.get(), baseSlabBlock, baseStairsBlock);
+        }
+
+        @Override protected AbstractColoredBlockData<?> makeNewColoredBlockData()
+        {
+            return BottomTopBasicBlockData.this;
+        }
+
+        @Override
+        protected AbstractColoredBlockData<?> makeNewColoredSlabBlockData(AbstractColoredBlockData<?> baseBlockData)
+        {
+            return new Slab(baseSlabBlock, slabBlockTags, slabBlockItemTags, BottomTopBasicBlockData.this);
+        }
+
+        @Override
+        protected AbstractColoredBlockData<?> makeNewColoredStairsBlockData(AbstractColoredBlockData<?> baseBlockData)
+        {
+            return new Stairs(baseStairsBlock, stairsBlockTags, stairsBlockItemTags, BottomTopBasicBlockData.this);
         }
     }
 }

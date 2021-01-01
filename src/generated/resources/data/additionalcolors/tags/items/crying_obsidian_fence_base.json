@@ -1,16 +1,16 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:blue_crying_obsidian_fence",
-    "additionalcolors:black_crying_obsidian_fence",
     "additionalcolors:yellow_crying_obsidian_fence",
+    "additionalcolors:brown_crying_obsidian_fence",
     "additionalcolors:white_crying_obsidian_fence",
     "additionalcolors:light_gray_crying_obsidian_fence",
     "additionalcolors:gray_crying_obsidian_fence",
-    "additionalcolors:brown_crying_obsidian_fence",
-    "additionalcolors:orange_crying_obsidian_fence",
-    "additionalcolors:cyan_crying_obsidian_fence",
+    "additionalcolors:blue_crying_obsidian_fence",
+    "additionalcolors:red_crying_obsidian_fence",
     "additionalcolors:green_crying_obsidian_fence",
-    "additionalcolors:red_crying_obsidian_fence"
+    "additionalcolors:cyan_crying_obsidian_fence",
+    "additionalcolors:orange_crying_obsidian_fence",
+    "additionalcolors:black_crying_obsidian_fence"
   ]
 }

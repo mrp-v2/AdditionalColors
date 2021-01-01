@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:magenta_granite"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:granite"
+    },
+    {
+      "tag": "forge:dyes/magenta"
+    }
+  ]
+}

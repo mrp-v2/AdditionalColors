@@ -85,25 +85,24 @@ public class ObjectHolder
                 return 0.5d;
             }
         });
-        COLORIZED_BLOCK_DATAS
-                .add(new BasicColoredBlockData(Blocks.COBBLESTONE, Util.makeTagArray(Tags.Blocks.COBBLESTONE),
-                        Util.makeTagArray(Tags.Items.COBBLESTONE)));
-        COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.STONE, Util.makeTagArray(Tags.Blocks.STONE),
-                Util.makeTagArray(Tags.Items.STONE)));
-        COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.SMOOTH_STONE));
-        COLORIZED_BLOCK_DATAS.add(new VerticalPillarBasicBlockData(Blocks.QUARTZ_BLOCK,
-                Util.makeTagArray(Tags.Blocks.STORAGE_BLOCKS_QUARTZ),
-                Util.makeTagArray(Tags.Items.STORAGE_BLOCKS_QUARTZ)));
-        COLORIZED_BLOCK_DATAS.add(new VerticalPillarBasicBlockData(Blocks.BLACKSTONE)
+        new BlockSlabAndStairWrapper(Blocks.COBBLESTONE, Tags.Blocks.COBBLESTONE, Tags.Items.COBBLESTONE,
+                Blocks.COBBLESTONE_SLAB, Blocks.COBBLESTONE_STAIRS);
+        new BlockSlabAndStairWrapper(Blocks.STONE, Tags.Blocks.STONE, Tags.Items.STONE, Blocks.STONE_SLAB,
+                Blocks.STONE_STAIRS);
+        new BlockAndSlabWrapper(Blocks.SMOOTH_STONE, Blocks.SMOOTH_STONE_SLAB);
+        new VerticalPillarBasicBlockData(Blocks.QUARTZ_BLOCK, Tags.Blocks.STORAGE_BLOCKS_QUARTZ,
+                Tags.Items.STORAGE_BLOCKS_QUARTZ)
+                .createBlockSlabAndStairWrapper(Blocks.QUARTZ_SLAB, Blocks.QUARTZ_STAIRS);
+        new VerticalPillarBasicBlockData(Blocks.BLACKSTONE)
         {
             @Override protected String getSideSuffix()
             {
                 return "";
             }
-        });
-        COLORIZED_BLOCK_DATAS
-                .add(new BottomTopBasicBlockData(Blocks.SANDSTONE, Util.makeTagArray(Tags.Blocks.SANDSTONE),
-                        Util.makeTagArray(Tags.Items.SANDSTONE)));
+        }.createBlockSlabAndStairWrapper(Blocks.BLACKSTONE_SLAB, Blocks.BLACKSTONE_STAIRS);
+        new BottomTopBasicBlockData(Blocks.SANDSTONE, Util.makeTagArray(Tags.Blocks.SANDSTONE),
+                Util.makeTagArray(Tags.Items.SANDSTONE))
+                .createBlockSlabAndStairWrapper(Blocks.SANDSTONE_SLAB, Blocks.SANDSTONE_STAIRS);
         COLORIZED_BLOCK_DATAS.add(new VerticalPillarBasicBlockData(Blocks.ANCIENT_DEBRIS,
                 Util.makeTagArray(Tags.Blocks.ORES_NETHERITE_SCRAP),
                 Util.makeTagArray(Tags.Items.ORES_NETHERITE_SCRAP)));
@@ -136,8 +135,8 @@ public class ObjectHolder
                     }
                 });
         COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.HONEYCOMB_BLOCK));
-        COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.NETHER_BRICKS));
-        COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.PRISMARINE)
+        new BlockSlabAndStairWrapper(Blocks.NETHER_BRICKS, Blocks.NETHER_BRICK_SLAB, Blocks.NETHER_BRICK_STAIRS);
+        new BasicColoredBlockData(Blocks.PRISMARINE)
         {
             @Override
             public void registerTextures(TextureGenerator generator, TextureProvider.FinishedTextureConsumer consumer)
@@ -147,22 +146,15 @@ public class ObjectHolder
                         new ResourceLocation(getBaseBlockLoc().getNamespace(), "block/" + getBaseBlockLoc().getPath())),
                         new ResourceLocation(AdditionalColors.ID, "block/" + baseBlock.getId().getPath()), consumer);
             }
-        });
-        COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.PRISMARINE_BRICKS));
-        COLORIZED_BLOCK_DATAS.add(new BasicColoredBlockData(Blocks.DARK_PRISMARINE));
-        TriConsumer<Block, Block, Block> coloredWoodMaker = (plankBase, slabBase, stairsBase) ->
-        {
-            IColoredBlockData<?> coloredPlankBlockData =
-                    new BasicColoredBlockData(plankBase, Util.makeTagArray(BlockTags.PLANKS),
-                            Util.makeTagArray(ItemTags.PLANKS));
-            COLORIZED_BLOCK_DATAS.add(coloredPlankBlockData);
-            COLORIZED_BLOCK_DATAS.add(new BasicColoredSlabBlockData(slabBase,
-                    Util.makeTagArray(BlockTags.SLABS, BlockTags.WOODEN_SLABS),
-                    Util.makeTagArray(ItemTags.SLABS, ItemTags.WOODEN_SLABS), coloredPlankBlockData));
-            COLORIZED_BLOCK_DATAS.add(new BasicColoredStairsBlockData(stairsBase,
-                    Util.makeTagArray(BlockTags.STAIRS, BlockTags.WOODEN_STAIRS),
-                    Util.makeTagArray(ItemTags.STAIRS, ItemTags.WOODEN_STAIRS), coloredPlankBlockData));
-        };
+        }.createBlockSlabAndStairWrapper(Blocks.PRISMARINE_SLAB, Blocks.PRISMARINE_STAIRS);
+        new BlockSlabAndStairWrapper(Blocks.PRISMARINE_BRICKS, Blocks.PRISMARINE_BRICK_SLAB,
+                Blocks.PRISMARINE_BRICK_STAIRS);
+        new BlockSlabAndStairWrapper(Blocks.DARK_PRISMARINE, Blocks.DARK_PRISMARINE_SLAB,
+                Blocks.DARK_PRISMARINE_STAIRS);
+        TriConsumer<Block, Block, Block> coloredWoodMaker =
+                (plankBase, slabBase, stairsBase) -> new BlockSlabAndStairWrapper(plankBase, BlockTags.PLANKS,
+                        ItemTags.PLANKS, slabBase, BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS, stairsBase,
+                        BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
         coloredWoodMaker.accept(Blocks.OAK_PLANKS, Blocks.OAK_SLAB, Blocks.OAK_STAIRS);
         coloredWoodMaker.accept(Blocks.ACACIA_PLANKS, Blocks.ACACIA_SLAB, Blocks.ACACIA_STAIRS);
         coloredWoodMaker.accept(Blocks.BIRCH_PLANKS, Blocks.BIRCH_SLAB, Blocks.BIRCH_STAIRS);
@@ -171,18 +163,21 @@ public class ObjectHolder
         coloredWoodMaker.accept(Blocks.JUNGLE_PLANKS, Blocks.JUNGLE_SLAB, Blocks.JUNGLE_STAIRS);
         coloredWoodMaker.accept(Blocks.SPRUCE_PLANKS, Blocks.SPRUCE_SLAB, Blocks.SPRUCE_STAIRS);
         coloredWoodMaker.accept(Blocks.WARPED_PLANKS, Blocks.WARPED_SLAB, Blocks.WARPED_STAIRS);
+        new BlockSlabAndStairWrapper(Blocks.GRANITE, Tags.Blocks.STONE, Tags.Items.STONE, Blocks.GRANITE_SLAB,
+                Blocks.GRANITE_STAIRS);
+        new BlockSlabAndStairWrapper(Blocks.POLISHED_GRANITE, Tags.Blocks.STONE, Tags.Items.STONE,
+                Blocks.POLISHED_GRANITE_SLAB, Blocks.POLISHED_GRANITE_STAIRS);
         // crying obsidian section
-        IColoredBlockData<?> coloredCryingObsidianBlockData = new CryingObsidianBlockData(Blocks.CRYING_OBSIDIAN);
+        CryingObsidianBlockData coloredCryingObsidianBlockData = new CryingObsidianBlockData(Blocks.CRYING_OBSIDIAN);
         COLORIZED_BLOCK_DATAS.add(coloredCryingObsidianBlockData);
         COLORIZED_BLOCK_DATAS.add(new CryingObsidianSlabBlockData(
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
-                        Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_slab"),
-                Util.makeTagArray(BlockTags.SLABS), Util.makeTagArray(ItemTags.SLABS), coloredCryingObsidianBlockData));
+                        Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_slab"), Util.makeTagArray(),
+                Util.makeTagArray(), coloredCryingObsidianBlockData));
         COLORIZED_BLOCK_DATAS.add(new CryingObsidianStairsBlockData(
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
-                        Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_stairs"),
-                Util.makeTagArray(BlockTags.STAIRS), Util.makeTagArray(ItemTags.STAIRS),
-                coloredCryingObsidianBlockData));
+                        Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_stairs"), Util.makeTagArray(),
+                Util.makeTagArray(), coloredCryingObsidianBlockData));
         COLORIZED_BLOCK_DATAS.add(new CryingObsidianDoorBlockData(
                 new ResourceLocation(AdditionalColors.OBSIDIAN_EXPANSION_ID,
                         Blocks.CRYING_OBSIDIAN.getRegistryName().getPath() + "_door"),

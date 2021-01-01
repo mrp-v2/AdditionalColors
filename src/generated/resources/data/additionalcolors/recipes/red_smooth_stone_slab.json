@@ -1,0 +1,14 @@
+{
+  "type": "mrplibrary:crafting_shapeless",
+  "result": {
+    "item": "additionalcolors:red_smooth_stone_slab"
+  },
+  "ingredients": [
+    {
+      "tag": "additionalcolors:smooth_stone_slab"
+    },
+    {
+      "tag": "forge:dyes/red"
+    }
+  ]
+}
