@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:warped_fence_gate"
+  },
+  "result": "additionalcolors:pink_warped_fence_gate",
+  "count": 1
+}

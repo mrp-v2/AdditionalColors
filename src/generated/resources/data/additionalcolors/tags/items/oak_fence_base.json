@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:blue_oak_fence",
+    "additionalcolors:magenta_oak_fence",
+    "additionalcolors:light_blue_oak_fence",
+    "additionalcolors:light_gray_oak_fence",
+    "additionalcolors:orange_oak_fence",
+    "additionalcolors:lime_oak_fence",
+    "additionalcolors:white_oak_fence",
+    "additionalcolors:red_oak_fence",
+    "additionalcolors:gray_oak_fence",
+    "additionalcolors:green_oak_fence",
+    "additionalcolors:purple_oak_fence",
+    "additionalcolors:pink_oak_fence",
+    "additionalcolors:brown_oak_fence",
+    "additionalcolors:black_oak_fence",
+    "additionalcolors:cyan_oak_fence",
+    "additionalcolors:yellow_oak_fence"
+  ]
+}

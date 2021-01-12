@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:prismarine_slab"
+  },
+  "result": "additionalcolors:light_blue_prismarine_slab",
+  "count": 1
+}

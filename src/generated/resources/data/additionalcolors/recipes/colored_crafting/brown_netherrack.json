@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:netherrack"
+  },
+  "result": "additionalcolors:brown_netherrack",
+  "count": 1
+}

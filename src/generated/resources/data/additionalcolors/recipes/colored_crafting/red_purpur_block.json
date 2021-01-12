@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:purpur_block"
+  },
+  "result": "additionalcolors:red_purpur_block",
+  "count": 1
+}

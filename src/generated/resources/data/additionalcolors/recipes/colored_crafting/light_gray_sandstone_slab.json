@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:sandstone_slab"
+  },
+  "result": "additionalcolors:light_gray_sandstone_slab",
+  "count": 1
+}

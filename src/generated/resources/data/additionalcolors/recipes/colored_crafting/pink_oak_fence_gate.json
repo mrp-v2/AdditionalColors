@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:oak_fence_gate"
+  },
+  "result": "additionalcolors:pink_oak_fence_gate",
+  "count": 1
+}

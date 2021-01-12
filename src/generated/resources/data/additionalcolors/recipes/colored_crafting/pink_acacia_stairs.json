@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:acacia_stairs"
+  },
+  "result": "additionalcolors:pink_acacia_stairs",
+  "count": 1
+}

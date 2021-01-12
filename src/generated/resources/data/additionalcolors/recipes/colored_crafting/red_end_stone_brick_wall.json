@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:end_stone_brick_wall"
+  },
+  "result": "additionalcolors:red_end_stone_brick_wall",
+  "count": 1
+}

@@ -1,5 +1,5 @@
 {
-  "parent": "additionalcolors:block/cube_all_tinted",
+  "parent": "mrplibrary:block/cube_all_tinted",
   "textures": {
     "all": "additionalcolors:block/crimson_planks"
   }

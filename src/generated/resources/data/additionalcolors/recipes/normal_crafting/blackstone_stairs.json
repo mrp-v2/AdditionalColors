@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:blackstone_stairs_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:blackstone_stairs"
+  }
+}

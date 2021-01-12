@@ -1,0 +1,6 @@
+{
+  "parent": "mrplibrary:block/fence_gate_tinted",
+  "textures": {
+    "texture": "additionalcolors:block/crimson_planks"
+  }
+}

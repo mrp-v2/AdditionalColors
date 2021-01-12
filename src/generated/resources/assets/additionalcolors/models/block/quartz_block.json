@@ -1,7 +1,7 @@
 {
-  "parent": "minecraft:block/block",
+  "parent": "mrplibrary:block/cube_tinted",
   "textures": {
-    "end": "additionalcolors:block/quartz_block_end",
+    "end": "additionalcolors:block/quartz_block_top",
     "side": "additionalcolors:block/quartz_block_side",
     "particle": "additionalcolors:block/quartz_block_side"
   },

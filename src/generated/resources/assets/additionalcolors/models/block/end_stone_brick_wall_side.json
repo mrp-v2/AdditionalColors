@@ -1,0 +1,6 @@
+{
+  "parent": "mrplibrary:block/wall_side_tinted",
+  "textures": {
+    "wall": "additionalcolors:block/end_stone_bricks"
+  }
+}

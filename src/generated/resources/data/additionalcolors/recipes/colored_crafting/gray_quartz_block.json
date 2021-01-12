@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:quartz_block"
+  },
+  "result": "additionalcolors:gray_quartz_block",
+  "count": 1
+}

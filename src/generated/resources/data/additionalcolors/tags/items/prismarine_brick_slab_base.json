@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:white_prismarine_brick_slab",
-    "additionalcolors:magenta_prismarine_brick_slab",
-    "additionalcolors:light_gray_prismarine_brick_slab",
-    "additionalcolors:gray_prismarine_brick_slab",
     "additionalcolors:blue_prismarine_brick_slab",
-    "additionalcolors:green_prismarine_brick_slab",
-    "additionalcolors:yellow_prismarine_brick_slab",
-    "additionalcolors:brown_prismarine_brick_slab",
+    "additionalcolors:magenta_prismarine_brick_slab",
     "additionalcolors:light_blue_prismarine_brick_slab",
-    "additionalcolors:red_prismarine_brick_slab",
-    "additionalcolors:pink_prismarine_brick_slab",
-    "additionalcolors:purple_prismarine_brick_slab",
-    "additionalcolors:cyan_prismarine_brick_slab",
+    "additionalcolors:light_gray_prismarine_brick_slab",
     "additionalcolors:orange_prismarine_brick_slab",
     "additionalcolors:lime_prismarine_brick_slab",
-    "additionalcolors:black_prismarine_brick_slab"
+    "additionalcolors:white_prismarine_brick_slab",
+    "additionalcolors:red_prismarine_brick_slab",
+    "additionalcolors:gray_prismarine_brick_slab",
+    "additionalcolors:green_prismarine_brick_slab",
+    "additionalcolors:purple_prismarine_brick_slab",
+    "additionalcolors:pink_prismarine_brick_slab",
+    "additionalcolors:brown_prismarine_brick_slab",
+    "additionalcolors:black_prismarine_brick_slab",
+    "additionalcolors:cyan_prismarine_brick_slab",
+    "additionalcolors:yellow_prismarine_brick_slab"
   ]
 }

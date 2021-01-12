@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:andesite"
+  },
+  "result": "additionalcolors:magenta_andesite",
+  "count": 1
+}

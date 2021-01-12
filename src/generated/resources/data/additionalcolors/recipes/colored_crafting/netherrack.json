@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:netherrack_base"
+  },
+  "result": "minecraft:netherrack",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "mrplibrary:block/slab_tinted",
+  "textures": {
+    "side": "additionalcolors:block/diorite",
+    "bottom": "additionalcolors:block/diorite",
+    "top": "additionalcolors:block/diorite"
+  }
+}

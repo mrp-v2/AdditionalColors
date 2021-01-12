@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:blue_diorite",
+    "additionalcolors:magenta_diorite",
+    "additionalcolors:light_blue_diorite",
+    "additionalcolors:light_gray_diorite",
+    "additionalcolors:orange_diorite",
+    "additionalcolors:lime_diorite",
+    "additionalcolors:white_diorite",
+    "additionalcolors:red_diorite",
+    "additionalcolors:gray_diorite",
+    "additionalcolors:green_diorite",
+    "additionalcolors:purple_diorite",
+    "additionalcolors:pink_diorite",
+    "additionalcolors:brown_diorite",
+    "additionalcolors:black_diorite",
+    "additionalcolors:cyan_diorite",
+    "additionalcolors:yellow_diorite",
+    "minecraft:diorite"
+  ]
+}

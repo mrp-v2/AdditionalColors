@@ -1,0 +1,6 @@
+{
+  "parent": "mrplibrary:block/wall_inventory_tinted",
+  "textures": {
+    "wall": "additionalcolors:block/cobblestone"
+  }
+}

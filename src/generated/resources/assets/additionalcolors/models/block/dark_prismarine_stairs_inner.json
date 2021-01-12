@@ -1,8 +1,8 @@
 {
-  "parent": "additionalcolors:block/stairs_inner_tinted",
+  "parent": "mrplibrary:block/stairs_inner_tinted",
   "textures": {
+    "side": "additionalcolors:block/dark_prismarine",
     "bottom": "additionalcolors:block/dark_prismarine",
-    "top": "additionalcolors:block/dark_prismarine",
-    "side": "additionalcolors:block/dark_prismarine"
+    "top": "additionalcolors:block/dark_prismarine"
   }
 }

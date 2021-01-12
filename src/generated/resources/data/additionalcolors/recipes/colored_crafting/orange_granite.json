@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:granite"
+  },
+  "result": "additionalcolors:orange_granite",
+  "count": 1
+}

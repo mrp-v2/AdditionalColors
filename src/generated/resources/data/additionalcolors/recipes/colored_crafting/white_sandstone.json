@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:sandstone"
+  },
+  "result": "additionalcolors:white_sandstone",
+  "count": 1
+}

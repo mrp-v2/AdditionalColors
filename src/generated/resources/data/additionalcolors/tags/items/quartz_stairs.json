@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:white_quartz_stairs",
-    "additionalcolors:magenta_quartz_stairs",
-    "additionalcolors:light_gray_quartz_stairs",
-    "additionalcolors:gray_quartz_stairs",
     "additionalcolors:blue_quartz_stairs",
-    "additionalcolors:green_quartz_stairs",
-    "additionalcolors:yellow_quartz_stairs",
-    "additionalcolors:brown_quartz_stairs",
+    "additionalcolors:magenta_quartz_stairs",
     "additionalcolors:light_blue_quartz_stairs",
-    "additionalcolors:red_quartz_stairs",
-    "additionalcolors:pink_quartz_stairs",
-    "additionalcolors:purple_quartz_stairs",
-    "additionalcolors:cyan_quartz_stairs",
+    "additionalcolors:light_gray_quartz_stairs",
     "additionalcolors:orange_quartz_stairs",
     "additionalcolors:lime_quartz_stairs",
+    "additionalcolors:white_quartz_stairs",
+    "additionalcolors:red_quartz_stairs",
+    "additionalcolors:gray_quartz_stairs",
+    "additionalcolors:green_quartz_stairs",
+    "additionalcolors:purple_quartz_stairs",
+    "additionalcolors:pink_quartz_stairs",
+    "additionalcolors:brown_quartz_stairs",
     "additionalcolors:black_quartz_stairs",
+    "additionalcolors:cyan_quartz_stairs",
+    "additionalcolors:yellow_quartz_stairs",
     "minecraft:quartz_stairs"
   ]
 }

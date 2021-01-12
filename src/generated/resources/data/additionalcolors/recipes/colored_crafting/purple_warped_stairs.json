@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:warped_stairs"
+  },
+  "result": "additionalcolors:purple_warped_stairs",
+  "count": 1
+}

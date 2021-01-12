@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:end_stone_brick_slab_base"
+  },
+  "result": "minecraft:end_stone_brick_slab",
+  "count": 1
+}

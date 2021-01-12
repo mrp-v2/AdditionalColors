@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:jungle_slab"
+  },
+  "result": "additionalcolors:orange_jungle_slab",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:birch_slab"
+  },
+  "result": "additionalcolors:yellow_birch_slab",
+  "count": 1
+}

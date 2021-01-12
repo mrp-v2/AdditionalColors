@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:diorite_slab"
+  },
+  "result": "additionalcolors:pink_diorite_slab",
+  "count": 1
+}

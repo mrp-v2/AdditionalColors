@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:andesite_wall_base"
+  },
+  "result": "minecraft:andesite_wall",
+  "count": 1
+}

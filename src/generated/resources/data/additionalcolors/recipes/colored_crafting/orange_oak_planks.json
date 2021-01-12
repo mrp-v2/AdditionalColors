@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:oak_planks"
+  },
+  "result": "additionalcolors:orange_oak_planks",
+  "count": 1
+}

@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:white_dark_prismarine_slab",
-    "additionalcolors:magenta_dark_prismarine_slab",
-    "additionalcolors:light_gray_dark_prismarine_slab",
-    "additionalcolors:gray_dark_prismarine_slab",
     "additionalcolors:blue_dark_prismarine_slab",
-    "additionalcolors:green_dark_prismarine_slab",
-    "additionalcolors:yellow_dark_prismarine_slab",
-    "additionalcolors:brown_dark_prismarine_slab",
+    "additionalcolors:magenta_dark_prismarine_slab",
     "additionalcolors:light_blue_dark_prismarine_slab",
-    "additionalcolors:red_dark_prismarine_slab",
-    "additionalcolors:pink_dark_prismarine_slab",
-    "additionalcolors:purple_dark_prismarine_slab",
-    "additionalcolors:cyan_dark_prismarine_slab",
+    "additionalcolors:light_gray_dark_prismarine_slab",
     "additionalcolors:orange_dark_prismarine_slab",
     "additionalcolors:lime_dark_prismarine_slab",
-    "additionalcolors:black_dark_prismarine_slab"
+    "additionalcolors:white_dark_prismarine_slab",
+    "additionalcolors:red_dark_prismarine_slab",
+    "additionalcolors:gray_dark_prismarine_slab",
+    "additionalcolors:green_dark_prismarine_slab",
+    "additionalcolors:purple_dark_prismarine_slab",
+    "additionalcolors:pink_dark_prismarine_slab",
+    "additionalcolors:brown_dark_prismarine_slab",
+    "additionalcolors:black_dark_prismarine_slab",
+    "additionalcolors:cyan_dark_prismarine_slab",
+    "additionalcolors:yellow_dark_prismarine_slab"
   ]
 }

@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:blackstone_stairs"
+  },
+  "result": "additionalcolors:brown_blackstone_stairs",
+  "count": 1
+}

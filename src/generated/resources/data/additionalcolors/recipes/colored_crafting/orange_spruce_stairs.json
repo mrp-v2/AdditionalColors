@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:spruce_stairs"
+  },
+  "result": "additionalcolors:orange_spruce_stairs",
+  "count": 1
+}

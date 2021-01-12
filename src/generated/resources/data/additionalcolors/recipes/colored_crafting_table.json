@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RGB",
+    " C ",
+    "D W"
+  ],
+  "key": {
+    "R": {
+      "tag": "forge:dyes/red"
+    },
+    "G": {
+      "tag": "forge:dyes/green"
+    },
+    "B": {
+      "tag": "forge:dyes/blue"
+    },
+    "C": {
+      "item": "minecraft:crafting_table"
+    },
+    "D": {
+      "tag": "forge:dyes/black"
+    },
+    "W": {
+      "tag": "forge:dyes/white"
+    }
+  },
+  "result": {
+    "item": "additionalcolors:colored_crafting_table"
+  }
+}

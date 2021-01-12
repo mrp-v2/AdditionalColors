@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:white_granite_stairs",
-    "additionalcolors:magenta_granite_stairs",
-    "additionalcolors:light_gray_granite_stairs",
-    "additionalcolors:gray_granite_stairs",
     "additionalcolors:blue_granite_stairs",
-    "additionalcolors:green_granite_stairs",
-    "additionalcolors:yellow_granite_stairs",
-    "additionalcolors:brown_granite_stairs",
+    "additionalcolors:magenta_granite_stairs",
     "additionalcolors:light_blue_granite_stairs",
-    "additionalcolors:red_granite_stairs",
-    "additionalcolors:pink_granite_stairs",
-    "additionalcolors:purple_granite_stairs",
-    "additionalcolors:cyan_granite_stairs",
+    "additionalcolors:light_gray_granite_stairs",
     "additionalcolors:orange_granite_stairs",
     "additionalcolors:lime_granite_stairs",
-    "additionalcolors:black_granite_stairs"
+    "additionalcolors:white_granite_stairs",
+    "additionalcolors:red_granite_stairs",
+    "additionalcolors:gray_granite_stairs",
+    "additionalcolors:green_granite_stairs",
+    "additionalcolors:purple_granite_stairs",
+    "additionalcolors:pink_granite_stairs",
+    "additionalcolors:brown_granite_stairs",
+    "additionalcolors:black_granite_stairs",
+    "additionalcolors:cyan_granite_stairs",
+    "additionalcolors:yellow_granite_stairs"
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:blue_diorite_wall",
+    "additionalcolors:magenta_diorite_wall",
+    "additionalcolors:light_blue_diorite_wall",
+    "additionalcolors:light_gray_diorite_wall",
+    "additionalcolors:orange_diorite_wall",
+    "additionalcolors:lime_diorite_wall",
+    "additionalcolors:white_diorite_wall",
+    "additionalcolors:red_diorite_wall",
+    "additionalcolors:gray_diorite_wall",
+    "additionalcolors:green_diorite_wall",
+    "additionalcolors:purple_diorite_wall",
+    "additionalcolors:pink_diorite_wall",
+    "additionalcolors:brown_diorite_wall",
+    "additionalcolors:black_diorite_wall",
+    "additionalcolors:cyan_diorite_wall",
+    "additionalcolors:yellow_diorite_wall",
+    "minecraft:diorite_wall"
+  ]
+}

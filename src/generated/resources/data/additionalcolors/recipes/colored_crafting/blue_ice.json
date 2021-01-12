@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:ice"
+  },
+  "result": "additionalcolors:blue_ice",
+  "count": 1
+}

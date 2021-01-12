@@ -1,0 +1,7 @@
+{
+  "parent": "mrplibrary:block/cube_column_horizontal_tinted_tinted",
+  "textures": {
+    "side": "additionalcolors:block/polished_basalt_side",
+    "end": "additionalcolors:block/polished_basalt_top"
+  }
+}

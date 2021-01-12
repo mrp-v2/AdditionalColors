@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:blue_end_stone",
+    "additionalcolors:magenta_end_stone",
+    "additionalcolors:light_blue_end_stone",
+    "additionalcolors:light_gray_end_stone",
+    "additionalcolors:orange_end_stone",
+    "additionalcolors:lime_end_stone",
+    "additionalcolors:white_end_stone",
+    "additionalcolors:red_end_stone",
+    "additionalcolors:gray_end_stone",
+    "additionalcolors:green_end_stone",
+    "additionalcolors:purple_end_stone",
+    "additionalcolors:pink_end_stone",
+    "additionalcolors:brown_end_stone",
+    "additionalcolors:black_end_stone",
+    "additionalcolors:cyan_end_stone",
+    "additionalcolors:yellow_end_stone",
+    "minecraft:end_stone"
+  ]
+}

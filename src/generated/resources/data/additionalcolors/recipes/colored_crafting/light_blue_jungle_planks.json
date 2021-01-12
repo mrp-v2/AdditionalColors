@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:jungle_planks"
+  },
+  "result": "additionalcolors:light_blue_jungle_planks",
+  "count": 1
+}

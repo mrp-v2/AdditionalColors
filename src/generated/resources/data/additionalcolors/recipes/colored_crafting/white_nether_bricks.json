@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:nether_bricks"
+  },
+  "result": "additionalcolors:white_nether_bricks",
+  "count": 1
+}

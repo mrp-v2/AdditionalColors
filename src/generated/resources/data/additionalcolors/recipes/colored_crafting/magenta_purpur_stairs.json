@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:purpur_stairs"
+  },
+  "result": "additionalcolors:magenta_purpur_stairs",
+  "count": 1
+}

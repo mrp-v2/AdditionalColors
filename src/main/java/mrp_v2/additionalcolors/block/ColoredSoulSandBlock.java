@@ -8,7 +8,7 @@ public class ColoredSoulSandBlock extends SoulSandBlock implements IColored
 {
     private final DyeColor color;
 
-    public ColoredSoulSandBlock(DyeColor color, Properties properties)
+    public ColoredSoulSandBlock(Properties properties, DyeColor color)
     {
         super(properties);
         this.color = color;

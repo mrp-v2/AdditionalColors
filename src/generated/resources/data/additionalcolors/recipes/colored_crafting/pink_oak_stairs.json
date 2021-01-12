@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:oak_stairs"
+  },
+  "result": "additionalcolors:pink_oak_stairs",
+  "count": 1
+}

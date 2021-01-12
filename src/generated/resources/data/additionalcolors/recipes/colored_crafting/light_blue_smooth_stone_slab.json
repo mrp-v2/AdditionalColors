@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:smooth_stone_slab"
+  },
+  "result": "additionalcolors:light_blue_smooth_stone_slab",
+  "count": 1
+}

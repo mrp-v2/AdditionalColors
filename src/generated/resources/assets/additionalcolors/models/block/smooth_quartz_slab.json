@@ -1,0 +1,8 @@
+{
+  "parent": "mrplibrary:block/slab_tinted",
+  "textures": {
+    "side": "additionalcolors:block/quartz_block_bottom",
+    "bottom": "additionalcolors:block/quartz_block_bottom",
+    "top": "additionalcolors:block/quartz_block_bottom"
+  }
+}

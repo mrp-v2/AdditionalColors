@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:prismarine_base"
+  },
+  "result": "minecraft:prismarine",
+  "count": 1
+}

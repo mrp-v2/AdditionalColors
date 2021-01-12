@@ -1,0 +1,6 @@
+{
+  "parent": "mrplibrary:block/cube_all_tinted",
+  "textures": {
+    "all": "additionalcolors:block/quartz_block_bottom"
+  }
+}

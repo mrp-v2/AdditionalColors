@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:birch_stairs"
+  },
+  "result": "additionalcolors:light_gray_birch_stairs",
+  "count": 1
+}

@@ -26,7 +26,7 @@ license="All rights reserved"
 [[dependencies.${modId}]]
     modId="mrplibrary"
     mandatory=true
-    versionRange="[${mcVersion}-${mrpLibAPI},${mcVersion}-${mrpLibNextAPI})"
+    versionRange="[${mrpLibAPI},${mrpLibNextAPI})"
     ordering="NONE"
     side="BOTH"
 [[dependencies.${modId}]]

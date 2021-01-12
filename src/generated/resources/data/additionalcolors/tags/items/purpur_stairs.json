@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:blue_purpur_stairs",
+    "additionalcolors:magenta_purpur_stairs",
+    "additionalcolors:light_blue_purpur_stairs",
+    "additionalcolors:light_gray_purpur_stairs",
+    "additionalcolors:orange_purpur_stairs",
+    "additionalcolors:lime_purpur_stairs",
+    "additionalcolors:white_purpur_stairs",
+    "additionalcolors:red_purpur_stairs",
+    "additionalcolors:gray_purpur_stairs",
+    "additionalcolors:green_purpur_stairs",
+    "additionalcolors:purple_purpur_stairs",
+    "additionalcolors:pink_purpur_stairs",
+    "additionalcolors:brown_purpur_stairs",
+    "additionalcolors:black_purpur_stairs",
+    "additionalcolors:cyan_purpur_stairs",
+    "additionalcolors:yellow_purpur_stairs",
+    "minecraft:purpur_stairs"
+  ]
+}

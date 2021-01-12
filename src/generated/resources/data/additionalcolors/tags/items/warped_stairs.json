@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:white_warped_stairs",
-    "additionalcolors:magenta_warped_stairs",
-    "additionalcolors:light_gray_warped_stairs",
-    "additionalcolors:gray_warped_stairs",
     "additionalcolors:blue_warped_stairs",
-    "additionalcolors:green_warped_stairs",
-    "additionalcolors:yellow_warped_stairs",
-    "additionalcolors:brown_warped_stairs",
+    "additionalcolors:magenta_warped_stairs",
     "additionalcolors:light_blue_warped_stairs",
-    "additionalcolors:red_warped_stairs",
-    "additionalcolors:pink_warped_stairs",
-    "additionalcolors:purple_warped_stairs",
-    "additionalcolors:cyan_warped_stairs",
+    "additionalcolors:light_gray_warped_stairs",
     "additionalcolors:orange_warped_stairs",
     "additionalcolors:lime_warped_stairs",
+    "additionalcolors:white_warped_stairs",
+    "additionalcolors:red_warped_stairs",
+    "additionalcolors:gray_warped_stairs",
+    "additionalcolors:green_warped_stairs",
+    "additionalcolors:purple_warped_stairs",
+    "additionalcolors:pink_warped_stairs",
+    "additionalcolors:brown_warped_stairs",
     "additionalcolors:black_warped_stairs",
+    "additionalcolors:cyan_warped_stairs",
+    "additionalcolors:yellow_warped_stairs",
     "minecraft:warped_stairs"
   ]
 }

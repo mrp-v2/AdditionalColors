@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:blue_basalt",
+    "additionalcolors:magenta_basalt",
+    "additionalcolors:light_blue_basalt",
+    "additionalcolors:light_gray_basalt",
+    "additionalcolors:orange_basalt",
+    "additionalcolors:lime_basalt",
+    "additionalcolors:white_basalt",
+    "additionalcolors:red_basalt",
+    "additionalcolors:gray_basalt",
+    "additionalcolors:green_basalt",
+    "additionalcolors:purple_basalt",
+    "additionalcolors:pink_basalt",
+    "additionalcolors:brown_basalt",
+    "additionalcolors:black_basalt",
+    "additionalcolors:cyan_basalt",
+    "additionalcolors:yellow_basalt",
+    "minecraft:basalt"
+  ]
+}

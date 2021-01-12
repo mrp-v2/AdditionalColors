@@ -1,0 +1,7 @@
+{
+  "parent": "mrplibrary:block/cube_column_tinted",
+  "textures": {
+    "side": "additionalcolors:block/purpur_pillar",
+    "end": "additionalcolors:block/purpur_pillar_top"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:spruce_fence"
+  },
+  "result": "additionalcolors:blue_spruce_fence",
+  "count": 1
+}

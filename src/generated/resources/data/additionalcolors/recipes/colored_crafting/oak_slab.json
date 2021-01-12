@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:oak_slab_base"
+  },
+  "result": "minecraft:oak_slab",
+  "count": 1
+}

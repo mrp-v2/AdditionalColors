@@ -1,8 +1,8 @@
 {
-  "parent": "additionalcolors:block/stairs_inner_tinted",
+  "parent": "mrplibrary:block/stairs_inner_tinted",
   "textures": {
+    "side": "additionalcolors:block/polished_granite",
     "bottom": "additionalcolors:block/polished_granite",
-    "top": "additionalcolors:block/polished_granite",
-    "side": "additionalcolors:block/polished_granite"
+    "top": "additionalcolors:block/polished_granite"
   }
 }

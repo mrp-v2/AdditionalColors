@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:prismarine"
+  },
+  "result": "additionalcolors:orange_prismarine",
+  "count": 1
+}

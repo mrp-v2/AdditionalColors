@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:birch_slab_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:birch_slab"
+  }
+}

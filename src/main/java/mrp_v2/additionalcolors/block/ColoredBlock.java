@@ -8,7 +8,7 @@ public class ColoredBlock extends Block implements IColored
 {
     private final DyeColor color;
 
-    public ColoredBlock(DyeColor color, Properties properties)
+    public ColoredBlock(Properties properties, DyeColor color)
     {
         super(properties);
         this.color = color;

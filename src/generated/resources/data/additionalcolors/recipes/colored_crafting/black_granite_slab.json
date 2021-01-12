@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:granite_slab"
+  },
+  "result": "additionalcolors:black_granite_slab",
+  "count": 1
+}

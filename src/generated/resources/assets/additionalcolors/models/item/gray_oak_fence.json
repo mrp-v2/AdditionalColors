@@ -1,0 +1,6 @@
+{
+  "parent": "mrplibrary:block/fence_inventory_tinted",
+  "textures": {
+    "texture": "additionalcolors:block/oak_planks"
+  }
+}

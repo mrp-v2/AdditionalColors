@@ -1,0 +1,8 @@
+{
+  "parent": "mrplibrary:block/stairs_inner_tinted",
+  "textures": {
+    "side": "additionalcolors:block/diorite",
+    "bottom": "additionalcolors:block/diorite",
+    "top": "additionalcolors:block/diorite"
+  }
+}

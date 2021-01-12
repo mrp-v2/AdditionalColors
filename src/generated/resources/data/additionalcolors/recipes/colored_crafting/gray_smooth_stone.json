@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:smooth_stone"
+  },
+  "result": "additionalcolors:gray_smooth_stone",
+  "count": 1
+}

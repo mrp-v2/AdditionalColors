@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:smooth_stone_base"
+  },
+  "result": "minecraft:smooth_stone",
+  "count": 1
+}

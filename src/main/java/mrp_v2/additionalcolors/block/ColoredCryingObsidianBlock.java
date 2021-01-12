@@ -1,10 +1,8 @@
 package mrp_v2.additionalcolors.block;
 
-import mrp_v2.additionalcolors.client.Config;
 import mrp_v2.additionalcolors.particle.ColorParticleData;
 import mrp_v2.additionalcolors.particle.util.Color3B;
 import mrp_v2.additionalcolors.util.IColored;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CryingObsidianBlock;
 import net.minecraft.item.DyeColor;
@@ -21,7 +19,7 @@ public class ColoredCryingObsidianBlock extends CryingObsidianBlock implements I
     private final DyeColor color;
     private final Color3B particleColor;
 
-    public ColoredCryingObsidianBlock(DyeColor color, AbstractBlock.Properties properties)
+    public ColoredCryingObsidianBlock(Properties properties, DyeColor color)
     {
         super(properties);
         this.color = color;
@@ -30,11 +28,7 @@ public class ColoredCryingObsidianBlock extends CryingObsidianBlock implements I
 
     @Override @OnlyIn(Dist.CLIENT) public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-        if (Config.CLIENT.getCryingObsidianParticleChance() == 0)
-        {
-            return;
-        }
-        if (rand.nextInt(Config.CLIENT.getCryingObsidianParticleChance()) == 0)
+        if (rand.nextInt(5) == 0)
         {
             Direction direction = Direction.getRandomDirection(rand);
             if (direction != Direction.UP)

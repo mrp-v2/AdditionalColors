@@ -1,8 +1,8 @@
 {
-  "parent": "additionalcolors:block/stairs_inner_tinted",
+  "parent": "mrplibrary:block/stairs_inner_tinted",
   "textures": {
+    "side": "additionalcolors:block/sandstone",
     "bottom": "additionalcolors:block/sandstone_bottom",
-    "top": "additionalcolors:block/sandstone_top",
-    "side": "additionalcolors:block/sandstone"
+    "top": "additionalcolors:block/sandstone_top"
   }
 }

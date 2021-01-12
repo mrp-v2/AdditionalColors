@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:jungle_fence"
+  },
+  "result": "additionalcolors:yellow_jungle_fence",
+  "count": 1
+}

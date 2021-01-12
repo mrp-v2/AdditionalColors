@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:stone_base"
+  },
+  "result": "minecraft:stone",
+  "count": 1
+}

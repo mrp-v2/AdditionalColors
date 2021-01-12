@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:acacia_slab"
+  },
+  "result": "additionalcolors:yellow_acacia_slab",
+  "count": 1
+}

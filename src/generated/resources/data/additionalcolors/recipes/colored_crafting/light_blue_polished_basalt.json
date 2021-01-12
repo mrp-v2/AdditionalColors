@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:polished_basalt"
+  },
+  "result": "additionalcolors:light_blue_polished_basalt",
+  "count": 1
+}

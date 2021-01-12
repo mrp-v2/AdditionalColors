@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:quartz_slab"
+  },
+  "result": "additionalcolors:white_quartz_slab",
+  "count": 1
+}

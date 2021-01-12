@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:spruce_fence_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:spruce_fence"
+  }
+}

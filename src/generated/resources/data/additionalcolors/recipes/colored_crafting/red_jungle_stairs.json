@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:jungle_stairs"
+  },
+  "result": "additionalcolors:red_jungle_stairs",
+  "count": 1
+}

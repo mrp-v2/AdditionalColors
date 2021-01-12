@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:birch_planks"
+  },
+  "result": "additionalcolors:black_birch_planks",
+  "count": 1
+}

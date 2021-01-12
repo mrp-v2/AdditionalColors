@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:warped_slab"
+  },
+  "result": "additionalcolors:orange_warped_slab",
+  "count": 1
+}

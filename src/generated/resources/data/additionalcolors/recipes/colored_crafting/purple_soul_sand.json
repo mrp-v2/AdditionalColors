@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:soul_sand"
+  },
+  "result": "additionalcolors:purple_soul_sand",
+  "count": 1
+}

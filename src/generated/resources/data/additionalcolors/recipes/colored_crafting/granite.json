@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:granite_base"
+  },
+  "result": "minecraft:granite",
+  "count": 1
+}

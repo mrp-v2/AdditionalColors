@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:sandstone_base"
+  },
+  "result": "minecraft:sandstone",
+  "count": 1
+}

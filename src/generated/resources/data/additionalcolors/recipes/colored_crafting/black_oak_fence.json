@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:oak_fence"
+  },
+  "result": "additionalcolors:black_oak_fence",
+  "count": 1
+}

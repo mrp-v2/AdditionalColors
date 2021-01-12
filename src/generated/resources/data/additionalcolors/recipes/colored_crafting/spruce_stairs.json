@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:spruce_stairs_base"
+  },
+  "result": "minecraft:spruce_stairs",
+  "count": 1
+}

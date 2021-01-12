@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:birch_fence_gate_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:birch_fence_gate"
+  }
+}

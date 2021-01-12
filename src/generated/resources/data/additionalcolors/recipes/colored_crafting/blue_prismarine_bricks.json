@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:prismarine_bricks"
+  },
+  "result": "additionalcolors:blue_prismarine_bricks",
+  "count": 1
+}

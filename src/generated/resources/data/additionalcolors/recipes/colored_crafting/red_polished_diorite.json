@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:polished_diorite"
+  },
+  "result": "additionalcolors:red_polished_diorite",
+  "count": 1
+}

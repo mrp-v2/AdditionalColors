@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:crying_obsidian"
+  },
+  "result": "additionalcolors:orange_crying_obsidian",
+  "count": 1
+}

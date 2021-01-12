@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:basalt_base"
+  },
+  "result": "minecraft:basalt",
+  "count": 1
+}

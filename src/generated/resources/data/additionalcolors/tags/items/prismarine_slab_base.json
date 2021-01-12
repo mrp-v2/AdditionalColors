@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:white_prismarine_slab",
-    "additionalcolors:magenta_prismarine_slab",
-    "additionalcolors:light_gray_prismarine_slab",
-    "additionalcolors:gray_prismarine_slab",
     "additionalcolors:blue_prismarine_slab",
-    "additionalcolors:green_prismarine_slab",
-    "additionalcolors:yellow_prismarine_slab",
-    "additionalcolors:brown_prismarine_slab",
+    "additionalcolors:magenta_prismarine_slab",
     "additionalcolors:light_blue_prismarine_slab",
-    "additionalcolors:red_prismarine_slab",
-    "additionalcolors:pink_prismarine_slab",
-    "additionalcolors:purple_prismarine_slab",
-    "additionalcolors:cyan_prismarine_slab",
+    "additionalcolors:light_gray_prismarine_slab",
     "additionalcolors:orange_prismarine_slab",
     "additionalcolors:lime_prismarine_slab",
-    "additionalcolors:black_prismarine_slab"
+    "additionalcolors:white_prismarine_slab",
+    "additionalcolors:red_prismarine_slab",
+    "additionalcolors:gray_prismarine_slab",
+    "additionalcolors:green_prismarine_slab",
+    "additionalcolors:purple_prismarine_slab",
+    "additionalcolors:pink_prismarine_slab",
+    "additionalcolors:brown_prismarine_slab",
+    "additionalcolors:black_prismarine_slab",
+    "additionalcolors:cyan_prismarine_slab",
+    "additionalcolors:yellow_prismarine_slab"
   ]
 }

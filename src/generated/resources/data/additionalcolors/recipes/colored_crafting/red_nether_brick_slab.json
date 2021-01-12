@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:nether_brick_slab"
+  },
+  "result": "additionalcolors:red_nether_brick_slab",
+  "count": 1
+}

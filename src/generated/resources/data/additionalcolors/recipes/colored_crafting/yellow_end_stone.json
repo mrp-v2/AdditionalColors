@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:end_stone"
+  },
+  "result": "additionalcolors:yellow_end_stone",
+  "count": 1
+}

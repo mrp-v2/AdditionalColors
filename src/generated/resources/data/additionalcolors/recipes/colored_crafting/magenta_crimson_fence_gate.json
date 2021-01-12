@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:crimson_fence_gate"
+  },
+  "result": "additionalcolors:magenta_crimson_fence_gate",
+  "count": 1
+}

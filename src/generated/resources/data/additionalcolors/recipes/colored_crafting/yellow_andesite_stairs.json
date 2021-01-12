@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:andesite_stairs"
+  },
+  "result": "additionalcolors:yellow_andesite_stairs",
+  "count": 1
+}

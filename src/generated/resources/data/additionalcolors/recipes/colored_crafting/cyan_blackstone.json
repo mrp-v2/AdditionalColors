@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:blackstone"
+  },
+  "result": "additionalcolors:cyan_blackstone",
+  "count": 1
+}

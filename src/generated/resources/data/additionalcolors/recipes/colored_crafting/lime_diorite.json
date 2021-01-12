@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:diorite"
+  },
+  "result": "additionalcolors:lime_diorite",
+  "count": 1
+}

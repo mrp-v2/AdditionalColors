@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:stone_stairs_base"
+  },
+  "result": "minecraft:stone_stairs",
+  "count": 1
+}

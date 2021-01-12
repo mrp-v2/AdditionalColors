@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:polished_andesite"
+  },
+  "result": "additionalcolors:yellow_polished_andesite",
+  "count": 1
+}

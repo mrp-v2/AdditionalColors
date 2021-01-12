@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:dark_prismarine_stairs"
+  },
+  "result": "additionalcolors:light_blue_dark_prismarine_stairs",
+  "count": 1
+}

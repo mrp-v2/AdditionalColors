@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:purpur_pillar"
+  },
+  "result": "additionalcolors:green_purpur_pillar",
+  "count": 1
+}

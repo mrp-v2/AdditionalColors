@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:sandstone_slab"
+  },
+  "result": "additionalcolors:magenta_sandstone_slab",
+  "count": 1
+}

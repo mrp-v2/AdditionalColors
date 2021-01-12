@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:acacia_fence"
+  },
+  "result": "additionalcolors:red_acacia_fence",
+  "count": 1
+}

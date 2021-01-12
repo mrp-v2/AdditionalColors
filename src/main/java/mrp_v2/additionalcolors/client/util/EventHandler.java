@@ -1,9 +1,11 @@
 package mrp_v2.additionalcolors.client.util;
 
 import mrp_v2.additionalcolors.AdditionalColors;
+import mrp_v2.additionalcolors.client.gui.screen.ColoredWorkbenchScreen;
 import mrp_v2.additionalcolors.client.particle.ObsidianTearParticleFactory;
 import mrp_v2.additionalcolors.util.ObjectHolder;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
@@ -25,8 +27,8 @@ public class EventHandler
                 ObsidianTearParticleFactory.ColoredLandingObsidianTearFactory::new);
     }
 
-    @SubscribeEvent public static void clientSetup(FMLClientSetupEvent event)
+    @SubscribeEvent public static void clientSetup(final FMLClientSetupEvent event)
     {
-        ObjectHolder.COLORIZED_BLOCK_DATAS.forEach((data) -> data.clientSetup(event));
+        ScreenManager.registerFactory(ObjectHolder.COLORED_WORKBENCH_CONTAINER_TYPE.get(), ColoredWorkbenchScreen::new);
     }
 }

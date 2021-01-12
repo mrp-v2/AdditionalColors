@@ -8,7 +8,7 @@ public class ColoredIceBlock extends IceBlock implements IColored
 {
     private final DyeColor color;
 
-    public ColoredIceBlock(DyeColor color, Properties properties)
+    public ColoredIceBlock(Properties properties, DyeColor color)
     {
         super(properties);
         this.color = color;

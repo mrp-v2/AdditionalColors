@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:cobblestone_slab_base"
+  },
+  "result": "minecraft:cobblestone_slab",
+  "count": 1
+}

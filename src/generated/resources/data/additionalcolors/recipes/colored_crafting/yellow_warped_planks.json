@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:warped_planks"
+  },
+  "result": "additionalcolors:yellow_warped_planks",
+  "count": 1
+}

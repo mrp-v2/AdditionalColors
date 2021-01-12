@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:birch_fence"
+  },
+  "result": "additionalcolors:red_birch_fence",
+  "count": 1
+}

@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:white_dark_prismarine",
-    "additionalcolors:magenta_dark_prismarine",
-    "additionalcolors:light_gray_dark_prismarine",
-    "additionalcolors:gray_dark_prismarine",
     "additionalcolors:blue_dark_prismarine",
-    "additionalcolors:green_dark_prismarine",
-    "additionalcolors:yellow_dark_prismarine",
-    "additionalcolors:brown_dark_prismarine",
+    "additionalcolors:magenta_dark_prismarine",
     "additionalcolors:light_blue_dark_prismarine",
-    "additionalcolors:red_dark_prismarine",
-    "additionalcolors:pink_dark_prismarine",
-    "additionalcolors:purple_dark_prismarine",
-    "additionalcolors:cyan_dark_prismarine",
+    "additionalcolors:light_gray_dark_prismarine",
     "additionalcolors:orange_dark_prismarine",
     "additionalcolors:lime_dark_prismarine",
+    "additionalcolors:white_dark_prismarine",
+    "additionalcolors:red_dark_prismarine",
+    "additionalcolors:gray_dark_prismarine",
+    "additionalcolors:green_dark_prismarine",
+    "additionalcolors:purple_dark_prismarine",
+    "additionalcolors:pink_dark_prismarine",
+    "additionalcolors:brown_dark_prismarine",
     "additionalcolors:black_dark_prismarine",
+    "additionalcolors:cyan_dark_prismarine",
+    "additionalcolors:yellow_dark_prismarine",
     "minecraft:dark_prismarine"
   ]
 }

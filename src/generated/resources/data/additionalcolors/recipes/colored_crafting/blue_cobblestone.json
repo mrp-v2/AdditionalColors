@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:cobblestone"
+  },
+  "result": "additionalcolors:blue_cobblestone",
+  "count": 1
+}

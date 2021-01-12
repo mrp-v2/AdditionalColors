@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:honeycomb_block"
+  },
+  "result": "additionalcolors:light_gray_honeycomb_block",
+  "count": 1
+}

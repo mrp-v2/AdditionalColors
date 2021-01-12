@@ -1,0 +1,6 @@
+{
+  "parent": "mrplibrary:block/fence_side_tinted",
+  "textures": {
+    "texture": "additionalcolors:block/birch_planks"
+  }
+}

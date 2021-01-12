@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:polished_diorite_stairs"
+  },
+  "result": "additionalcolors:green_polished_diorite_stairs",
+  "count": 1
+}

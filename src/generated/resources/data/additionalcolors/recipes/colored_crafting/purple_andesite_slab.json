@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:andesite_slab"
+  },
+  "result": "additionalcolors:purple_andesite_slab",
+  "count": 1
+}

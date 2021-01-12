@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:diorite_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:diorite"
+  }
+}

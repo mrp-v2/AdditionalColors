@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:end_stone_bricks"
+  },
+  "result": "additionalcolors:lime_end_stone_bricks",
+  "count": 1
+}

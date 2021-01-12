@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:nether_bricks_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:nether_bricks"
+  }
+}

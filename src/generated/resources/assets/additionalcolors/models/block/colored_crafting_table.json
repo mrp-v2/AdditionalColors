@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "additionalcolors:block/colored_crafting_table_side",
+    "north": "additionalcolors:block/colored_crafting_table_side",
+    "south": "additionalcolors:block/colored_crafting_table_side",
+    "east": "additionalcolors:block/colored_crafting_table_side",
+    "west": "additionalcolors:block/colored_crafting_table_side",
+    "up": "additionalcolors:block/colored_crafting_table_top",
+    "down": "minecraft:block/oak_planks"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:acacia_planks"
+  },
+  "result": "additionalcolors:lime_acacia_planks",
+  "count": 1
+}

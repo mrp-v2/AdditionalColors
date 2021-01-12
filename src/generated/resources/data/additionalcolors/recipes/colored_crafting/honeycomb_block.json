@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:honeycomb_block_base"
+  },
+  "result": "minecraft:honeycomb_block",
+  "count": 1
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "mrplibrary:block/wall_side_tall_tinted",
+  "textures": {
+    "wall": "additionalcolors:block/cobblestone"
+  }
+}

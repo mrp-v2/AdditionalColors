@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:spruce_slab_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:spruce_slab"
+  }
+}

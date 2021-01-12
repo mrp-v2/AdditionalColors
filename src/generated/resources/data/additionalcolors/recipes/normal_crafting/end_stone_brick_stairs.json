@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:end_stone_brick_stairs_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:end_stone_brick_stairs"
+  }
+}

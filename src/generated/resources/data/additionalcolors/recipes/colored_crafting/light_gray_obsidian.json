@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:obsidian"
+  },
+  "result": "additionalcolors:light_gray_obsidian",
+  "count": 1
+}

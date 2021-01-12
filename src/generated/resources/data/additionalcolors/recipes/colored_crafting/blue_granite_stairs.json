@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:granite_stairs"
+  },
+  "result": "additionalcolors:blue_granite_stairs",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:spruce_planks"
+  },
+  "result": "additionalcolors:gray_spruce_planks",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:smooth_sandstone"
+  },
+  "result": "additionalcolors:pink_smooth_sandstone",
+  "count": 1
+}

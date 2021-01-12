@@ -1,6 +1,9 @@
 package mrp_v2.additionalcolors.util;
 
+import net.minecraft.block.Block;
 import net.minecraft.tags.ITag;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class Util
 {
@@ -23,5 +26,10 @@ public class Util
             newTagArray[i++] = tag;
         }
         return newTagArray;
+    }
+
+    public static RegistryObject<Block> makeRegistryObject(Block block)
+    {
+        return RegistryObject.of(block.getRegistryName(), ForgeRegistries.BLOCKS);
     }
 }

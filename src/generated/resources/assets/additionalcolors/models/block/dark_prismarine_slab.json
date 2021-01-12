@@ -1,8 +1,8 @@
 {
-  "parent": "additionalcolors:block/slab_tinted",
+  "parent": "mrplibrary:block/slab_tinted",
   "textures": {
+    "side": "additionalcolors:block/dark_prismarine",
     "bottom": "additionalcolors:block/dark_prismarine",
-    "top": "additionalcolors:block/dark_prismarine",
-    "side": "additionalcolors:block/dark_prismarine"
+    "top": "additionalcolors:block/dark_prismarine"
   }
 }

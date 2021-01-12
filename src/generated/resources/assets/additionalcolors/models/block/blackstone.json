@@ -1,9 +1,9 @@
 {
-  "parent": "minecraft:block/block",
+  "parent": "mrplibrary:block/cube_tinted",
   "textures": {
-    "end": "additionalcolors:block/blackstone_end",
-    "side": "additionalcolors:block/blackstone_side",
-    "particle": "additionalcolors:block/blackstone_side"
+    "end": "additionalcolors:block/blackstone_top",
+    "side": "additionalcolors:block/blackstone",
+    "particle": "additionalcolors:block/blackstone"
   },
   "elements": [
     {

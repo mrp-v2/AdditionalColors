@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:soul_soil_base"
+  },
+  "result": "minecraft:soul_soil",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:nether_brick_stairs"
+  },
+  "result": "additionalcolors:magenta_nether_brick_stairs",
+  "count": 1
+}

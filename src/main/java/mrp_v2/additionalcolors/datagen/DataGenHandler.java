@@ -11,20 +11,8 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
     @SubscribeEvent public static void gatherData(GatherDataEvent event)
     {
         DataGeneratorHelper helper = new DataGeneratorHelper(event, AdditionalColors.ID);
-        if (event.includeClient())
-        {
-            helper.addTextureProvider(TextureGenerator::new);
-            helper.addParticleProvider(ParticleGenerator::new);
-            helper.addBlockStateProvider(BlockStateGenerator::new);
-            helper.addItemModelProvider(ItemModelGenerator::new);
-            helper.addLanguageProvider(EN_USTranslationGenerator::new);
-        }
-        if (event.includeServer())
-        {
-            helper.addBlockTagsProvider(BlockTagGenerator::new);
-            helper.addItemTagsProvider(ItemTagGenerator::new);
-            helper.addRecipeProvider(RecipeGenerator::new);
-            helper.addLootTables(new LootTableGenerator());
-        }
+        helper.addParticleProvider(ParticleGenerator::new);
+        helper.addBlockStateProvider(BlockStateGenerator::new);
+        helper.addItemModelProvider(ItemModelGenerator::new);
     }
 }
