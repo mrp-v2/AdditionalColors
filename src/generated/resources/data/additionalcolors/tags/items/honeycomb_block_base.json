@@ -2,20 +2,20 @@
   "replace": false,
   "values": [
     "additionalcolors:blue_honeycomb_block",
-    "additionalcolors:magenta_honeycomb_block",
-    "additionalcolors:light_blue_honeycomb_block",
-    "additionalcolors:light_gray_honeycomb_block",
-    "additionalcolors:orange_honeycomb_block",
-    "additionalcolors:lime_honeycomb_block",
-    "additionalcolors:white_honeycomb_block",
     "additionalcolors:red_honeycomb_block",
-    "additionalcolors:gray_honeycomb_block",
-    "additionalcolors:green_honeycomb_block",
-    "additionalcolors:purple_honeycomb_block",
-    "additionalcolors:pink_honeycomb_block",
-    "additionalcolors:brown_honeycomb_block",
     "additionalcolors:black_honeycomb_block",
     "additionalcolors:cyan_honeycomb_block",
-    "additionalcolors:yellow_honeycomb_block"
+    "additionalcolors:purple_honeycomb_block",
+    "additionalcolors:orange_honeycomb_block",
+    "additionalcolors:lime_honeycomb_block",
+    "additionalcolors:yellow_honeycomb_block",
+    "additionalcolors:green_honeycomb_block",
+    "additionalcolors:brown_honeycomb_block",
+    "additionalcolors:pink_honeycomb_block",
+    "additionalcolors:gray_honeycomb_block",
+    "additionalcolors:white_honeycomb_block",
+    "additionalcolors:magenta_honeycomb_block",
+    "additionalcolors:light_gray_honeycomb_block",
+    "additionalcolors:light_blue_honeycomb_block"
   ]
 }

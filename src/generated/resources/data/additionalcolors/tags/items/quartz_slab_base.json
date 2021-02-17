@@ -2,20 +2,20 @@
   "replace": false,
   "values": [
     "additionalcolors:blue_quartz_slab",
-    "additionalcolors:magenta_quartz_slab",
-    "additionalcolors:light_blue_quartz_slab",
-    "additionalcolors:light_gray_quartz_slab",
-    "additionalcolors:orange_quartz_slab",
-    "additionalcolors:lime_quartz_slab",
-    "additionalcolors:white_quartz_slab",
     "additionalcolors:red_quartz_slab",
-    "additionalcolors:gray_quartz_slab",
-    "additionalcolors:green_quartz_slab",
-    "additionalcolors:purple_quartz_slab",
-    "additionalcolors:pink_quartz_slab",
-    "additionalcolors:brown_quartz_slab",
     "additionalcolors:black_quartz_slab",
     "additionalcolors:cyan_quartz_slab",
-    "additionalcolors:yellow_quartz_slab"
+    "additionalcolors:purple_quartz_slab",
+    "additionalcolors:orange_quartz_slab",
+    "additionalcolors:lime_quartz_slab",
+    "additionalcolors:yellow_quartz_slab",
+    "additionalcolors:green_quartz_slab",
+    "additionalcolors:brown_quartz_slab",
+    "additionalcolors:pink_quartz_slab",
+    "additionalcolors:gray_quartz_slab",
+    "additionalcolors:white_quartz_slab",
+    "additionalcolors:magenta_quartz_slab",
+    "additionalcolors:light_gray_quartz_slab",
+    "additionalcolors:light_blue_quartz_slab"
   ]
 }

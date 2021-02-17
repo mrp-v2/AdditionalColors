@@ -2,20 +2,20 @@
   "replace": false,
   "values": [
     "additionalcolors:blue_end_stone_brick_stairs",
-    "additionalcolors:magenta_end_stone_brick_stairs",
-    "additionalcolors:light_blue_end_stone_brick_stairs",
-    "additionalcolors:light_gray_end_stone_brick_stairs",
-    "additionalcolors:orange_end_stone_brick_stairs",
-    "additionalcolors:lime_end_stone_brick_stairs",
-    "additionalcolors:white_end_stone_brick_stairs",
     "additionalcolors:red_end_stone_brick_stairs",
-    "additionalcolors:gray_end_stone_brick_stairs",
-    "additionalcolors:green_end_stone_brick_stairs",
-    "additionalcolors:purple_end_stone_brick_stairs",
-    "additionalcolors:pink_end_stone_brick_stairs",
-    "additionalcolors:brown_end_stone_brick_stairs",
     "additionalcolors:black_end_stone_brick_stairs",
     "additionalcolors:cyan_end_stone_brick_stairs",
-    "additionalcolors:yellow_end_stone_brick_stairs"
+    "additionalcolors:purple_end_stone_brick_stairs",
+    "additionalcolors:orange_end_stone_brick_stairs",
+    "additionalcolors:lime_end_stone_brick_stairs",
+    "additionalcolors:yellow_end_stone_brick_stairs",
+    "additionalcolors:green_end_stone_brick_stairs",
+    "additionalcolors:brown_end_stone_brick_stairs",
+    "additionalcolors:pink_end_stone_brick_stairs",
+    "additionalcolors:gray_end_stone_brick_stairs",
+    "additionalcolors:white_end_stone_brick_stairs",
+    "additionalcolors:magenta_end_stone_brick_stairs",
+    "additionalcolors:light_gray_end_stone_brick_stairs",
+    "additionalcolors:light_blue_end_stone_brick_stairs"
   ]
 }

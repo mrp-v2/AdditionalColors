@@ -98,6 +98,18 @@ public class ObjectHolder
                 };
             }
 
+            @Override protected LootTableGenerator makeLootTableGenerator()
+            {
+                class CustomLootTableGenerator extends LootTableGenerator
+                {
+                    public CustomLootTableGenerator()
+                    {
+                        this.addLootTable(COLORED_CRAFTING_TABLE.get(), this::registerDropSelfLootTable);
+                    }
+                }
+                return new CustomLootTableGenerator();
+            }
+
             @Override protected RecipeGenerator makeRecipeGenerator(DataGenerator dataGeneratorIn, String modId)
             {
                 return new RecipeGenerator(dataGeneratorIn, modId)

@@ -2,20 +2,20 @@
   "replace": false,
   "values": [
     "additionalcolors:blue_blackstone_stairs",
-    "additionalcolors:magenta_blackstone_stairs",
-    "additionalcolors:light_blue_blackstone_stairs",
-    "additionalcolors:light_gray_blackstone_stairs",
-    "additionalcolors:orange_blackstone_stairs",
-    "additionalcolors:lime_blackstone_stairs",
-    "additionalcolors:white_blackstone_stairs",
     "additionalcolors:red_blackstone_stairs",
-    "additionalcolors:gray_blackstone_stairs",
-    "additionalcolors:green_blackstone_stairs",
-    "additionalcolors:purple_blackstone_stairs",
-    "additionalcolors:pink_blackstone_stairs",
-    "additionalcolors:brown_blackstone_stairs",
     "additionalcolors:black_blackstone_stairs",
     "additionalcolors:cyan_blackstone_stairs",
-    "additionalcolors:yellow_blackstone_stairs"
+    "additionalcolors:purple_blackstone_stairs",
+    "additionalcolors:orange_blackstone_stairs",
+    "additionalcolors:lime_blackstone_stairs",
+    "additionalcolors:yellow_blackstone_stairs",
+    "additionalcolors:green_blackstone_stairs",
+    "additionalcolors:brown_blackstone_stairs",
+    "additionalcolors:pink_blackstone_stairs",
+    "additionalcolors:gray_blackstone_stairs",
+    "additionalcolors:white_blackstone_stairs",
+    "additionalcolors:magenta_blackstone_stairs",
+    "additionalcolors:light_gray_blackstone_stairs",
+    "additionalcolors:light_blue_blackstone_stairs"
   ]
 }

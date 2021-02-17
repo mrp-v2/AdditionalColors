@@ -2,20 +2,20 @@
   "replace": false,
   "values": [
     "additionalcolors:blue_birch_planks",
-    "additionalcolors:magenta_birch_planks",
-    "additionalcolors:light_blue_birch_planks",
-    "additionalcolors:light_gray_birch_planks",
-    "additionalcolors:orange_birch_planks",
-    "additionalcolors:lime_birch_planks",
-    "additionalcolors:white_birch_planks",
     "additionalcolors:red_birch_planks",
-    "additionalcolors:gray_birch_planks",
-    "additionalcolors:green_birch_planks",
-    "additionalcolors:purple_birch_planks",
-    "additionalcolors:pink_birch_planks",
-    "additionalcolors:brown_birch_planks",
     "additionalcolors:black_birch_planks",
     "additionalcolors:cyan_birch_planks",
-    "additionalcolors:yellow_birch_planks"
+    "additionalcolors:purple_birch_planks",
+    "additionalcolors:orange_birch_planks",
+    "additionalcolors:lime_birch_planks",
+    "additionalcolors:yellow_birch_planks",
+    "additionalcolors:green_birch_planks",
+    "additionalcolors:brown_birch_planks",
+    "additionalcolors:pink_birch_planks",
+    "additionalcolors:gray_birch_planks",
+    "additionalcolors:white_birch_planks",
+    "additionalcolors:magenta_birch_planks",
+    "additionalcolors:light_gray_birch_planks",
+    "additionalcolors:light_blue_birch_planks"
   ]
 }
