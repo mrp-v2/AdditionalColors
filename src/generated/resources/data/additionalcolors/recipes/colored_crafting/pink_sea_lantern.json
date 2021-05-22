@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:sea_lantern"
+  },
+  "result": "additionalcolors:pink_sea_lantern",
+  "count": 1
+}

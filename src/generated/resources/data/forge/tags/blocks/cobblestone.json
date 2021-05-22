@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:blue_cobblestone",
     "additionalcolors:red_cobblestone",
-    "additionalcolors:black_cobblestone",
-    "additionalcolors:cyan_cobblestone",
-    "additionalcolors:purple_cobblestone",
-    "additionalcolors:orange_cobblestone",
     "additionalcolors:lime_cobblestone",
-    "additionalcolors:yellow_cobblestone",
-    "additionalcolors:green_cobblestone",
-    "additionalcolors:brown_cobblestone",
-    "additionalcolors:pink_cobblestone",
-    "additionalcolors:gray_cobblestone",
-    "additionalcolors:white_cobblestone",
     "additionalcolors:magenta_cobblestone",
+    "additionalcolors:gray_cobblestone",
+    "additionalcolors:cyan_cobblestone",
+    "additionalcolors:orange_cobblestone",
+    "additionalcolors:black_cobblestone",
+    "additionalcolors:purple_cobblestone",
+    "additionalcolors:brown_cobblestone",
+    "additionalcolors:green_cobblestone",
+    "additionalcolors:pink_cobblestone",
+    "additionalcolors:light_blue_cobblestone",
+    "additionalcolors:white_cobblestone",
     "additionalcolors:light_gray_cobblestone",
-    "additionalcolors:light_blue_cobblestone"
+    "additionalcolors:yellow_cobblestone",
+    "additionalcolors:blue_cobblestone"
   ]
 }

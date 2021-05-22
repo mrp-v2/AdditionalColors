@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:blue_diorite_slab",
     "additionalcolors:red_diorite_slab",
-    "additionalcolors:black_diorite_slab",
-    "additionalcolors:cyan_diorite_slab",
-    "additionalcolors:purple_diorite_slab",
-    "additionalcolors:orange_diorite_slab",
     "additionalcolors:lime_diorite_slab",
-    "additionalcolors:yellow_diorite_slab",
-    "additionalcolors:green_diorite_slab",
-    "additionalcolors:brown_diorite_slab",
-    "additionalcolors:pink_diorite_slab",
-    "additionalcolors:gray_diorite_slab",
-    "additionalcolors:white_diorite_slab",
     "additionalcolors:magenta_diorite_slab",
+    "additionalcolors:gray_diorite_slab",
+    "additionalcolors:cyan_diorite_slab",
+    "additionalcolors:orange_diorite_slab",
+    "additionalcolors:black_diorite_slab",
+    "additionalcolors:purple_diorite_slab",
+    "additionalcolors:brown_diorite_slab",
+    "additionalcolors:green_diorite_slab",
+    "additionalcolors:pink_diorite_slab",
+    "additionalcolors:light_blue_diorite_slab",
+    "additionalcolors:white_diorite_slab",
     "additionalcolors:light_gray_diorite_slab",
-    "additionalcolors:light_blue_diorite_slab"
+    "additionalcolors:yellow_diorite_slab",
+    "additionalcolors:blue_diorite_slab"
   ]
 }

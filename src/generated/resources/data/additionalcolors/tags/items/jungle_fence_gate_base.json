@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:blue_jungle_fence_gate",
     "additionalcolors:red_jungle_fence_gate",
-    "additionalcolors:black_jungle_fence_gate",
-    "additionalcolors:cyan_jungle_fence_gate",
-    "additionalcolors:purple_jungle_fence_gate",
-    "additionalcolors:orange_jungle_fence_gate",
     "additionalcolors:lime_jungle_fence_gate",
-    "additionalcolors:yellow_jungle_fence_gate",
-    "additionalcolors:green_jungle_fence_gate",
-    "additionalcolors:brown_jungle_fence_gate",
-    "additionalcolors:pink_jungle_fence_gate",
-    "additionalcolors:gray_jungle_fence_gate",
-    "additionalcolors:white_jungle_fence_gate",
     "additionalcolors:magenta_jungle_fence_gate",
+    "additionalcolors:gray_jungle_fence_gate",
+    "additionalcolors:cyan_jungle_fence_gate",
+    "additionalcolors:orange_jungle_fence_gate",
+    "additionalcolors:black_jungle_fence_gate",
+    "additionalcolors:purple_jungle_fence_gate",
+    "additionalcolors:brown_jungle_fence_gate",
+    "additionalcolors:green_jungle_fence_gate",
+    "additionalcolors:pink_jungle_fence_gate",
+    "additionalcolors:light_blue_jungle_fence_gate",
+    "additionalcolors:white_jungle_fence_gate",
     "additionalcolors:light_gray_jungle_fence_gate",
-    "additionalcolors:light_blue_jungle_fence_gate"
+    "additionalcolors:yellow_jungle_fence_gate",
+    "additionalcolors:blue_jungle_fence_gate"
   ]
 }

@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:glowstone"
+  },
+  "result": "additionalcolors:lime_glowstone",
+  "count": 1
+}

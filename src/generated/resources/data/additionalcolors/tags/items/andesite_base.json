@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:blue_andesite",
     "additionalcolors:red_andesite",
-    "additionalcolors:black_andesite",
-    "additionalcolors:cyan_andesite",
-    "additionalcolors:purple_andesite",
-    "additionalcolors:orange_andesite",
     "additionalcolors:lime_andesite",
-    "additionalcolors:yellow_andesite",
-    "additionalcolors:green_andesite",
-    "additionalcolors:brown_andesite",
-    "additionalcolors:pink_andesite",
-    "additionalcolors:gray_andesite",
-    "additionalcolors:white_andesite",
     "additionalcolors:magenta_andesite",
+    "additionalcolors:gray_andesite",
+    "additionalcolors:cyan_andesite",
+    "additionalcolors:orange_andesite",
+    "additionalcolors:black_andesite",
+    "additionalcolors:purple_andesite",
+    "additionalcolors:brown_andesite",
+    "additionalcolors:green_andesite",
+    "additionalcolors:pink_andesite",
+    "additionalcolors:light_blue_andesite",
+    "additionalcolors:white_andesite",
     "additionalcolors:light_gray_andesite",
-    "additionalcolors:light_blue_andesite"
+    "additionalcolors:yellow_andesite",
+    "additionalcolors:blue_andesite"
   ]
 }

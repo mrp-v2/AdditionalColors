@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:shroomlight_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:shroomlight"
+  }
+}

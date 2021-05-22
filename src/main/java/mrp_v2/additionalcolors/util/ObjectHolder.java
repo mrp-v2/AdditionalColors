@@ -414,6 +414,18 @@ public class ObjectHolder
             }
         }.setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.PURPUR_PILLAR))
                 .add(COLORED_BLOCK_DATA_HANDLER);
+        // Glowstone
+        new ColoredBlockData(Util.makeRegistryObject(Blocks.GLOWSTONE), COLORED_BLOCK_DATA_HANDLER)
+                .setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.GLOWSTONE))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Sea Lantern
+        new ColoredBlockData(Util.makeRegistryObject(Blocks.SEA_LANTERN), COLORED_BLOCK_DATA_HANDLER)
+                .setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.SEA_LANTERN))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Shroomlight
+        new ColoredBlockData(Util.makeRegistryObject(Blocks.SHROOMLIGHT), COLORED_BLOCK_DATA_HANDLER)
+                .setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.SHROOMLIGHT))
+                .add(COLORED_BLOCK_DATA_HANDLER);
     }
 
     public static void registerListeners(IEventBus bus)

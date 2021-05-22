@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:glowstone_base"
+  },
+  "result": "minecraft:glowstone",
+  "count": 1
+}

@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:blue_purpur_slab",
     "additionalcolors:red_purpur_slab",
-    "additionalcolors:black_purpur_slab",
-    "additionalcolors:cyan_purpur_slab",
-    "additionalcolors:purple_purpur_slab",
-    "additionalcolors:orange_purpur_slab",
     "additionalcolors:lime_purpur_slab",
-    "additionalcolors:yellow_purpur_slab",
-    "additionalcolors:green_purpur_slab",
-    "additionalcolors:brown_purpur_slab",
-    "additionalcolors:pink_purpur_slab",
-    "additionalcolors:gray_purpur_slab",
-    "additionalcolors:white_purpur_slab",
     "additionalcolors:magenta_purpur_slab",
+    "additionalcolors:gray_purpur_slab",
+    "additionalcolors:cyan_purpur_slab",
+    "additionalcolors:orange_purpur_slab",
+    "additionalcolors:black_purpur_slab",
+    "additionalcolors:purple_purpur_slab",
+    "additionalcolors:brown_purpur_slab",
+    "additionalcolors:green_purpur_slab",
+    "additionalcolors:pink_purpur_slab",
+    "additionalcolors:light_blue_purpur_slab",
+    "additionalcolors:white_purpur_slab",
     "additionalcolors:light_gray_purpur_slab",
-    "additionalcolors:light_blue_purpur_slab"
+    "additionalcolors:yellow_purpur_slab",
+    "additionalcolors:blue_purpur_slab"
   ]
 }

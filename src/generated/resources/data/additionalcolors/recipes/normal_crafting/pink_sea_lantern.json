@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:sea_lantern"
+    },
+    {
+      "tag": "forge:dyes/pink"
+    }
+  ],
+  "result": {
+    "item": "additionalcolors:pink_sea_lantern"
+  }
+}

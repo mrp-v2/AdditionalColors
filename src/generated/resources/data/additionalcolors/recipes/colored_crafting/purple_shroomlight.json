@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:shroomlight"
+  },
+  "result": "additionalcolors:purple_shroomlight",
+  "count": 1
+}

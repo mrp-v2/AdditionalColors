@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:blue_cobblestone_stairs",
     "additionalcolors:red_cobblestone_stairs",
-    "additionalcolors:black_cobblestone_stairs",
-    "additionalcolors:cyan_cobblestone_stairs",
-    "additionalcolors:purple_cobblestone_stairs",
-    "additionalcolors:orange_cobblestone_stairs",
     "additionalcolors:lime_cobblestone_stairs",
-    "additionalcolors:yellow_cobblestone_stairs",
-    "additionalcolors:green_cobblestone_stairs",
-    "additionalcolors:brown_cobblestone_stairs",
-    "additionalcolors:pink_cobblestone_stairs",
-    "additionalcolors:gray_cobblestone_stairs",
-    "additionalcolors:white_cobblestone_stairs",
     "additionalcolors:magenta_cobblestone_stairs",
+    "additionalcolors:gray_cobblestone_stairs",
+    "additionalcolors:cyan_cobblestone_stairs",
+    "additionalcolors:orange_cobblestone_stairs",
+    "additionalcolors:black_cobblestone_stairs",
+    "additionalcolors:purple_cobblestone_stairs",
+    "additionalcolors:brown_cobblestone_stairs",
+    "additionalcolors:green_cobblestone_stairs",
+    "additionalcolors:pink_cobblestone_stairs",
+    "additionalcolors:light_blue_cobblestone_stairs",
+    "additionalcolors:white_cobblestone_stairs",
     "additionalcolors:light_gray_cobblestone_stairs",
-    "additionalcolors:light_blue_cobblestone_stairs"
+    "additionalcolors:yellow_cobblestone_stairs",
+    "additionalcolors:blue_cobblestone_stairs"
   ]
 }

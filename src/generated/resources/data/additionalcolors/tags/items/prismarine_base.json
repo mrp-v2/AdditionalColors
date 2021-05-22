@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:blue_prismarine",
     "additionalcolors:red_prismarine",
-    "additionalcolors:black_prismarine",
-    "additionalcolors:cyan_prismarine",
-    "additionalcolors:purple_prismarine",
-    "additionalcolors:orange_prismarine",
     "additionalcolors:lime_prismarine",
-    "additionalcolors:yellow_prismarine",
-    "additionalcolors:green_prismarine",
-    "additionalcolors:brown_prismarine",
-    "additionalcolors:pink_prismarine",
-    "additionalcolors:gray_prismarine",
-    "additionalcolors:white_prismarine",
     "additionalcolors:magenta_prismarine",
+    "additionalcolors:gray_prismarine",
+    "additionalcolors:cyan_prismarine",
+    "additionalcolors:orange_prismarine",
+    "additionalcolors:black_prismarine",
+    "additionalcolors:purple_prismarine",
+    "additionalcolors:brown_prismarine",
+    "additionalcolors:green_prismarine",
+    "additionalcolors:pink_prismarine",
+    "additionalcolors:light_blue_prismarine",
+    "additionalcolors:white_prismarine",
     "additionalcolors:light_gray_prismarine",
-    "additionalcolors:light_blue_prismarine"
+    "additionalcolors:yellow_prismarine",
+    "additionalcolors:blue_prismarine"
   ]
 }

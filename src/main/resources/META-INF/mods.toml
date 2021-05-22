@@ -14,7 +14,7 @@ license="All rights reserved"
 [[dependencies.${modId}]]
     modId="forge"
     mandatory=true
-    versionRange="[${minimumForgeVersion},)"
+    versionRange="[${forgeMajor},)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.${modId}]]
@@ -23,15 +23,4 @@ license="All rights reserved"
     versionRange="[${mcVersion}]"
     ordering="NONE"
     side="BOTH"
-[[dependencies.${modId}]]
-    modId="mrplibrary"
-    mandatory=true
-    versionRange="[${mrpLibAPI},${mrpLibNextAPI})"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.${modId}]]
-    modId="obsidianexpansion"
-    mandatory=false
-    versionRange="[1.0.1,1.1)"
-    ordering="NONE"
-    side="BOTH"
+${githubDependencies}
