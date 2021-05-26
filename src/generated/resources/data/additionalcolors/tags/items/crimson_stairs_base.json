@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_crimson_stairs",
-    "additionalcolors:lime_crimson_stairs",
+    "additionalcolors:light_blue_crimson_stairs",
+    "additionalcolors:yellow_crimson_stairs",
+    "additionalcolors:black_crimson_stairs",
     "additionalcolors:magenta_crimson_stairs",
-    "additionalcolors:gray_crimson_stairs",
+    "additionalcolors:green_crimson_stairs",
     "additionalcolors:cyan_crimson_stairs",
     "additionalcolors:orange_crimson_stairs",
-    "additionalcolors:black_crimson_stairs",
+    "additionalcolors:lime_crimson_stairs",
     "additionalcolors:purple_crimson_stairs",
-    "additionalcolors:brown_crimson_stairs",
-    "additionalcolors:green_crimson_stairs",
-    "additionalcolors:pink_crimson_stairs",
-    "additionalcolors:light_blue_crimson_stairs",
-    "additionalcolors:white_crimson_stairs",
     "additionalcolors:light_gray_crimson_stairs",
-    "additionalcolors:yellow_crimson_stairs",
-    "additionalcolors:blue_crimson_stairs"
+    "additionalcolors:red_crimson_stairs",
+    "additionalcolors:white_crimson_stairs",
+    "additionalcolors:pink_crimson_stairs",
+    "additionalcolors:blue_crimson_stairs",
+    "additionalcolors:brown_crimson_stairs",
+    "additionalcolors:gray_crimson_stairs"
   ]
 }

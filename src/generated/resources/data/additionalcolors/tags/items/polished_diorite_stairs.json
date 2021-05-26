@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_polished_diorite_stairs",
-    "additionalcolors:lime_polished_diorite_stairs",
+    "additionalcolors:light_blue_polished_diorite_stairs",
+    "additionalcolors:yellow_polished_diorite_stairs",
+    "additionalcolors:black_polished_diorite_stairs",
     "additionalcolors:magenta_polished_diorite_stairs",
-    "additionalcolors:gray_polished_diorite_stairs",
+    "additionalcolors:green_polished_diorite_stairs",
     "additionalcolors:cyan_polished_diorite_stairs",
     "additionalcolors:orange_polished_diorite_stairs",
-    "additionalcolors:black_polished_diorite_stairs",
+    "additionalcolors:lime_polished_diorite_stairs",
     "additionalcolors:purple_polished_diorite_stairs",
-    "additionalcolors:brown_polished_diorite_stairs",
-    "additionalcolors:green_polished_diorite_stairs",
-    "additionalcolors:pink_polished_diorite_stairs",
-    "additionalcolors:light_blue_polished_diorite_stairs",
-    "additionalcolors:white_polished_diorite_stairs",
     "additionalcolors:light_gray_polished_diorite_stairs",
-    "additionalcolors:yellow_polished_diorite_stairs",
+    "additionalcolors:red_polished_diorite_stairs",
+    "additionalcolors:white_polished_diorite_stairs",
+    "additionalcolors:pink_polished_diorite_stairs",
     "additionalcolors:blue_polished_diorite_stairs",
+    "additionalcolors:brown_polished_diorite_stairs",
+    "additionalcolors:gray_polished_diorite_stairs",
     "minecraft:polished_diorite_stairs"
   ]
 }

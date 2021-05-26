@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_crimson_fence_gate",
-    "additionalcolors:lime_crimson_fence_gate",
+    "additionalcolors:light_blue_crimson_fence_gate",
+    "additionalcolors:yellow_crimson_fence_gate",
+    "additionalcolors:black_crimson_fence_gate",
     "additionalcolors:magenta_crimson_fence_gate",
-    "additionalcolors:gray_crimson_fence_gate",
+    "additionalcolors:green_crimson_fence_gate",
     "additionalcolors:cyan_crimson_fence_gate",
     "additionalcolors:orange_crimson_fence_gate",
-    "additionalcolors:black_crimson_fence_gate",
+    "additionalcolors:lime_crimson_fence_gate",
     "additionalcolors:purple_crimson_fence_gate",
-    "additionalcolors:brown_crimson_fence_gate",
-    "additionalcolors:green_crimson_fence_gate",
-    "additionalcolors:pink_crimson_fence_gate",
-    "additionalcolors:light_blue_crimson_fence_gate",
-    "additionalcolors:white_crimson_fence_gate",
     "additionalcolors:light_gray_crimson_fence_gate",
-    "additionalcolors:yellow_crimson_fence_gate",
+    "additionalcolors:red_crimson_fence_gate",
+    "additionalcolors:white_crimson_fence_gate",
+    "additionalcolors:pink_crimson_fence_gate",
     "additionalcolors:blue_crimson_fence_gate",
+    "additionalcolors:brown_crimson_fence_gate",
+    "additionalcolors:gray_crimson_fence_gate",
     "minecraft:crimson_fence_gate"
   ]
 }

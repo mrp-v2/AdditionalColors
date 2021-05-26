@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_glowstone",
-    "additionalcolors:lime_glowstone",
+    "additionalcolors:light_blue_glowstone",
+    "additionalcolors:yellow_glowstone",
+    "additionalcolors:black_glowstone",
     "additionalcolors:magenta_glowstone",
-    "additionalcolors:gray_glowstone",
+    "additionalcolors:green_glowstone",
     "additionalcolors:cyan_glowstone",
     "additionalcolors:orange_glowstone",
-    "additionalcolors:black_glowstone",
+    "additionalcolors:lime_glowstone",
     "additionalcolors:purple_glowstone",
-    "additionalcolors:brown_glowstone",
-    "additionalcolors:green_glowstone",
-    "additionalcolors:pink_glowstone",
-    "additionalcolors:light_blue_glowstone",
-    "additionalcolors:white_glowstone",
     "additionalcolors:light_gray_glowstone",
-    "additionalcolors:yellow_glowstone",
-    "additionalcolors:blue_glowstone"
+    "additionalcolors:red_glowstone",
+    "additionalcolors:white_glowstone",
+    "additionalcolors:pink_glowstone",
+    "additionalcolors:blue_glowstone",
+    "additionalcolors:brown_glowstone",
+    "additionalcolors:gray_glowstone"
   ]
 }

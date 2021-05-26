@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_end_stone_brick_wall",
-    "additionalcolors:lime_end_stone_brick_wall",
+    "additionalcolors:light_blue_end_stone_brick_wall",
+    "additionalcolors:yellow_end_stone_brick_wall",
+    "additionalcolors:black_end_stone_brick_wall",
     "additionalcolors:magenta_end_stone_brick_wall",
-    "additionalcolors:gray_end_stone_brick_wall",
+    "additionalcolors:green_end_stone_brick_wall",
     "additionalcolors:cyan_end_stone_brick_wall",
     "additionalcolors:orange_end_stone_brick_wall",
-    "additionalcolors:black_end_stone_brick_wall",
+    "additionalcolors:lime_end_stone_brick_wall",
     "additionalcolors:purple_end_stone_brick_wall",
-    "additionalcolors:brown_end_stone_brick_wall",
-    "additionalcolors:green_end_stone_brick_wall",
-    "additionalcolors:pink_end_stone_brick_wall",
-    "additionalcolors:light_blue_end_stone_brick_wall",
-    "additionalcolors:white_end_stone_brick_wall",
     "additionalcolors:light_gray_end_stone_brick_wall",
-    "additionalcolors:yellow_end_stone_brick_wall",
-    "additionalcolors:blue_end_stone_brick_wall"
+    "additionalcolors:red_end_stone_brick_wall",
+    "additionalcolors:white_end_stone_brick_wall",
+    "additionalcolors:pink_end_stone_brick_wall",
+    "additionalcolors:blue_end_stone_brick_wall",
+    "additionalcolors:brown_end_stone_brick_wall",
+    "additionalcolors:gray_end_stone_brick_wall"
   ]
 }

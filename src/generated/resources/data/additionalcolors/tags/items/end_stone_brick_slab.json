@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_end_stone_brick_slab",
-    "additionalcolors:lime_end_stone_brick_slab",
+    "additionalcolors:light_blue_end_stone_brick_slab",
+    "additionalcolors:yellow_end_stone_brick_slab",
+    "additionalcolors:black_end_stone_brick_slab",
     "additionalcolors:magenta_end_stone_brick_slab",
-    "additionalcolors:gray_end_stone_brick_slab",
+    "additionalcolors:green_end_stone_brick_slab",
     "additionalcolors:cyan_end_stone_brick_slab",
     "additionalcolors:orange_end_stone_brick_slab",
-    "additionalcolors:black_end_stone_brick_slab",
+    "additionalcolors:lime_end_stone_brick_slab",
     "additionalcolors:purple_end_stone_brick_slab",
-    "additionalcolors:brown_end_stone_brick_slab",
-    "additionalcolors:green_end_stone_brick_slab",
-    "additionalcolors:pink_end_stone_brick_slab",
-    "additionalcolors:light_blue_end_stone_brick_slab",
-    "additionalcolors:white_end_stone_brick_slab",
     "additionalcolors:light_gray_end_stone_brick_slab",
-    "additionalcolors:yellow_end_stone_brick_slab",
+    "additionalcolors:red_end_stone_brick_slab",
+    "additionalcolors:white_end_stone_brick_slab",
+    "additionalcolors:pink_end_stone_brick_slab",
     "additionalcolors:blue_end_stone_brick_slab",
+    "additionalcolors:brown_end_stone_brick_slab",
+    "additionalcolors:gray_end_stone_brick_slab",
     "minecraft:end_stone_brick_slab"
   ]
 }

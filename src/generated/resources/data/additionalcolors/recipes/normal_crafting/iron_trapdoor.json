@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:iron_trapdoor_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:iron_trapdoor"
+  }
+}

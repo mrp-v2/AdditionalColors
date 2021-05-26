@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_smooth_stone",
-    "additionalcolors:lime_smooth_stone",
+    "additionalcolors:light_blue_smooth_stone",
+    "additionalcolors:yellow_smooth_stone",
+    "additionalcolors:black_smooth_stone",
     "additionalcolors:magenta_smooth_stone",
-    "additionalcolors:gray_smooth_stone",
+    "additionalcolors:green_smooth_stone",
     "additionalcolors:cyan_smooth_stone",
     "additionalcolors:orange_smooth_stone",
-    "additionalcolors:black_smooth_stone",
+    "additionalcolors:lime_smooth_stone",
     "additionalcolors:purple_smooth_stone",
-    "additionalcolors:brown_smooth_stone",
-    "additionalcolors:green_smooth_stone",
-    "additionalcolors:pink_smooth_stone",
-    "additionalcolors:light_blue_smooth_stone",
-    "additionalcolors:white_smooth_stone",
     "additionalcolors:light_gray_smooth_stone",
-    "additionalcolors:yellow_smooth_stone",
-    "additionalcolors:blue_smooth_stone"
+    "additionalcolors:red_smooth_stone",
+    "additionalcolors:white_smooth_stone",
+    "additionalcolors:pink_smooth_stone",
+    "additionalcolors:blue_smooth_stone",
+    "additionalcolors:brown_smooth_stone",
+    "additionalcolors:gray_smooth_stone"
   ]
 }

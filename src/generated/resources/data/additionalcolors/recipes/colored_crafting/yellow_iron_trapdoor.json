@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:iron_trapdoor"
+  },
+  "result": "additionalcolors:yellow_iron_trapdoor",
+  "count": 1
+}

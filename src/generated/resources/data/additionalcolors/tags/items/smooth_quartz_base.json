@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_smooth_quartz",
-    "additionalcolors:lime_smooth_quartz",
+    "additionalcolors:light_blue_smooth_quartz",
+    "additionalcolors:yellow_smooth_quartz",
+    "additionalcolors:black_smooth_quartz",
     "additionalcolors:magenta_smooth_quartz",
-    "additionalcolors:gray_smooth_quartz",
+    "additionalcolors:green_smooth_quartz",
     "additionalcolors:cyan_smooth_quartz",
     "additionalcolors:orange_smooth_quartz",
-    "additionalcolors:black_smooth_quartz",
+    "additionalcolors:lime_smooth_quartz",
     "additionalcolors:purple_smooth_quartz",
-    "additionalcolors:brown_smooth_quartz",
-    "additionalcolors:green_smooth_quartz",
-    "additionalcolors:pink_smooth_quartz",
-    "additionalcolors:light_blue_smooth_quartz",
-    "additionalcolors:white_smooth_quartz",
     "additionalcolors:light_gray_smooth_quartz",
-    "additionalcolors:yellow_smooth_quartz",
-    "additionalcolors:blue_smooth_quartz"
+    "additionalcolors:red_smooth_quartz",
+    "additionalcolors:white_smooth_quartz",
+    "additionalcolors:pink_smooth_quartz",
+    "additionalcolors:blue_smooth_quartz",
+    "additionalcolors:brown_smooth_quartz",
+    "additionalcolors:gray_smooth_quartz"
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:jungle_trapdoor_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:jungle_trapdoor"
+  }
+}

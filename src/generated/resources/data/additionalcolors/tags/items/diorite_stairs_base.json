@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_diorite_stairs",
-    "additionalcolors:lime_diorite_stairs",
+    "additionalcolors:light_blue_diorite_stairs",
+    "additionalcolors:yellow_diorite_stairs",
+    "additionalcolors:black_diorite_stairs",
     "additionalcolors:magenta_diorite_stairs",
-    "additionalcolors:gray_diorite_stairs",
+    "additionalcolors:green_diorite_stairs",
     "additionalcolors:cyan_diorite_stairs",
     "additionalcolors:orange_diorite_stairs",
-    "additionalcolors:black_diorite_stairs",
+    "additionalcolors:lime_diorite_stairs",
     "additionalcolors:purple_diorite_stairs",
-    "additionalcolors:brown_diorite_stairs",
-    "additionalcolors:green_diorite_stairs",
-    "additionalcolors:pink_diorite_stairs",
-    "additionalcolors:light_blue_diorite_stairs",
-    "additionalcolors:white_diorite_stairs",
     "additionalcolors:light_gray_diorite_stairs",
-    "additionalcolors:yellow_diorite_stairs",
-    "additionalcolors:blue_diorite_stairs"
+    "additionalcolors:red_diorite_stairs",
+    "additionalcolors:white_diorite_stairs",
+    "additionalcolors:pink_diorite_stairs",
+    "additionalcolors:blue_diorite_stairs",
+    "additionalcolors:brown_diorite_stairs",
+    "additionalcolors:gray_diorite_stairs"
   ]
 }

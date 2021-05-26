@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:oak_trapdoor"
+  },
+  "result": "additionalcolors:lime_oak_trapdoor",
+  "count": 1
+}

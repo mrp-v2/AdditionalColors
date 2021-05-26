@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:acacia_trapdoor"
+  },
+  "result": "additionalcolors:gray_acacia_trapdoor",
+  "count": 1
+}

@@ -4,7 +4,6 @@ import mrp_v2.additionalcolors.AdditionalColors;
 import mrp_v2.additionalcolors.inventory.CraftResultItemStackHandler;
 import mrp_v2.additionalcolors.item.crafting.ColoredCraftingRecipe;
 import mrp_v2.additionalcolors.util.ObjectHolder;
-import mrp_v2.mrplibrary.datagen.providers.LanguageProvider;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -17,7 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntReferenceHolder;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -28,9 +27,8 @@ import java.util.List;
 
 public class ColoredWorkbenchContainer extends Container
 {
-    public static final ITextComponent NAME = LanguageProvider
-            .makeTextTranslation("container.", AdditionalColors.ID, "." + ColoredCraftingRecipe.ID, "en_us",
-                    "Colored Crafting");
+    public static final TranslationTextComponent NAME =
+            new TranslationTextComponent("container." + AdditionalColors.ID + "." + ColoredCraftingRecipe.ID);
     private final IntReferenceHolder selectedRecipe = IntReferenceHolder.single();
     private final IWorldPosCallable worldPosCallable;
     private final World world;
@@ -51,13 +49,6 @@ public class ColoredWorkbenchContainer extends Container
             inventoryUpdateListener.run();
         }
     };
-
-    /**
-     * For static initialization
-     */
-    public static void init()
-    {
-    }
 
     public static ContainerType<ColoredWorkbenchContainer> createContainerType()
     {

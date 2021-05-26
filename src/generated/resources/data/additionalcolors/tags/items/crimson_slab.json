@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_crimson_slab",
-    "additionalcolors:lime_crimson_slab",
+    "additionalcolors:light_blue_crimson_slab",
+    "additionalcolors:yellow_crimson_slab",
+    "additionalcolors:black_crimson_slab",
     "additionalcolors:magenta_crimson_slab",
-    "additionalcolors:gray_crimson_slab",
+    "additionalcolors:green_crimson_slab",
     "additionalcolors:cyan_crimson_slab",
     "additionalcolors:orange_crimson_slab",
-    "additionalcolors:black_crimson_slab",
+    "additionalcolors:lime_crimson_slab",
     "additionalcolors:purple_crimson_slab",
-    "additionalcolors:brown_crimson_slab",
-    "additionalcolors:green_crimson_slab",
-    "additionalcolors:pink_crimson_slab",
-    "additionalcolors:light_blue_crimson_slab",
-    "additionalcolors:white_crimson_slab",
     "additionalcolors:light_gray_crimson_slab",
-    "additionalcolors:yellow_crimson_slab",
+    "additionalcolors:red_crimson_slab",
+    "additionalcolors:white_crimson_slab",
+    "additionalcolors:pink_crimson_slab",
     "additionalcolors:blue_crimson_slab",
+    "additionalcolors:brown_crimson_slab",
+    "additionalcolors:gray_crimson_slab",
     "minecraft:crimson_slab"
   ]
 }

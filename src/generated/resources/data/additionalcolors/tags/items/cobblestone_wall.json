@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_cobblestone_wall",
-    "additionalcolors:lime_cobblestone_wall",
+    "additionalcolors:light_blue_cobblestone_wall",
+    "additionalcolors:yellow_cobblestone_wall",
+    "additionalcolors:black_cobblestone_wall",
     "additionalcolors:magenta_cobblestone_wall",
-    "additionalcolors:gray_cobblestone_wall",
+    "additionalcolors:green_cobblestone_wall",
     "additionalcolors:cyan_cobblestone_wall",
     "additionalcolors:orange_cobblestone_wall",
-    "additionalcolors:black_cobblestone_wall",
+    "additionalcolors:lime_cobblestone_wall",
     "additionalcolors:purple_cobblestone_wall",
-    "additionalcolors:brown_cobblestone_wall",
-    "additionalcolors:green_cobblestone_wall",
-    "additionalcolors:pink_cobblestone_wall",
-    "additionalcolors:light_blue_cobblestone_wall",
-    "additionalcolors:white_cobblestone_wall",
     "additionalcolors:light_gray_cobblestone_wall",
-    "additionalcolors:yellow_cobblestone_wall",
+    "additionalcolors:red_cobblestone_wall",
+    "additionalcolors:white_cobblestone_wall",
+    "additionalcolors:pink_cobblestone_wall",
     "additionalcolors:blue_cobblestone_wall",
+    "additionalcolors:brown_cobblestone_wall",
+    "additionalcolors:gray_cobblestone_wall",
     "minecraft:cobblestone_wall"
   ]
 }

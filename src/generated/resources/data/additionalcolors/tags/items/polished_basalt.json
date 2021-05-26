@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_polished_basalt",
-    "additionalcolors:lime_polished_basalt",
+    "additionalcolors:light_blue_polished_basalt",
+    "additionalcolors:yellow_polished_basalt",
+    "additionalcolors:black_polished_basalt",
     "additionalcolors:magenta_polished_basalt",
-    "additionalcolors:gray_polished_basalt",
+    "additionalcolors:green_polished_basalt",
     "additionalcolors:cyan_polished_basalt",
     "additionalcolors:orange_polished_basalt",
-    "additionalcolors:black_polished_basalt",
+    "additionalcolors:lime_polished_basalt",
     "additionalcolors:purple_polished_basalt",
-    "additionalcolors:brown_polished_basalt",
-    "additionalcolors:green_polished_basalt",
-    "additionalcolors:pink_polished_basalt",
-    "additionalcolors:light_blue_polished_basalt",
-    "additionalcolors:white_polished_basalt",
     "additionalcolors:light_gray_polished_basalt",
-    "additionalcolors:yellow_polished_basalt",
+    "additionalcolors:red_polished_basalt",
+    "additionalcolors:white_polished_basalt",
+    "additionalcolors:pink_polished_basalt",
     "additionalcolors:blue_polished_basalt",
+    "additionalcolors:brown_polished_basalt",
+    "additionalcolors:gray_polished_basalt",
     "minecraft:polished_basalt"
   ]
 }

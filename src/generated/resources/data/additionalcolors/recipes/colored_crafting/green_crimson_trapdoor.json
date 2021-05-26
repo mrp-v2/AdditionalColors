@@ -1,0 +1,8 @@
+{
+  "type": "additionalcolors:crafting_colored",
+  "ingredient": {
+    "tag": "additionalcolors:crimson_trapdoor"
+  },
+  "result": "additionalcolors:green_crimson_trapdoor",
+  "count": 1
+}

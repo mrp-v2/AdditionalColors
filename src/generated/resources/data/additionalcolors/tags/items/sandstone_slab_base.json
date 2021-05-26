@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_sandstone_slab",
-    "additionalcolors:lime_sandstone_slab",
+    "additionalcolors:light_blue_sandstone_slab",
+    "additionalcolors:yellow_sandstone_slab",
+    "additionalcolors:black_sandstone_slab",
     "additionalcolors:magenta_sandstone_slab",
-    "additionalcolors:gray_sandstone_slab",
+    "additionalcolors:green_sandstone_slab",
     "additionalcolors:cyan_sandstone_slab",
     "additionalcolors:orange_sandstone_slab",
-    "additionalcolors:black_sandstone_slab",
+    "additionalcolors:lime_sandstone_slab",
     "additionalcolors:purple_sandstone_slab",
-    "additionalcolors:brown_sandstone_slab",
-    "additionalcolors:green_sandstone_slab",
-    "additionalcolors:pink_sandstone_slab",
-    "additionalcolors:light_blue_sandstone_slab",
-    "additionalcolors:white_sandstone_slab",
     "additionalcolors:light_gray_sandstone_slab",
-    "additionalcolors:yellow_sandstone_slab",
-    "additionalcolors:blue_sandstone_slab"
+    "additionalcolors:red_sandstone_slab",
+    "additionalcolors:white_sandstone_slab",
+    "additionalcolors:pink_sandstone_slab",
+    "additionalcolors:blue_sandstone_slab",
+    "additionalcolors:brown_sandstone_slab",
+    "additionalcolors:gray_sandstone_slab"
   ]
 }

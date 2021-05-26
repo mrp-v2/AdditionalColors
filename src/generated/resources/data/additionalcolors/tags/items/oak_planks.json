@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_oak_planks",
-    "additionalcolors:lime_oak_planks",
+    "additionalcolors:light_blue_oak_planks",
+    "additionalcolors:yellow_oak_planks",
+    "additionalcolors:black_oak_planks",
     "additionalcolors:magenta_oak_planks",
-    "additionalcolors:gray_oak_planks",
+    "additionalcolors:green_oak_planks",
     "additionalcolors:cyan_oak_planks",
     "additionalcolors:orange_oak_planks",
-    "additionalcolors:black_oak_planks",
+    "additionalcolors:lime_oak_planks",
     "additionalcolors:purple_oak_planks",
-    "additionalcolors:brown_oak_planks",
-    "additionalcolors:green_oak_planks",
-    "additionalcolors:pink_oak_planks",
-    "additionalcolors:light_blue_oak_planks",
-    "additionalcolors:white_oak_planks",
     "additionalcolors:light_gray_oak_planks",
-    "additionalcolors:yellow_oak_planks",
+    "additionalcolors:red_oak_planks",
+    "additionalcolors:white_oak_planks",
+    "additionalcolors:pink_oak_planks",
     "additionalcolors:blue_oak_planks",
+    "additionalcolors:brown_oak_planks",
+    "additionalcolors:gray_oak_planks",
     "minecraft:oak_planks"
   ]
 }

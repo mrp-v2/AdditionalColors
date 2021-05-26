@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_diorite",
-    "additionalcolors:lime_diorite",
+    "additionalcolors:light_blue_diorite",
+    "additionalcolors:yellow_diorite",
+    "additionalcolors:black_diorite",
     "additionalcolors:magenta_diorite",
-    "additionalcolors:gray_diorite",
+    "additionalcolors:green_diorite",
     "additionalcolors:cyan_diorite",
     "additionalcolors:orange_diorite",
-    "additionalcolors:black_diorite",
+    "additionalcolors:lime_diorite",
     "additionalcolors:purple_diorite",
-    "additionalcolors:brown_diorite",
-    "additionalcolors:green_diorite",
-    "additionalcolors:pink_diorite",
-    "additionalcolors:light_blue_diorite",
-    "additionalcolors:white_diorite",
     "additionalcolors:light_gray_diorite",
-    "additionalcolors:yellow_diorite",
+    "additionalcolors:red_diorite",
+    "additionalcolors:white_diorite",
+    "additionalcolors:pink_diorite",
     "additionalcolors:blue_diorite",
+    "additionalcolors:brown_diorite",
+    "additionalcolors:gray_diorite",
     "minecraft:diorite"
   ]
 }

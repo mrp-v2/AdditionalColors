@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_netherrack",
-    "additionalcolors:lime_netherrack",
+    "additionalcolors:light_blue_netherrack",
+    "additionalcolors:yellow_netherrack",
+    "additionalcolors:black_netherrack",
     "additionalcolors:magenta_netherrack",
-    "additionalcolors:gray_netherrack",
+    "additionalcolors:green_netherrack",
     "additionalcolors:cyan_netherrack",
     "additionalcolors:orange_netherrack",
-    "additionalcolors:black_netherrack",
+    "additionalcolors:lime_netherrack",
     "additionalcolors:purple_netherrack",
-    "additionalcolors:brown_netherrack",
-    "additionalcolors:green_netherrack",
-    "additionalcolors:pink_netherrack",
-    "additionalcolors:light_blue_netherrack",
-    "additionalcolors:white_netherrack",
     "additionalcolors:light_gray_netherrack",
-    "additionalcolors:yellow_netherrack",
+    "additionalcolors:red_netherrack",
+    "additionalcolors:white_netherrack",
+    "additionalcolors:pink_netherrack",
     "additionalcolors:blue_netherrack",
+    "additionalcolors:brown_netherrack",
+    "additionalcolors:gray_netherrack",
     "minecraft:netherrack"
   ]
 }

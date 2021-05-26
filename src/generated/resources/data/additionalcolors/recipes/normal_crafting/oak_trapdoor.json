@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "additionalcolors:oak_trapdoor_base"
+    }
+  ],
+  "result": {
+    "item": "minecraft:oak_trapdoor"
+  }
+}

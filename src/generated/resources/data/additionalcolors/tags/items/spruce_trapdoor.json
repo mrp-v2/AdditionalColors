@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "additionalcolors:light_blue_spruce_trapdoor",
+    "additionalcolors:yellow_spruce_trapdoor",
+    "additionalcolors:black_spruce_trapdoor",
+    "additionalcolors:magenta_spruce_trapdoor",
+    "additionalcolors:green_spruce_trapdoor",
+    "additionalcolors:cyan_spruce_trapdoor",
+    "additionalcolors:orange_spruce_trapdoor",
+    "additionalcolors:lime_spruce_trapdoor",
+    "additionalcolors:purple_spruce_trapdoor",
+    "additionalcolors:light_gray_spruce_trapdoor",
+    "additionalcolors:red_spruce_trapdoor",
+    "additionalcolors:white_spruce_trapdoor",
+    "additionalcolors:pink_spruce_trapdoor",
+    "additionalcolors:blue_spruce_trapdoor",
+    "additionalcolors:brown_spruce_trapdoor",
+    "additionalcolors:gray_spruce_trapdoor",
+    "minecraft:spruce_trapdoor"
+  ]
+}

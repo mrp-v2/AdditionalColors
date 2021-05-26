@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_polished_granite",
-    "additionalcolors:lime_polished_granite",
+    "additionalcolors:light_blue_polished_granite",
+    "additionalcolors:yellow_polished_granite",
+    "additionalcolors:black_polished_granite",
     "additionalcolors:magenta_polished_granite",
-    "additionalcolors:gray_polished_granite",
+    "additionalcolors:green_polished_granite",
     "additionalcolors:cyan_polished_granite",
     "additionalcolors:orange_polished_granite",
-    "additionalcolors:black_polished_granite",
+    "additionalcolors:lime_polished_granite",
     "additionalcolors:purple_polished_granite",
-    "additionalcolors:brown_polished_granite",
-    "additionalcolors:green_polished_granite",
-    "additionalcolors:pink_polished_granite",
-    "additionalcolors:light_blue_polished_granite",
-    "additionalcolors:white_polished_granite",
     "additionalcolors:light_gray_polished_granite",
-    "additionalcolors:yellow_polished_granite",
+    "additionalcolors:red_polished_granite",
+    "additionalcolors:white_polished_granite",
+    "additionalcolors:pink_polished_granite",
     "additionalcolors:blue_polished_granite",
+    "additionalcolors:brown_polished_granite",
+    "additionalcolors:gray_polished_granite",
     "minecraft:polished_granite"
   ]
 }

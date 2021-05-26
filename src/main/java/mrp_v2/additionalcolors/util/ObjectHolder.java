@@ -90,10 +90,10 @@ public class ObjectHolder
                 {
                     @Override protected void addTranslations()
                     {
-                        ColoredWorkbenchContainer.init();
                         super.addTranslations();
                         add(ObjectHolder.MAIN_ITEM_GROUP, AdditionalColors.DISPLAY_NAME);
                         addBlock(ObjectHolder.COLORED_CRAFTING_TABLE, "Colored Crafting Table");
+                        add(ColoredWorkbenchContainer.NAME, "Colored Crafting");
                     }
                 };
             }
@@ -425,6 +425,42 @@ public class ObjectHolder
         // Shroomlight
         new ColoredBlockData(Util.makeRegistryObject(Blocks.SHROOMLIGHT), COLORED_BLOCK_DATA_HANDLER)
                 .setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.SHROOMLIGHT))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Oak Trapdoor
+        new ColoredTrapDoorBlockData(Util.makeRegistryObject(Blocks.OAK_TRAPDOOR), COLORED_BLOCK_DATA_HANDLER, false,
+                true).setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.OAK_TRAPDOOR))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Spruce Trapdoor
+        new ColoredTrapDoorBlockData(Util.makeRegistryObject(Blocks.SPRUCE_TRAPDOOR), COLORED_BLOCK_DATA_HANDLER, true,
+                true).setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.SPRUCE_TRAPDOOR))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Birch Trapdoor
+        new ColoredTrapDoorBlockData(Util.makeRegistryObject(Blocks.BIRCH_TRAPDOOR), COLORED_BLOCK_DATA_HANDLER, true,
+                true).setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.BIRCH_TRAPDOOR))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Jungle Trapdoor
+        new ColoredTrapDoorBlockData(Util.makeRegistryObject(Blocks.JUNGLE_TRAPDOOR), COLORED_BLOCK_DATA_HANDLER, true,
+                true).setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.JUNGLE_TRAPDOOR))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Acacia Trapdoor
+        new ColoredTrapDoorBlockData(Util.makeRegistryObject(Blocks.ACACIA_TRAPDOOR), COLORED_BLOCK_DATA_HANDLER, true,
+                true).setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.ACACIA_TRAPDOOR))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Dark Oak Trapdoor
+        new ColoredTrapDoorBlockData(Util.makeRegistryObject(Blocks.DARK_OAK_TRAPDOOR), COLORED_BLOCK_DATA_HANDLER,
+                false, true).setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.DARK_OAK_TRAPDOOR))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Iron Trapdoor
+        new ColoredTrapDoorBlockData(Util.makeRegistryObject(Blocks.IRON_TRAPDOOR), COLORED_BLOCK_DATA_HANDLER, false,
+                false).setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.IRON_TRAPDOOR))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Crimson Trapdoor
+        new ColoredTrapDoorBlockData(Util.makeRegistryObject(Blocks.CRIMSON_TRAPDOOR), COLORED_BLOCK_DATA_HANDLER, true,
+                true).setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.CRIMSON_TRAPDOOR))
+                .add(COLORED_BLOCK_DATA_HANDLER);
+        // Warped Trapdoor
+        new ColoredTrapDoorBlockData(Util.makeRegistryObject(Blocks.WARPED_TRAPDOOR), COLORED_BLOCK_DATA_HANDLER, true,
+                true).setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.WARPED_TRAPDOOR))
                 .add(COLORED_BLOCK_DATA_HANDLER);
     }
 

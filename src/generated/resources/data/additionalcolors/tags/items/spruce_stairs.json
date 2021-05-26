@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_spruce_stairs",
-    "additionalcolors:lime_spruce_stairs",
+    "additionalcolors:light_blue_spruce_stairs",
+    "additionalcolors:yellow_spruce_stairs",
+    "additionalcolors:black_spruce_stairs",
     "additionalcolors:magenta_spruce_stairs",
-    "additionalcolors:gray_spruce_stairs",
+    "additionalcolors:green_spruce_stairs",
     "additionalcolors:cyan_spruce_stairs",
     "additionalcolors:orange_spruce_stairs",
-    "additionalcolors:black_spruce_stairs",
+    "additionalcolors:lime_spruce_stairs",
     "additionalcolors:purple_spruce_stairs",
-    "additionalcolors:brown_spruce_stairs",
-    "additionalcolors:green_spruce_stairs",
-    "additionalcolors:pink_spruce_stairs",
-    "additionalcolors:light_blue_spruce_stairs",
-    "additionalcolors:white_spruce_stairs",
     "additionalcolors:light_gray_spruce_stairs",
-    "additionalcolors:yellow_spruce_stairs",
+    "additionalcolors:red_spruce_stairs",
+    "additionalcolors:white_spruce_stairs",
+    "additionalcolors:pink_spruce_stairs",
     "additionalcolors:blue_spruce_stairs",
+    "additionalcolors:brown_spruce_stairs",
+    "additionalcolors:gray_spruce_stairs",
     "minecraft:spruce_stairs"
   ]
 }

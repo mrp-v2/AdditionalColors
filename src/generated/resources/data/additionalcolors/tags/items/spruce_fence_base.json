@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "additionalcolors:red_spruce_fence",
-    "additionalcolors:lime_spruce_fence",
+    "additionalcolors:light_blue_spruce_fence",
+    "additionalcolors:yellow_spruce_fence",
+    "additionalcolors:black_spruce_fence",
     "additionalcolors:magenta_spruce_fence",
-    "additionalcolors:gray_spruce_fence",
+    "additionalcolors:green_spruce_fence",
     "additionalcolors:cyan_spruce_fence",
     "additionalcolors:orange_spruce_fence",
-    "additionalcolors:black_spruce_fence",
+    "additionalcolors:lime_spruce_fence",
     "additionalcolors:purple_spruce_fence",
-    "additionalcolors:brown_spruce_fence",
-    "additionalcolors:green_spruce_fence",
-    "additionalcolors:pink_spruce_fence",
-    "additionalcolors:light_blue_spruce_fence",
-    "additionalcolors:white_spruce_fence",
     "additionalcolors:light_gray_spruce_fence",
-    "additionalcolors:yellow_spruce_fence",
-    "additionalcolors:blue_spruce_fence"
+    "additionalcolors:red_spruce_fence",
+    "additionalcolors:white_spruce_fence",
+    "additionalcolors:pink_spruce_fence",
+    "additionalcolors:blue_spruce_fence",
+    "additionalcolors:brown_spruce_fence",
+    "additionalcolors:gray_spruce_fence"
   ]
 }
