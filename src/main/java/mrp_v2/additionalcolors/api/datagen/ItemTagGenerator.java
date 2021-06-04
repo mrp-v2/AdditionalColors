@@ -18,8 +18,8 @@ public abstract class ItemTagGenerator extends ItemTagsProvider
         super(dataGenerator, blockTagProvider, modId, existingFileHelper);
     }
 
-    @Override public TagsProvider.Builder<Item> getOrCreateBuilder(ITag.INamedTag<Item> tag)
+    @Override public TagsProvider.Builder<Item> tag(ITag.INamedTag<Item> tag)
     {
-        return super.getOrCreateBuilder(tag);
+        return super.tag(tag);
     }
 }

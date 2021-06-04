@@ -57,7 +57,7 @@ public class ObjectHolder
         private final RegistryObject<Item> iconItem = RegistryObject
                 .of(new ResourceLocation(AdditionalColors.ID, "green_cobblestone"), ForgeRegistries.ITEMS);
 
-        @Override public ItemStack createIcon()
+        @Override public ItemStack makeIcon()
         {
             return new ItemStack(iconItem.get());
         }
@@ -71,9 +71,9 @@ public class ObjectHolder
         CONTAINER_TYPES = DeferredRegister.create(ForgeRegistries.CONTAINERS, AdditionalColors.ID);
         RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, AdditionalColors.ID);
         COLORED_CRAFTING_TABLE = BLOCKS.register(ColoredCraftingTableBlock.ID,
-                () -> new ColoredCraftingTableBlock(AbstractBlock.Properties.from(Blocks.CRAFTING_TABLE)));
+                () -> new ColoredCraftingTableBlock(AbstractBlock.Properties.copy(Blocks.CRAFTING_TABLE)));
         ITEMS.register(ColoredCraftingTableBlock.ID,
-                () -> new BlockItem(COLORED_CRAFTING_TABLE.get(), new Item.Properties().group(MAIN_ITEM_GROUP)));
+                () -> new BlockItem(COLORED_CRAFTING_TABLE.get(), new Item.Properties().tab(MAIN_ITEM_GROUP)));
         COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE = PARTICLE_TYPES.register("colored_dripping_obsidian_tear",
                 () -> ColorParticleData.createParticleType(ColorParticleData.DrippingObsidianTear::new));
         COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE = PARTICLE_TYPES.register("colored_falling_obsidian_tear",
@@ -104,7 +104,7 @@ public class ObjectHolder
                 {
                     public CustomLootTableGenerator()
                     {
-                        this.addLootTable(COLORED_CRAFTING_TABLE.get(), this::registerDropSelfLootTable);
+                        this.addLootTable(COLORED_CRAFTING_TABLE.get(), this::dropSelf);
                     }
                 }
                 return new CustomLootTableGenerator();
@@ -114,17 +114,17 @@ public class ObjectHolder
             {
                 return new RecipeGenerator(dataGeneratorIn, modId)
                 {
-                    @Override protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
+                    @Override protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
                     {
-                        super.registerRecipes(consumer);
-                        ShapedRecipeBuilder.shapedRecipe(COLORED_CRAFTING_TABLE.get()).patternLine("RGB")
-                                .patternLine(" C ").patternLine("D W").key('R', Tags.Items.DYES_RED)
-                                .key('G', Tags.Items.DYES_GREEN).key('B', Tags.Items.DYES_BLUE)
-                                .key('C', Items.CRAFTING_TABLE).key('D', Tags.Items.DYES_BLACK)
-                                .key('W', Tags.Items.DYES_WHITE).addCriterion("has_crafting_table",
-                                ExtendedRecipeProvider.makeHasItemCriterion(Items.CRAFTING_TABLE))
-                                .addCriterion("has_dye", ExtendedRecipeProvider.makeHasItemCriterion(Tags.Items.DYES))
-                                .build(consumer);
+                        super.buildShapelessRecipes(consumer);
+                        ShapedRecipeBuilder.shaped(COLORED_CRAFTING_TABLE.get()).pattern("RGB").pattern(" C ")
+                                .pattern("D W").define('R', Tags.Items.DYES_RED).define('G', Tags.Items.DYES_GREEN)
+                                .define('B', Tags.Items.DYES_BLUE).define('C', Items.CRAFTING_TABLE)
+                                .define('D', Tags.Items.DYES_BLACK).define('W', Tags.Items.DYES_WHITE)
+                                .unlockedBy("has_crafting_table",
+                                        ExtendedRecipeProvider.makeHasItemCriterion(Items.CRAFTING_TABLE))
+                                .unlockedBy("has_dye", ExtendedRecipeProvider.makeHasItemCriterion(Tags.Items.DYES))
+                                .save(consumer);
                     }
                 };
             }
@@ -253,7 +253,7 @@ public class ObjectHolder
 
             @Override protected RenderType getSpecialRenderType()
             {
-                return RenderType.getTranslucent();
+                return RenderType.translucent();
             }
         }.setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.ICE)).addBlockTags(BlockTags.ICE)
                 .add(COLORED_BLOCK_DATA_HANDLER);

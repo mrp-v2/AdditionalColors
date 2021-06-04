@@ -18,17 +18,17 @@ public class EventHandler
 {
     @SubscribeEvent public static void registerParticles(final ParticleFactoryRegisterEvent event)
     {
-        ParticleManager particleManager = Minecraft.getInstance().particles;
-        particleManager.registerFactory(ObjectHolder.COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE.get(),
+        ParticleManager particleManager = Minecraft.getInstance().particleEngine;
+        particleManager.register(ObjectHolder.COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE.get(),
                 ObsidianTearParticleFactory.ColoredDrippingObsidianTearFactory::new);
-        particleManager.registerFactory(ObjectHolder.COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE.get(),
+        particleManager.register(ObjectHolder.COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE.get(),
                 ObsidianTearParticleFactory.ColoredFallingObsidianTearFactory::new);
-        particleManager.registerFactory(ObjectHolder.COLORED_LANDING_OBSIDIAN_TEAR_PARTICLE_TYPE.get(),
+        particleManager.register(ObjectHolder.COLORED_LANDING_OBSIDIAN_TEAR_PARTICLE_TYPE.get(),
                 ObsidianTearParticleFactory.ColoredLandingObsidianTearFactory::new);
     }
 
     @SubscribeEvent public static void clientSetup(final FMLClientSetupEvent event)
     {
-        ScreenManager.registerFactory(ObjectHolder.COLORED_WORKBENCH_CONTAINER_TYPE.get(), ColoredWorkbenchScreen::new);
+        ScreenManager.register(ObjectHolder.COLORED_WORKBENCH_CONTAINER_TYPE.get(), ColoredWorkbenchScreen::new);
     }
 }

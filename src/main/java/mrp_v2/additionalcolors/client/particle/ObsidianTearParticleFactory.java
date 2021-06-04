@@ -23,9 +23,9 @@ import javax.annotation.Nullable;
 
     protected void configureParticle(DripParticle particle, ColorParticleData data)
     {
-        particle.fullbright = true;
+        particle.isGlowing = true;
         particle.setColor(data.getRedF(), data.getGreenF(), data.getBlueF());
-        particle.selectSpriteRandomly(this.spriteSet);
+        particle.pickSprite(this.spriteSet);
     }
 
     @OnlyIn(Dist.CLIENT) public static class ColoredDrippingObsidianTearFactory extends ObsidianTearParticleFactory
@@ -36,13 +36,13 @@ import javax.annotation.Nullable;
         }
 
         @Nullable @Override
-        public Particle makeParticle(ColorParticleData typeIn, ClientWorld worldIn, double x, double y, double z,
+        public Particle createParticle(ColorParticleData typeIn, ClientWorld worldIn, double x, double y, double z,
                 double xSpeed, double ySpeed, double zSpeed)
         {
             DripParticle.Dripping particle = new DripParticle.Dripping(worldIn, x, y, z, Fluids.EMPTY,
                     new ColorParticleData.FallingObsidianTear(typeIn.getColor()));
-            particle.particleGravity *= 0.01F;
-            particle.maxAge = 100;
+            particle.gravity *= 0.01F;
+            particle.lifetime = 100;
             this.configureParticle(particle, typeIn);
             return particle;
         }
@@ -56,12 +56,12 @@ import javax.annotation.Nullable;
         }
 
         @Nullable @Override
-        public Particle makeParticle(ColorParticleData typeIn, ClientWorld worldIn, double x, double y, double z,
+        public Particle createParticle(ColorParticleData typeIn, ClientWorld worldIn, double x, double y, double z,
                 double xSpeed, double ySpeed, double zSpeed)
         {
             DripParticle particle = new DripParticle.FallingLiquidParticle(worldIn, x, y, z, Fluids.EMPTY,
                     new ColorParticleData.LandingObsidianTear(typeIn.getColor()));
-            particle.particleGravity = 0.01F;
+            particle.gravity = 0.01F;
             this.configureParticle(particle, typeIn);
             return particle;
         }
@@ -75,11 +75,11 @@ import javax.annotation.Nullable;
         }
 
         @Nullable @Override
-        public Particle makeParticle(ColorParticleData typeIn, ClientWorld worldIn, double x, double y, double z,
+        public Particle createParticle(ColorParticleData typeIn, ClientWorld worldIn, double x, double y, double z,
                 double xSpeed, double ySpeed, double zSpeed)
         {
             DripParticle particle = new DripParticle.Landing(worldIn, x, y, z, Fluids.EMPTY);
-            particle.maxAge = (int) (28 / (Math.random() * 0.8D + 0.2D));
+            particle.lifetime = (int) (28 / (Math.random() * 0.8D + 0.2D));
             this.configureParticle(particle, typeIn);
             return particle;
         }

@@ -42,7 +42,7 @@ public class ColoredSlabBlockData extends AbstractColoredBlockData<ColoredSlabBl
         for (RegistryObject<ColoredSlabBlock> blockObject : getBlockObjects())
         {
             generator.addLootTable(blockObject.get(),
-                    (block) -> generator.registerLootTable(block, ExtendedBlockLootTables::droppingSlab));
+                    (block) -> generator.add(block, ExtendedBlockLootTables::droppingSlab));
         }
     }
 

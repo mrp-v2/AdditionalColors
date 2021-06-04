@@ -25,22 +25,22 @@ public class ColoredCraftingTableBlock extends Block
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
             Hand handIn, BlockRayTraceResult hit)
     {
-        if (worldIn.isRemote)
+        if (worldIn.isClientSide)
         {
             return ActionResultType.SUCCESS;
         } else
         {
-            player.openContainer(state.getContainer(worldIn, pos));
+            player.openMenu(state.getMenuProvider(worldIn, pos));
             return ActionResultType.CONSUME;
         }
     }
 
-    @Nullable @Override public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos)
+    @Nullable @Override public INamedContainerProvider getMenuProvider(BlockState state, World worldIn, BlockPos pos)
     {
         return new SimpleNamedContainerProvider((id, inventory, player) -> new ColoredWorkbenchContainer(id, inventory,
-                IWorldPosCallable.of(worldIn, pos)), ColoredWorkbenchContainer.NAME);
+                IWorldPosCallable.create(worldIn, pos)), ColoredWorkbenchContainer.NAME);
     }
 }

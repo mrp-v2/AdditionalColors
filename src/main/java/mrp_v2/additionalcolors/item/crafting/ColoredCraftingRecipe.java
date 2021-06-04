@@ -32,10 +32,10 @@ public class ColoredCraftingRecipe extends SingleItemRecipe
 
     @Override public boolean matches(IInventory inv, World worldIn)
     {
-        return this.ingredient.test(inv.getStackInSlot(0));
+        return this.ingredient.test(inv.getItem(0));
     }
 
-    @Override public ItemStack getIcon()
+    @Override public ItemStack getToastSymbol()
     {
         return new ItemStack(ObjectHolder.COLORED_CRAFTING_TABLE.get());
     }

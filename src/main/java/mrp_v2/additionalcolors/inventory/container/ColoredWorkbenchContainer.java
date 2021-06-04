@@ -29,7 +29,7 @@ public class ColoredWorkbenchContainer extends Container
 {
     public static final TranslationTextComponent NAME =
             new TranslationTextComponent("container." + AdditionalColors.ID + "." + ColoredCraftingRecipe.ID);
-    private final IntReferenceHolder selectedRecipe = IntReferenceHolder.single();
+    private final IntReferenceHolder selectedRecipe = IntReferenceHolder.standalone();
     private final IWorldPosCallable worldPosCallable;
     private final World world;
     private final CraftResultItemStackHandler outputInventory = new CraftResultItemStackHandler();
@@ -57,7 +57,7 @@ public class ColoredWorkbenchContainer extends Container
 
     public ColoredWorkbenchContainer(int windowIdIn, PlayerInventory playerInventoryIn)
     {
-        this(windowIdIn, playerInventoryIn, IWorldPosCallable.DUMMY);
+        this(windowIdIn, playerInventoryIn, IWorldPosCallable.NULL);
     }
 
     public ColoredWorkbenchContainer(int windowIdIn, PlayerInventory playerInventoryIn,
@@ -65,20 +65,20 @@ public class ColoredWorkbenchContainer extends Container
     {
         super(ObjectHolder.COLORED_WORKBENCH_CONTAINER_TYPE.get(), windowIdIn);
         worldPosCallable = worldPosCallableIn;
-        world = playerInventoryIn.player.world;
+        world = playerInventoryIn.player.level;
         inputSlot = addSlot(new SlotItemHandler(inputInventory, 0, 20, 33));
         outputSlot = addSlot(new SlotItemHandler(outputInventory, 0, 143, 33)
         {
-            @Override public boolean isItemValid(@Nonnull ItemStack stack)
+            @Override public boolean mayPlace(@Nonnull ItemStack stack)
             {
                 return false;
             }
 
             @Override public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack)
             {
-                stack.onCrafting(thePlayer.world, thePlayer, stack.getCount());
-                outputInventory.onCrafting(thePlayer);
-                ItemStack itemStack = inputSlot.decrStackSize(1);
+                stack.onCraftedBy(thePlayer.level, thePlayer, stack.getCount());
+                outputInventory.awardUsedRecipes(thePlayer);
+                ItemStack itemStack = inputSlot.remove(1);
                 if (!itemStack.isEmpty())
                 {
                     updateRecipeResultSlot();
@@ -97,7 +97,7 @@ public class ColoredWorkbenchContainer extends Container
         {
             this.addSlot(new Slot(playerInventoryIn, k, 8 + k * 18, 142));
         }
-        trackInt(selectedRecipe);
+        addDataSlot(selectedRecipe);
     }
 
     private void updateRecipeResultSlot()
@@ -107,12 +107,12 @@ public class ColoredWorkbenchContainer extends Container
             ColoredCraftingRecipe recipe = recipes.get(selectedRecipe.get());
             outputInventory.setRecipeUsed(recipe);
             //noinspection ConstantConditions - null is ok in this case
-            outputSlot.putStack(recipe.getCraftingResult(null));
+            outputSlot.set(recipe.assemble(null));
         } else
         {
-            outputSlot.putStack(ItemStack.EMPTY);
+            outputSlot.set(ItemStack.EMPTY);
         }
-        detectAndSendChanges();
+        broadcastChanges();
     }
 
     private boolean isRecipeIndexValid(int selectedRecipe)
@@ -142,10 +142,10 @@ public class ColoredWorkbenchContainer extends Container
 
     public boolean hasItemsInInputSlot()
     {
-        return inputSlot.getHasStack() && !recipes.isEmpty();
+        return inputSlot.hasItem() && !recipes.isEmpty();
     }
 
-    @Override public boolean enchantItem(PlayerEntity playerIn, int id)
+    @Override public boolean clickMenuButton(PlayerEntity playerIn, int id)
     {
         if (isRecipeIndexValid(id))
         {
@@ -155,63 +155,63 @@ public class ColoredWorkbenchContainer extends Container
         return true;
     }
 
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        if (slot != null && slot.getHasStack())
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem())
         {
-            ItemStack itemstack1 = slot.getStack();
+            ItemStack itemstack1 = slot.getItem();
             Item item = itemstack1.getItem();
             itemstack = itemstack1.copy();
             if (index == 1)
             {
-                item.onCreated(itemstack1, playerIn.world, playerIn);
-                if (!this.mergeItemStack(itemstack1, 2, 38, true))
+                item.onCraftedBy(itemstack1, playerIn.level, playerIn);
+                if (!this.moveItemStackTo(itemstack1, 2, 38, true))
                 {
                     return ItemStack.EMPTY;
                 }
-                slot.onSlotChange(itemstack1, itemstack);
+                slot.onQuickCraft(itemstack1, itemstack);
             } else if (index == 0)
             {
-                if (!this.mergeItemStack(itemstack1, 2, 38, false))
+                if (!this.moveItemStackTo(itemstack1, 2, 38, false))
                 {
                     return ItemStack.EMPTY;
                 }
             } else if (this.world.getRecipeManager()
-                    .getRecipe(ObjectHolder.COLORED_CRAFTING_RECIPE_TYPE, new Inventory(itemstack1), this.world)
+                    .getRecipeFor(ObjectHolder.COLORED_CRAFTING_RECIPE_TYPE, new Inventory(itemstack1), this.world)
                     .isPresent())
             {
-                if (!this.mergeItemStack(itemstack1, 0, 1, false))
+                if (!this.moveItemStackTo(itemstack1, 0, 1, false))
                 {
                     return ItemStack.EMPTY;
                 }
             } else if (index >= 2 && index < 29)
             {
-                if (!this.mergeItemStack(itemstack1, 29, 38, false))
+                if (!this.moveItemStackTo(itemstack1, 29, 38, false))
                 {
                     return ItemStack.EMPTY;
                 }
-            } else if (index >= 29 && index < 38 && !this.mergeItemStack(itemstack1, 2, 29, false))
+            } else if (index >= 29 && index < 38 && !this.moveItemStackTo(itemstack1, 2, 29, false))
             {
                 return ItemStack.EMPTY;
             }
             if (itemstack1.isEmpty())
             {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             }
-            slot.onSlotChanged();
+            slot.setChanged();
             if (itemstack1.getCount() == itemstack.getCount())
             {
                 return ItemStack.EMPTY;
             }
             slot.onTake(playerIn, itemstack1);
-            this.detectAndSendChanges();
+            this.broadcastChanges();
         }
         return itemstack;
     }
 
-    public boolean canMergeSlot(ItemStack stack, Slot slotIn)
+    public boolean canTakeItemForPickAll(ItemStack stack, Slot slotIn)
     {
         if (slotIn instanceof SlotItemHandler)
         {
@@ -220,16 +220,16 @@ public class ColoredWorkbenchContainer extends Container
                 return false;
             }
         }
-        return super.canMergeSlot(stack, slotIn);
+        return super.canTakeItemForPickAll(stack, slotIn);
     }
 
-    @Override public void onContainerClosed(PlayerEntity playerIn)
+    @Override public void removed(PlayerEntity playerIn)
     {
-        super.onContainerClosed(playerIn);
-        outputSlot.putStack(ItemStack.EMPTY);
-        worldPosCallable.consume((a, b) ->
+        super.removed(playerIn);
+        outputSlot.set(ItemStack.EMPTY);
+        worldPosCallable.execute((a, b) ->
         {
-            clearContainer(playerIn, playerIn.world, inputInventory);
+            clearContainer(playerIn, playerIn.level, inputInventory);
         });
     }
 
@@ -243,7 +243,7 @@ public class ColoredWorkbenchContainer extends Container
             {
                 tempStack = inventoryIn.getStackInSlot(j);
                 inventoryIn.setStackInSlot(j, ItemStack.EMPTY);
-                playerIn.dropItem(tempStack, false);
+                playerIn.drop(tempStack, false);
             }
         } else
         {
@@ -256,14 +256,14 @@ public class ColoredWorkbenchContainer extends Container
         }
     }
 
-    @Override public boolean canInteractWith(PlayerEntity playerIn)
+    @Override public boolean stillValid(PlayerEntity playerIn)
     {
-        return isWithinUsableDistance(worldPosCallable, playerIn, ObjectHolder.COLORED_CRAFTING_TABLE.get());
+        return stillValid(worldPosCallable, playerIn, ObjectHolder.COLORED_CRAFTING_TABLE.get());
     }
 
     public void onCraftMatrixChanged(ItemStackHandler inventoryIn)
     {
-        ItemStack itemStack = inputSlot.getStack();
+        ItemStack itemStack = inputSlot.getItem();
         if (itemStack.getItem() != inputItemStack.getItem())
         {
             inputItemStack = itemStack.copy();
@@ -275,11 +275,11 @@ public class ColoredWorkbenchContainer extends Container
     {
         recipes.clear();
         selectedRecipe.set(-1);
-        outputSlot.putStack(ItemStack.EMPTY);
+        outputSlot.set(ItemStack.EMPTY);
         if (!stack.isEmpty())
         {
             recipes =
-                    world.getRecipeManager().getRecipes(ObjectHolder.COLORED_CRAFTING_RECIPE_TYPE, inventoryIn, world);
+                    world.getRecipeManager().getRecipesFor(ObjectHolder.COLORED_CRAFTING_RECIPE_TYPE, inventoryIn, world);
         }
     }
 }

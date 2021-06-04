@@ -19,12 +19,12 @@ public abstract class ExtendedRecipeProvider extends RecipeProvider
 
     public static ICriterionInstance makeHasItemCriterion(ITag<Item> tag)
     {
-        return hasItem(tag);
+        return has(tag);
     }
 
     public static ICriterionInstance makeHasItemCriterion(IItemProvider item)
     {
-        return hasItem(item);
+        return has(item);
     }
 
     public static SingleItemRecipeBuilder coloredCraftingRecipe(Ingredient ingredientIn, IItemProvider resultIn)

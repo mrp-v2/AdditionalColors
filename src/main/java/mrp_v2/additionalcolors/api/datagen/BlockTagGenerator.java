@@ -15,8 +15,8 @@ public abstract class BlockTagGenerator extends BlockTagsProvider
         super(generatorIn, modId, existingFileHelper);
     }
 
-    @Override public Builder<Block> getOrCreateBuilder(ITag.INamedTag<Block> tag)
+    @Override public Builder<Block> tag(ITag.INamedTag<Block> tag)
     {
-        return super.getOrCreateBuilder(tag);
+        return super.tag(tag);
     }
 }

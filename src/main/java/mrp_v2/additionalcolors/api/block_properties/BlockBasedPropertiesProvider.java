@@ -14,6 +14,6 @@ public class BlockBasedPropertiesProvider implements IBlockPropertiesProvider
 
     @Override public AbstractBlock.Properties getProperties()
     {
-        return AbstractBlock.Properties.from(base);
+        return AbstractBlock.Properties.copy(base);
     }
 }

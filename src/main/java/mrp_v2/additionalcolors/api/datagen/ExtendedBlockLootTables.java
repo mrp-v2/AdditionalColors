@@ -8,11 +8,11 @@ public abstract class ExtendedBlockLootTables extends BlockLootTables
 {
     public static LootTable.Builder droppingSlab(Block slab)
     {
-        return net.minecraft.data.loot.BlockLootTables.droppingSlab(slab);
+        return net.minecraft.data.loot.BlockLootTables.createSlabItemTable(slab);
     }
 
     public static LootTable.Builder droppingDoor(Block door)
     {
-        return net.minecraft.data.loot.BlockLootTables.registerDoor(door);
+        return net.minecraft.data.loot.BlockLootTables.createDoorTable(door);
     }
 }

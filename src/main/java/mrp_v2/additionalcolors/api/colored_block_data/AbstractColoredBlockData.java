@@ -118,10 +118,10 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     {
         for (DyeColor color : getColors())
         {
-            String id = color.getTranslationKey() + "_" + baseBlock.getId().getPath();
+            String id = color.getName() + "_" + baseBlock.getId().getPath();
             RegistryObject<T> blockObject = blocks.register(id, () -> makeNewBlock(color));
             blockObjectMap.put(color, blockObject);
-            items.register(id, () -> new ColoredBlockItem(blockObject.get(), new Item.Properties().group(itemGroup)));
+            items.register(id, () -> new ColoredBlockItem(blockObject.get(), new Item.Properties().tab(itemGroup)));
         }
     }
 
@@ -194,7 +194,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     {
         for (RegistryObject<T> blockObject : getBlockObjects())
         {
-            generator.addLootTable(blockObject.get(), generator::registerDropSelfLootTable);
+            generator.addLootTable(blockObject.get(), generator::dropSelf);
         }
     }
 
@@ -210,22 +210,22 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     public void registerRecipes(Consumer<IFinishedRecipe> consumer)
     {
         Block baseBlock = this.baseBlock.get();
-        ShapelessRecipeBuilder.shapelessRecipe(baseBlock).addIngredient(craftingTag)
-                .addCriterion("has_block", ExtendedRecipeProvider.makeHasItemCriterion(craftingTag))
-                .build(consumer, modLoc("normal_crafting/" + baseBlock.asItem().getRegistryName().getPath()));
-        ExtendedRecipeProvider.coloredCraftingRecipe(Ingredient.fromTag(craftingTag), baseBlock)
-                .addCriterion("has_block", ExtendedRecipeProvider.makeHasItemCriterion(craftingTag))
-                .build(consumer, modLoc("colored_crafting/" + baseBlock.asItem().getRegistryName().getPath()));
+        ShapelessRecipeBuilder.shapeless(baseBlock).requires(craftingTag)
+                .unlockedBy("has_block", ExtendedRecipeProvider.makeHasItemCriterion(craftingTag))
+                .save(consumer, modLoc("normal_crafting/" + baseBlock.asItem().getRegistryName().getPath()));
+        ExtendedRecipeProvider.coloredCraftingRecipe(Ingredient.of(craftingTag), baseBlock)
+                .unlocks("has_block", ExtendedRecipeProvider.makeHasItemCriterion(craftingTag))
+                .save(consumer, modLoc("colored_crafting/" + baseBlock.asItem().getRegistryName().getPath()));
         for (RegistryObject<T> blockObject : getBlockObjects())
         {
             T block = blockObject.get();
-            ShapelessRecipeBuilder.shapelessRecipe(block).addIngredient(craftingTagIncludingBase)
-                    .addIngredient(block.getColor().getTag())
-                    .addCriterion("has_base", ExtendedRecipeProvider.makeHasItemCriterion(craftingTagIncludingBase))
-                    .build(consumer, modLoc("normal_crafting/" + block.asItem().getRegistryName().getPath()));
-            ExtendedRecipeProvider.coloredCraftingRecipe(Ingredient.fromTag(craftingTagIncludingBase), block)
-                    .addCriterion("has_base", ExtendedRecipeProvider.makeHasItemCriterion(craftingTagIncludingBase))
-                    .build(consumer, modLoc("colored_crafting/" + block.asItem().getRegistryName().getPath()));
+            ShapelessRecipeBuilder.shapeless(block).requires(craftingTagIncludingBase)
+                    .requires(block.getColor().getTag())
+                    .unlockedBy("has_base", ExtendedRecipeProvider.makeHasItemCriterion(craftingTagIncludingBase))
+                    .save(consumer, modLoc("normal_crafting/" + block.asItem().getRegistryName().getPath()));
+            ExtendedRecipeProvider.coloredCraftingRecipe(Ingredient.of(craftingTagIncludingBase), block)
+                    .unlocks("has_base", ExtendedRecipeProvider.makeHasItemCriterion(craftingTagIncludingBase))
+                    .save(consumer, modLoc("colored_crafting/" + block.asItem().getRegistryName().getPath()));
         }
     }
 
@@ -233,7 +233,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     {
         for (ITag.INamedTag<Block> tagToAddTo : blockTagsToAddTo)
         {
-            TagsProvider.Builder<Block> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
+            TagsProvider.Builder<Block> tagBuilder = generator.tag(tagToAddTo);
             for (RegistryObject<T> blockObject : getBlockObjects())
             {
                 tagBuilder.add(blockObject.get());
@@ -243,9 +243,9 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
 
     public void registerItemTags(ItemTagGenerator generator)
     {
-        TagsProvider.Builder<Item> craftingTagBuilder = generator.getOrCreateBuilder(craftingTag);
+        TagsProvider.Builder<Item> craftingTagBuilder = generator.tag(craftingTag);
         TagsProvider.Builder<Item> craftingTagIncludingBaseBuilder =
-                generator.getOrCreateBuilder(craftingTagIncludingBase);
+                generator.tag(craftingTagIncludingBase);
         for (RegistryObject<T> blockObject : getBlockObjects())
         {
             Item item = blockObject.get().asItem();
@@ -255,7 +255,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         craftingTagIncludingBaseBuilder.add(baseBlock.get().asItem());
         for (ITag.INamedTag<Item> tagToAddTo : itemTagsToAddTo)
         {
-            TagsProvider.Builder<Item> tagBuilder = generator.getOrCreateBuilder(tagToAddTo);
+            TagsProvider.Builder<Item> tagBuilder = generator.tag(tagToAddTo);
             for (RegistryObject<T> blockObject : getBlockObjects())
             {
                 tagBuilder.add(blockObject.get().asItem());
@@ -330,7 +330,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
     public AbstractColoredBlockData<?> parent()
     {
         throw new UnsupportedOperationException(
-                "Colored Block Data '" + getBaseBlockLoc().toString() + "' has no parent!");
+                "Colored Block Data '" + getBaseBlockLoc() + "' has no parent!");
     }
 
     public class Slab extends ColoredSlabBlockData

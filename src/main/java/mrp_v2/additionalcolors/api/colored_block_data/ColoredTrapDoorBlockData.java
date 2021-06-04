@@ -42,7 +42,7 @@ public class ColoredTrapDoorBlockData extends AbstractColoredBlockData<ColoredTr
 
     @Override protected RenderType getSpecialRenderType()
     {
-        return RenderType.getCutout();
+        return RenderType.cutout();
     }
 
     @Override public void registerItemModels(ItemModelGenerator generator)

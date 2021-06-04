@@ -8,8 +8,8 @@ import java.util.function.Function;
 
 public class LootTableGenerator extends BlockLootTables
 {
-    @Override public void registerLootTable(Block blockIn, Function<Block, LootTable.Builder> factory)
+    @Override public void add(Block blockIn, Function<Block, LootTable.Builder> factory)
     {
-        super.registerLootTable(blockIn, factory);
+        super.add(blockIn, factory);
     }
 }

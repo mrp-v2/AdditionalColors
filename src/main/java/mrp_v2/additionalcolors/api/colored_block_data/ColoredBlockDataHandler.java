@@ -180,9 +180,9 @@ public class ColoredBlockDataHandler implements IModLocProvider
             }
         }
 
-        @Override public void registerLootTable(Block blockIn, Function<Block, LootTable.Builder> factory)
+        @Override public void add(Block blockIn, Function<Block, LootTable.Builder> factory)
         {
-            super.registerLootTable(blockIn, factory);
+            super.add(blockIn, factory);
         }
     }
 
@@ -235,7 +235,7 @@ public class ColoredBlockDataHandler implements IModLocProvider
             super(dataGeneratorIn, modId);
         }
 
-        @Override protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
+        @Override protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
         {
             for (AbstractColoredBlockData<?> coloredBlockData : coloredBlockDatasMap.values())
             {
@@ -257,7 +257,7 @@ public class ColoredBlockDataHandler implements IModLocProvider
             super(generatorIn, modId, existingFileHelper);
         }
 
-        @Override protected void registerTags()
+        @Override protected void addTags()
         {
             for (AbstractColoredBlockData<?> coloredBlockData : coloredBlockDatasMap.values())
             {
@@ -279,7 +279,7 @@ public class ColoredBlockDataHandler implements IModLocProvider
             super(dataGenerator, blockTagProvider, modId, existingFileHelper);
         }
 
-        @Override protected void registerTags()
+        @Override protected void addTags()
         {
             for (AbstractColoredBlockData<?> coloredBlockData : coloredBlockDatasMap.values())
             {

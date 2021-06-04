@@ -34,7 +34,7 @@ public abstract class ColorParticleData implements IParticleData
         {
             private final Codec<T> codec = makeCodec(colorConstructor);
 
-            @Override public Codec<T> func_230522_e_()
+            @Override public Codec<T> codec()
             {
                 return this.codec;
             }
@@ -58,7 +58,7 @@ public abstract class ColorParticleData implements IParticleData
     {
         return new IDeserializer<T>()
         {
-            @Override public T deserialize(ParticleType<T> particleTypeIn, StringReader reader)
+            @Override public T fromCommand(ParticleType<T> particleTypeIn, StringReader reader)
                     throws CommandSyntaxException
             {
                 reader.expect(' ');
@@ -67,21 +67,21 @@ public abstract class ColorParticleData implements IParticleData
                         (byte) (color & 0xFF)));
             }
 
-            @Override public T read(ParticleType<T> particleTypeIn, PacketBuffer buffer)
+            @Override public T fromNetwork(ParticleType<T> particleTypeIn, PacketBuffer buffer)
             {
                 return colorConstructor.apply(new Color3B(buffer.readByte(), buffer.readByte(), buffer.readByte()));
             }
         };
     }
 
-    @Override public void write(PacketBuffer buffer)
+    @Override public void writeToNetwork(PacketBuffer buffer)
     {
         buffer.writeByte(this.color.getRed());
         buffer.writeByte(this.color.getGreen());
         buffer.writeByte(this.color.getBlue());
     }
 
-    @Override public String getParameters()
+    @Override public String writeToString()
     {
         return String.format(Locale.ROOT, "%s, %d", getType().getRegistryName().getPath(), this.colorAsInt());
     }

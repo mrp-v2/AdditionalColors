@@ -28,7 +28,7 @@ public class ColoredStairsBlockData extends AbstractColoredBlockData<ColoredStai
 
     @Override protected ColoredStairsBlock makeNewBlock(DyeColor color)
     {
-        return new ColoredStairsBlock(() -> baseBlockData.getBlockObject(color).get().getDefaultState(),
+        return new ColoredStairsBlock(() -> baseBlockData.getBlockObject(color).get().defaultBlockState(),
                 getBlockProperties(color), color);
     }
 
