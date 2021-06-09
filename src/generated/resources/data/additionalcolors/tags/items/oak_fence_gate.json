@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_oak_fence_gate",
+    "additionalcolors:orange_oak_fence_gate",
+    "additionalcolors:magenta_oak_fence_gate",
     "additionalcolors:light_blue_oak_fence_gate",
     "additionalcolors:yellow_oak_fence_gate",
-    "additionalcolors:black_oak_fence_gate",
-    "additionalcolors:magenta_oak_fence_gate",
-    "additionalcolors:green_oak_fence_gate",
-    "additionalcolors:cyan_oak_fence_gate",
-    "additionalcolors:orange_oak_fence_gate",
     "additionalcolors:lime_oak_fence_gate",
-    "additionalcolors:purple_oak_fence_gate",
-    "additionalcolors:light_gray_oak_fence_gate",
-    "additionalcolors:red_oak_fence_gate",
-    "additionalcolors:white_oak_fence_gate",
     "additionalcolors:pink_oak_fence_gate",
+    "additionalcolors:gray_oak_fence_gate",
+    "additionalcolors:light_gray_oak_fence_gate",
+    "additionalcolors:cyan_oak_fence_gate",
+    "additionalcolors:purple_oak_fence_gate",
     "additionalcolors:blue_oak_fence_gate",
     "additionalcolors:brown_oak_fence_gate",
-    "additionalcolors:gray_oak_fence_gate",
+    "additionalcolors:green_oak_fence_gate",
+    "additionalcolors:red_oak_fence_gate",
+    "additionalcolors:black_oak_fence_gate",
     "minecraft:oak_fence_gate"
   ]
 }

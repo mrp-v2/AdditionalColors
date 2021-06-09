@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_jungle_fence",
+    "additionalcolors:orange_jungle_fence",
+    "additionalcolors:magenta_jungle_fence",
     "additionalcolors:light_blue_jungle_fence",
     "additionalcolors:yellow_jungle_fence",
-    "additionalcolors:black_jungle_fence",
-    "additionalcolors:magenta_jungle_fence",
-    "additionalcolors:green_jungle_fence",
-    "additionalcolors:cyan_jungle_fence",
-    "additionalcolors:orange_jungle_fence",
     "additionalcolors:lime_jungle_fence",
-    "additionalcolors:purple_jungle_fence",
-    "additionalcolors:light_gray_jungle_fence",
-    "additionalcolors:red_jungle_fence",
-    "additionalcolors:white_jungle_fence",
     "additionalcolors:pink_jungle_fence",
+    "additionalcolors:gray_jungle_fence",
+    "additionalcolors:light_gray_jungle_fence",
+    "additionalcolors:cyan_jungle_fence",
+    "additionalcolors:purple_jungle_fence",
     "additionalcolors:blue_jungle_fence",
     "additionalcolors:brown_jungle_fence",
-    "additionalcolors:gray_jungle_fence",
+    "additionalcolors:green_jungle_fence",
+    "additionalcolors:red_jungle_fence",
+    "additionalcolors:black_jungle_fence",
     "minecraft:jungle_fence"
   ]
 }

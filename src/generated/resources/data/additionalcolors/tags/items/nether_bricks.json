@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_nether_bricks",
+    "additionalcolors:orange_nether_bricks",
+    "additionalcolors:magenta_nether_bricks",
     "additionalcolors:light_blue_nether_bricks",
     "additionalcolors:yellow_nether_bricks",
-    "additionalcolors:black_nether_bricks",
-    "additionalcolors:magenta_nether_bricks",
-    "additionalcolors:green_nether_bricks",
-    "additionalcolors:cyan_nether_bricks",
-    "additionalcolors:orange_nether_bricks",
     "additionalcolors:lime_nether_bricks",
-    "additionalcolors:purple_nether_bricks",
-    "additionalcolors:light_gray_nether_bricks",
-    "additionalcolors:red_nether_bricks",
-    "additionalcolors:white_nether_bricks",
     "additionalcolors:pink_nether_bricks",
+    "additionalcolors:gray_nether_bricks",
+    "additionalcolors:light_gray_nether_bricks",
+    "additionalcolors:cyan_nether_bricks",
+    "additionalcolors:purple_nether_bricks",
     "additionalcolors:blue_nether_bricks",
     "additionalcolors:brown_nether_bricks",
-    "additionalcolors:gray_nether_bricks",
+    "additionalcolors:green_nether_bricks",
+    "additionalcolors:red_nether_bricks",
+    "additionalcolors:black_nether_bricks",
     "minecraft:nether_bricks"
   ]
 }

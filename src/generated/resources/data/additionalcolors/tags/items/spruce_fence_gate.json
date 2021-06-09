@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_spruce_fence_gate",
+    "additionalcolors:orange_spruce_fence_gate",
+    "additionalcolors:magenta_spruce_fence_gate",
     "additionalcolors:light_blue_spruce_fence_gate",
     "additionalcolors:yellow_spruce_fence_gate",
-    "additionalcolors:black_spruce_fence_gate",
-    "additionalcolors:magenta_spruce_fence_gate",
-    "additionalcolors:green_spruce_fence_gate",
-    "additionalcolors:cyan_spruce_fence_gate",
-    "additionalcolors:orange_spruce_fence_gate",
     "additionalcolors:lime_spruce_fence_gate",
-    "additionalcolors:purple_spruce_fence_gate",
-    "additionalcolors:light_gray_spruce_fence_gate",
-    "additionalcolors:red_spruce_fence_gate",
-    "additionalcolors:white_spruce_fence_gate",
     "additionalcolors:pink_spruce_fence_gate",
+    "additionalcolors:gray_spruce_fence_gate",
+    "additionalcolors:light_gray_spruce_fence_gate",
+    "additionalcolors:cyan_spruce_fence_gate",
+    "additionalcolors:purple_spruce_fence_gate",
     "additionalcolors:blue_spruce_fence_gate",
     "additionalcolors:brown_spruce_fence_gate",
-    "additionalcolors:gray_spruce_fence_gate",
+    "additionalcolors:green_spruce_fence_gate",
+    "additionalcolors:red_spruce_fence_gate",
+    "additionalcolors:black_spruce_fence_gate",
     "minecraft:spruce_fence_gate"
   ]
 }

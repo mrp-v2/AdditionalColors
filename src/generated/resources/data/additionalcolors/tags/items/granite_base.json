@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_granite",
+    "additionalcolors:orange_granite",
+    "additionalcolors:magenta_granite",
     "additionalcolors:light_blue_granite",
     "additionalcolors:yellow_granite",
-    "additionalcolors:black_granite",
-    "additionalcolors:magenta_granite",
-    "additionalcolors:green_granite",
-    "additionalcolors:cyan_granite",
-    "additionalcolors:orange_granite",
     "additionalcolors:lime_granite",
-    "additionalcolors:purple_granite",
-    "additionalcolors:light_gray_granite",
-    "additionalcolors:red_granite",
-    "additionalcolors:white_granite",
     "additionalcolors:pink_granite",
+    "additionalcolors:gray_granite",
+    "additionalcolors:light_gray_granite",
+    "additionalcolors:cyan_granite",
+    "additionalcolors:purple_granite",
     "additionalcolors:blue_granite",
     "additionalcolors:brown_granite",
-    "additionalcolors:gray_granite"
+    "additionalcolors:green_granite",
+    "additionalcolors:red_granite",
+    "additionalcolors:black_granite"
   ]
 }

@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_jungle_trapdoor",
+    "additionalcolors:orange_jungle_trapdoor",
+    "additionalcolors:magenta_jungle_trapdoor",
     "additionalcolors:light_blue_jungle_trapdoor",
     "additionalcolors:yellow_jungle_trapdoor",
-    "additionalcolors:black_jungle_trapdoor",
-    "additionalcolors:magenta_jungle_trapdoor",
-    "additionalcolors:green_jungle_trapdoor",
-    "additionalcolors:cyan_jungle_trapdoor",
-    "additionalcolors:orange_jungle_trapdoor",
     "additionalcolors:lime_jungle_trapdoor",
-    "additionalcolors:purple_jungle_trapdoor",
-    "additionalcolors:light_gray_jungle_trapdoor",
-    "additionalcolors:red_jungle_trapdoor",
-    "additionalcolors:white_jungle_trapdoor",
     "additionalcolors:pink_jungle_trapdoor",
+    "additionalcolors:gray_jungle_trapdoor",
+    "additionalcolors:light_gray_jungle_trapdoor",
+    "additionalcolors:cyan_jungle_trapdoor",
+    "additionalcolors:purple_jungle_trapdoor",
     "additionalcolors:blue_jungle_trapdoor",
     "additionalcolors:brown_jungle_trapdoor",
-    "additionalcolors:gray_jungle_trapdoor",
+    "additionalcolors:green_jungle_trapdoor",
+    "additionalcolors:red_jungle_trapdoor",
+    "additionalcolors:black_jungle_trapdoor",
     "minecraft:jungle_trapdoor"
   ]
 }

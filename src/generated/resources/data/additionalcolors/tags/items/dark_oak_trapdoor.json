@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_dark_oak_trapdoor",
+    "additionalcolors:orange_dark_oak_trapdoor",
+    "additionalcolors:magenta_dark_oak_trapdoor",
     "additionalcolors:light_blue_dark_oak_trapdoor",
     "additionalcolors:yellow_dark_oak_trapdoor",
-    "additionalcolors:black_dark_oak_trapdoor",
-    "additionalcolors:magenta_dark_oak_trapdoor",
-    "additionalcolors:green_dark_oak_trapdoor",
-    "additionalcolors:cyan_dark_oak_trapdoor",
-    "additionalcolors:orange_dark_oak_trapdoor",
     "additionalcolors:lime_dark_oak_trapdoor",
-    "additionalcolors:purple_dark_oak_trapdoor",
-    "additionalcolors:light_gray_dark_oak_trapdoor",
-    "additionalcolors:red_dark_oak_trapdoor",
-    "additionalcolors:white_dark_oak_trapdoor",
     "additionalcolors:pink_dark_oak_trapdoor",
+    "additionalcolors:gray_dark_oak_trapdoor",
+    "additionalcolors:light_gray_dark_oak_trapdoor",
+    "additionalcolors:cyan_dark_oak_trapdoor",
+    "additionalcolors:purple_dark_oak_trapdoor",
     "additionalcolors:blue_dark_oak_trapdoor",
     "additionalcolors:brown_dark_oak_trapdoor",
-    "additionalcolors:gray_dark_oak_trapdoor",
+    "additionalcolors:green_dark_oak_trapdoor",
+    "additionalcolors:red_dark_oak_trapdoor",
+    "additionalcolors:black_dark_oak_trapdoor",
     "minecraft:dark_oak_trapdoor"
   ]
 }

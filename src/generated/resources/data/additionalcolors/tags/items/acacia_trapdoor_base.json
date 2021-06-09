@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_acacia_trapdoor",
+    "additionalcolors:orange_acacia_trapdoor",
+    "additionalcolors:magenta_acacia_trapdoor",
     "additionalcolors:light_blue_acacia_trapdoor",
     "additionalcolors:yellow_acacia_trapdoor",
-    "additionalcolors:black_acacia_trapdoor",
-    "additionalcolors:magenta_acacia_trapdoor",
-    "additionalcolors:green_acacia_trapdoor",
-    "additionalcolors:cyan_acacia_trapdoor",
-    "additionalcolors:orange_acacia_trapdoor",
     "additionalcolors:lime_acacia_trapdoor",
-    "additionalcolors:purple_acacia_trapdoor",
-    "additionalcolors:light_gray_acacia_trapdoor",
-    "additionalcolors:red_acacia_trapdoor",
-    "additionalcolors:white_acacia_trapdoor",
     "additionalcolors:pink_acacia_trapdoor",
+    "additionalcolors:gray_acacia_trapdoor",
+    "additionalcolors:light_gray_acacia_trapdoor",
+    "additionalcolors:cyan_acacia_trapdoor",
+    "additionalcolors:purple_acacia_trapdoor",
     "additionalcolors:blue_acacia_trapdoor",
     "additionalcolors:brown_acacia_trapdoor",
-    "additionalcolors:gray_acacia_trapdoor"
+    "additionalcolors:green_acacia_trapdoor",
+    "additionalcolors:red_acacia_trapdoor",
+    "additionalcolors:black_acacia_trapdoor"
   ]
 }

@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_obsidian",
+    "additionalcolors:orange_obsidian",
+    "additionalcolors:magenta_obsidian",
     "additionalcolors:light_blue_obsidian",
     "additionalcolors:yellow_obsidian",
-    "additionalcolors:black_obsidian",
-    "additionalcolors:magenta_obsidian",
-    "additionalcolors:green_obsidian",
-    "additionalcolors:cyan_obsidian",
-    "additionalcolors:orange_obsidian",
     "additionalcolors:lime_obsidian",
-    "additionalcolors:purple_obsidian",
-    "additionalcolors:light_gray_obsidian",
-    "additionalcolors:red_obsidian",
-    "additionalcolors:white_obsidian",
     "additionalcolors:pink_obsidian",
+    "additionalcolors:gray_obsidian",
+    "additionalcolors:light_gray_obsidian",
+    "additionalcolors:cyan_obsidian",
+    "additionalcolors:purple_obsidian",
     "additionalcolors:blue_obsidian",
     "additionalcolors:brown_obsidian",
-    "additionalcolors:gray_obsidian"
+    "additionalcolors:green_obsidian",
+    "additionalcolors:red_obsidian",
+    "additionalcolors:black_obsidian"
   ]
 }

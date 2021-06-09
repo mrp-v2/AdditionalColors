@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_birch_trapdoor",
+    "additionalcolors:orange_birch_trapdoor",
+    "additionalcolors:magenta_birch_trapdoor",
     "additionalcolors:light_blue_birch_trapdoor",
     "additionalcolors:yellow_birch_trapdoor",
-    "additionalcolors:black_birch_trapdoor",
-    "additionalcolors:magenta_birch_trapdoor",
-    "additionalcolors:green_birch_trapdoor",
-    "additionalcolors:cyan_birch_trapdoor",
-    "additionalcolors:orange_birch_trapdoor",
     "additionalcolors:lime_birch_trapdoor",
-    "additionalcolors:purple_birch_trapdoor",
-    "additionalcolors:light_gray_birch_trapdoor",
-    "additionalcolors:red_birch_trapdoor",
-    "additionalcolors:white_birch_trapdoor",
     "additionalcolors:pink_birch_trapdoor",
+    "additionalcolors:gray_birch_trapdoor",
+    "additionalcolors:light_gray_birch_trapdoor",
+    "additionalcolors:cyan_birch_trapdoor",
+    "additionalcolors:purple_birch_trapdoor",
     "additionalcolors:blue_birch_trapdoor",
     "additionalcolors:brown_birch_trapdoor",
-    "additionalcolors:gray_birch_trapdoor"
+    "additionalcolors:green_birch_trapdoor",
+    "additionalcolors:red_birch_trapdoor",
+    "additionalcolors:black_birch_trapdoor"
   ]
 }

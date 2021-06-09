@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_sea_lantern",
+    "additionalcolors:orange_sea_lantern",
+    "additionalcolors:magenta_sea_lantern",
     "additionalcolors:light_blue_sea_lantern",
     "additionalcolors:yellow_sea_lantern",
-    "additionalcolors:black_sea_lantern",
-    "additionalcolors:magenta_sea_lantern",
-    "additionalcolors:green_sea_lantern",
-    "additionalcolors:cyan_sea_lantern",
-    "additionalcolors:orange_sea_lantern",
     "additionalcolors:lime_sea_lantern",
-    "additionalcolors:purple_sea_lantern",
-    "additionalcolors:light_gray_sea_lantern",
-    "additionalcolors:red_sea_lantern",
-    "additionalcolors:white_sea_lantern",
     "additionalcolors:pink_sea_lantern",
+    "additionalcolors:gray_sea_lantern",
+    "additionalcolors:light_gray_sea_lantern",
+    "additionalcolors:cyan_sea_lantern",
+    "additionalcolors:purple_sea_lantern",
     "additionalcolors:blue_sea_lantern",
     "additionalcolors:brown_sea_lantern",
-    "additionalcolors:gray_sea_lantern"
+    "additionalcolors:green_sea_lantern",
+    "additionalcolors:red_sea_lantern",
+    "additionalcolors:black_sea_lantern"
   ]
 }

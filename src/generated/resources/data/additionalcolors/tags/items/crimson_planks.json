@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_crimson_planks",
+    "additionalcolors:orange_crimson_planks",
+    "additionalcolors:magenta_crimson_planks",
     "additionalcolors:light_blue_crimson_planks",
     "additionalcolors:yellow_crimson_planks",
-    "additionalcolors:black_crimson_planks",
-    "additionalcolors:magenta_crimson_planks",
-    "additionalcolors:green_crimson_planks",
-    "additionalcolors:cyan_crimson_planks",
-    "additionalcolors:orange_crimson_planks",
     "additionalcolors:lime_crimson_planks",
-    "additionalcolors:purple_crimson_planks",
-    "additionalcolors:light_gray_crimson_planks",
-    "additionalcolors:red_crimson_planks",
-    "additionalcolors:white_crimson_planks",
     "additionalcolors:pink_crimson_planks",
+    "additionalcolors:gray_crimson_planks",
+    "additionalcolors:light_gray_crimson_planks",
+    "additionalcolors:cyan_crimson_planks",
+    "additionalcolors:purple_crimson_planks",
     "additionalcolors:blue_crimson_planks",
     "additionalcolors:brown_crimson_planks",
-    "additionalcolors:gray_crimson_planks",
+    "additionalcolors:green_crimson_planks",
+    "additionalcolors:red_crimson_planks",
+    "additionalcolors:black_crimson_planks",
     "minecraft:crimson_planks"
   ]
 }

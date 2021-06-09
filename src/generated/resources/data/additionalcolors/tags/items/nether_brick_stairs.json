@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_nether_brick_stairs",
+    "additionalcolors:orange_nether_brick_stairs",
+    "additionalcolors:magenta_nether_brick_stairs",
     "additionalcolors:light_blue_nether_brick_stairs",
     "additionalcolors:yellow_nether_brick_stairs",
-    "additionalcolors:black_nether_brick_stairs",
-    "additionalcolors:magenta_nether_brick_stairs",
-    "additionalcolors:green_nether_brick_stairs",
-    "additionalcolors:cyan_nether_brick_stairs",
-    "additionalcolors:orange_nether_brick_stairs",
     "additionalcolors:lime_nether_brick_stairs",
-    "additionalcolors:purple_nether_brick_stairs",
-    "additionalcolors:light_gray_nether_brick_stairs",
-    "additionalcolors:red_nether_brick_stairs",
-    "additionalcolors:white_nether_brick_stairs",
     "additionalcolors:pink_nether_brick_stairs",
+    "additionalcolors:gray_nether_brick_stairs",
+    "additionalcolors:light_gray_nether_brick_stairs",
+    "additionalcolors:cyan_nether_brick_stairs",
+    "additionalcolors:purple_nether_brick_stairs",
     "additionalcolors:blue_nether_brick_stairs",
     "additionalcolors:brown_nether_brick_stairs",
-    "additionalcolors:gray_nether_brick_stairs",
+    "additionalcolors:green_nether_brick_stairs",
+    "additionalcolors:red_nether_brick_stairs",
+    "additionalcolors:black_nether_brick_stairs",
     "minecraft:nether_brick_stairs"
   ]
 }

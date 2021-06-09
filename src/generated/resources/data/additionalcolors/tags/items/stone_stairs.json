@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_stone_stairs",
+    "additionalcolors:orange_stone_stairs",
+    "additionalcolors:magenta_stone_stairs",
     "additionalcolors:light_blue_stone_stairs",
     "additionalcolors:yellow_stone_stairs",
-    "additionalcolors:black_stone_stairs",
-    "additionalcolors:magenta_stone_stairs",
-    "additionalcolors:green_stone_stairs",
-    "additionalcolors:cyan_stone_stairs",
-    "additionalcolors:orange_stone_stairs",
     "additionalcolors:lime_stone_stairs",
-    "additionalcolors:purple_stone_stairs",
-    "additionalcolors:light_gray_stone_stairs",
-    "additionalcolors:red_stone_stairs",
-    "additionalcolors:white_stone_stairs",
     "additionalcolors:pink_stone_stairs",
+    "additionalcolors:gray_stone_stairs",
+    "additionalcolors:light_gray_stone_stairs",
+    "additionalcolors:cyan_stone_stairs",
+    "additionalcolors:purple_stone_stairs",
     "additionalcolors:blue_stone_stairs",
     "additionalcolors:brown_stone_stairs",
-    "additionalcolors:gray_stone_stairs",
+    "additionalcolors:green_stone_stairs",
+    "additionalcolors:red_stone_stairs",
+    "additionalcolors:black_stone_stairs",
     "minecraft:stone_stairs"
   ]
 }

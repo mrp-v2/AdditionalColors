@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_birch_fence",
+    "additionalcolors:orange_birch_fence",
+    "additionalcolors:magenta_birch_fence",
     "additionalcolors:light_blue_birch_fence",
     "additionalcolors:yellow_birch_fence",
-    "additionalcolors:black_birch_fence",
-    "additionalcolors:magenta_birch_fence",
-    "additionalcolors:green_birch_fence",
-    "additionalcolors:cyan_birch_fence",
-    "additionalcolors:orange_birch_fence",
     "additionalcolors:lime_birch_fence",
-    "additionalcolors:purple_birch_fence",
-    "additionalcolors:light_gray_birch_fence",
-    "additionalcolors:red_birch_fence",
-    "additionalcolors:white_birch_fence",
     "additionalcolors:pink_birch_fence",
+    "additionalcolors:gray_birch_fence",
+    "additionalcolors:light_gray_birch_fence",
+    "additionalcolors:cyan_birch_fence",
+    "additionalcolors:purple_birch_fence",
     "additionalcolors:blue_birch_fence",
     "additionalcolors:brown_birch_fence",
-    "additionalcolors:gray_birch_fence"
+    "additionalcolors:green_birch_fence",
+    "additionalcolors:red_birch_fence",
+    "additionalcolors:black_birch_fence"
   ]
 }

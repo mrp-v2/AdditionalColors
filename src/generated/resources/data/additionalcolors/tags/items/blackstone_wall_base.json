@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_blackstone_wall",
+    "additionalcolors:orange_blackstone_wall",
+    "additionalcolors:magenta_blackstone_wall",
     "additionalcolors:light_blue_blackstone_wall",
     "additionalcolors:yellow_blackstone_wall",
-    "additionalcolors:black_blackstone_wall",
-    "additionalcolors:magenta_blackstone_wall",
-    "additionalcolors:green_blackstone_wall",
-    "additionalcolors:cyan_blackstone_wall",
-    "additionalcolors:orange_blackstone_wall",
     "additionalcolors:lime_blackstone_wall",
-    "additionalcolors:purple_blackstone_wall",
-    "additionalcolors:light_gray_blackstone_wall",
-    "additionalcolors:red_blackstone_wall",
-    "additionalcolors:white_blackstone_wall",
     "additionalcolors:pink_blackstone_wall",
+    "additionalcolors:gray_blackstone_wall",
+    "additionalcolors:light_gray_blackstone_wall",
+    "additionalcolors:cyan_blackstone_wall",
+    "additionalcolors:purple_blackstone_wall",
     "additionalcolors:blue_blackstone_wall",
     "additionalcolors:brown_blackstone_wall",
-    "additionalcolors:gray_blackstone_wall"
+    "additionalcolors:green_blackstone_wall",
+    "additionalcolors:red_blackstone_wall",
+    "additionalcolors:black_blackstone_wall"
   ]
 }

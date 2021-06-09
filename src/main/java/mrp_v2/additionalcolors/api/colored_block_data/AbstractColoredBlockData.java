@@ -1,7 +1,13 @@
 package mrp_v2.additionalcolors.api.colored_block_data;
 
 import mrp_v2.additionalcolors.api.block_properties.IBlockPropertiesProvider;
-import mrp_v2.additionalcolors.api.datagen.*;
+import mrp_v2.additionalcolors.api.datagen.BlockStateGenerator;
+import mrp_v2.additionalcolors.api.datagen.BlockTagGenerator;
+import mrp_v2.additionalcolors.api.datagen.ExtendedRecipeProvider;
+import mrp_v2.additionalcolors.api.datagen.ItemModelGenerator;
+import mrp_v2.additionalcolors.api.datagen.ItemTagGenerator;
+import mrp_v2.additionalcolors.api.datagen.LanguageGenerator;
+import mrp_v2.additionalcolors.api.datagen.LootTableGenerator;
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import mrp_v2.additionalcolors.util.IColored;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
@@ -26,13 +32,18 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public abstract class AbstractColoredBlockData<T extends Block & IColored> implements IModLocProvider
 {
     protected final RegistryObject<? extends Block> baseBlock;
-    protected final Map<DyeColor, RegistryObject<T>> blockObjectMap = new HashMap<>();
+    protected final Map<DyeColor, RegistryObject<T>> blockObjectMap = new LinkedHashMap<>(22);
     protected final ITag.INamedTag<Item> craftingTag;
     protected final List<ITag.INamedTag<Block>> blockTagsToAddTo;
     protected final List<ITag.INamedTag<Item>> itemTagsToAddTo;

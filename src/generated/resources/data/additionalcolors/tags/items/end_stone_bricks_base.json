@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_end_stone_bricks",
+    "additionalcolors:orange_end_stone_bricks",
+    "additionalcolors:magenta_end_stone_bricks",
     "additionalcolors:light_blue_end_stone_bricks",
     "additionalcolors:yellow_end_stone_bricks",
-    "additionalcolors:black_end_stone_bricks",
-    "additionalcolors:magenta_end_stone_bricks",
-    "additionalcolors:green_end_stone_bricks",
-    "additionalcolors:cyan_end_stone_bricks",
-    "additionalcolors:orange_end_stone_bricks",
     "additionalcolors:lime_end_stone_bricks",
-    "additionalcolors:purple_end_stone_bricks",
-    "additionalcolors:light_gray_end_stone_bricks",
-    "additionalcolors:red_end_stone_bricks",
-    "additionalcolors:white_end_stone_bricks",
     "additionalcolors:pink_end_stone_bricks",
+    "additionalcolors:gray_end_stone_bricks",
+    "additionalcolors:light_gray_end_stone_bricks",
+    "additionalcolors:cyan_end_stone_bricks",
+    "additionalcolors:purple_end_stone_bricks",
     "additionalcolors:blue_end_stone_bricks",
     "additionalcolors:brown_end_stone_bricks",
-    "additionalcolors:gray_end_stone_bricks"
+    "additionalcolors:green_end_stone_bricks",
+    "additionalcolors:red_end_stone_bricks",
+    "additionalcolors:black_end_stone_bricks"
   ]
 }

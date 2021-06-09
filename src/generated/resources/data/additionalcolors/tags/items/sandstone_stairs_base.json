@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_sandstone_stairs",
+    "additionalcolors:orange_sandstone_stairs",
+    "additionalcolors:magenta_sandstone_stairs",
     "additionalcolors:light_blue_sandstone_stairs",
     "additionalcolors:yellow_sandstone_stairs",
-    "additionalcolors:black_sandstone_stairs",
-    "additionalcolors:magenta_sandstone_stairs",
-    "additionalcolors:green_sandstone_stairs",
-    "additionalcolors:cyan_sandstone_stairs",
-    "additionalcolors:orange_sandstone_stairs",
     "additionalcolors:lime_sandstone_stairs",
-    "additionalcolors:purple_sandstone_stairs",
-    "additionalcolors:light_gray_sandstone_stairs",
-    "additionalcolors:red_sandstone_stairs",
-    "additionalcolors:white_sandstone_stairs",
     "additionalcolors:pink_sandstone_stairs",
+    "additionalcolors:gray_sandstone_stairs",
+    "additionalcolors:light_gray_sandstone_stairs",
+    "additionalcolors:cyan_sandstone_stairs",
+    "additionalcolors:purple_sandstone_stairs",
     "additionalcolors:blue_sandstone_stairs",
     "additionalcolors:brown_sandstone_stairs",
-    "additionalcolors:gray_sandstone_stairs"
+    "additionalcolors:green_sandstone_stairs",
+    "additionalcolors:red_sandstone_stairs",
+    "additionalcolors:black_sandstone_stairs"
   ]
 }

@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_oak_trapdoor",
+    "additionalcolors:orange_oak_trapdoor",
+    "additionalcolors:magenta_oak_trapdoor",
     "additionalcolors:light_blue_oak_trapdoor",
     "additionalcolors:yellow_oak_trapdoor",
-    "additionalcolors:black_oak_trapdoor",
-    "additionalcolors:magenta_oak_trapdoor",
-    "additionalcolors:green_oak_trapdoor",
-    "additionalcolors:cyan_oak_trapdoor",
-    "additionalcolors:orange_oak_trapdoor",
     "additionalcolors:lime_oak_trapdoor",
-    "additionalcolors:purple_oak_trapdoor",
-    "additionalcolors:light_gray_oak_trapdoor",
-    "additionalcolors:red_oak_trapdoor",
-    "additionalcolors:white_oak_trapdoor",
     "additionalcolors:pink_oak_trapdoor",
+    "additionalcolors:gray_oak_trapdoor",
+    "additionalcolors:light_gray_oak_trapdoor",
+    "additionalcolors:cyan_oak_trapdoor",
+    "additionalcolors:purple_oak_trapdoor",
     "additionalcolors:blue_oak_trapdoor",
     "additionalcolors:brown_oak_trapdoor",
-    "additionalcolors:gray_oak_trapdoor"
+    "additionalcolors:green_oak_trapdoor",
+    "additionalcolors:red_oak_trapdoor",
+    "additionalcolors:black_oak_trapdoor"
   ]
 }

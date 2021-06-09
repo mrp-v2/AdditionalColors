@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_shroomlight",
+    "additionalcolors:orange_shroomlight",
+    "additionalcolors:magenta_shroomlight",
     "additionalcolors:light_blue_shroomlight",
     "additionalcolors:yellow_shroomlight",
-    "additionalcolors:black_shroomlight",
-    "additionalcolors:magenta_shroomlight",
-    "additionalcolors:green_shroomlight",
-    "additionalcolors:cyan_shroomlight",
-    "additionalcolors:orange_shroomlight",
     "additionalcolors:lime_shroomlight",
-    "additionalcolors:purple_shroomlight",
-    "additionalcolors:light_gray_shroomlight",
-    "additionalcolors:red_shroomlight",
-    "additionalcolors:white_shroomlight",
     "additionalcolors:pink_shroomlight",
+    "additionalcolors:gray_shroomlight",
+    "additionalcolors:light_gray_shroomlight",
+    "additionalcolors:cyan_shroomlight",
+    "additionalcolors:purple_shroomlight",
     "additionalcolors:blue_shroomlight",
     "additionalcolors:brown_shroomlight",
-    "additionalcolors:gray_shroomlight"
+    "additionalcolors:green_shroomlight",
+    "additionalcolors:red_shroomlight",
+    "additionalcolors:black_shroomlight"
   ]
 }

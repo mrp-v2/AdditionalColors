@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
+    "additionalcolors:white_andesite_stairs",
+    "additionalcolors:orange_andesite_stairs",
+    "additionalcolors:magenta_andesite_stairs",
     "additionalcolors:light_blue_andesite_stairs",
     "additionalcolors:yellow_andesite_stairs",
-    "additionalcolors:black_andesite_stairs",
-    "additionalcolors:magenta_andesite_stairs",
-    "additionalcolors:green_andesite_stairs",
-    "additionalcolors:cyan_andesite_stairs",
-    "additionalcolors:orange_andesite_stairs",
     "additionalcolors:lime_andesite_stairs",
-    "additionalcolors:purple_andesite_stairs",
-    "additionalcolors:light_gray_andesite_stairs",
-    "additionalcolors:red_andesite_stairs",
-    "additionalcolors:white_andesite_stairs",
     "additionalcolors:pink_andesite_stairs",
+    "additionalcolors:gray_andesite_stairs",
+    "additionalcolors:light_gray_andesite_stairs",
+    "additionalcolors:cyan_andesite_stairs",
+    "additionalcolors:purple_andesite_stairs",
     "additionalcolors:blue_andesite_stairs",
     "additionalcolors:brown_andesite_stairs",
-    "additionalcolors:gray_andesite_stairs",
+    "additionalcolors:green_andesite_stairs",
+    "additionalcolors:red_andesite_stairs",
+    "additionalcolors:black_andesite_stairs",
     "minecraft:andesite_stairs"
   ]
 }
