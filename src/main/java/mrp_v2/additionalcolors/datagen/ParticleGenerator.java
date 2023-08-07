@@ -3,9 +3,11 @@ package mrp_v2.additionalcolors.datagen;
 import mrp_v2.additionalcolors.AdditionalColors;
 import mrp_v2.mrplibrary.datagen.providers.ParticleProvider;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Consumer;
+
+import mrp_v2.mrplibrary.datagen.providers.ParticleProvider.ParticleBuilder;
 
 public class ParticleGenerator extends ParticleProvider
 {

@@ -1,8 +1,10 @@
 package mrp_v2.additionalcolors.block;
 
 import mrp_v2.additionalcolors.util.IColored;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.item.DyeColor;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class ColoredSlabBlock extends SlabBlock implements IColored
 {

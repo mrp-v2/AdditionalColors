@@ -5,12 +5,12 @@ import mrp_v2.additionalcolors.api.datagen.ItemModelGenerator;
 import mrp_v2.additionalcolors.block.ColoredFenceBlock;
 import mrp_v2.mrplibrary.datagen.providers.BlockStateProvider;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
-import net.minecraft.block.Block;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ColoredFenceBlockData extends AbstractColoredBlockData<ColoredFenceBlock>
 {

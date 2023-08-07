@@ -1,21 +1,21 @@
 package mrp_v2.additionalcolors.client.gui.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import mrp_v2.additionalcolors.inventory.container.ColoredWorkbenchContainer;
 import mrp_v2.additionalcolors.item.crafting.ColoredCraftingRecipe;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.SimpleSound;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.Component;
 
 import java.util.List;
 
-public class ColoredWorkbenchScreen extends ContainerScreen<ColoredWorkbenchContainer>
+public class ColoredWorkbenchScreen extends AbstractContainerScreen<ColoredWorkbenchContainer>
 {
     public static final ResourceLocation BACKGROUND_TEXTURE =
             new ResourceLocation("textures/gui/container/stonecutter.png");
@@ -24,7 +24,7 @@ public class ColoredWorkbenchScreen extends ContainerScreen<ColoredWorkbenchCont
     private int recipeIndexOffset;
     private boolean hasItemsInInputSlot;
 
-    public ColoredWorkbenchScreen(ColoredWorkbenchContainer containerIn, PlayerInventory inv, ITextComponent titleIn)
+    public ColoredWorkbenchScreen(ColoredWorkbenchContainer containerIn, Inventory inv, Component titleIn)
     {
         super(containerIn, inv, titleIn);
         containerIn.setInventoryUpdateListener(this::onInventoryUpdate);
@@ -41,13 +41,13 @@ public class ColoredWorkbenchScreen extends ContainerScreen<ColoredWorkbenchCont
         }
     }
 
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
+    public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks)
     {
         super.render(matrixStack, mouseX, mouseY, partialTicks);
         this.renderTooltip(matrixStack, mouseX, mouseY);
     }
 
-    protected void renderTooltip(MatrixStack matrixStack, int x, int y)
+    protected void renderTooltip(PoseStack matrixStack, int x, int y)
     {
         super.renderTooltip(matrixStack, x, y);
         if (this.hasItemsInInputSlot)
@@ -69,11 +69,11 @@ public class ColoredWorkbenchScreen extends ContainerScreen<ColoredWorkbenchCont
         }
     }
 
-    protected void renderBg(MatrixStack matrixStack, float partialTicks, int x, int y)
+    protected void renderBg(PoseStack matrixStack, float partialTicks, int x, int y)
     {
         this.renderBackground(matrixStack);
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bind(BACKGROUND_TEXTURE);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
         int i = this.leftPos;
         int j = this.topPos;
         this.blit(matrixStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
@@ -86,7 +86,7 @@ public class ColoredWorkbenchScreen extends ContainerScreen<ColoredWorkbenchCont
         this.drawRecipesItems(l, i1, j1);
     }
 
-    private void renderButtons(MatrixStack matrixStack, int x, int y, int p_238853_4_, int p_238853_5_,
+    private void renderButtons(PoseStack matrixStack, int x, int y, int p_238853_4_, int p_238853_5_,
             int p_238853_6_)
     {
         for (int i = this.recipeIndexOffset; i < p_238853_6_ && i < this.menu.getRecipeListSize(); ++i)
@@ -137,7 +137,7 @@ public class ColoredWorkbenchScreen extends ContainerScreen<ColoredWorkbenchCont
                         this.menu.clickMenuButton(this.minecraft.player, l))
                 {
                     Minecraft.getInstance().getSoundManager()
-                            .play(SimpleSound.forUI(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
+                            .play(SimpleSoundInstance.forUI(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
                     this.minecraft.gameMode.handleInventoryButtonClick((this.menu).containerId, l);
                     return true;
                 }
@@ -160,7 +160,7 @@ public class ColoredWorkbenchScreen extends ContainerScreen<ColoredWorkbenchCont
             int i = this.topPos + 14;
             int j = i + 54;
             this.sliderProgress = ((float) mouseY - (float) i - 7.5F) / ((float) (j - i) - 15.0F);
-            this.sliderProgress = MathHelper.clamp(this.sliderProgress, 0.0F, 1.0F);
+            this.sliderProgress = Mth.clamp(this.sliderProgress, 0.0F, 1.0F);
             this.recipeIndexOffset = (int) ((double) (this.sliderProgress * (float) this.getHiddenRows()) + 0.5D) * 4;
             return true;
         } else
@@ -185,7 +185,7 @@ public class ColoredWorkbenchScreen extends ContainerScreen<ColoredWorkbenchCont
         {
             int i = this.getHiddenRows();
             this.sliderProgress = (float) ((double) this.sliderProgress - delta / (double) i);
-            this.sliderProgress = MathHelper.clamp(this.sliderProgress, 0.0F, 1.0F);
+            this.sliderProgress = Mth.clamp(this.sliderProgress, 0.0F, 1.0F);
             this.recipeIndexOffset = (int) ((double) (this.sliderProgress * (float) i) + 0.5D) * 4;
         }
         return true;

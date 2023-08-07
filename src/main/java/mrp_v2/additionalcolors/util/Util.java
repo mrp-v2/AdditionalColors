@@ -1,27 +1,27 @@
 package mrp_v2.additionalcolors.util;
 
-import net.minecraft.block.Block;
-import net.minecraft.tags.ITag;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Util
 {
-    @SafeVarargs public static <T> ITag.INamedTag<T>[] makeTagArray(ITag.INamedTag<T>... tags)
+    @SafeVarargs public static <T> TagKey<T>[] makeTagArray(TagKey<T>... tags)
     {
         return tags;
     }
 
-    @SafeVarargs public static <T> ITag.INamedTag<T>[] combineTagArrays(ITag.INamedTag<T>[] tagArray,
-            ITag.INamedTag<T>... additionalTags)
+    @SafeVarargs public static <T> TagKey<T>[] combineTagArrays(TagKey<T>[] tagArray,
+            TagKey<T>... additionalTags)
     {
-        ITag.INamedTag<T>[] newTagArray = new ITag.INamedTag[tagArray.length + additionalTags.length];
+        TagKey<T>[] newTagArray = new TagKey[tagArray.length + additionalTags.length];
         int i = 0;
-        for (ITag.INamedTag<T> tag : tagArray)
+        for (TagKey<T> tag : tagArray)
         {
             newTagArray[i++] = tag;
         }
-        for (ITag.INamedTag<T> tag : additionalTags)
+        for (TagKey<T> tag : additionalTags)
         {
             newTagArray[i++] = tag;
         }
@@ -30,6 +30,6 @@ public class Util
 
     public static RegistryObject<Block> makeRegistryObject(Block block)
     {
-        return RegistryObject.of(block.getRegistryName(), ForgeRegistries.BLOCKS);
+        return RegistryObject.create(block.getRegistryName(), ForgeRegistries.BLOCKS);
     }
 }

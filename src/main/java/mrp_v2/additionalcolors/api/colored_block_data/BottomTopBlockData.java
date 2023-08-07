@@ -2,15 +2,18 @@ package mrp_v2.additionalcolors.api.colored_block_data;
 
 import mrp_v2.additionalcolors.api.datagen.BlockStateGenerator;
 import mrp_v2.additionalcolors.block.ColoredBlock;
+import mrp_v2.mrplibrary.datagen.TintedBlockStateGenerator;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
 import mrp_v2.mrplibrary.util.IModLocProvider;
-import net.minecraft.block.Block;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.registries.RegistryObject;
 
 public class BottomTopBlockData extends ColoredBlockData
 {
+    private final String TOP_SUFFIX = "_top";
+
     public BottomTopBlockData(RegistryObject<? extends Block> baseBlock, IModLocProvider modLocProvider)
     {
         super(baseBlock, modLocProvider);
@@ -26,12 +29,7 @@ public class BottomTopBlockData extends ColoredBlockData
     public ResourceLocation getTopTextureLoc(boolean base)
     {
         return new ResourceLocation(base ? baseBlock.getId().getNamespace() : getModId(),
-                "block/" + baseBlock.getId().getPath() + getTopSuffix());
-    }
-
-    protected String getTopSuffix()
-    {
-        return "_top";
+                "block/" + baseBlock.getId().getPath() + TOP_SUFFIX);
     }
 
     public ResourceLocation getBottomTextureLoc(boolean base)
@@ -43,27 +41,26 @@ public class BottomTopBlockData extends ColoredBlockData
     @Override public void registerTextures(TextureProvider generator, TextureProvider.FinishedTextureConsumer consumer)
     {
         TextureProvider.Texture topTexture = generator.getTexture(getTopTextureLoc(true));
-        TextureProvider.makeGrayscale(topTexture.getTexture(), 0, 0, 16, 16);
-        TextureProvider.adjustLevels(topTexture.getTexture(), 0, 0, 16, 16, getLevelAdjustment());
+        TextureProvider.makeGrayscale(topTexture.getTexture());
+        TextureProvider.adjustLevels(topTexture.getTexture(), getLevelAdjustment());
         generator.finish(topTexture, getTopTextureLoc(false), consumer);
         TextureProvider.Texture sideTexture = generator.getTexture(getSideTextureLoc(true));
-        TextureProvider.makeGrayscale(sideTexture.getTexture(), 0, 0, 16, 16);
-        TextureProvider.adjustLevels(sideTexture.getTexture(), 0, 0, 16, 16, getLevelAdjustment());
+        TextureProvider.makeGrayscale(sideTexture.getTexture());
+        TextureProvider.adjustLevels(sideTexture.getTexture(), getLevelAdjustment());
         generator.finish(sideTexture, getSideTextureLoc(false), consumer);
         TextureProvider.Texture bottomTexture = generator.getTexture(getBottomTextureLoc(true));
-        TextureProvider.makeGrayscale(bottomTexture.getTexture(), 0, 0, 16, 16);
-        TextureProvider.adjustLevels(bottomTexture.getTexture(), 0, 0, 16, 16, getLevelAdjustment());
+        TextureProvider.makeGrayscale(bottomTexture.getTexture());
+        TextureProvider.adjustLevels(bottomTexture.getTexture(), getLevelAdjustment());
         generator.finish(bottomTexture, getBottomTextureLoc(false), consumer);
     }
 
     @Override public void registerBlockStatesAndModels(BlockStateGenerator generator)
     {
+        ModelFile baseModel = generator.models().getExistingFile(TintedBlockStateGenerator.CUBE_BOTTOM_TOP_TINTED);
         generator.models().getBuilder(baseBlock.getId().getPath())
-                .parent(generator.models().getExistingFile(generator.mcLoc("block/block")))
+                .parent(baseModel)
                 .texture("top", getTopTextureLoc(false)).texture("bottom", getBottomTextureLoc(false))
-                .texture("side", getSideTextureLoc(false)).element().from(0, 0, 0).to(16, 16, 16)
-                .allFaces((face, builder) -> builder.texture("#side").cullface(face).tintindex(0).end())
-                .face(Direction.UP).texture("#top").end().face(Direction.DOWN).texture("#bottom").end().end();
+                .texture("side", getSideTextureLoc(false));
         for (RegistryObject<ColoredBlock> blockObject : getBlockObjects())
         {
             generator.simpleBlock(blockObject.get(),

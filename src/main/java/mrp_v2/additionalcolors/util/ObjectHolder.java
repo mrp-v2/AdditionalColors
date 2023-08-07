@@ -12,27 +12,27 @@ import mrp_v2.additionalcolors.item.crafting.ColoredCraftingRecipe;
 import mrp_v2.additionalcolors.particle.ColorParticleData;
 import mrp_v2.additionalcolors.util.colored_block_data.CryingObsidianBlockData;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.particles.ParticleType;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.SingleItemRecipe;
-import net.minecraft.particles.ParticleType;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleItemRecipe;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Consumer;
 
@@ -41,21 +41,21 @@ public class ObjectHolder
     public static final DeferredRegister<Block> BLOCKS;
     public static final DeferredRegister<Item> ITEMS;
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES;
-    public static final DeferredRegister<ContainerType<?>> CONTAINER_TYPES;
-    public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS;
+    public static final DeferredRegister<MenuType<?>> CONTAINER_TYPES;
+    public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS;
     public static final RegistryObject<Block> COLORED_CRAFTING_TABLE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE;
     public static final RegistryObject<ParticleType<ColorParticleData>> COLORED_LANDING_OBSIDIAN_TEAR_PARTICLE_TYPE;
-    public static final RegistryObject<ContainerType<ColoredWorkbenchContainer>> COLORED_WORKBENCH_CONTAINER_TYPE;
-    public static final IRecipeType<ColoredCraftingRecipe> COLORED_CRAFTING_RECIPE_TYPE =
+    public static final RegistryObject<MenuType<ColoredWorkbenchContainer>> COLORED_WORKBENCH_CONTAINER_TYPE;
+    public static final RecipeType<ColoredCraftingRecipe> COLORED_CRAFTING_RECIPE_TYPE =
             ColoredCraftingRecipe.createRecipeType();
-    public static final RegistryObject<IRecipeSerializer<ColoredCraftingRecipe>> COLORED_CRAFTING_RECIPE_SERIALIZER;
+    public static final RegistryObject<RecipeSerializer<ColoredCraftingRecipe>> COLORED_CRAFTING_RECIPE_SERIALIZER;
     public static final ColoredBlockDataHandler COLORED_BLOCK_DATA_HANDLER;
-    public static final ItemGroup MAIN_ITEM_GROUP = new ItemGroup(AdditionalColors.ID)
+    public static final CreativeModeTab MAIN_ITEM_GROUP = new CreativeModeTab(AdditionalColors.ID)
     {
         private final RegistryObject<Item> iconItem = RegistryObject
-                .of(new ResourceLocation(AdditionalColors.ID, "green_cobblestone"), ForgeRegistries.ITEMS);
+                .create(new ResourceLocation(AdditionalColors.ID, "green_cobblestone"), ForgeRegistries.ITEMS);
 
         @Override public ItemStack makeIcon()
         {
@@ -71,7 +71,7 @@ public class ObjectHolder
         CONTAINER_TYPES = DeferredRegister.create(ForgeRegistries.CONTAINERS, AdditionalColors.ID);
         RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, AdditionalColors.ID);
         COLORED_CRAFTING_TABLE = BLOCKS.register(ColoredCraftingTableBlock.ID,
-                () -> new ColoredCraftingTableBlock(AbstractBlock.Properties.copy(Blocks.CRAFTING_TABLE)));
+                () -> new ColoredCraftingTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
         ITEMS.register(ColoredCraftingTableBlock.ID,
                 () -> new BlockItem(COLORED_CRAFTING_TABLE.get(), new Item.Properties().tab(MAIN_ITEM_GROUP)));
         COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE = PARTICLE_TYPES.register("colored_dripping_obsidian_tear",
@@ -114,9 +114,9 @@ public class ObjectHolder
             {
                 return new RecipeGenerator(dataGeneratorIn, modId)
                 {
-                    @Override protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
+                    @Override protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
                     {
-                        super.buildShapelessRecipes(consumer);
+                        super.buildCraftingRecipes(consumer);
                         ShapedRecipeBuilder.shaped(COLORED_CRAFTING_TABLE.get()).pattern("RGB").pattern(" C ")
                                 .pattern("D W").define('R', Tags.Items.DYES_RED).define('G', Tags.Items.DYES_GREEN)
                                 .define('B', Tags.Items.DYES_BLUE).define('C', Items.CRAFTING_TABLE)
@@ -144,7 +144,7 @@ public class ObjectHolder
                 return 0.5d;
             }
         }.setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.OBSIDIAN))
-                .addBlockTags(Tags.Blocks.OBSIDIAN).addItemTags(Tags.Items.OBSIDIAN).add(COLORED_BLOCK_DATA_HANDLER);
+                .addBlockTags(Tags.Blocks.OBSIDIAN, BlockTags.NEEDS_DIAMOND_TOOL).addItemTags(Tags.Items.OBSIDIAN).add(COLORED_BLOCK_DATA_HANDLER);
         // Cobblestone (Slab, Stairs, Wall)
         new ColoredBlockData(Util.makeRegistryObject(Blocks.COBBLESTONE), COLORED_BLOCK_DATA_HANDLER)
                 .setBlockPropertiesProvider(new BlockBasedPropertiesProvider(Blocks.COBBLESTONE))

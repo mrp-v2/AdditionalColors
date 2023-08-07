@@ -5,12 +5,12 @@ import mrp_v2.additionalcolors.api.datagen.ItemModelGenerator;
 import mrp_v2.additionalcolors.block.ColoredTrapDoorBlock;
 import mrp_v2.mrplibrary.datagen.providers.BlockStateProvider;
 import mrp_v2.mrplibrary.util.IModLocProvider;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ColoredTrapDoorBlockData extends AbstractColoredBlockData<ColoredTrapDoorBlock>
 {

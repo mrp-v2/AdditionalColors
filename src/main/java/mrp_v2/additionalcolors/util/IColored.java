@@ -1,6 +1,6 @@
 package mrp_v2.additionalcolors.util;
 
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
 
 public interface IColored
 {

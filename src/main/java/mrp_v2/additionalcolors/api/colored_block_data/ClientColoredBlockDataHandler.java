@@ -1,10 +1,10 @@
 package mrp_v2.additionalcolors.api.colored_block_data;
 
 import mrp_v2.additionalcolors.client.renderer.color.BlockAndItemColorer;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ClientColoredBlockDataHandler

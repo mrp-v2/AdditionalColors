@@ -4,19 +4,19 @@ import mrp_v2.mrplibrary.datagen.DataGeneratorHelper;
 import mrp_v2.mrplibrary.datagen.providers.RecipeProvider;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
 import mrp_v2.mrplibrary.util.IModLocProvider;
-import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.loot.LootTable;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -31,12 +31,12 @@ public class ColoredBlockDataHandler implements IModLocProvider
 {
     public static final String DATA_PROVIDER_NAME_SUFFIX = ": Colored Block Data Handler";
     private final String modId;
-    private final ItemGroup itemGroup;
+    private final CreativeModeTab itemGroup;
     private final DeferredRegister<Block> blocks;
     private final DeferredRegister<Item> items;
     private final Map<ResourceLocation, AbstractColoredBlockData<?>> coloredBlockDatasMap;
 
-    public ColoredBlockDataHandler(String modId, ItemGroup itemGroup)
+    public ColoredBlockDataHandler(String modId, CreativeModeTab itemGroup)
     {
         this.modId = modId;
         this.itemGroup = itemGroup;
@@ -134,7 +134,7 @@ public class ColoredBlockDataHandler implements IModLocProvider
     }
 
     protected ItemTagGenerator makeItemTagGenerator(DataGenerator dataGenerator,
-            net.minecraft.data.BlockTagsProvider blockTagProvider, String modId,
+            net.minecraft.data.tags.BlockTagsProvider blockTagProvider, String modId,
             @Nullable ExistingFileHelper existingFileHelper)
     {
         return new ItemTagGenerator(dataGenerator, blockTagProvider, modId, existingFileHelper);
@@ -235,7 +235,7 @@ public class ColoredBlockDataHandler implements IModLocProvider
             super(dataGeneratorIn, modId);
         }
 
-        @Override protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
+        protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
         {
             for (AbstractColoredBlockData<?> coloredBlockData : coloredBlockDatasMap.values())
             {
@@ -273,7 +273,7 @@ public class ColoredBlockDataHandler implements IModLocProvider
 
     protected class ItemTagGenerator extends mrp_v2.additionalcolors.api.datagen.ItemTagGenerator
     {
-        protected ItemTagGenerator(DataGenerator dataGenerator, net.minecraft.data.BlockTagsProvider blockTagProvider,
+        protected ItemTagGenerator(DataGenerator dataGenerator, net.minecraft.data.tags.BlockTagsProvider blockTagProvider,
                 String modId, @Nullable ExistingFileHelper existingFileHelper)
         {
             super(dataGenerator, blockTagProvider, modId, existingFileHelper);

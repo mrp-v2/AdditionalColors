@@ -1,60 +1,49 @@
 package mrp_v2.additionalcolors.api.colored_block_data;
 
 import mrp_v2.additionalcolors.api.block_properties.IBlockPropertiesProvider;
-import mrp_v2.additionalcolors.api.datagen.BlockStateGenerator;
-import mrp_v2.additionalcolors.api.datagen.BlockTagGenerator;
-import mrp_v2.additionalcolors.api.datagen.ExtendedRecipeProvider;
-import mrp_v2.additionalcolors.api.datagen.ItemModelGenerator;
-import mrp_v2.additionalcolors.api.datagen.ItemTagGenerator;
-import mrp_v2.additionalcolors.api.datagen.LanguageGenerator;
-import mrp_v2.additionalcolors.api.datagen.LootTableGenerator;
+import mrp_v2.additionalcolors.api.datagen.*;
 import mrp_v2.additionalcolors.item.ColoredBlockItem;
 import mrp_v2.additionalcolors.util.IColored;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
 import mrp_v2.mrplibrary.util.IModLocProvider;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.data.TagsProvider;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 public abstract class AbstractColoredBlockData<T extends Block & IColored> implements IModLocProvider
 {
     protected final RegistryObject<? extends Block> baseBlock;
     protected final Map<DyeColor, RegistryObject<T>> blockObjectMap = new LinkedHashMap<>(22);
-    protected final ITag.INamedTag<Item> craftingTag;
-    protected final List<ITag.INamedTag<Block>> blockTagsToAddTo;
-    protected final List<ITag.INamedTag<Item>> itemTagsToAddTo;
-    protected final ITag.INamedTag<Item> craftingTagIncludingBase;
+    protected final TagKey<Item> craftingTag;
+    protected final List<TagKey<Block>> blockTagsToAddTo;
+    protected final List<TagKey<Item>> itemTagsToAddTo;
+    protected final TagKey<Item> craftingTagIncludingBase;
     @Nullable protected IBlockPropertiesProvider blockPropertiesProvider = null;
 
     public AbstractColoredBlockData(RegistryObject<? extends Block> baseBlock, IModLocProvider modLocProvider)
     {
         this.baseBlock = baseBlock;
-        this.craftingTagIncludingBase = ItemTags.createOptional(modLocProvider.modLoc(baseBlock.getId().getPath()));
-        this.craftingTag = ItemTags.createOptional(modLocProvider.modLoc(baseBlock.getId().getPath() + "_base"));
+        this.craftingTagIncludingBase = ItemTags.create(modLocProvider.modLoc(baseBlock.getId().getPath()));
+        this.craftingTag = ItemTags.create(modLocProvider.modLoc(baseBlock.getId().getPath() + "_base"));
         this.blockTagsToAddTo = new ArrayList<>();
         this.itemTagsToAddTo = new ArrayList<>();
     }
@@ -65,25 +54,25 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         return this;
     }
 
-    public AbstractColoredBlockData<?> addBlockTags(ITag.INamedTag<Block> blockTag)
+    public AbstractColoredBlockData<?> addBlockTags(TagKey<Block> blockTag)
     {
         blockTagsToAddTo.add(blockTag);
         return this;
     }
 
-    public AbstractColoredBlockData<?> addItemTags(ITag.INamedTag<Item> itemTag)
+    public AbstractColoredBlockData<?> addItemTags(TagKey<Item> itemTag)
     {
         itemTagsToAddTo.add(itemTag);
         return this;
     }
 
-    @SafeVarargs public final AbstractColoredBlockData<?> addBlockTags(ITag.INamedTag<Block>... blockTags)
+    @SafeVarargs public final AbstractColoredBlockData<?> addBlockTags(TagKey<Block>... blockTags)
     {
         Collections.addAll(blockTagsToAddTo, blockTags);
         return this;
     }
 
-    @SafeVarargs public final AbstractColoredBlockData<?> addItemTags(ITag.INamedTag<Item>... itemTags)
+    @SafeVarargs public final AbstractColoredBlockData<?> addItemTags(TagKey<Item>... itemTags)
     {
         Collections.addAll(itemTagsToAddTo, itemTags);
         return this;
@@ -102,7 +91,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
 
     @Override public String getModId()
     {
-        return craftingTag.getName().getNamespace();
+        return craftingTag.location().getNamespace();
     }
 
     protected String getSideSuffix()
@@ -125,7 +114,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         return getEndTextureLoc(base);
     }
 
-    public void register(DeferredRegister<Block> blocks, DeferredRegister<Item> items, ItemGroup itemGroup)
+    public void register(DeferredRegister<Block> blocks, DeferredRegister<Item> items, CreativeModeTab itemGroup)
     {
         for (DyeColor color : getColors())
         {
@@ -159,7 +148,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         {
             for (RegistryObject<T> blockObject : getBlockObjects())
             {
-                RenderTypeLookup.setRenderLayer(blockObject.get(), getSpecialRenderType());
+                ItemBlockRenderTypes.setRenderLayer(blockObject.get(), getSpecialRenderType());
             }
         }
     }
@@ -218,14 +207,14 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         }
     }
 
-    public void registerRecipes(Consumer<IFinishedRecipe> consumer)
+    public void registerRecipes(Consumer<FinishedRecipe> consumer)
     {
         Block baseBlock = this.baseBlock.get();
         ShapelessRecipeBuilder.shapeless(baseBlock).requires(craftingTag)
                 .unlockedBy("has_block", ExtendedRecipeProvider.makeHasItemCriterion(craftingTag))
                 .save(consumer, modLoc("normal_crafting/" + baseBlock.asItem().getRegistryName().getPath()));
         ExtendedRecipeProvider.coloredCraftingRecipe(Ingredient.of(craftingTag), baseBlock)
-                .unlocks("has_block", ExtendedRecipeProvider.makeHasItemCriterion(craftingTag))
+                .unlockedBy("has_block", ExtendedRecipeProvider.makeHasItemCriterion(craftingTag))
                 .save(consumer, modLoc("colored_crafting/" + baseBlock.asItem().getRegistryName().getPath()));
         for (RegistryObject<T> blockObject : getBlockObjects())
         {
@@ -235,16 +224,16 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
                     .unlockedBy("has_base", ExtendedRecipeProvider.makeHasItemCriterion(craftingTagIncludingBase))
                     .save(consumer, modLoc("normal_crafting/" + block.asItem().getRegistryName().getPath()));
             ExtendedRecipeProvider.coloredCraftingRecipe(Ingredient.of(craftingTagIncludingBase), block)
-                    .unlocks("has_base", ExtendedRecipeProvider.makeHasItemCriterion(craftingTagIncludingBase))
+                    .unlockedBy("has_base", ExtendedRecipeProvider.makeHasItemCriterion(craftingTagIncludingBase))
                     .save(consumer, modLoc("colored_crafting/" + block.asItem().getRegistryName().getPath()));
         }
     }
 
     public void registerBlockTags(BlockTagGenerator generator)
     {
-        for (ITag.INamedTag<Block> tagToAddTo : blockTagsToAddTo)
+        for (TagKey<Block> tagToAddTo : blockTagsToAddTo)
         {
-            TagsProvider.Builder<Block> tagBuilder = generator.tag(tagToAddTo);
+            TagsProvider.TagAppender<Block> tagBuilder = generator.tag(tagToAddTo);
             for (RegistryObject<T> blockObject : getBlockObjects())
             {
                 tagBuilder.add(blockObject.get());
@@ -254,8 +243,8 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
 
     public void registerItemTags(ItemTagGenerator generator)
     {
-        TagsProvider.Builder<Item> craftingTagBuilder = generator.tag(craftingTag);
-        TagsProvider.Builder<Item> craftingTagIncludingBaseBuilder =
+        TagsProvider.TagAppender<Item> craftingTagBuilder = generator.tag(craftingTag);
+        TagsProvider.TagAppender<Item> craftingTagIncludingBaseBuilder =
                 generator.tag(craftingTagIncludingBase);
         for (RegistryObject<T> blockObject : getBlockObjects())
         {
@@ -264,9 +253,9 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
             craftingTagIncludingBaseBuilder.add(item);
         }
         craftingTagIncludingBaseBuilder.add(baseBlock.get().asItem());
-        for (ITag.INamedTag<Item> tagToAddTo : itemTagsToAddTo)
+        for (TagKey<Item> tagToAddTo : itemTagsToAddTo)
         {
-            TagsProvider.Builder<Item> tagBuilder = generator.tag(tagToAddTo);
+            TagsProvider.TagAppender<Item> tagBuilder = generator.tag(tagToAddTo);
             for (RegistryObject<T> blockObject : getBlockObjects())
             {
                 tagBuilder.add(blockObject.get().asItem());
@@ -323,7 +312,7 @@ public abstract class AbstractColoredBlockData<T extends Block & IColored> imple
         return false;
     }
 
-    protected final AbstractBlock.Properties getBlockProperties(DyeColor color)
+    protected final BlockBehaviour.Properties getBlockProperties(DyeColor color)
     {
         if (blockPropertiesProvider != null)
         {

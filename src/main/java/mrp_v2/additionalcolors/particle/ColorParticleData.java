@@ -6,14 +6,16 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import mrp_v2.additionalcolors.particle.util.Color3B;
 import mrp_v2.additionalcolors.util.ObjectHolder;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleType;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
 
 import java.util.Locale;
 import java.util.function.Function;
 
-public abstract class ColorParticleData implements IParticleData
+import net.minecraft.core.particles.ParticleOptions.Deserializer;
+
+public abstract class ColorParticleData implements ParticleOptions
 {
     protected final Color3B color;
 
@@ -53,10 +55,10 @@ public abstract class ColorParticleData implements IParticleData
         return this.color;
     }
 
-    protected static <T extends ColorParticleData> IDeserializer<T> makeDeserializer(
+    protected static <T extends ColorParticleData> Deserializer<T> makeDeserializer(
             Function<Color3B, T> colorConstructor)
     {
-        return new IDeserializer<T>()
+        return new Deserializer<T>()
         {
             @Override public T fromCommand(ParticleType<T> particleTypeIn, StringReader reader)
                     throws CommandSyntaxException
@@ -67,14 +69,14 @@ public abstract class ColorParticleData implements IParticleData
                         (byte) (color & 0xFF)));
             }
 
-            @Override public T fromNetwork(ParticleType<T> particleTypeIn, PacketBuffer buffer)
+            @Override public T fromNetwork(ParticleType<T> particleTypeIn, FriendlyByteBuf buffer)
             {
                 return colorConstructor.apply(new Color3B(buffer.readByte(), buffer.readByte(), buffer.readByte()));
             }
         };
     }
 
-    @Override public void writeToNetwork(PacketBuffer buffer)
+    @Override public void writeToNetwork(FriendlyByteBuf buffer)
     {
         buffer.writeByte(this.color.getRed());
         buffer.writeByte(this.color.getGreen());

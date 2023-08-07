@@ -6,11 +6,11 @@ import mrp_v2.additionalcolors.api.datagen.ItemModelGenerator;
 import mrp_v2.additionalcolors.block.ColoredCryingObsidianBlock;
 import mrp_v2.mrplibrary.datagen.providers.TextureProvider;
 import mrp_v2.mrplibrary.util.IModLocProvider;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.DyeColor;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.awt.image.BufferedImage;
 import java.util.HashMap;

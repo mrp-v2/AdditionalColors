@@ -1,13 +1,13 @@
 package mrp_v2.additionalcolors.item.crafting;
 
 import mrp_v2.additionalcolors.util.ObjectHolder;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.SingleItemRecipe;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.SingleItemRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 
 public class ColoredCraftingRecipe extends SingleItemRecipe
 {
@@ -19,9 +19,9 @@ public class ColoredCraftingRecipe extends SingleItemRecipe
                 group, ingredient, result);
     }
 
-    public static IRecipeType<ColoredCraftingRecipe> createRecipeType()
+    public static RecipeType<ColoredCraftingRecipe> createRecipeType()
     {
-        return new IRecipeType<ColoredCraftingRecipe>()
+        return new RecipeType<ColoredCraftingRecipe>()
         {
             @Override public String toString()
             {
@@ -30,7 +30,7 @@ public class ColoredCraftingRecipe extends SingleItemRecipe
         };
     }
 
-    @Override public boolean matches(IInventory inv, World worldIn)
+    @Override public boolean matches(Container inv, Level worldIn)
     {
         return this.ingredient.test(inv.getItem(0));
     }

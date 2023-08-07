@@ -1,16 +1,18 @@
 package mrp_v2.additionalcolors.block;
 
 import mrp_v2.additionalcolors.util.IColored;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.item.DyeColor;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class ColoredStairsBlock extends StairsBlock implements IColored
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+public class ColoredStairsBlock extends StairBlock implements IColored
 {
     private final DyeColor color;
 
@@ -25,7 +27,7 @@ public class ColoredStairsBlock extends StairsBlock implements IColored
         return color;
     }
 
-    @Override public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
+    @Override public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand)
     {
     }
 }

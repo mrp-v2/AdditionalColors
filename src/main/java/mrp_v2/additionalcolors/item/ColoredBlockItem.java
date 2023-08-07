@@ -1,9 +1,11 @@
 package mrp_v2.additionalcolors.item;
 
 import mrp_v2.additionalcolors.util.IColored;
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class ColoredBlockItem extends BlockItem implements IColored
 {

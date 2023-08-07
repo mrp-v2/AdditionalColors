@@ -1,8 +1,10 @@
 package mrp_v2.additionalcolors.block;
 
 import mrp_v2.additionalcolors.util.IColored;
-import net.minecraft.block.IceBlock;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.level.block.IceBlock;
+import net.minecraft.world.item.DyeColor;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class ColoredIceBlock extends IceBlock implements IColored
 {

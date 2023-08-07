@@ -3,12 +3,12 @@ package mrp_v2.additionalcolors.block;
 import mrp_v2.additionalcolors.particle.ColorParticleData;
 import mrp_v2.additionalcolors.particle.util.Color3B;
 import mrp_v2.additionalcolors.util.IColored;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CryingObsidianBlock;
-import net.minecraft.item.DyeColor;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.CryingObsidianBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -23,10 +23,10 @@ public class ColoredCryingObsidianBlock extends CryingObsidianBlock implements I
     {
         super(properties);
         this.color = color;
-        this.particleColor = Color3B.fromInt(color.getColorValue());
+        this.particleColor = Color3B.fromInt(color.getMaterialColor().col);
     }
 
-    @Override @OnlyIn(Dist.CLIENT) public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
+    @Override @OnlyIn(Dist.CLIENT) public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand)
     {
         if (rand.nextInt(5) == 0)
         {

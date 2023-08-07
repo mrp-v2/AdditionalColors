@@ -1,7 +1,7 @@
 package mrp_v2.additionalcolors.api.block_properties;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Block;
 
 public class BlockBasedPropertiesProvider implements IBlockPropertiesProvider
 {
@@ -12,8 +12,8 @@ public class BlockBasedPropertiesProvider implements IBlockPropertiesProvider
         this.base = base;
     }
 
-    @Override public AbstractBlock.Properties getProperties()
+    @Override public BlockBehaviour.Properties getProperties()
     {
-        return AbstractBlock.Properties.copy(base);
+        return BlockBehaviour.Properties.copy(base);
     }
 }

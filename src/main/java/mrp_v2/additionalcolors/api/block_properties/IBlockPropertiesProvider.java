@@ -1,13 +1,13 @@
 package mrp_v2.additionalcolors.api.block_properties;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.item.DyeColor;
 
 public interface IBlockPropertiesProvider
 {
-    default AbstractBlock.Properties getProperties(DyeColor color)
+    default BlockBehaviour.Properties getProperties(DyeColor color)
     {
         return getProperties();
     }
-    AbstractBlock.Properties getProperties();
+    BlockBehaviour.Properties getProperties();
 }

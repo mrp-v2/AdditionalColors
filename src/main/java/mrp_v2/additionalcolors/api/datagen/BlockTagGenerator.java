@@ -1,9 +1,9 @@
 package mrp_v2.additionalcolors.api.datagen;
 
 import mrp_v2.mrplibrary.datagen.providers.BlockTagsProvider;
-import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nullable;
@@ -15,7 +15,7 @@ public abstract class BlockTagGenerator extends BlockTagsProvider
         super(generatorIn, modId, existingFileHelper);
     }
 
-    @Override public Builder<Block> tag(ITag.INamedTag<Block> tag)
+    public TagAppender<Block> tag(TagKey<Block> tag)
     {
         return super.tag(tag);
     }

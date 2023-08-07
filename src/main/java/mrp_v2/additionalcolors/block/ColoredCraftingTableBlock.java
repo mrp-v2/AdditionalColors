@@ -1,19 +1,21 @@
 package mrp_v2.additionalcolors.block;
 
 import mrp_v2.additionalcolors.inventory.container.ColoredWorkbenchContainer;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class ColoredCraftingTableBlock extends Block
 {
@@ -25,22 +27,22 @@ public class ColoredCraftingTableBlock extends Block
     }
 
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
-            Hand handIn, BlockRayTraceResult hit)
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player,
+            InteractionHand handIn, BlockHitResult hit)
     {
         if (worldIn.isClientSide)
         {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else
         {
             player.openMenu(state.getMenuProvider(worldIn, pos));
-            return ActionResultType.CONSUME;
+            return InteractionResult.CONSUME;
         }
     }
 
-    @Nullable @Override public INamedContainerProvider getMenuProvider(BlockState state, World worldIn, BlockPos pos)
+    @Nullable @Override public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos)
     {
-        return new SimpleNamedContainerProvider((id, inventory, player) -> new ColoredWorkbenchContainer(id, inventory,
-                IWorldPosCallable.create(worldIn, pos)), ColoredWorkbenchContainer.NAME);
+        return new SimpleMenuProvider((id, inventory, player) -> new ColoredWorkbenchContainer(id, inventory,
+                ContainerLevelAccess.create(worldIn, pos)), ColoredWorkbenchContainer.NAME);
     }
 }

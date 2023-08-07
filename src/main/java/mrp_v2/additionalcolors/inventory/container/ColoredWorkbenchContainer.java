@@ -4,20 +4,20 @@ import mrp_v2.additionalcolors.AdditionalColors;
 import mrp_v2.additionalcolors.inventory.CraftResultItemStackHandler;
 import mrp_v2.additionalcolors.item.crafting.ColoredCraftingRecipe;
 import mrp_v2.additionalcolors.util.ObjectHolder;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.IntReferenceHolder;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.DataSlot;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -25,13 +25,13 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColoredWorkbenchContainer extends Container
+public class ColoredWorkbenchContainer extends AbstractContainerMenu
 {
-    public static final TranslationTextComponent NAME =
-            new TranslationTextComponent("container." + AdditionalColors.ID + "." + ColoredCraftingRecipe.ID);
-    private final IntReferenceHolder selectedRecipe = IntReferenceHolder.standalone();
-    private final IWorldPosCallable worldPosCallable;
-    private final World world;
+    public static final TranslatableComponent NAME =
+            new TranslatableComponent("container." + AdditionalColors.ID + "." + ColoredCraftingRecipe.ID);
+    private final DataSlot selectedRecipe = DataSlot.standalone();
+    private final ContainerLevelAccess worldPosCallable;
+    private final Level world;
     private final CraftResultItemStackHandler outputInventory = new CraftResultItemStackHandler();
     private final Slot inputSlot;
     private final Slot outputSlot;
@@ -50,18 +50,18 @@ public class ColoredWorkbenchContainer extends Container
         }
     };
 
-    public static ContainerType<ColoredWorkbenchContainer> createContainerType()
+    public static MenuType<ColoredWorkbenchContainer> createContainerType()
     {
-        return new ContainerType<>(ColoredWorkbenchContainer::new);
+        return new MenuType<>(ColoredWorkbenchContainer::new);
     }
 
-    public ColoredWorkbenchContainer(int windowIdIn, PlayerInventory playerInventoryIn)
+    public ColoredWorkbenchContainer(int windowIdIn, Inventory playerInventoryIn)
     {
-        this(windowIdIn, playerInventoryIn, IWorldPosCallable.NULL);
+        this(windowIdIn, playerInventoryIn, ContainerLevelAccess.NULL);
     }
 
-    public ColoredWorkbenchContainer(int windowIdIn, PlayerInventory playerInventoryIn,
-            final IWorldPosCallable worldPosCallableIn)
+    public ColoredWorkbenchContainer(int windowIdIn, Inventory playerInventoryIn,
+            final ContainerLevelAccess worldPosCallableIn)
     {
         super(ObjectHolder.COLORED_WORKBENCH_CONTAINER_TYPE.get(), windowIdIn);
         worldPosCallable = worldPosCallableIn;
@@ -74,7 +74,7 @@ public class ColoredWorkbenchContainer extends Container
                 return false;
             }
 
-            @Override public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack)
+            @Override public void onTake(Player thePlayer, ItemStack stack)
             {
                 stack.onCraftedBy(thePlayer.level, thePlayer, stack.getCount());
                 outputInventory.awardUsedRecipes(thePlayer);
@@ -83,7 +83,7 @@ public class ColoredWorkbenchContainer extends Container
                 {
                     updateRecipeResultSlot();
                 }
-                return super.onTake(thePlayer, stack);
+                super.onTake(thePlayer, stack);
             }
         });
         for (int i = 0; i < 3; ++i)
@@ -145,7 +145,7 @@ public class ColoredWorkbenchContainer extends Container
         return inputSlot.hasItem() && !recipes.isEmpty();
     }
 
-    @Override public boolean clickMenuButton(PlayerEntity playerIn, int id)
+    @Override public boolean clickMenuButton(Player playerIn, int id)
     {
         if (isRecipeIndexValid(id))
         {
@@ -155,7 +155,7 @@ public class ColoredWorkbenchContainer extends Container
         return true;
     }
 
-    public ItemStack quickMoveStack(PlayerEntity playerIn, int index)
+    public ItemStack quickMoveStack(Player playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
@@ -179,7 +179,7 @@ public class ColoredWorkbenchContainer extends Container
                     return ItemStack.EMPTY;
                 }
             } else if (this.world.getRecipeManager()
-                    .getRecipeFor(ObjectHolder.COLORED_CRAFTING_RECIPE_TYPE, new Inventory(itemstack1), this.world)
+                    .getRecipeFor(ObjectHolder.COLORED_CRAFTING_RECIPE_TYPE, new SimpleContainer(itemstack1), this.world)
                     .isPresent())
             {
                 if (!this.moveItemStackTo(itemstack1, 0, 1, false))
@@ -223,7 +223,7 @@ public class ColoredWorkbenchContainer extends Container
         return super.canTakeItemForPickAll(stack, slotIn);
     }
 
-    @Override public void removed(PlayerEntity playerIn)
+    @Override public void removed(Player playerIn)
     {
         super.removed(playerIn);
         outputSlot.set(ItemStack.EMPTY);
@@ -233,11 +233,11 @@ public class ColoredWorkbenchContainer extends Container
         });
     }
 
-    protected void clearContainer(PlayerEntity playerIn, World worldIn, ItemStackHandler inventoryIn)
+    protected void clearContainer(Player playerIn, Level worldIn, ItemStackHandler inventoryIn)
     {
         ItemStack tempStack;
         if (!playerIn.isAlive() ||
-                playerIn instanceof ServerPlayerEntity && ((ServerPlayerEntity) playerIn).hasDisconnected())
+                playerIn instanceof ServerPlayer && ((ServerPlayer) playerIn).hasDisconnected())
         {
             for (int j = 0; j < inventoryIn.getSlots(); ++j)
             {
@@ -251,12 +251,12 @@ public class ColoredWorkbenchContainer extends Container
             {
                 tempStack = inventoryIn.getStackInSlot(i);
                 inventoryIn.setStackInSlot(i, ItemStack.EMPTY);
-                playerIn.inventory.placeItemBackInInventory(worldIn, tempStack);
+                playerIn.getInventory().placeItemBackInInventory(tempStack);
             }
         }
     }
 
-    @Override public boolean stillValid(PlayerEntity playerIn)
+    @Override public boolean stillValid(Player playerIn)
     {
         return stillValid(worldPosCallable, playerIn, ObjectHolder.COLORED_CRAFTING_TABLE.get());
     }
@@ -267,11 +267,11 @@ public class ColoredWorkbenchContainer extends Container
         if (itemStack.getItem() != inputItemStack.getItem())
         {
             inputItemStack = itemStack.copy();
-            updateAvailableRecipes(new Inventory(inventoryIn.getStackInSlot(0)), itemStack);
+            updateAvailableRecipes(new SimpleContainer(inventoryIn.getStackInSlot(0)), itemStack);
         }
     }
 
-    private void updateAvailableRecipes(IInventory inventoryIn, ItemStack stack)
+    private void updateAvailableRecipes(Container inventoryIn, ItemStack stack)
     {
         recipes.clear();
         selectedRecipe.set(-1);

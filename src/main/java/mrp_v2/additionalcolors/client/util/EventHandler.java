@@ -5,8 +5,8 @@ import mrp_v2.additionalcolors.client.gui.screen.ColoredWorkbenchScreen;
 import mrp_v2.additionalcolors.client.particle.ObsidianTearParticleFactory;
 import mrp_v2.additionalcolors.util.ObjectHolder;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.particle.ParticleEngine;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,7 +18,7 @@ public class EventHandler
 {
     @SubscribeEvent public static void registerParticles(final ParticleFactoryRegisterEvent event)
     {
-        ParticleManager particleManager = Minecraft.getInstance().particleEngine;
+        ParticleEngine particleManager = Minecraft.getInstance().particleEngine;
         particleManager.register(ObjectHolder.COLORED_DRIPPING_OBSIDIAN_TEAR_PARTICLE_TYPE.get(),
                 ObsidianTearParticleFactory.ColoredDrippingObsidianTearFactory::new);
         particleManager.register(ObjectHolder.COLORED_FALLING_OBSIDIAN_TEAR_PARTICLE_TYPE.get(),
@@ -29,6 +29,6 @@ public class EventHandler
 
     @SubscribeEvent public static void clientSetup(final FMLClientSetupEvent event)
     {
-        ScreenManager.register(ObjectHolder.COLORED_WORKBENCH_CONTAINER_TYPE.get(), ColoredWorkbenchScreen::new);
+        MenuScreens.register(ObjectHolder.COLORED_WORKBENCH_CONTAINER_TYPE.get(), ColoredWorkbenchScreen::new);
     }
 }

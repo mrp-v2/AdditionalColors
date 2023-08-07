@@ -1,9 +1,9 @@
 package mrp_v2.additionalcolors.api.datagen;
 
 import mrp_v2.mrplibrary.datagen.providers.LanguageProvider;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 public abstract class LanguageGenerator extends LanguageProvider
 {
